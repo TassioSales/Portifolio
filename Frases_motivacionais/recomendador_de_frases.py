@@ -22,19 +22,25 @@ import random
 frase_motivacional = random.choice(frases)
 frase_desmotivacional = random.choice(fraser_desmotivacionais)
 
+#frase motivacional aleatoria
+frase_moti = random.choice(frases_motivacionais)
+frase_desmoti = random.choice(fraser_desmotivacionais)
+
 #cria a interface
 st.title('Recomendador de frases')
 st.write('Escolha o tipo de frase que deseja receber')
 st.write('')
+st.write('')
 
-#cria um botao para escolher a frase mativacional
+#cria um botao para recomendar frase motivacional
 if st.button('Frase motivacional'):
-    st.write(frase_motivacional)
+    st.write(frase_moti)
     st.write(random.choice(lista_emoji))
-#cria um botao para escolher a frase desmotivacional
+#cria um botao para recomendar frase desmotivacional
 if st.button('Frase desmotivacional'):
-    st.write(frase_desmotivacional)
+    st.write(frase_desmoti)
     st.write(random.choice(lista_emoji))
+    
 
 #Obrigado por usar o programa
 st.write('Obrigado por usar o programa')
