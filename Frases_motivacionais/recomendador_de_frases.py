@@ -23,13 +23,15 @@ st.title('Recomendador de frases motivacionais')
 st.write('Clique no botão abaixo para receber uma frase motivacional')
 
 #cria botao
-if st.button('Recomendar frase'):
+if st.button('Recomendar frase Mativacional'):
     st.write(frase)
     #mostar emoji aleatorio
     emoji = random.choice(lista_emoji)
     st.write(emoji)
     #Centralizar o botao no meio da tela
     st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+    #aumentar o tamanho da fonte da frase
+    st.markdown('<style>div.row-widget.stRadio > div{font-size: 20px;}</style>', unsafe_allow_html=True)
     
 
 
