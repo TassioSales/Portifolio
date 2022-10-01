@@ -21,9 +21,11 @@ frase = random.choice(frases)
 #cria a interface
 st.title('Recomendador de frases motivacionais')
 st.write('Clique no botão abaixo para receber uma frase motivacional')
+st.write('')
 
 #cria botao
 if st.button('Recomendar frase Mativacional'):
+    st.write('')
     st.text(frase)
     #colocar um emoji aleatorio no final da frase
     emoji = random.choice(lista_emoji)
