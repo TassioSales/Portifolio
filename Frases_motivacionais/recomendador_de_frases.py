@@ -32,12 +32,13 @@ st.write('Escolha o tipo de frase que deseja receber')
 st.write('')
 st.write('')
 
-#cria um menu
-menu = ['Motivacional', 'Desmotivacional', 'Cantadas']
-choice = st.sidebar.selectbox('Menu', menu)
 
-#diminuir a distancia as colunas
+#criar colunas
 col1, col2 = st.columns([1, 1])
+#diminuir a distancia
+col1.write('')
+col2.write('')
+
 with col1:
     #cria um botao para recomendar frase motivacional
     if st.button('Frase motivacional'):
