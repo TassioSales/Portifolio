@@ -28,7 +28,7 @@ if st.button('Recomendar frase'):
     #mostar emoji aleatorio
     emoji = random.choice(lista_emoji)
     st.write(emoji)
-    #Centralizar o botao
+    #Centralizar o botao no meio da tela
     st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     
 
