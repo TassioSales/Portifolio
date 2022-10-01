@@ -29,7 +29,7 @@ st.write('')
 st.write('')
 
 #colocar o buttons em uma linha
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 with col1:
     #cria um botao para recomendar frase motivacional
     if st.button('Frase motivacional'):
