@@ -7,8 +7,8 @@ import pandas as pd
 
 #busca frase motivacional
 #importa dataframe online
-df_motivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_motivacionaiss.csv', sep=';', encoding='utf-8')
-df_demotivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_demotivacionais.csv', sep=';', encoding='utf-8')
+df_motivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_desmotivacionais.csv', sep=';', encoding='utf-8')
+df_demotivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_desmotivacionais.csv', sep=';', encoding='utf-8')
 
 
 #cria uma lista com as frases
@@ -40,7 +40,7 @@ if st.button('Frase motivacional'):
 if st.button('Frase desmotivacional'):
     st.write(frase_desmoti)
     st.write(random.choice(lista_emoji))
-    
+
 
 #Obrigado por usar o programa
 st.write('Obrigado por usar o programa')
