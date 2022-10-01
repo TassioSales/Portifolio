@@ -23,7 +23,8 @@ st.title('Gerador de frases motivacionais')
 st.write('Clique no botão abaixo para gerar uma frase motivacional')
 #cria um botão centralizado
 if st.button('Gerar frase'):
-    st.write(gerar_frase())
+    frase = gerar_frase()
+    st.write(frase)
     #mostra um emoji aleatorio
     st.write(random.choice(lista_emoji))
     #aumenta o tamanho da fonte no streamlit
