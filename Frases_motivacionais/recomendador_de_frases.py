@@ -3,7 +3,7 @@
 
 import streamlit as st
 import pandas as pd
-import emoji
+import random
 
 
 #busca frase motivacional
@@ -13,17 +13,18 @@ df = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/
 #cria uma lista com as frases
 frases = df['Frase_motivacionais'].tolist()
 
-#recomenda uma frase aleatoria
-import random
-frase = random.choice(frases)
-#mostra um emoji aleatorio
-#emoji = random.choice(emoji.EMOJI_UNICODE.values())
+#criar uma função para gerar uma frase aleatoria
+def gerar_frase():
+    return random.choice(frases)
 
 #cria a interface
-st.title('Recomendador de frases motivacionais')
-st.write('Clique no botão abaixo para receber uma frase motivacional')
-if st.button('Recomendar frase'):
-    st.write(frase)
+st.title('Gerador de frases motivacionais')
+st.write('Clique no botão abaixo para gerar uma frase motivacional')
+#cria um botão
+if st.button('Gerar frase'):
+    st.write(gerar_frase())
+    #mostra um emoji aleatorio
+    st.write(':smile:')
 
 
 
