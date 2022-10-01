@@ -51,7 +51,7 @@ st.write('')
 st.write('')
 #cria um botao para gerar uma cantada
 if st.button('Gerar Cantada'):
-    st.write(cantadas)
+    st.Textbox(cantadas)
     st.write(random.choice(lista_emoji))
 
 #Obrigado por usar o programa
