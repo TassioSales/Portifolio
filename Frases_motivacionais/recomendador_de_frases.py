@@ -42,12 +42,12 @@ col2.write('')
 with col1:
     #cria um botao para recomendar frase motivacional
     if st.button('Frase motivacional'):
-        st.write(frase_moti)
+        st.text_area(frase_moti)
         st.write(random.choice(lista_emoji))
 with col2:
     #cria um botao para recomendar frase desmotivacional
     if st.button('Frase desmotivacional'):
-        st.write(frase_desmoti)
+        st.text_area(frase_desmoti)
         st.write(random.choice(lista_emoji))
 
 st.title('Gerador de Cantadas')
@@ -58,6 +58,7 @@ st.write('')
 if st.button('Gerar Cantada'):
     st.text_area('Cantada', cantadas)
     st.write(random.choice(lista_emoji))
+
 
 #Obrigado por usar o programa
 st.write('Obrigado por usar o programa')
