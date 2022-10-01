@@ -7,8 +7,8 @@ import pandas as pd
 
 #busca frase motivacional
 #importa dataframe online
-df_motivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_motivacionais.csv', sep=';', encoding='utf-8')
-df_demotivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_desmotivacionais.csv', sep=';', encoding='utf-8')
+df_motivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_motivacionais.csv')
+df_demotivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_desmotivacionais.csv')
 
 
 #cria uma lista com as frases
