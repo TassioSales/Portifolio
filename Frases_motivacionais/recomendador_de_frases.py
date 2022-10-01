@@ -46,13 +46,6 @@ footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-#mudar a cor do fundo
-st.markdown(
-    """
-<style>
-body {visibility: hidden;}
-</style>
-""", unsafe_allow_html=True)
 
 
 #Obrigado por usar o programa
