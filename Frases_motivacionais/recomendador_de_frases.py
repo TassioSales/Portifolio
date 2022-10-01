@@ -14,9 +14,9 @@ lista_emoji = [':smile:', ':grinning:',':grin:', ':joy:', ':smiley:', ':laughing
 #cria uma lista com as frases
 frases = df['Frase_motivacionais'].tolist()
 
-#criar uma função para gerar uma frase aleatoria
+#criar uma função para gerar uma frase aleatoria.
 def gerar_frase():
-    return random.choice(frases)
+    st.write(random.choice(frases))
 
 #cria a interface
 st.title('Gerador de frases motivacionais')
