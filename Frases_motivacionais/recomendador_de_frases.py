@@ -17,13 +17,13 @@ frases = df['Frase_motivacionais'].tolist()
 import random
 frase = random.choice(frases)
 #mostra um emoji aleatorio
-emoji = random.choice(emoji.EMOJI_UNICODE.values())
+#emoji = random.choice(emoji.EMOJI_UNICODE.values())
 
 #cria a interface
 st.title('Recomendador de frases motivacionais')
 st.write('Clique no botão abaixo para receber uma frase motivacional')
 if st.button('Recomendar frase'):
-    st.write(frase, emoji)
+    st.write(frase)
 
 
 
