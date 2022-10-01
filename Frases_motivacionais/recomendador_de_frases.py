@@ -28,26 +28,19 @@ st.write('Escolha o tipo de frase que deseja receber')
 st.write('')
 st.write('')
 
-#cria um botao para recomendar frase motivacional
-if st.button('Frase motivacional'):
-    st.write(frase_moti)
-    st.write(random.choice(lista_emoji))
-
-#cria um botao para recomendar frase desmotivacional
-if st.button('Frase desmotivacional'):
-    st.write(frase_desmoti)
-    st.write(random.choice(lista_emoji))
-
-#mudar a posição do botao no streamlit para ficar ao lado
-st.markdown("""
-<style>
-.reportview-container .main footer {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-""", unsafe_allow_html=True)
-
-
-
+#colocar o buttons em uma linha
+col1, col2 = st.beta_columns(2)
+with col1:
+    #cria um botao para recomendar frase motivacional
+    if st.button('Frase motivacional'):
+        st.write(frase_moti)
+        st.write(random.choice(lista_emoji))
+with col2:
+    #cria um botao para recomendar frase desmotivacional
+    if st.button('Frase desmotivacional'):
+        st.write(frase_desmoti)
+        st.write(random.choice(lista_emoji))
+    
 #Obrigado por usar o programa
 st.write('Obrigado por usar o programa')
 
