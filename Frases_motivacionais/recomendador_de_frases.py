@@ -24,7 +24,7 @@ st.write('Clique no botão abaixo para receber uma frase motivacional')
 
 #cria botao
 if st.button('Recomendar frase Mativacional'):
-    st.text(frase, end=' ')
+    st.text(frase)
     #colocar um emoji aleatorio no final da frase
     emoji = random.choice(lista_emoji)
     st.write(emoji) 
