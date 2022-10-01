@@ -34,6 +34,8 @@ st.write('')
 
 #colocar o buttons em uma linha
 col1, col2 = st.columns(2)
+#diminuir a distancia as colunas
+col1, col2 = st.columns([1, 1])
 with col1:
     #cria um botao para recomendar frase motivacional
     if st.button('Frase motivacional'):
