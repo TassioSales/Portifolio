@@ -32,8 +32,10 @@ st.write('Escolha o tipo de frase que deseja receber')
 st.write('')
 st.write('')
 
-#colocar o buttons em uma linha
-col1, col2 = st.columns(2)
+#cria um menu
+menu = ['Motivacional', 'Desmotivacional', 'Cantadas']
+choice = st.sidebar.selectbox('Menu', menu)
+
 #diminuir a distancia as colunas
 col1, col2 = st.columns([1, 1])
 with col1:
