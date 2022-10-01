@@ -24,8 +24,7 @@ st.write('Clique no botão abaixo para receber uma frase motivacional')
 
 #cria botao
 if st.button('Recomendar frase Mativacional'):
-    #mostra frase dentro de uma caixa no streamlit
-    st.text(frase)
+    st.text(frase, random.choice(lista_emoji))
 
     
 
