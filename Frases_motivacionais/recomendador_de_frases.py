@@ -27,16 +27,18 @@ st.title('Recomendador de frases')
 st.write('Escolha o tipo de frase que deseja receber')
 st.write('')
 
-#cria um botao para escolher a frase
+#cria um botao para escolher a frase mativacional
 if st.button('Frase motivacional'):
     st.write(frase_motivacional)
     st.write(random.choice(lista_emoji))
+#cria um botao para escolher a frase desmotivacional
 if st.button('Frase desmotivacional'):
     st.write(frase_desmotivacional)
     st.write(random.choice(lista_emoji))
-    #mostra emoji aleatorio
-#mostra emoji aleatorio
-st.write(random.choice(lista_emoji))
+
+#Obrigado por usar o programa
+st.write('Obrigado por usar o programa')
+
 
     
 
