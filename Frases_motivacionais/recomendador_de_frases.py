@@ -32,10 +32,27 @@ st.write('')
 if st.button('Frase motivacional'):
     st.write(frase_moti)
     st.write(random.choice(lista_emoji))
+
 #cria um botao para recomendar frase desmotivacional
 if st.button('Frase desmotivacional'):
     st.write(frase_desmoti)
     st.write(random.choice(lista_emoji))
+
+#mudar a posição do botao no streamlit para ficar ao lado
+st.markdown("""
+<style>
+.reportview-container .main footer {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
+#mudar a cor do fundo
+st.markdown(
+    """
+<style>
+body {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 
 
 #Obrigado por usar o programa
