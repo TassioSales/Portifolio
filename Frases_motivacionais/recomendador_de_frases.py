@@ -3,26 +3,30 @@
 
 import streamlit as st
 import pandas as pd
+import emoji
+
 
 #busca frase motivacional
 #importa dataframe online
-df = pd.read_csv('frases_motivacionaiss.csv', encoding='utf-8', sep=';')
+df = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_motivacionaiss.csv', sep=';', encoding='utf-8')
 
-#cria uma função para buscar a frases_motivacionaiss
-def busca_frase():
-    #cria um botão para buscar a frase
-    if st.button('Buscar frase motivacional'):
-        #cria uma variavel para receber a frase
-        frase = df['Frase_motivacionais'].sample(1).values[0]
-        #mostra a frase
-        st.write(frase)
+#cria uma lista com as frases
+frases = df['Frase_motivacionais'].tolist()
 
-#mostra o titulo
+#recomenda uma frase aleatoria
+import random
+frase = random.choice(frases)
+#mostra um emoji aleatorio
+emoji = random.choice(emoji.EMOJI_UNICODE.values())
+
+#cria a interface
 st.title('Recomendador de frases motivacionais')
-#mostra a frase
 st.write('Clique no botão abaixo para receber uma frase motivacional')
-#chama a função
-busca_frase()
+if st.button('Recomendar frase'):
+    st.write(frase, emoji)
+
+
+
 
 
 
