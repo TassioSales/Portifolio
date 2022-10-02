@@ -5,8 +5,8 @@ import streamlit as st
 import pandas as pd
 import random
 
-#personalizar pagina
-st.set_page_config(page_title='Recomendador de Frases', page_icon=':smile:', layout='centered', initial_sidebar_state='auto')
+#criar bordas para pagina
+st.set_page_config(layout="wide")
 
 #busca frase motivacional
 #importa dataframe online
