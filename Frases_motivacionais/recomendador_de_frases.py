@@ -5,7 +5,8 @@ import streamlit as st
 import pandas as pd
 import random
 #modificar button
-st.markdown(streamlit_button_style, unsafe_allow_html=True)
+with open('style.css', 'r') as f:
+    st.markdown(f"""{f.open()}""", unsafe_allow_html=True)
 
 
 #busca frase motivacional
