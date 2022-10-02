@@ -5,8 +5,8 @@ import streamlit as st
 import pandas as pd
 import random
 
-#criar bordas para pagina
-st.set_page_config(layout="wide", page_title="Recomendador de Frases Motivacionais", page_icon=":smile:")
+#colocar borda na pagina do streamlit
+st.set_page_config(layout="enjoy")
 
 #busca frase motivacional
 #importa dataframe online
