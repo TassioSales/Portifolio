@@ -76,12 +76,10 @@ st.write('')
 
 #cria um botao para gerar uma piada ruim
 if st.button('Gerar Piada'):
-    st.text_area('Piada', piadas_ruins)
-    st.write(random.choice(lista_emoji))
-    #criar um botao para ver a piada
-if st.button('Ver resposta'):
+    st.write(piadas_ruins)
     st.text_area('Resposta', piadas_ruins['Resposta'][piadas_ruins['Pergunta'].index(piada)])
     st.write(random.choice(lista_emoji))
+    
 
 
 #Obrigado por usar o programa
