@@ -17,6 +17,7 @@ df_piadas_ruins = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Por
 #Criando listas (frases motivacionais, desmotivacionais e cantadas)
 frases_motivacionais = df_motivacional['Frases_Motivacionais'].tolist()
 fraser_desmotivacionais = df_demotivacional['Frase_desmotivacionais'].tolist()
+cantadas = df_cantadas['Cantadas'].tolist()
 piadas_ruins_perguntas  = df_piadas_ruins['piada'].tolist()
 piadas_ruins_respostas = df_piadas_ruins['resposta'].tolist()
 
