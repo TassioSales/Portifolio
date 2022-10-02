@@ -4,14 +4,20 @@
 import streamlit as st
 import pandas as pd
 import random
-#usar html e css para personalizar a pagina
+#usar css para personalizar a pagina
 st.markdown(
     """
     <style>
-    .reportview-container { background: url("https://images.unsplash.com/photo-1519680772-3b7b1b0c5c1a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJhdGhlcnMlMjBtb3ZpY2F0aW9uYWx8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80") }
+    .reportview-container {
+        background: url("https://i.imgur.com/8k9j9Xt.jpg")
+    }
+    .sidebar .sidebar-content {
+        background: url("https://i.imgur.com/8k9j9Xt.jpg")
+    }
     </style>
-"""
-    , unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 #busca frase motivacional
 #importa dataframe online
