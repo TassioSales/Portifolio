@@ -5,8 +5,8 @@ import streamlit as st
 import pandas as pd
 import random
 
-#colocar borda na pagina do streamlit
-st.set_page_config(layout="enjoy")
+with open("style.css") as tag:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 #busca frase motivacional
 #importa dataframe online
