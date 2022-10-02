@@ -77,10 +77,11 @@ st.write('')
 if st.button('Gerar Piada'):
     st.text_area('Piada', piadas_ruins_perguntas)
     st.write(random.choice(lista_emoji))
-    #visualizar a resposta conforme a piada gerada
+    #visualizar a resposta conforme a posiçao da piada gerda
     if st.button('Resposta'):
-        st.text_area('Resposta', piadas_ruins_respostas)
+        st.text_area('Resposta', piadas_ruins_respostas[piadas_ruins_perguntas])
         st.write(random.choice(lista_emoji))
+
 
 #Obrigado por usar o programa
 st.write('Obrigado por usar o programa')
