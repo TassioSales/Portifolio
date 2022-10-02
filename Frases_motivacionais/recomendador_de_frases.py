@@ -11,6 +11,7 @@ import random
 df_motivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/motivacionais.csv', sep=';', encoding='utf-8')
 df_demotivacional = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/frases_desmotivacionais.csv', sep=';', encoding='utf-8')
 df_cantadas = pd.read_csv('https://raw.githubusercontent.com/TassioSales/Portifolio/main/Frases_motivacionais/cantadas.csv', sep=';', encoding='utf-8')
+df_piadas_
 
 
 #Criando listas (frases motivacionais, desmotivacionais e cantadas)
