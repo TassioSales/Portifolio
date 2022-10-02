@@ -6,7 +6,7 @@ import pandas as pd
 import random
 
 #criar bordas para pagina
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Recomendador de Frases Motivacionais", page_icon=":smile:")
 
 #busca frase motivacional
 #importa dataframe online
