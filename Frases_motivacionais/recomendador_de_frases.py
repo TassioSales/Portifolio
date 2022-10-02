@@ -24,7 +24,6 @@ lista_emoji = [':smile:', ':grinning:',':grin:', ':joy:', ':smiley:', ':laughing
 frase_moti = random.choice(frases_motivacionais)
 frase_desmoti = random.choice(fraser_desmotivacionais)
 cantadas = random.choice(cantadas)
-piadas_ruins_perguntas = random.choice(piadas_ruins_perguntas['piada'])
 
 #cria a interface
 st.title('Recomendador de frases')
