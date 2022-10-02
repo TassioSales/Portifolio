@@ -5,7 +5,7 @@ import streamlit as st
 import pandas as pd
 import random
 #modificar button
-with open('style.css', 'r') as f:
+with open('style.css') as f:
     st.markdown(f"""{f.open()}""", unsafe_allow_html=True)
 
 
