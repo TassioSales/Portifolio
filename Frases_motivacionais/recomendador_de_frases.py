@@ -5,8 +5,8 @@ import streamlit as st
 import pandas as pd
 import random
 
-with open("style.css") as tag:
-    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+#ler arquivo style.css
+st.markdown('<style>body{background-color: #4CAF50;}</style>',unsafe_allow_html=True)
 
 #busca frase motivacional
 #importa dataframe online
