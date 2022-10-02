@@ -5,8 +5,7 @@ import streamlit as st
 import pandas as pd
 import random
 #modificar button
-st.set_option('deprecation.showfileUploaderEncoding', False)
-
+st.markdown(streamlit_button_style, unsafe_allow_html=True)
 
 
 #busca frase motivacional
