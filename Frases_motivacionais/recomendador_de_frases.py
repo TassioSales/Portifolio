@@ -4,9 +4,10 @@
 import streamlit as st
 import pandas as pd
 import random
+#modificar button
+st.set_option('deprecation.showfileUploaderEncoding', False)
 
-#ler arquivo style.css
-st.markdown('<style>body{background-color: #4CAF50;}</style>',unsafe_allow_html=True)
+
 
 #busca frase motivacional
 #importa dataframe online
