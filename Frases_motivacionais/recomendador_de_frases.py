@@ -4,10 +4,14 @@
 import streamlit as st
 import pandas as pd
 import random
-#modificar button
-with open('style.css') as f:
-    st.markdown(f"""{f.open()}""", unsafe_allow_html=True)
-
+#usar html e css para personalizar a pagina
+st.markdown(
+    """
+    <style>
+    .reportview-container { background: url("https://images.unsplash.com/photo-1519680772-3b7b1b0c5c1a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJhdGhlcnMlMjBtb3ZpY2F0aW9uYWx8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80") }
+    </style>
+"""
+    , unsafe_allow_html=True)
 
 #busca frase motivacional
 #importa dataframe online
