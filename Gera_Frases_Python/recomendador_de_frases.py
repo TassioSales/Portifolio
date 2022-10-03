@@ -1,5 +1,5 @@
-#criaçao de um programa que recomenda frases motivacionais para o usuario usar em seu dia a dia
-#usar o streamlit para criar a interface
+#criaçao de um programa que recomenda frases motivacionais para o usuario usar no seu dia a dia
+#usar o streamlit para criar a “interface” grafica
 
 import streamlit as st
 import pandas as pd
@@ -58,5 +58,7 @@ if st.button('Gerar Cantada'):
     st.write(random.choice(lista_emoji))
 
 #Obrigado por usar o programa
+st.write('')
+st.write('')
 st.write('Obrigado por usar o programa')
 st.write('Espero que tenha gostado')
