@@ -49,3 +49,6 @@ def main():
     # cria botao para mostrar imagem aleatoria
     if st.button('Mostrar Conselho'):
         mostrar_imagem_aleatoria(imagens)
+
+if __name__ == '__main__':
+    main()
