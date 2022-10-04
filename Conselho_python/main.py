@@ -1,0 +1,2 @@
+import raspagem_de_conselhos
+raspagem_de_conselhos.main()
