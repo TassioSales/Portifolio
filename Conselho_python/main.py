@@ -2,7 +2,7 @@
 
 import requests
 import traceback
-from googletrans import Translator
+#from googletrans import Translator
 import streamlit as st
 from py_trans import PyTranslator
 
@@ -18,13 +18,13 @@ def get_random_advice():
 def show_advice(advice):
     st.text_area("Advice", value=advice, height=200)
     #traduz o conselho
-    translator = Translator()
-    translation = translator.translate(advice, dest="pt")
-    st.text_area("Advice in Portuguese", value=translation.text, height=200)
+    #translator = Translator()
+    #translation = translator.translate(advice, dest="pt")
+    #st.text_area("Advice in Portuguese", value=translation.text, height=200)
     #traduzir o conselho com PyTranslator
-    translatorr = PyTranslator()
-    translationn = translatorr.translate(advice, dest="pt")
-    st.text_area("Advice in Portuguese", value=translationn, height=200)
+    translator = PyTranslator()
+    translation = translator.translate(advice, dest="pt")
+    st.text_area("Advice in Portuguese", value=translation, height=200)
 
     
 if __name__ == '__main__':
