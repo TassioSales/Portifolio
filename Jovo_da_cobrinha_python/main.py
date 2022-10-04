@@ -1,111 +1,118 @@
 # criar jogo da cobrinha com python
 # colocar o jogo no streamlit
+# sem o pygame
 import random
 
 import streamlit as st
-import pygame
-
-st.title('Jogo da Cobrinha')
-
-st.write("Clique no botão para iniciar o jogo")
-
-if st.button('Iniciar'):
-    st.write('Jogo iniciado')
-
-    pygame.init()
-    pygame.display.set_caption('Snake Game')
-    screen = pygame.display.set_mode((600, 600))
-    clock = pygame.time.Clock()
-    font = pygame.font.SysFont(None, 40)
 
 
-    def draw_text(text, color, x, y):
-        img = font.render(text, True, color)
-        screen.blit(img, (x, y))
+class Snake:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.body = [[x, y]]
+        self.direction = "right"
+        self.score = 0
+
+    def move(self):
+        if self.direction == "right":
+            self.x += 1
+        elif self.direction == "left":
+            self.x -= 1
+        elif self.direction == "up":
+            self.y -= 1
+        elif self.direction == "down":
+            self.y += 1
+
+        self.body.insert(0, [self.x, self.y])
+        self.body.pop()
+
+    def grow(self):
+        self.body.insert(0, [self.x, self.y])
+        self.score += 1
+
+    def check_collision(self):
+        if self.x > 19 or self.x < 0 or self.y > 19 or self.y < 0:
+            return True
+
+        for block in self.body[1:]:
+            if self.x == block[0] and self.y == block[1]:
+                return True
+
+        return False
 
 
-    def draw_grid():
-        for x in range(0, 600, 20):
-            pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, 600))
-        for y in range(0, 600, 20):
-            pygame.draw.line(screen, (40, 40, 40), (0, y), (600, y))
+class Food:
+    def __init__(self):
+        self.x = random.randint(0, 19)
+        self.y = random.randint(0, 19)
+
+    def new_location(self):
+        self.x = random.randint(0, 19)
+        self.y = random.randint(0, 19)
 
 
-    def draw_snake(screen, color, snake_list, snake_size):
-        for x, y in snake_list:
-            pygame.draw.rect(screen, color, [x, y, snake_size, snake_size])
+def main():
+    st.title("Snake Game")
+    st.write("Use the arrow keys to move the snake")
+    st.write("Press space to start the game")
 
+    snake = Snake(10, 10)
+    food = Food()
 
-    def message(msg, color):
-        mesg = font.render(msg, True, color)
-        screen.blit(mesg, [100, 250])
+    game_over = False
 
+    while not game_over:
+        if st.button("Start"):
+            game_over = False
+            snake = Snake(10, 10)
+            food = Food()
 
-    def game_loop():
-        game_over = False
-        game_close = False
-        x1 = 300
-        y1 = 300
-        x1_change = 0
-        y1_change = 0
-        snake_list = []
-        Length_of_snake = 1
-        snake_size = 20
-        foodx = round(random.randrange(0, 600 - snake_size) / 20.0) * 20.0
-        foody = round(random.randrange(0, 600 - snake_size) / 20.0) * 20.0
         while not game_over:
-            while game_close:
-                screen.fill((0, 0, 0))
-                draw_text("You Lost! Press Q-Quit or C-Play Again", (255, 255, 255), 50, 250)
-                pygame.display.update()
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_q:
-                            game_over = True
-                            game_close = False
-                        if event.key == pygame.K_c:
-                            game_loop()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    game_over = True
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        x1_change = -snake_size
-                        y1_change = 0
-                    elif event.key == pygame.K_RIGHT:
-                        x1_change = snake_size
-                        y1_change = 0
-                    elif event.key == pygame.K_UP:
-                        y1_change = -snake_size
-                        x1_change = 0
-                    elif event.key == pygame.K_DOWN:
-                        y1_change = snake_size
-                        x1_change = 0
-            if x1 >= 600 or x1 < 0 or y1 >= 600 or y1 < 0:
-                game_close = True
-            x1 += x1_change
-            y1 += y1_change
-            screen.fill((0, 0, 0))
-            draw_grid()
-            pygame.draw.rect(screen, (255, 0, 0), [foodx, foody, snake_size, snake_size])
-            snake_head = [x1, y1]
-            snake_list.append(snake_head)
-            if len(snake_list) > Length_of_snake:
-                del snake_list[0]
-            for x in snake_list[:-1]:
-                if x == snake_head:
-                    game_close = True
-            draw_snake(screen, (0, 255, 0), snake_list, snake_size)
-            pygame.display.update()
-            if x1 == foodx and y1 == foody:
-                foodx = round(random.randrange(0, 600 - snake_size) / 20.0) * 20.0
-                foody = round(random.randrange(0, 600 - snake_size) / 20.0) * 20.0
-                Length_of_snake += 1
-            clock.tick(15)
-        pygame.quit()
-        quit()
+            # check for collision
+            if snake.check_collision():
+                game_over = True
+                break
 
+            # check if snake has eaten food
+            if snake.x == food.x and snake.y == food.y:
+                snake.grow()
+                food.new_location()
 
-    game_loop()
-else:
-    st.write('Jogo não iniciado')
+            # move snake
+            snake.move()
+
+            # create game board
+            game_board = [["blank" for _ in range(20)] for _ in range(20)]
+
+            # add snake to game board
+            for x, y in snake.body:
+                game_board[y][x] = "snake"
+
+            # add food to game board
+            game_board[food.y][food.x] = "food"
+
+            # display game board
+            st.write(f"Score: {snake.score}")
+            for row in game_board:
+                for block in row:
+                    if block == "blank":
+                        st.write("⬛", end="")
+                    elif block == "snake":
+                        st.write("🟩", end="")
+                    elif block == "food":
+                        st.write("🟥", end="")
+                st.write("")
+
+            # control snake
+            if st.button("Up"):
+                snake.direction = "up"
+            elif st.button("Down"):
+                snake.direction = "down"
+            elif st.button("Left"):
+                snake.direction = "left"
+            elif st.button("Right"):
+                snake.direction = "right"
+                
+if __name__ == "__main__":
+    main()
