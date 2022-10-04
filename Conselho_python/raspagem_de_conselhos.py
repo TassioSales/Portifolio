@@ -33,10 +33,15 @@ def link_aleatorio(lista):
     import random
     return random.choice(lista)
 
-
-if __name__ == '__main__':
+def main():
     requisita = requisicao(link)
     dados = raspagem(requisita)
-    lista = lista_de_links(dados)
-    link = link_aleatorio(lista)
-    st.image(link)
+    #crir botao para uma imagem aleatoria
+    if st.button('Gerar imagem aleatoria'):
+        lista = lista_de_links(dados)
+        link_aleatorio(lista)
+        st.image(link_aleatorio(lista))
+
+
+if __name__ == '__main__':
+
