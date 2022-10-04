@@ -12,43 +12,31 @@ def requisicao(link):
     return requisita
 
 
-# funçao para pegar o link das imagens sem o BeautifulSoup
-def pegar_link_imagem(requisita):
-    import re
-    imagens = re.findall(r"<img.*?src=\"(.*?)\"", requisita.text)
-    return imagens
+# funçao para fazer a raspagem
+def raspagem(requisita):
+    # raspagem de dados
+    dados = requisita.text
+    return dados
 
 
+# criar uma lista com links das imagens
+def lista_de_links(dados):
+    lista = []
+    for i in range(0, len(dados)):
+        if dados[i:i + 4] == 'src=':
+            lista.append(dados[i + 5:i + 100])
+    return lista
 
-# funçao para mostra o link das imagens
-def mostrar_link_imagem(imagens):
-    for imagem in imagens:
-        print(imagem['src'])
 
-
-# funçao para mostra uma imagem aleatoria
-def mostrar_imagem_aleatoria(imagens):
+# gerar um link aleatorio
+def link_aleatorio(lista):
     import random
-    imagem = random.choice(imagens)
-    print(imagem['src'])
+    return random.choice(lista)
 
-
-# funçao para mostra imagens no streamlit
-def mostrar_imagem_streamlit(imagens):
-    for imagem in imagens:
-        st.image(imagem['src'])
-
-
-def main():
-    requisita = requisicao(link)
-    imagens = pegar_link_imagem(requisita)
-    st.title('Gerador de Conselho')
-    st.write('clique no botão para receber um Conselho')
-    st.write('')
-    st.write('')
-    # cria botao para mostrar imagem aleatoria
-    if st.button('Mostrar Conselho'):
-        mostrar_imagem_aleatoria(imagens)
 
 if __name__ == '__main__':
-    main()
+    requisita = requisicao(link)
+    dados = raspagem(requisita)
+    lista = lista_de_links(dados)
+    link = link_aleatorio(lista)
+    st.image(link)
