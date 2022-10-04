@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import streamlit as st
+import random
 
 link = 'https://br.pinterest.com/eunicealvesmelo/conselhos-importantes-para-o-dia-a-dia/'
 
@@ -16,33 +17,16 @@ def requisicao(link):
 def raspagem(requisita):
     # raspagem de dados
     dados = requisita.text
+    #pegar somente os links das imagens
+    dados = dados.split('src="')
+    dados = dados[1:]
+    dados = [i.split('"')[0] for i in dados]
     return dados
 
 
-# criar uma lista com links das imagens
-def lista_de_links(dados):
-    lista = []
-    for i in range(0, len(dados)):
-        if dados[i:i + 4] == 'src=':
-            lista.append(dados[i + 5:i + 100])
-    return lista
-
-
-# gerar um link aleatorio
-def link_aleatorio(lista):
-    import random
-    return random.choice(lista)
-
-def main():
-    requisita = requisicao(link)
-    dados = raspagem(requisita)
-    #crir botao para uma imagem aleatoria
-    if st.button('Gerar imagem aleatoria'):
-        lista = lista_de_links(dados)
-        link_aleatorio(lista)
-        st.image(link_aleatorio(lista))
 
 
 if __name__ == '__main__':
-    main()
-
+    requisita = requisicao(link)
+    dados = raspagem(requisita)
+    print(dados)
