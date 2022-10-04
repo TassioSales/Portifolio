@@ -1,7 +1,6 @@
 # criar webscraping para raspagem de dados de conselhos do dia a dia e colocar em um arquivo csv
 # -*- coding: utf-8 -*-
 import requests
-from bs4 import BeautifulSoup
 import streamlit as st
 
 link = 'https://br.pinterest.com/eunicealvesmelo/conselhos-importantes-para-o-dia-a-dia/'
@@ -13,11 +12,12 @@ def requisicao(link):
     return requisita
 
 
-# funçao para pegar o link das imagens
+# funçao para pegar o link das imagens sem o BeautifulSoup
 def pegar_link_imagem(requisita):
-    soup = BeautifulSoup(requisita.text, 'html.parser')
-    imagens = soup.find_all('img')
+    import re
+    imagens = re.findall(r"<img.*?src=\"(.*?)\"", requisita.text)
     return imagens
+
 
 
 # funçao para mostra o link das imagens
