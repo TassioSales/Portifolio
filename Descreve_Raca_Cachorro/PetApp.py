@@ -30,20 +30,20 @@ def mostrar_imagem(raca):
 #pegando peso da raça do cachorro no wikipedia
 def pegar_peso(raca):
     #fazendo a requisição
-    response = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/summary/{raca}')
-    #pegando o json
-    data = response.json()
+    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
+    #pegando o html
+    html = response.text
     #pegando o peso
-    peso = data['extract']
-    return peso
-
+    peso = html.split('Weight')[1].split('kg')[0].split('>')[-1]
+    #retornando o peso
+    return f'A raça {raca} pesa em média {peso}kg'
 
 #função principal
 def main():
     #titulo
     st.title('Descubra a raça do seu cachorro')
     #subtitulo
-    st.subheader('Selecione a raça do seu cachorro')
+    st.subheader('Selecione a raça do seu cachorro e descubra o peso médio')
     #chamando a função para selecionar a raça
     raca = selecionar_raca()
     #chamando a função para mostrar a imagem
