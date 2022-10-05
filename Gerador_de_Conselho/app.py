@@ -3,7 +3,7 @@
 #imports
 
 #import biblioteca tradutor google
-from googletrans import Translator
+from py_trans import PyTranslator
 #import Streamlit
 import streamlit as st
 #importar biblioteca para fazer requisições
@@ -29,15 +29,15 @@ def translate_advice(advice, language):
     """
     Função que traduz o conselho
     :param advice: str conselho
-    :param language: str linguagem para traduzir
+    :param language: str linguagem
     :return: str conselho traduzido
     """
     #criar variavel que vai receber o tradutor
-    translator = Translator()
+    translator = PyTranslator()
     #criar variavel que vai receber o conselho traduzido
-    translated_advice = translator.translate(advice, dest=language)
+    translated_advice = translator.translate(advice, language)
     #retornar o conselho traduzido
-    return translated_advice.text
+    return translated_advice
 
 def main():
     #motrar titulo
