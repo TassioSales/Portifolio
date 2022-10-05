@@ -73,19 +73,19 @@ def main():
         # criar variavel que vai receber o conselho
         advice = get_advice()
         # criar texto com o conselho
-        st.write(advice)
+        st.write('Conselho', advice)
     # criar condicional para verificar se o botao foi clicado
     if button2:
         # criar variavel que vai receber o conselho
         advice = get_chuck_norris()
         # criar texto com o conselho
-        st.write(advice)
+        st.text_area('Chock norris',advice)
     # criar condicional para verificar se o botao foi clicado
     if button3:
         # criar variavel que vai receber o conselho
         joke = get_joke()
         # criar texto com o conselho
-        st.write(joke)
+        st.write('Piada', joke)
 
 
 if __name__ == '__main__':
