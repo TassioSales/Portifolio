@@ -36,6 +36,7 @@ def get_chuck_norris():
     # retornar o conselho
     return advice
 
+
 def main():
     # criar titulo
     st.title("Conselhos aleatórios")
@@ -57,6 +58,7 @@ def main():
         advice = get_chuck_norris()
         # criar texto com o conselho
         st.write(advice)
+
 
 if __name__ == '__main__':
     main()
