@@ -20,7 +20,7 @@ if __name__ == '__main__':
     if st.button('Gerar conselho'):
         try:
             advice = get_random_advice()
-            st.text_area(advice)
+            st.text_area('Conselho',advice)
         except:
             st.write('Ocorreu um erro ao gerar o conselho')
             traceback.print_exc()
