@@ -49,6 +49,17 @@ def pegar_tamanho(raca):
     #retornando o tamanho
     return f'A raça {raca} tem em média {tamanho}m'
 
+#pegando o media de vida da raça
+def pegar_media_vida(raca):
+    #fazendo a requisição
+    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
+    #pegando o html
+    html = response.text
+    #pegando a media de vida
+    media_vida = html.split('Life span')[1].split('years')[0].split('>')[-1]
+    #retornando a media de vida
+    return f'A raça {raca} tem em média {media_vida} anos de vida'
+
 #função principal
 def main():
     #titulo
@@ -67,6 +78,10 @@ def main():
     tamanho = pegar_tamanho(raca)
     #mostrando o tamanho
     st.write(tamanho)
+    #chamando a função para pegar a media de vida
+    media_vida = pegar_media_vida(raca)
+    #mostrando a media de vida
+    st.write(media_vida)
 
 if __name__ == '__main__':
     main()
