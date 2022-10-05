@@ -27,46 +27,31 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça
-def pegar_descricao(raca):
-    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
+#pegando peso da raça do cachorro no wikipedia
+def pegar_peso(raca):
+    #fazendo a requisição
+    response = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/summary/{raca}')
     #pegando o json
     data = response.json()
-    #pegando a peso
-    #peso = data['message']['weight']['imperial']
-    #pegando a altura
-    altura = data['message']['height']['imperial']
-    #pegando a expectativa de vida
-    expectativa_vida = data['message']['life_span']
-    #pegando a origem
-    origem = data['message']['origin']
-    #pegando o grupo
-    grupo = data['message']['breed_group']
-    #pegando a descrição
-    descricao = data['message']['bred_for']
-    #criando um texto
-    texto = f'''
-    Altura: {altura}
-    Expectativa de vida: {expectativa_vida}
-    Origem: {origem}
-    Grupo: {grupo}
-    Descrição: {descricao}
-    '''
-    return texto
+    #pegando o peso
+    peso = data['extract']
+    return peso
+
 
 #função principal
 def main():
     #titulo
     st.title('Descubra a raça do seu cachorro')
     #subtitulo
-    st.markdown('Escolha uma raça e veja a descrição dela')
-    #selecionar a raça
+    st.subheader('Selecione a raça do seu cachorro')
+    #chamando a função para selecionar a raça
     raca = selecionar_raca()
-    #mostrar a imagem
+    #chamando a função para mostrar a imagem
     mostrar_imagem(raca)
-    #mostrar a descrição
-    descricao = pegar_descricao(raca)
-    st.markdown(descricao)
+    #chamando a função para pegar o peso
+    peso = pegar_peso(raca)
+    #mostrando o peso
+    st.write(peso)
 
 if __name__ == '__main__':
     main()
