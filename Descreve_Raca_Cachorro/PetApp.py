@@ -27,12 +27,13 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça no wikipedia
+#pegar a descrição da raça no https://love.doghero.com.br/racas/{raca}
 def pegar_descricao(raca):
-    response = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/summary/{raca}')
+    response = requests.get(f'https://love.doghero.com.br/racas/{raca}')
     data = response.json()
-    descricao = data['extract']
+    descricao = data['descricao']
     return descricao
+    
 
 
 #função principal
