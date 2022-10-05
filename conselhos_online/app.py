@@ -1,8 +1,8 @@
 import requests
 import traceback
-# from googletrans import Translator
 import streamlit as st
-#instalar arquivo de requirements.txt
+from py_trans import PyTranslator
+
 
 
 def get_random_advice():
