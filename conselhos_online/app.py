@@ -1,11 +1,9 @@
-import requ
+import requests
 import traceback
 import streamlit as st
 from py_trans import PyTranslator
 
-
-
-
+#função para gerar conselho aleatório
 def get_random_advice():
     """
     Get random advice from https://api.adviceslip.com/
@@ -19,12 +17,34 @@ def get_random_advice():
     advice = response.json()["slip"]["advice"]
     return advice
 
+#função para traduzir o conselho
+def translate_advice(advice, language):
+    """
+    Translate advice to given language
+
+    Args:
+        advice (str): Advice to translate
+        language (str): Language to translate to
+
+    Returns:
+        str: Translated advice
+    """
+    translator = PyTranslator()
+    try:
+        translated_advice = translator.translate(advice, language)
+    except Exception:
+        st.error(traceback.format_exc())
+        return advice
+    return translated_advice
+
+def main():
+    st.title("Advice Generator")
+    st.markdown("## Get random advice in your language")
+    language = st.selectbox("Select language", ["en", "es", "fr", "de", "it"])
+    advice = get_random_advice()
+    translated_advice = translate_advice(advice, language)
+    st.success(translated_advice)
+
+
+
 if __name__ == "__main__":
-    st.title("Random Advice")
-    st.write("Click the button to get a random advice")
-    if st.button("Get advice"):
-        try:
-            advice = get_random_advice()
-            st.write(advice)
-        except Exception:
-            st.error(traceback.format_exc())
