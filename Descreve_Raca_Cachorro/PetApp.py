@@ -29,14 +29,15 @@ def mostrar_imagem(raca):
 
 #motsra a descrição da raça
 def mostrar_descricao(raca):
-    #fazendo a requisição
-    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
-    #pegando o json
-    data = response.json()
-    #pegando a descrição
-    descricao = data['message']
-    #mostrando a descrição
-    st.text(descricao)
+#fazendo a requisição
+response = requests.get(f'https://dog.ceo/api/breed/{raca}/info')
+#pegando o json_instance
+data = response.json()
+#pegando a descrição
+descricao = data['message']
+#mostrando a descrição
+st.write(descricao)
+
 
 #função principal
 def main():
@@ -44,7 +45,7 @@ def main():
     raca = selecionar_raca()
     mostrar_imagem(raca)
     mostrar_descricao(raca)
-    
+
 
 
 if __name__ == '__main__':
