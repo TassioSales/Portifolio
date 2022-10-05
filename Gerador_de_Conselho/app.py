@@ -32,9 +32,9 @@ def get_chuck_norris():
     # criar variavel que vai receber o json da resposta
     json_data = response.json()
     # criar variavel que vai receber o conselho
-    advice = json_data["value"]
+    chunk = json_data["value"]
     # retornar o conselho
-    return advice
+    return chunk
 
 #api gerador de piadas aleatorias
 def get_joke():
@@ -71,19 +71,19 @@ def main():
         # criar variavel que vai receber o conselho
         advice = get_advice()
         # criar texto com o conselho
-        st.st.text_area('Conselho', advice)
+        st.st.text_area(advice)
     # criar condicional para verificar se o botao foi clicado
     if button2:
         # criar variavel que vai receber o conselho
         advice = get_chuck_norris()
         # criar texto com o conselho
-        st.text_area('Chock norris',advice)
+        st.text(chunk)
     # criar condicional para verificar se o botao foi clicado
     if button3:
         # criar variavel que vai receber o conselho
         joke = get_joke()
         # criar texto com o conselho
-        st.text_area('Piada', joke)
+        st.text_area(joke)
 
 
 if __name__ == '__main__':
