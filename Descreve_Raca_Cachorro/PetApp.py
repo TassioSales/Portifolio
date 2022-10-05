@@ -49,17 +49,6 @@ def pegar_tamanho(raca):
     #retornando o tamanho
     return f'A raça {raca} tem em média {tamanho}m'
 
-#pegando pais de origem
-def pegar_pais_origem(raca):
-    #fazendo a requisição
-    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
-    #pegando o html
-    html = response.text
-    #pegando o pais de origem
-    pais_origem = html.split('Country of origin')[1].split('a>')[0].split('>')[-1]
-    #retornando o pais de origem
-    return f'A raça {raca} é originária do {pais_origem}'
-
 #função principal
 def main():
     #titulo
@@ -78,11 +67,7 @@ def main():
     tamanho = pegar_tamanho(raca)
     #mostrando o tamanho
     st.write(tamanho)
-    #chamando a função para pegar a media de vida
-    pais_origem = pegar_pais_origem(raca)
-    #mostrando a media de vida
-    st.write(pais_origem)
-    
+
 
 
 if __name__ == '__main__':
