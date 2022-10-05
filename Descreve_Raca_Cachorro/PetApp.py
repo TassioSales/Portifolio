@@ -27,15 +27,16 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça no https://www.cachorrogato.com.br/racas-caes/{raca}/
+#pegar a descrição da raça no wikipedia em português brasileiro
 def pegar_descricao(raca):
-    response = requests.get(f'https://www.cachorrogato.com.br/racas-caes/{raca}/')
-    #pegando o html
-    html = response.text
-    #pegando a descrição
-    descricao = html.split('class="entry-content">')[1].split('</div>')[0]
+    response = requests.get(f'https://pt.wikipedia.org/api/rest_v1/page/summary/{raca}')
+    data = response.json()
+    descricao = data['extract']
+    #mostrar link para a página completa
+    link = data['content_urls']['desktop']['page']
+    st.markdown(f'Veja mais em: {link}')
+    #mostrar a descrição
     return descricao
-    
 
 
 #função principal
@@ -45,7 +46,6 @@ def main():
     mostrar_imagem(raca)
     descricao = pegar_descricao(raca)
     st.write(descricao)
-
 
 if __name__ == '__main__':
     main()
