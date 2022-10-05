@@ -38,6 +38,17 @@ def pegar_peso(raca):
     #retornando o peso
     return f'A raça {raca} pesa em média {peso}kg'
 
+#pegando o tamanho da raca
+def pegar_tamanho(raca):
+    #fazendo a requisição
+    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
+    #pegando o html
+    html = response.text
+    #pegando o tamanho
+    tamanho = html.split('Height')[1].split('m')[0].split('>')[-1]
+    #retornando o tamanho
+    return f'A raça {raca} tem em média {tamanho}m'
+
 #função principal
 def main():
     #titulo
@@ -52,6 +63,10 @@ def main():
     peso = pegar_peso(raca)
     #mostrando o peso
     st.write(peso)
+    #chamando a função para pegar o tamanho
+    tamanho = pegar_tamanho(raca)
+    #mostrando o tamanho
+    st.write(tamanho)
 
 if __name__ == '__main__':
     main()
