@@ -1,9 +1,8 @@
-import requests
+import requ
 import traceback
 import streamlit as st
 from py_trans import PyTranslator
-#criar arquivo package.txt
-#pip freeze > package.txt
+
 
 
 
