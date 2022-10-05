@@ -36,6 +36,22 @@ def get_chuck_norris():
     # retornar o conselho
     return advice
 
+#api gerador de piadas aleatorias
+def get_joke():
+    """
+    Função que retorna uma piada aleatória
+    return: str joke para o usuário
+    """
+    # criar variavel que vai receber a resposta da api
+    response = requests.get("https://official-joke-api.appspot.com/random_joke")
+    # criar variavel que vai receber o json da resposta
+    json_data = response.json()
+    # criar variavel que vai receber a piada
+    joke = json_data["setup"] + " " + json_data["punchline"]
+    # retornar a piada
+    return joke
+
+
 
 def main():
     # criar titulo
@@ -44,8 +60,14 @@ def main():
     st.subheader("Aqui você encontra conselhos aleatórios normal")
     # criar botao
     button = st.button("Clique aqui para receber um conselho")
+    #criar titulo
+    st.title(" Chuck Norris")
     # criar botao
     button2 = st.button("Clique aqui e veja algo sobre Chuck Norris")
+    #criar titulo
+    st.title("Piadas aleatórias")
+    # criar botao
+    button3 = st.button("Clique aqui e veja uma piada aleatória")
     # criar condicional para verificar se o botao foi clicado
     if button:
         # criar variavel que vai receber o conselho
@@ -58,6 +80,12 @@ def main():
         advice = get_chuck_norris()
         # criar texto com o conselho
         st.write(advice)
+    # criar condicional para verificar se o botao foi clicado
+    if button3:
+        # criar variavel que vai receber o conselho
+        joke = get_joke()
+        # criar texto com o conselho
+        st.write(joke)
 
 
 if __name__ == '__main__':
