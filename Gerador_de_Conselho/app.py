@@ -51,6 +51,22 @@ def get_joke():
     # retornar a piada
     return joke
 
+#api https://icanhazdadjoke.com/
+def get_dad_joke():
+    """
+    Função que retorna uma piada aleatória
+    return: str joke para o usuário
+    """
+    # criar variavel que vai receber a resposta da api
+    response = requests.get("https://icanhazdadjoke.com/", headers={"Accept": "application/json"})
+    # criar variavel que vai receber o json da resposta
+    json_data = response.json()
+    # criar variavel que vai receber a piada
+    dadjoke = json_data["joke"]
+    # retornar a piada
+    return dadjoke
+
+
 
 
 def main():
@@ -59,7 +75,7 @@ def main():
     # criar um subtitulo
     st.subheader("Escolha uma opção abaixo")
     # criar um menu
-    menu = ["Conselhos", "Piadas", "Chuck Norris"]
+    menu = ["Conselhos", "Piadas", "Chuck Norris", "Piadas de Pai"]
     # criar uma variavel que vai receber o menu
     choice = st.sidebar.selectbox("Menu", menu)
     # criar um if para cada opção do menu
@@ -90,6 +106,15 @@ def main():
             chuck = get_chuck_norris()
             # mostrar a piada para o usuário
             st.success(chuck)
+    elif choice == "Piadas de Pai":
+        # criar um botão
+        st.subheader("Clique no botão abaixo para receber uma piada do Pai")
+        # criar um botão
+        if st.button("Dê uma piada do Pai"):
+            # criar uma variavel que vai receber a piada
+            dadjoke = get_dad_joke()
+            # mostrar a piada para o usuário
+            st.success(dadjoke)
 
 if __name__ == '__main__':
     main()
