@@ -56,12 +56,10 @@ def get_joke():
 def main():
     # criar titulo
     st.title("Conselhos aleatórios")
-    # criar subtitulo
-    st.subheader("Aqui você encontra conselhos aleatórios normal")
     # criar botao
     button = st.button("Clique aqui para receber um conselho")
     #criar titulo
-    st.title(" Chuck Norris")
+    st.title("Chuck Norris")
     # criar botao
     button2 = st.button("Clique aqui e veja algo sobre Chuck Norris")
     #criar titulo
@@ -73,7 +71,7 @@ def main():
         # criar variavel que vai receber o conselho
         advice = get_advice()
         # criar texto com o conselho
-        st.write('Conselho', advice)
+        st.st.text_area('Conselho', advice)
     # criar condicional para verificar se o botao foi clicado
     if button2:
         # criar variavel que vai receber o conselho
@@ -85,7 +83,7 @@ def main():
         # criar variavel que vai receber o conselho
         joke = get_joke()
         # criar texto com o conselho
-        st.write('Piada', joke)
+        st.text_area('Piada', joke)
 
 
 if __name__ == '__main__':
