@@ -3,7 +3,7 @@
 #imports
 
 #import biblioteca tradutor google
-from google_trans_new import google_translator  
+from google.cloud import translate
 #import Streamlit
 import streamlit as st
 #importar biblioteca para fazer requisições
@@ -29,34 +29,41 @@ def get_advice():
 def translate_advice(advice):
     """
     Função que traduz o conselho para português
-    :param advice: str conselho
+    :param advice: str conselho para ser traduzido
     :return: str conselho traduzido
     """
-    #criar variavel que vai receber o tradutor
-    translator = google_translator()
-    #criar variavel que vai receber o conselho traduzido
-    translated_advice = translator.translate(advice, lang_tgt="pt")
-    #retornar o conselho traduzido
-    return translated_advice
+    #criar variavel que vai receber o texto que vai ser traduzido
+    text = [advice]
+    #criar variavel que vai receber o idioma que vai ser traduzido
+    target = "pt"
+    #criar variavel que vai receber o idioma que vai ser traduzido
+    source = "en"
+    #criar variavel que vai receber o texto traduzido
+    translation = translate_client.translate(text, target_language=target, source_language=source)
+    #criar variavel que vai receber o texto traduzido
+    translated_text = translation["translatedText"]
+    #retornar o texto traduzido
+    return translated_text
 
 
 
 def main():
     """
-    Função principal
+    Função principal do programa
     """
-    #criar titulo
+    #criar variavel que vai receber o titulo do programa
     st.title("Conselho do dia")
-    #criar subtitulo
-    st.subheader("Um conselho aleatório para você")
-    #criar botao
-    if st.button("Gerar conselho"):
+    #criar variavel que vai receber o subtitulo do programa
+    st.subheader("Clique no botão para receber um conselho")
+    #criar variavel que vai receber o botão
+    button = st.button("Receber conselho")
+    #criar condicional que vai verificar se o botão foi clicado
+    if button:
         #criar variavel que vai receber o conselho
         advice = get_advice()
         #criar variavel que vai receber o conselho traduzido
         translated_advice = translate_advice(advice)
-        #mostrar o conselho traduzido
-        st.write(translated_advice)
+        #criar variavel que vai receber o conselho
 
 if __name__ == '__main__':
     main()
