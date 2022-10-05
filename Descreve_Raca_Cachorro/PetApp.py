@@ -41,7 +41,6 @@ def description(group):
     return description
 
 
-
 #função principal
 def main():
     st.title('Descubra a raça do seu cachorro')
@@ -49,8 +48,6 @@ def main():
     mostrar_imagem(raca)
     description = description(raca)
     st.write(description)
-
-
 
 
 if __name__ == '__main__':
