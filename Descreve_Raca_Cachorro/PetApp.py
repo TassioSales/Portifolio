@@ -31,3 +31,4 @@ def main():
     st.image(get_dog(), width=500)
 
 if __name__ == '__main__':
+    main()
