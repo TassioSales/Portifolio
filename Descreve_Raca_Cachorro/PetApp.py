@@ -3,6 +3,7 @@
 
 import requests
 import streamlit as st
+import BeautifulSoup as soup
 
 #função para pesquisar a raça do cachorro
 def selecionar_raca():
@@ -27,27 +28,19 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegando peso da raça do cachorro no wikipedia
-def pegar_peso(raca):
+#raspa site para pegar a descrição do cachorro
+def description(group):
     #fazendo a requisição
-    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
+    response = requests.get(f'https://www.thesprucepets.com/{group}-dog-breeds-4140716')
     #pegando o html
-    html = response.text
-    #pegando o peso
-    peso = html.split('Weight')[1].split('kg')[0].split('>')[-1]
-    #retornando o peso
-    return f'A raça {raca} pesa em média {peso}kg'
+    html = response.content
+    #transformando em um objeto do BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+    #pegando a descrição
+    description = soup.find('p').text
+    return description
 
-#pegando o tamanho da raca
-def pegar_tamanho(raca):
-    #fazendo a requisição
-    response = requests.get(f'https://en.wikipedia.org/wiki/{raca}')
-    #pegando o html
-    html = response.text
-    #pegando o tamanho
-    tamanho = html.split('Height')[1].split('m')[0].split('>')[-1]
-    #retornando o tamanho
-    return f'A raça {raca} tem em média {tamanho}m'
+
 
 #função principal
 def main():
