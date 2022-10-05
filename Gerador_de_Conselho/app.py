@@ -54,37 +54,42 @@ def get_joke():
 
 
 def main():
-    # criar titulo
-    st.title("Conselhos aleatórios")
-    # criar botao
-    button = st.button("Clique aqui para receber um conselho")
-    #criar titulo
-    st.title("Chuck Norris")
-    # criar botao
-    button2 = st.button("Clique aqui e veja algo sobre Chuck Norris")
-    #criar titulo
-    st.title("Piadas aleatórias")
-    # criar botao
-    button3 = st.button("Clique aqui e veja uma piada aleatória")
-    # criar condicional para verificar se o botao foi clicado
-    if button:
-        # criar variavel que vai receber o conselho
-        advice = get_advice()
-        # criar texto com o conselho
-        st.st.text(advice)
-    # criar condicional para verificar se o botao foi clicado
-    if button2:
-        # criar variavel que vai receber o conselho
-        advice = get_chuck_norris()
-        # criar texto com o conselho
-        st.text(chunk)
-    # criar condicional para verificar se o botao foi clicado
-    if button3:
-        # criar variavel que vai receber o conselho
-        joke = get_joke()
-        # criar texto com o conselho
-        st.text(joke)
-
+    # criar um titulo
+    st.title("Gerador de conselhos e piadas aleatórias")
+    # criar um subtitulo
+    st.subheader("Escolha uma opção abaixo")
+    # criar um menu
+    menu = ["Conselhos", "Piadas", "Chuck Norris"]
+    # criar uma variavel que vai receber o menu
+    choice = st.sidebar.selectbox("Menu", menu)
+    # criar um if para cada opção do menu
+    if choice == "Conselhos":
+        # criar um botão
+        st.subheader("Clique no botão abaixo para receber um conselho")
+        # criar um botão
+        if st.button("Dê um conselho"):
+            # criar uma variavel que vai receber o conselho
+            advice = get_advice()
+            # mostrar o conselho para o usuário
+            st.success(advice)
+    elif choice == "Piadas":
+        # criar um botão
+        st.subheader("Clique no botão abaixo para receber uma piada")
+        # criar um botão
+        if st.button("Dê uma piada"):
+            # criar uma variavel que vai receber a piada
+            joke = get_joke()
+            # mostrar a piada para o usuário
+            st.success(joke)
+    elif choice == "Chuck Norris":
+        # criar um botão
+        st.subheader("Clique no botão abaixo para receber uma piada do Chuck Norris")
+        # criar um botão
+        if st.button("Dê uma piada do Chuck Norris"):
+            # criar uma variavel que vai receber a piada
+            chuck = get_chuck_norris()
+            # mostrar a piada para o usuário
+            st.success(chuck)
 
 if __name__ == '__main__':
     main()
