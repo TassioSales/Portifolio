@@ -33,7 +33,7 @@ def pegar_descricao(raca):
     #pegando o json
     data = response.json()
     #pegando a peso
-    peso = data['message']['weight']['imperial']
+    #peso = data['message']['weight']['imperial']
     #pegando a altura
     altura = data['message']['height']['imperial']
     #pegando a expectativa de vida
@@ -46,7 +46,6 @@ def pegar_descricao(raca):
     descricao = data['message']['bred_for']
     #criando um texto
     texto = f'''
-    Peso: {peso}
     Altura: {altura}
     Expectativa de vida: {expectativa_vida}
     Origem: {origem}
