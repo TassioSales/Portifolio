@@ -1,1 +1,0 @@
-print(google_translator.__version__)
