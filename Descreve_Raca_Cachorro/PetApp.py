@@ -5,19 +5,46 @@ import requests
 import streamlit as st
 
 #função para pesquisar a raça do cachorro
+def selecionar_raca():
+    #fazendo a requisição
+    response = requests.get('https://dog.ceo/api/breeds/list/all')
+    #pegando o json
+    data = response.json()
+    #pegando as raças
+    racas = list(data['message'].keys())
+    #selecionando a raça
+    raca = st.selectbox('Selecione a raça do cachorro', racas)
+    return raca
+
+#mostrar uma imagem da raça selecionada
+def mostrar_imagem(raca):
+    #fazendo a requisição
+    response = requests.get(f'https://dog.ceo/api/breed/{raca}/images/random')
+    #pegando o json
+    data = response.json()
+    #pegando a url da imagem
+    url_imagem = data['message']
+    #mostrando a imagem
+    st.image(url_imagem, use_column_width=True)
+
+#motsra a descrição da raça
+def mostrar_descricao(raca):
+    #fazendo a requisição
+    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
+    #pegando o json
+    data = response.json()
+    #pegando a descrição
+    descricao = data['message']
+    #mostrando a descrição
+    st.text(descricao)
+
+#função principal
 def main():
     st.title('Descubra a raça do seu cachorro')
-    st.write('Digite a raça do seu cachorro')
-    raça = st.text_input('Raça do cachorro')
-    if raça:
-        #fazendo a requisição
-        response = requests.get(f'https://dog.ceo/api/breed/{raça}/images/random')
-        #pegando a resposta
-        data = response.json()
-        #pegando a url da imagem
-        url = data['message']
-        #mostrando a imagem
-        st.image(url, use_column_width=True)
+    raca = selecionar_raca()
+    mostrar_imagem(raca)
+    mostrar_descricao(raca)
+    
 
 
 if __name__ == '__main__':
