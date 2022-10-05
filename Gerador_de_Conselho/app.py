@@ -45,7 +45,7 @@ def main():
     # criar botao
     button = st.button("Clique aqui para receber um conselho")
     # criar botao
-    button2 = st.button("Clique aqui para receber um conselho do Chuck Norris")
+    button2 = st.button("Clique aqui e veja algo sobre Chuck Norris")
     # criar condicional para verificar se o botao foi clicado
     if button:
         # criar variavel que vai receber o conselho
