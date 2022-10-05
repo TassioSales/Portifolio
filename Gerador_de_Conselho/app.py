@@ -6,6 +6,8 @@
 from googletrans import Translator
 #import Streamlit
 import streamlit as st
+#importar biblioteca para fazer requisições
+import requests
 
 #criar funçao quer dar conselho aleatorio usando advise slip
 def get_advice():
@@ -22,6 +24,33 @@ def get_advice():
     #retornar o conselho
     return advice
 
+#criar funçao que vai traduzir o conselho
+def translate_advice(advice, language):
+    """
+    Função que traduz o conselho
+    :param advice: str conselho
+    :param language: str linguagem para traduzir
+    :return: str conselho traduzido
+    """
+    #criar variavel que vai receber o tradutor
+    translator = Translator()
+    #criar variavel que vai receber o conselho traduzido
+    translated_advice = translator.translate(advice, dest=language)
+    #retornar o conselho traduzido
+    return translated_advice.text
+
 if __name__ == '__main__':
-    conselho = get_advice()
-    print(conselho)
+    #criar titulo
+    st.title("Advice Slip")
+    #criar subtitulo
+    st.subheader("Get a random advice")
+    #criar botao que vai chamar a funçao que vai dar o conselho
+    if st.button("Get advice"):
+        #criar variavel que vai receber o conselho
+        advice = get_advice()
+        #criar variavel que vai receber a linguagem que o usuario escolheu
+        language = st.selectbox("Select the language", ["en", "es", "pt", "fr", "de", "it", "ru", "ja", "zh-CN"])
+        #criar variavel que vai receber o conselho traduzido
+        translated_advice = translate_advice(advice, language)
+        #mostrar o conselho traduzido
+        st.write(translated_advice)
