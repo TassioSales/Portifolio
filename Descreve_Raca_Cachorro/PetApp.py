@@ -27,22 +27,47 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça no google.com.br
+#pegar a descrição da raça
 def pegar_descricao(raca):
-    #fazendo a requisição
-    response = requests.get(f'https://www.google.com.br/search?q={raca}')
-    #pegando o html
-    html = response.text
-    #mostrando o html
-    st.write(html)
+    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
+    #pegando o json
+    data = response.json()
+    #pegando a peso
+    peso = data['message']['weight']['imperial']
+    #pegando a altura
+    altura = data['message']['height']['imperial']
+    #pegando a expectativa de vida
+    expectativa_vida = data['message']['life_span']
+    #pegando a origem
+    origem = data['message']['origin']
+    #pegando o grupo
+    grupo = data['message']['breed_group']
+    #pegando a descrição
+    descricao = data['message']['bred_for']
+    #criando um texto
+    texto = f'''
+    Peso: {peso}
+    Altura: {altura}
+    Expectativa de vida: {expectativa_vida}
+    Origem: {origem}
+    Grupo: {grupo}
+    Descrição: {descricao}
+    '''
+    return texto
 
 #função principal
 def main():
+    #titulo
     st.title('Descubra a raça do seu cachorro')
+    #subtitulo
+    st.markdown('Escolha uma raça e veja a descrição dela')
+    #selecionar a raça
     raca = selecionar_raca()
+    #mostrar a imagem
     mostrar_imagem(raca)
+    #mostrar a descrição
     descricao = pegar_descricao(raca)
-    st.write(descricao)
+    st.markdown(descricao)
 
 if __name__ == '__main__':
     main()
