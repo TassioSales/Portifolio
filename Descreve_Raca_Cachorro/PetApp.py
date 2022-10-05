@@ -3,7 +3,6 @@
 
 import requests
 import streamlit as st
-from bs4 import BeautifulSoup
 
 #função para pesquisar a raça do cachorro
 def selecionar_raca():
