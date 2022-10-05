@@ -28,27 +28,14 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#raspa site para pegar a descrição do cachorro
-def description(group):
-    #fazendo a requisição
-    response = requests.get(f'https://www.thesprucepets.com/{group}-dog-breeds-4140716')
-    #pegando o html
-    html = response.content
-    #transformando em um objeto do BeautifulSoup
-    soup = BeautifulSoup(html, 'html.parser')
-    #pegando a descrição
-    description = soup.find('p').text
-    return description
 
 
 #função principal
 def main():
-    st.title('Descubra a raça do seu cachorro')
+    st.title('Pet App')
+    st.subheader('Descubra a raça do seu cachorro')
     raca = selecionar_raca()
     mostrar_imagem(raca)
-    description = description(raca)
-    st.write(description)
-
 
 if __name__ == '__main__':
     main()
