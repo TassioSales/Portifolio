@@ -1,7 +1,8 @@
 import requests
 import traceback
 import streamlit as st
-from py_trans import PyTranslator
+from google_trans import google_translator
+from fake_useragent import UserAgent
 
 
 # função para gerar conselho aleatório
@@ -22,7 +23,7 @@ def get_random_advice():
 # função para traduzir o conselho
 def translate_advice(advice, language):
     """
-    Translate advice to given language
+    Translate advice to selected language
 
     Args:
         advice (str): Advice to translate
@@ -31,12 +32,13 @@ def translate_advice(advice, language):
     Returns:
         str: Translated advice
     """
-    translator = PyTranslator()
+    translator = google_translator()
     try:
-        translated_advice = translator.translate(advice, language)
+        translated_advice = translator.translate(advice, lang_tgt=language)
     except Exception:
         st.error(traceback.format_exc())
-        return advice
+        st.error("Error translating advice")
+        translated_advice = advice
     return translated_advice
 
 
