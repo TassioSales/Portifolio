@@ -3,7 +3,7 @@
 #imports
 
 #import biblioteca tradutor google
-from py_trans import PyTranslator
+from googletrans import Translator
 #import Streamlit
 import streamlit as st
 #importar biblioteca para fazer requisições
@@ -24,34 +24,34 @@ def get_advice():
     #retornar o conselho
     return advice
 
-#criar funçao que vai traduzir o conselho
-def translate_advice(advice, language):
+#criar funçao que vai traduzir o conselho somente para portugues
+def translate_advice(advice):
     """
-    Função que traduz o conselho
-    :param advice: str conselho
-    :param language: str linguagem
-    :return: str conselho traduzido
+    Função que traduz o conselho para português
+    param advice: str conselho
+    return: str conselho traduzido
     """
     #criar variavel que vai receber o tradutor
-    translator = PyTranslator()
+    translator = Translator()
     #criar variavel que vai receber o conselho traduzido
-    translated_advice = translator.translate(advice, language)
+    translated_advice = translator.translate(advice, dest="pt")
     #retornar o conselho traduzido
-    return translated_advice
+    return translated_advice.text
 
 def main():
-    #motrar titulo
-    st.title("Conselho Aleatório")
-    #crar selectbox para escolher a linguagem
-    language = st.selectbox("Escolha a linguagem", ["pt", "es", "fr", "de", "it", "ru", "ja", "zh-CN"])
-    #criar botao para gerar conselho
+    """
+    Função principal
+    """
+    #criar titulo
+    st.title("Conselho do dia")
+    #criar subtitulo
+    st.subheader("Um conselho aleatório para você")
+    #criar botao
     if st.button("Gerar conselho"):
-        #mostra o conselho sem traduzir
-        st.write(get_advice())
         #criar variavel que vai receber o conselho
         advice = get_advice()
         #criar variavel que vai receber o conselho traduzido
-        translated_advice = translate_advice(advice, language)
+        translated_advice = translate_advice(advice)
         #mostrar o conselho traduzido
         st.write(translated_advice)
 
