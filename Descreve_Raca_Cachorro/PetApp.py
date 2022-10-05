@@ -44,22 +44,12 @@ def description(group):
 
 #função principal
 def main():
-    #titulo
     st.title('Descubra a raça do seu cachorro')
-    #subtitulo
-    st.subheader('Selecione a raça do seu cachorro e descubra o peso médio')
-    #chamando a função para selecionar a raça
     raca = selecionar_raca()
-    #chamando a função para mostrar a imagem
     mostrar_imagem(raca)
-    #chamando a função para pegar o peso
-    peso = pegar_peso(raca)
-    #mostrando o peso
-    st.write(peso)
-    #chamando a função para pegar o tamanho
-    tamanho = pegar_tamanho(raca)
-    #mostrando o tamanho
-    st.write(tamanho)
+    description = description(raca)
+    st.write(description)
+
 
 
 
