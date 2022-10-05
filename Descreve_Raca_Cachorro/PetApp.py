@@ -11,9 +11,9 @@ def selecionar_raca():
     #pegando o json
     data = response.json()
     #pegando as raças
-    racas = list(data['message'].keys())
-    #selecionando a raça
-    raca = st.selectbox('Selecione a raça do cachorro', racas)
+    racas = data['message'].keys()
+    #mostrando as raças em um selectbox
+    raca = st.selectbox('Selecione a raça do seu cachorro', racas)
     return raca
 
 #mostrar uma imagem da raça selecionada
@@ -27,17 +27,14 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça no wikipedia em português brasileiro
+#pegar a descrição da raça no google.com.br
 def pegar_descricao(raca):
-    response = requests.get(f'https://pt.wikipedia.org/api/rest_v1/page/summary/{raca}')
-    data = response.json()
-    descricao = data['extract']
-    #mostrar link para a página completa
-    link = data['content_urls']['desktop']['page']
-    st.markdown(f'Veja mais em: {link}')
-    #mostrar a descrição
-    return descricao
-
+    #fazendo a requisição
+    response = requests.get(f'https://www.google.com.br/search?q={raca}')
+    #pegando o html
+    html = response.text
+    #mostrando o html
+    st.write(html)
 
 #função principal
 def main():
