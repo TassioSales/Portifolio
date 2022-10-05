@@ -39,18 +39,22 @@ def translate_advice(advice, language):
     #retornar o conselho traduzido
     return translated_advice.text
 
-if __name__ == '__main__':
-    #criar titulo
-    st.title("Advice Slip")
-    #criar subtitulo
-    st.subheader("Get a random advice")
-    #criar botao que vai chamar a funçao que vai dar o conselho
-    if st.button("Get advice"):
+def main():
+    #motrar titulo
+    st.title("Conselho Aleatório")
+    #crar selectbox para escolher a linguagem
+    language = st.selectbox("Escolha a linguagem", ["pt", "es", "fr", "de", "it", "ru", "ja", "zh-CN"])
+    #criar botao para gerar conselho
+    if st.button("Gerar conselho"):
+        #mostra o conselho sem traduzir
+        st.write(get_advice())
         #criar variavel que vai receber o conselho
         advice = get_advice()
-        #criar variavel que vai receber a linguagem que o usuario escolheu
-        language = st.selectbox("Select the language", ["en", "es", "pt", "fr", "de", "it", "ru", "ja", "zh-CN"])
         #criar variavel que vai receber o conselho traduzido
         translated_advice = translate_advice(advice, language)
         #mostrar o conselho traduzido
         st.write(translated_advice)
+
+if __name__ == '__main__':
+    main()
+ 
