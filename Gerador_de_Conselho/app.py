@@ -3,7 +3,7 @@
 #imports
 
 #import biblioteca tradutor google
-from google.cloud import translate
+import googletrans
 #import Streamlit
 import streamlit as st
 #importar biblioteca para fazer requisições
@@ -26,24 +26,8 @@ def get_advice():
 
 
 #criar funçao que vai traduzir o conselho somente para portugues
-def translate_advice(advice):
-    """
-    Função que traduz o conselho para português
-    :param advice: str conselho para ser traduzido
-    :return: str conselho traduzido
-    """
-    #criar variavel que vai receber o texto que vai ser traduzido
-    text = [advice]
-    #criar variavel que vai receber o idioma que vai ser traduzido
-    target = "pt"
-    #criar variavel que vai receber o idioma que vai ser traduzido
-    source = "en"
-    #criar variavel que vai receber o texto traduzido
-    translation = translate_client.translate(text, target_language=target, source_language=source)
-    #criar variavel que vai receber o texto traduzido
-    translated_text = translation["translatedText"]
-    #retornar o texto traduzido
-    return translated_text
+def traduzir_conselho():
+    
 
 
 
