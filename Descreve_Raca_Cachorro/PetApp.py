@@ -29,14 +29,14 @@ def mostrar_imagem(raca):
 
 #motsra a descrição da raça
 def mostrar_descricao(raca):
-#fazendo a requisição
-response = requests.get(f'https://dog.ceo/api/breed/{raca}/info')
-#pegando o json_instance
-data = response.json()
-#pegando a descrição
-descricao = data['message']
-#mostrando a descrição
-st.write(descricao)
+    #fazendo a requisição
+    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
+    #pegando o json
+    data = response.json()
+    #pegando a descrição
+    descricao = data['message']
+    #mostrando a descrição
+    st.markdown(f'**Descrição:** {descricao}')
 
 
 #função principal
