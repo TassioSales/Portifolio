@@ -27,11 +27,13 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar a descrição da raça no https://love.doghero.com.br/racas/{raca}
+#pegar a descrição da raça no https://www.cachorrogato.com.br/racas-caes/{raca}/
 def pegar_descricao(raca):
-    response = requests.get(f'https://love.doghero.com.br/racas/{raca}')
-    data = response.json()
-    descricao = data['descricao']
+    response = requests.get(f'https://www.cachorrogato.com.br/racas-caes/{raca}/')
+    #pegando o html
+    html = response.text
+    #pegando a descrição
+    descricao = html.split('class="entry-content">')[1].split('</div>')[0]
     return descricao
     
 
