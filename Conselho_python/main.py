@@ -4,6 +4,7 @@ import requests
 import traceback
 #from googletrans import Translator
 import streamlit as st
+from google_trans_new import google_translator  
 
 #gera um conselho aleatorio
 def get_random_advice():
@@ -13,6 +14,12 @@ def get_random_advice():
     advice = response.json()["slip"]["advice"]
     return advice
 
+#traduz o conselho
+def translate_advice(advice, lang):
+    translator = google_translator()  
+    translated = translator.translate(advice, lang_tgt=lang)
+    return translated
+
     
 if __name__ == '__main__':
     st.title('Gerador de conselhos')
@@ -20,10 +27,13 @@ if __name__ == '__main__':
     if st.button('Gerar conselho'):
         try:
             advice = get_random_advice()
-            st.text_area('Conselho',advice)
+            st.write(advice)
+            lang = st.selectbox('Selecione o idioma', ['en', 'pt', 'es'])
+            translated = translate_advice(advice, lang)
+            st.write(translated)
         except:
-            st.write('Ocorreu um erro ao gerar o conselho')
-            traceback.print_exc()
+            st.write('Ocorreu um erro')
+            st.write(traceback.format_exc())
        
 
 
