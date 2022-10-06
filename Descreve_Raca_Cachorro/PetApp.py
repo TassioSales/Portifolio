@@ -27,40 +27,28 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar descrição da raça
+#pegar descrição da raça wikipedia
 def pegar_descricao(raca):
     #fazendo a requisição
-    response = requests.get(f'https://dog.ceo/api/breed/{raca}/list')
+    response = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/summary/{raca}')
     #pegando o json
     data = response.json()
-    #pegar tamanho do cachorro
-    tamanho = data['message']['height']['metric']
-    #pegar peso do cachorro
-    peso = data['message']['weight']['metric']
-    #pegar a vida média do cachorro
-    vida = data['message']['life_span']
-    #pegar a origem do cachorro
-    origem = data['message']['origin']
-    #pegar a descrição do cachorro
-    descricao = data['message']['bred_for']
-    #mostrar as informações
-    st.subheader('Informações sobre a raça')
-    st.write(f'Tamanho: {tamanho} cm')
-    st.write(f'Peso: {peso} kg')
-    st.write(f'Vida média: {vida} anos')
-    st.write(f'Origem: {origem}')
-    st.write(f'Descrição: {descricao}')
+    #pegando a descrição
+    descricao = data['extract']
+    #mostrando a descrição
+    st.write(descricao)
+ 
 
 
 
 
 #função principal
 def main():
-    st.title('PetApp')
-    st.subheader('Descubra mais sobre a raça do seu cachorro')
-    #chamando as funções
+    st.title('Descubra a raça do seu cachorro')
     raca = selecionar_raca()
     mostrar_imagem(raca)
     pegar_descricao(raca)
+
+
 if __name__ == '__main__':
     main()
