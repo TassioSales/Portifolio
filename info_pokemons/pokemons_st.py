@@ -56,32 +56,32 @@ def show_pokemon(data):
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
 
-#pegar descrição do pokemon no site bulbapedia
+#pegar descrição do pokemon no site wikipedia
 def description(data):
     try:
-        #pegar o nome do pokemon
-        pokemon = data['name']
-        #pegar a url do pokemon
-        url = f"https://bulbapedia.bulbagarden.net/wiki/{pokemon}_(Pokémon)"
-        #pegar o html da url
+        # criar uma variável que recebe o nome do pokemon
+        name = data['name']
+        # criar uma variável que recebe o nome do pokemon com a primeira letra maiúscula
+        name = name.capitalize()
+        # criar uma variável que recebe a url do pokemon
+        url = f"https://pt.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles={name}"
+        # criar uma variável que recebe a resposta da url
         response = requests.get(url)
-        #pegar o texto do html
-        html = response.text
-        #pegar a posição inicial da descrição
-        start = html.find("==Biography==")
-        #pegar a posição final da descrição
-        end = html.find("==Game data==")
-        #pegar a descrição
-        description = html[start:end]
-        #mostrar a descrição
-        st.markdown(description)
-        #criar uma caixa de texto para mostrar a descrição
-        st.text_area("Descrição", description)
+        # criar uma variável que recebe o texto da resposta
+        text = response.text
+        # criar uma variável que recebe o texto da resposta em json
+        data = json.loads(text)
+        # criar uma variável que recebe o texto da resposta em json
+        pageid = list(data['query']['pages'].keys())[0]
+        # criar uma variável que recebe o texto da resposta em json
+        description = data['query']['pages'][pageid]['extract']
+        # criar um subtitulo
+        st.subheader("Descrição")
+        # criar uma caixa de texto para mostrar a descrição do pokemon
+        st.text_area("", description, height=200)
     except:
-        #mostrar mensagem de erro
-        st.error("Não foi possível carregar a descrição do pokemon")
-        #mostrar o erro
-        st.error(traceback.format_exc())
+        # mostra que o pokemon não existe
+        st.error("Pokemon não encontrado")
 
 
 
