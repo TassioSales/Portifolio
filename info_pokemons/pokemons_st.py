@@ -5,6 +5,7 @@ import requests
 import json
 import streamlit as st
 from lista_de_pokemons import pokemons_ordem_alfabetica
+import traceback
 
 
 # criar funçaõ que retorna o pokemon que mostre o pokemon digitado
@@ -33,26 +34,33 @@ def show_pokemon(data):
 
 # criar função principal
 def main():
-    # criar um título
+    #criar um título
     st.title("Pokemons")
     # criar um subtitulo
     st.subheader("Digite o nome do pokemon")
-    # criar um input com o nome do pokemon preenchido com o primeiro pokemon da lista
-    pokemon = st.text_input("Digite o nome do pokemon", pokemons_ordem_alfabetica[0])
+    # criar um input
+    pokemon = st.text_input("Digite o nome do pokemon", "pikachu")
     # criar um botão
     if st.button("Buscar"):
-        # criar uma variável que recebe o pokemon digitado
-        data = get_pokemon(pokemon)
-        # mostrar os dados do pokemon
-        show_pokemon(data)
-    # criar um selectbox com a lista de pokemons
-    pokemon_seletor = st.selectbox("Selecione o pokemon", pokemons_ordem_alfabetica)
-    #mostrar pokemon selecionado so depois que for selecionado
-    if pokemon_seletor:
-        data = get_pokemon(pokemon_seletor)
-        show_pokemon(data)
-    if not data:
-        st.write("Dados não encontrados")
+        try:
+            # criar uma variável que recebe o pokemon digitado
+            data = get_pokemon(pokemon)
+            # mostrar os dados do pokemon
+            show_pokemon(data)
+        except:
+            st.error(traceback.format_exc())
+    st.subheader("Lista de pokemons")
+    # criar um select
+    pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
+    #se pokemon for selecionado
+    if pokemon:
+        try:
+            # criar uma variável que recebe o pokemon digitado
+            data = get_pokemon(pokemon)
+            # mostrar os dados do pokemon
+            show_pokemon(data)
+        except:
+            st.error(traceback.format_exc())
 
 
 
