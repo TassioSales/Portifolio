@@ -41,7 +41,6 @@ def show_pokemon(data):
                 <th>Experiência base</th>
                 <th>Ordem</th>
                 <th>ID</th>
-                <th>Desscrição</th>
                 </tr>
                 <tr>
                 <td>{data['height']} </td>
