@@ -20,7 +20,7 @@ def get_pokemon(pokemon):
 def show_pokemon(data):
     st.title(f"Nome: {data['name']}")
     #colocar imagens do pokemon em colunas
-    col1, col2, col3, col4 = st.beta_columns(4)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.image(data['sprites']['front_default'])
     with col2:
@@ -39,7 +39,7 @@ def show_pokemon(data):
         'Ordem': data['order'],
         'ID': data['id'],
     })
-    
+
 
 
 # criar função principal
