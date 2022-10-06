@@ -51,12 +51,20 @@ def show_pokemon(data):
                 <td>{data['base_experience']}</td>
                 <td>{data['order']}</td>
                 <td>{data['id']}</td>
-                <td>{data['species']['url']}</td>
                 </tr>"""
         st.markdown(html, unsafe_allow_html=True)
-        #centrar a tabela
+        # centrar a tabela
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
+
+def description(data):
+    url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon}"
+    response = requests.get(url)
+    data = json.loads(response.text)
+    #criar uma caixa de texto para mostrar a descrição do pokemon
+    st.text_area("Descrição", data['flavor_text_entries'][0]['flavor_text'])
+    #centrar a caixa de texto
+    st.markdown("<style>textarea {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
 
 # criar função principal
@@ -74,6 +82,8 @@ def main():
             data = get_pokemon(pokemon)
             # mostrar os dados do pokemon
             show_pokemon(data)
+            # mostrar a descrição do pokemon
+            description(data)
         except:
             # mostra que o pokemon não existe
             st.error("Pokemon não encontrado")
@@ -87,6 +97,8 @@ def main():
             data = get_pokemon(pokemon)
             # mostrar os dados do pokemon
             show_pokemon(data)
+            # mostrar a descrição do pokemon
+            description(data)
         except:
             # mostra que o pokemon não existe
             st.error("Pokemon não encontrado")
