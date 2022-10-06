@@ -29,21 +29,33 @@ def show_pokemon(data):
         st.image(data['sprites']['front_shiny'])
     with col4:
         st.image(data['sprites']['back_shiny'])
-    # mostrar os dados do altura, peso, tipo, habilidades, experiência base, ordem, id
-    # centralizar texto
     with st.spinner("Carregando dados..."):
-        st.markdown(f"""
-        ### Altura: {data['height']}
-        ### Peso: {data['weight']}
-        ### Tipo: {data['types'][0]['type']['name']}
-        ### Habilidades: {data['abilities'][0]['ability']['name']}
-        ### Experiência base: {data['base_experience']}
-        ### Ordem: {data['order']}
-        ### ID: {data['id']}
-        """)
-        # mostrar os dados do pokemon
-        st.write(data)
+        #criar uma tabela em html para mostrar os dados do pokemon
+        html = f"""
+        <table>
+            <tr>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Tipo</th>
+                <th>Habilidades</th>
+                <th>Experiência base</th>
+                <th>Ordem</th>
+                <th>ID</th>
+                </tr>
+                <tr>
+                <td>{data['height']}</td>
+                <td>{data['weight']}</td>
+                <td>{data['types'][0]['type']['name']}</td>
+                <td>{data['abilities'][0]['ability']['name']}</td>
+                <td>{data['base_experience']}</td>
+                <td>{data['order']}</td>
+                <td>{data['id']}</td>
+                </tr>"""
+        st.markdown(html, unsafe_allow_html=True)
         
+
+
+
 
 
 
