@@ -22,3 +22,6 @@ def main():
     st.image(data['sprites']['back_default'])
     st.image(data['sprites']['front_shiny'])
     st.image(data['sprites']['back_shiny'])
+
+if __name__ == "__main__":
+    main()
