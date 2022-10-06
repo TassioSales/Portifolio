@@ -34,7 +34,7 @@ def pegar_descricao(raca):
     #pegando o json
     data = response.json()
     #pegar tamanho do cachorro
-    tamanho = data['message']['height']['metric']~
+    tamanho = data['message']['height']['metric']
     #pegar peso do cachorro
     peso = data['message']['weight']['metric']
     #pegar a vida média do cachorro
@@ -50,7 +50,7 @@ def pegar_descricao(raca):
     st.write(f'Vida média: {vida} anos')
     st.write(f'Origem: {origem}')
     st.write(f'Descrição: {descricao}')
-    
+
 
 
 
