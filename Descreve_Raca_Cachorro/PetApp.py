@@ -56,10 +56,11 @@ def pegar_descricao(raca):
 
 #função principal
 def main():
-    st.title('Pet App')
-    st.subheader('Descubra a raça do seu cachorro')
+    st.title('PetApp')
+    st.subheader('Descubra mais sobre a raça do seu cachorro')
+    #chamando as funções
     raca = selecionar_raca()
     mostrar_imagem(raca)
-
+    pegar_descricao(raca)
 if __name__ == '__main__':
     main()
