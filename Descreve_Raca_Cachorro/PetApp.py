@@ -39,14 +39,13 @@ def pegar_descricao(raca):
     return descricao
 
 
-
-
-
-
-
-
 #função principal
 def main():
+    st.title('Descubra a raça do seu cachorro')
+    raca = selecionar_raca()
+    mostrar_imagem(raca)
+    descricao = pegar_descricao(raca)
+    st.write(descricao)
 
 
 if __name__ == '__main__':
