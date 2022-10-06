@@ -34,7 +34,7 @@ def pegar_descricao(raca):
     #pegando o html
     html = response.text
     #pegando a descrição
-    descricao = html.split('class="entry-content"')[1].split('</p>')[0].split('>')[-1]
+    descricao = html.split('class="tdi_128_rand_style td-element-style"')[1].split('</p>')[0].split('>')[-1]
     return descricao
 
 
