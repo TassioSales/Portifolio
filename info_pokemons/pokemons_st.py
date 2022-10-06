@@ -46,12 +46,10 @@ def main():
         # mostrar os dados do pokemon
         show_pokemon(data)
     # criar um selectbox com a lista de pokemons
-    pokemon = st.selectbox("Selecione o pokemon", pokemons_ordem_alfabetica)
-    # criar um botão
-    if st.button("Buscar"):
-        # criar uma variável que recebe o pokemon digitado
-        data = get_pokemon(pokemon)
-        # mostrar os dados do pokemon
+    pokemon_seletor = st.selectbox("Selecione o pokemon", pokemons_ordem_alfabetica)
+    #mostrar pokemon selecionado so depois que for selecionado
+    if pokemon_seletor:
+        data = get_pokemon(pokemon_seletor)
         show_pokemon(data)
 
 
