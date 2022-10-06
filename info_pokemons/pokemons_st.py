@@ -19,7 +19,7 @@ def get_pokemon(pokemon):
 # criar que mostra os dados do pokemon
 def show_pokemon(data):
     st.title(f"Nome: {data['name']}")
-    #colocar imagens do pokemon em colunas
+    # colocar imagens do pokemon em colunas
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.image(data['sprites']['front_default'])
@@ -30,7 +30,7 @@ def show_pokemon(data):
     with col4:
         st.image(data['sprites']['back_shiny'])
     with st.spinner("Carregando dados..."):
-        #criar uma tabela em html para mostrar os dados do pokemon
+        # criar uma tabela em html para mostrar os dados do pokemon
         html = f"""
         <table>
             <tr>
@@ -52,16 +52,14 @@ def show_pokemon(data):
                 <td>{data['id']}</td>
                 </tr>"""
         st.markdown(html, unsafe_allow_html=True)
+        #centrar a tabela
+        st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
         
-
-
-
-
 
 
 # criar função principal
 def main():
-    #criar um título
+    # criar um título
     st.title("Pokemons")
     # criar um subtitulo
     st.subheader("Digite o nome do pokemon")
@@ -75,12 +73,12 @@ def main():
             # mostrar os dados do pokemon
             show_pokemon(data)
         except:
-            #mostra que o pokemon não existe
+            # mostra que o pokemon não existe
             st.error("Pokemon não encontrado")
     st.subheader("Lista de pokemons")
     # criar um select
     pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
-    #se pokemon for selecionado
+    # se pokemon for selecionado
     if pokemon:
         try:
             # criar uma variável que recebe o pokemon digitado
@@ -90,7 +88,6 @@ def main():
         except:
             # mostra que o pokemon não existe
             st.error("Pokemon não encontrado")
-
 
 
 if __name__ == "__main__":
