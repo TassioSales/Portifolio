@@ -56,17 +56,78 @@ def show_pokemon(data):
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
 
+#pegar descrição do pokemon no site bulbapedia
 def description(data):
-    url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon}"
+    # criar uma variável que recebe o nome do pokemon
+    pokemon = data['name']
+    # criar uma variável que recebe o id do pokemon
+    id = data['id']
+    # criar uma variável que recebe a url do pokemon
+    url = f"https://bulbapedia.bulbagarden.net/wiki/{pokemon}_(Pok%C3%A9mon)"
+    # criar uma variável que recebe o html da url
     response = requests.get(url)
-    data = json.loads(response.text)
-    #criar uma caixa de texto para mostrar a descrição do pokemon
-    st.text_area("Descrição", data['flavor_text_entries'][0]['flavor_text'])
-    #centrar a caixa de texto
-    st.markdown("<style>textarea {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
-
-
-# criar função principal
+    # criar uma variável que recebe o texto do html
+    html = response.text
+    # criar uma variável que recebe a descrição do pokemon
+    description = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0]
+    # criar uma variável que recebe a altura do pokemon
+    height = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[1]
+    # criar uma variável que recebe o peso do pokemon
+    weight = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[2]
+    # criar uma variável que recebe o tipo do pokemon
+    type = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[3]
+    # criar uma variável que recebe a categoria do pokemon
+    category = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[4]
+    # criar uma variável que recebe a habilidade do pokemon
+    ability = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[5]
+    # criar uma variável que recebe a experiência base do pokemon
+    base_experience = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[6]
+    # criar uma variável que recebe a geração do pokemon
+    generation = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[7]
+    # criar uma variável que recebe a evolução do pokemon
+    evolution = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[8]
+    # criar uma variável que recebe a localização do pokemon
+    location = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[9]
+    # criar uma variável que recebe a cor do pokemon
+    color = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[10]
+    # criar uma variável que recebe a forma do pokemon
+    shape = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[11]
+    # criar uma variável que recebe a espécie do pokemon
+    species = html.split("==Biography==")[1].split("==Game data==")[0].split("{{vital|")[1].split("}}")[0].split("|")[12]
+    #criar uma tabela em html para mostrar os dados do pokemon
+    html = f"""
+    <table>
+        <tr>
+            <th>Altura</th>
+            <th>Peso</th>
+            <th>Tipo</th>
+            <th>Categoria</th>
+            <th>Habilidade</th>
+            <th>Experiência base</th>
+            <th>Geração</th>
+            <th>Evolução</th>
+            <th>Localização</th>
+            <th>Cor</th>
+            <th>Forma</th>
+            <th>Espécie</th>
+            </tr>
+            <tr>
+            <td>{height} </td>
+            <td>{weight} </td>
+            <td>{type} </td>
+            <td>{category} </td>
+            <td>{ability} </td>
+            <td>{base_experience} </td>
+            <td>{generation} </td>
+            <td>{evolution} </td>
+            <td>{location} </td>
+            <td>{color} </td>
+            <td>{shape} </td>
+            <td>{species} </td>
+            </tr>"""
+    st.markdown(html, unsafe_allow_html=True)
+    # centrar a tabela
+    st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 def main():
     # criar um título
     st.title("Pokemons")
