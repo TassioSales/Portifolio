@@ -3,6 +3,7 @@
 
 import requests
 import streamlit as st
+import selenium as se
 
 #função para pesquisar a raça do cachorro
 def selecionar_raca():
@@ -32,10 +33,13 @@ def pegar_descricao(raca):
     #fazendo a requisição
     response = requests.get(f'https://tudosobrecachorros.com.br/{raca}/')
     #pegando o html
-    html = response.content
+    html = response.text
     #pegando a descrição
-    descricao = html.find('p', class_='entry-content')
-    st.write(descricao)
+    descricao = html.split('class="entry-content"')[1].split('</p>')[0].split('>')[-1]
+    return descricao
+
+
+
 
 
 
@@ -43,10 +47,6 @@ def pegar_descricao(raca):
 
 #função principal
 def main():
-    st.title('Descubra a raça do seu cachorro')
-    raca = selecionar_raca()
-    mostrar_imagem(raca)
-    pegar_descricao(raca)
 
 
 if __name__ == '__main__':
