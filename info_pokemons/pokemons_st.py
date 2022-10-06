@@ -4,8 +4,6 @@
 import requests
 import json
 import streamlit as st
-from bs4 import BeautifulSoup
-
 from lista_de_pokemons import pokemons_ordem_alfabetica
 import traceback
 
@@ -58,26 +56,9 @@ def show_pokemon(data):
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
 
-#pegar descrição do pokemon no site https://pokemondb.net/pokedex/
-def description(data):
-    url = f"https://pokemondb.net/pokedex/{data['name']}"
-    response = requests.get(url)
-    # criar um objeto bs4
-    soup = BeautifulSoup(response.text, "html.parser")
-    # pegar a descrição do pokemon
-    description = soup.find("div", {"class": "grid-col span-md-6 span-lg-8"}).find("p").text
-    # mostrar a descrição do pokemon
-    st.write(description)
-
-
-
-
-
-
-
-
-
 def main():
+    #crir uma bordas para o app
+    st.sidebar.title("Pokemons")
     # criar um título
     st.title("Pokemons")
     # criar um subtitulo
@@ -106,10 +87,10 @@ def main():
             # mostrar os dados do pokemon
             show_pokemon(data)
             # mostrar a descrição do pokemon
-            description(data)
         except:
             # mostra que o pokemon não existe
             st.error("Pokemon não encontrado")
+
 
 
 if __name__ == "__main__":
