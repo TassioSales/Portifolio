@@ -4,6 +4,8 @@
 import requests
 import json
 import streamlit as st
+from bs4 import BeautifulSoup
+
 from lista_de_pokemons import pokemons_ordem_alfabetica
 import traceback
 
@@ -56,32 +58,17 @@ def show_pokemon(data):
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
 
-#pegar descrição do pokemon no site wikipedia
+#pegar descrição do pokemon no site https://pokemondb.net/pokedex/
 def description(data):
-    try:
-        # criar uma variável que recebe o nome do pokemon
-        name = data['name']
-        # criar uma variável que recebe o nome do pokemon com a primeira letra maiúscula
-        name = name.capitalize()
-        # criar uma variável que recebe a url do pokemon
-        url = f"https://pt.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles={name}"
-        # criar uma variável que recebe a resposta da url
-        response = requests.get(url)
-        # criar uma variável que recebe o texto da resposta
-        text = response.text
-        # criar uma variável que recebe o texto da resposta em json
-        data = json.loads(text)
-        # criar uma variável que recebe o texto da resposta em json
-        pageid = list(data['query']['pages'].keys())[0]
-        # criar uma variável que recebe o texto da resposta em json
-        description = data['query']['pages'][pageid]['extract']
-        # criar um subtitulo
-        st.subheader("Descrição")
-        # criar uma caixa de texto para mostrar a descrição do pokemon
-        st.text_area("", description, height=200)
-    except:
-        # mostra que o pokemon não existe
-        st.error("Pokemon não encontrado")
+    url = f"https://pokemondb.net/pokedex/{data['name']}"
+    response = requests.get(url)
+    # criar um objeto bs4
+    soup = BeautifulSoup(response.text, "html.parser")
+    # pegar a descrição do pokemon
+    description = soup.find("div", {"class": "grid-col span-md-6 span-lg-8"}).find("p").text
+    # mostrar a descrição do pokemon
+    st.write(description)
+
 
 
 
