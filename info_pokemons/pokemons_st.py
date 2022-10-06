@@ -19,17 +19,27 @@ def get_pokemon(pokemon):
 # criar que mostra os dados do pokemon
 def show_pokemon(data):
     st.title(f"Nome: {data['name']}")
-    st.image(data['sprites']['front_default'])
-    st.image(data['sprites']['back_default'])
-    st.image(data['sprites']['front_shiny'])
-    st.image(data['sprites']['back_shiny'])
-    st.write(f"Altura: {data['height']}")
-    st.write(f"Peso: {data['weight']}")
-    st.write(f"Tipo: {data['types'][0]['type']['name']}")
-    st.write(f"Habilidades: {data['abilities'][0]['ability']['name']}")
-    st.write(f"Experiência base: {data['base_experience']}")
-    st.write(f"Ordem: {data['order']}")
-    st.write(f"ID: {data['id']}")
+    #colocar imagens do pokemon em colunas
+    col1, col2, col3, col4 = st.beta_columns(4)
+    with col1:
+        st.image(data['sprites']['front_default'])
+    with col2:
+        st.image(data['sprites']['back_default'])
+    with col3:
+        st.image(data['sprites']['front_shiny'])
+    with col4:
+        st.image(data['sprites']['back_shiny'])
+    # mostrar os dados do pokemon em tabela
+    st.table({
+        'Altura': data['height'],
+        'Peso': data['weight'],
+        'Tipo': data['types'][0]['type']['name'],
+        'Habilidades': data['abilities'][0]['ability']['name'],
+        'Experiência base': data['base_experience'],
+        'Ordem': data['order'],
+        'ID': data['id'],
+    })
+    
 
 
 # criar função principal
