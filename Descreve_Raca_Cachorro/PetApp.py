@@ -27,17 +27,16 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar descrição da raça wikipedia
+#pegar descrição da raça https://tudosobrecachorros.com.br/{}/
 def pegar_descricao(raca):
     #fazendo a requisição
-    response = requests.get(f'https://en.wikipedia.org/api/rest_v1/page/summary/{raca}')
-    #pegando o json
-    data = response.json()
+    response = requests.get(f'https://tudosobrecachorros.com.br/{raca}/')
+    #pegando o html
+    html = response.content
     #pegando a descrição
-    descricao = data['extract']
-    #mostrando a descrição
+    descricao = html.find('p', class_='entry-content')
     st.write(descricao)
- 
+
 
 
 
