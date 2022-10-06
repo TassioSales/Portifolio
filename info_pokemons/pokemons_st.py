@@ -43,8 +43,8 @@ def show_pokemon(data):
                 <th>ID</th>
                 </tr>
                 <tr>
-                <td>{data['height']}</td>
-                <td>{data['weight']}</td>
+                <td>{data['height']} </td>
+                <td>{data['weight']} Kg</td>
                 <td>{data['types'][0]['type']['name']}</td>
                 <td>{data['abilities'][0]['ability']['name']}</td>
                 <td>{data['base_experience']}</td>
@@ -54,7 +54,7 @@ def show_pokemon(data):
         st.markdown(html, unsafe_allow_html=True)
         #centrar a tabela
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
-        
+
 
 
 # criar função principal
