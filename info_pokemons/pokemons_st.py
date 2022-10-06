@@ -31,13 +31,19 @@ def show_pokemon(data):
         st.image(data['sprites']['back_shiny'])
     # mostrar os dados do altura, peso, tipo, habilidades, experiência base, ordem, id
     # centralizar texto
-    st.markdown(f"""<p style="text-align: center;">Altura: {data['height']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">Peso: {data['weight']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">Tipo: {data['types'][0]['type']['name']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">Habilidades: {data['abilities'][0]['ability']['name']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">Experiência base: {data['base_experience']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">Ordem: {data['order']}</p>""", unsafe_allow_html=True)
-    st.markdown(f"""<p style="text-align: center;">ID: {data['id']}</p>""", unsafe_allow_html=True)
+    with st.spinner("Carregando dados..."):
+        st.markdown(f"""
+        ### Altura: {data['height']}
+        ### Peso: {data['weight']}
+        ### Tipo: {data['types'][0]['type']['name']}
+        ### Habilidades: {data['abilities'][0]['ability']['name']}
+        ### Experiência base: {data['base_experience']}
+        ### Ordem: {data['order']}
+        ### ID: {data['id']}
+        """)
+        # mostrar os dados do pokemon
+        st.write(data)
+        
 
 
 
