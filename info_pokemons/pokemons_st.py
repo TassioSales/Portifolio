@@ -57,39 +57,39 @@ def show_pokemon(data):
 
 
 def main():
-    #crir uma bordas para o app
-    st.sidebar.title("Pokemons")
-    # criar um título
-    st.title("Pokemons")
-    # criar um subtitulo
-    st.subheader("Digite o nome do pokemon")
-    # criar um input
-    pokemon = st.text_input("Digite o nome do pokemon", "pikachu")
-    # criar um botão
-    if st.button("Buscar"):
-        try:
-            # criar uma variável que recebe o pokemon digitado
-            data = get_pokemon(pokemon)
-            # mostrar os dados do pokemon
-            show_pokemon(data)
-            #mostra
-        except:
-            # mostra que o pokemon não existe
-            st.error("Pokemon não encontrado")
-    st.subheader("Lista de pokemons")
-    # criar um select
-    pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
-    # se pokemon for selecionado
-    if pokemon:
-        try:
-            # criar uma variável que recebe o pokemon digitado
-            data = get_pokemon(pokemon)
-            # mostrar os dados do pokemon
-            show_pokemon(data)
-            # mostrar a descrição do pokemon
-        except:
-            # mostra que o pokemon não existe
-            st.error("Pokemon não encontrado")
+    #crir uma caixa para o app
+    with st.sidebar:
+        # criar um título
+        st.title("Pokemons")
+        # criar um subtitulo
+        st.subheader("Digite o nome do pokemon")
+        # criar um input
+        pokemon = st.text_input("Digite o nome do pokemon", "pikachu")
+        # criar um botão
+        if st.button("Buscar"):
+            try:
+                # criar uma variável que recebe o pokemon digitado
+                data = get_pokemon(pokemon)
+                # mostrar os dados do pokemon
+                show_pokemon(data)
+                #mostra
+            except:
+                # mostra que o pokemon não existe
+                st.error("Pokemon não encontrado")
+        st.subheader("Lista de pokemons")
+        # criar um select
+        pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
+        # se pokemon for selecionado
+        if pokemon:
+            try:
+                # criar uma variável que recebe o pokemon digitado
+                data = get_pokemon(pokemon)
+                # mostrar os dados do pokemon
+                show_pokemon(data)
+                # mostrar a descrição do pokemon
+            except:
+                # mostra que o pokemon não existe
+                st.error("Pokemon não encontrado")
 
 
 
