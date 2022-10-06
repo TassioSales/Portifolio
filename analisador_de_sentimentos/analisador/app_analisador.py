@@ -54,9 +54,14 @@ def analisar_sentimento(frase_traduzida):
     # retornar dicionario
     return dicionario
 
-#mostra uma tabela com os resultados
+#mostra o resultado
 def imprimir_resultado(dicionario):
-    st.table(dicionario)
+    st.write('Frase digitada:', dicionario['frase'])
+    st.write('Sentimento:', dicionario['sentimento'])
+    st.write('Maior valor:', dicionario['maior_valor'])
+    st.write('Maior:', dicionario['maior'])
+    st.write('Dicionario:', dicionario['ss'])
+    st.write('Objeto:', dicionario['sid'])
 
 def main():
     frase = pedir_frase()
