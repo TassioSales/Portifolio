@@ -3,6 +3,9 @@
 
 import requests
 import streamlit as st
+#importa biblioteca para ler pdf
+import pdfplumber
+
 
 #função para pesquisar a raça do cachorro
 def selecionar_raca():
@@ -27,15 +30,15 @@ def mostrar_imagem(raca):
     #mostrando a imagem
     st.image(url_imagem, use_column_width=True)
 
-#pegar descrição da raça https://tudosobrecachorros.com.br/{}/
-def pegar_descricao(raca):
-    #fazendo a requisição
-    response = requests.get(f'https://tudosobrecachorros.com.br/{raca}/')
-    #pegando o html
-    html = response.text
-    #pegando a descrição
-    descricao = html.split('class="tdi_128_rand_style td-element-style"')[1].split('</p>')[0].split('>')[-1]
-    return descricao
+def ler_pdf():
+    with pdfplumber.open('C:/Users/rober/Downloads/Manual de Identificação de Raças de Cães.pdf') as pdf:
+        page = pdf.pages[0]
+        text = page.extract_text()
+        return text
+
+
+
+
 
 
 #função principal
