@@ -108,7 +108,6 @@ prometheus-client==0.14.1
 prompt-toolkit==3.0.31
 protobuf==3.20.3
 psutil==5.9.2
-pt-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-3.4.0/pt_core_news_sm-3.4.0-py3-none-any.whl
 pure-eval==0.2.2
 py-trans==0.5.5
 pyarrow==9.0.0
