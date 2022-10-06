@@ -51,6 +51,9 @@ def main():
     if pokemon_seletor:
         data = get_pokemon(pokemon_seletor)
         show_pokemon(data)
+    if not data:
+        st.write("Dados não encontrados")
+
 
 
 if __name__ == "__main__":
