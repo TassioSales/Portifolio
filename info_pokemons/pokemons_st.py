@@ -41,6 +41,7 @@ def show_pokemon(data):
                 <th>Experiência base</th>
                 <th>Ordem</th>
                 <th>ID</th>
+                <th>Desscrição</th>
                 </tr>
                 <tr>
                 <td>{data['height']} </td>
@@ -50,6 +51,7 @@ def show_pokemon(data):
                 <td>{data['base_experience']}</td>
                 <td>{data['order']}</td>
                 <td>{data['id']}</td>
+                <td>{data['species']['url']}</td>
                 </tr>"""
         st.markdown(html, unsafe_allow_html=True)
         #centrar a tabela
