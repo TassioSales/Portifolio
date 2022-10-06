@@ -11,18 +11,12 @@ def pedir_frase():
     frase = st.text_input('Digite uma frase:')
     return frase
 
-#criar função para traduzir frase do português para o inglês
-def traduzir_frase(frase):
-    tradutor = Translator()
-    frase_traduzida = tradutor.translate(frase, dest='en')
-    return frase_traduzida.text
-
 #criar função para analisar a frase_traduzida
-def analisar_sentimento(frase_traduzida):
+def analisar_sentimento(frase):
     # criar objeto
     sid = SentimentIntensityAnalyzer()
     # criar dicionario
-    ss = sid.polarity_scores(frase_traduzida)
+    ss = sid.polarity_scores(frase)
     # criar variavel para armazenar a chave com maior valor
     maior = max(ss, key=ss.get)
     # criar variavel para armazenar o valor da chave com maior valor
@@ -64,11 +58,16 @@ def imprimir_resultado(dicionario):
     st.write('Objeto:', dicionario['sid'])
 
 def main():
+    # criar variavel para armazenar a frase digitada pelo usuario
     frase = pedir_frase()
-    frase_traduzida = traduzir_frase(frase)
+    # criar objeto
+    translator = Translator()
+    # criar variavel para armazenar a frase traduzida
+    frase_traduzida = translator.translate(frase, dest='en').text
+    # criar variavel para armazenar o dicionario
     dicionario = analisar_sentimento(frase_traduzida)
+    # imprimir resultado
     imprimir_resultado(dicionario)
-
 
 if __name__ == '__main__':
     main()
