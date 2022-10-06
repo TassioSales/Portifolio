@@ -55,41 +55,56 @@ def show_pokemon(data):
         # centrar a tabela
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
+#função com as configurações da pagina em html e css
+def configurações():
+    st.markdown(
+    """
+    <style>
+    .reportview-container {
+        background: url("https://i.imgur.com/9Xl9Z1m.jpg")
+    }
+    .sidebar .sidebar-content {
+        background: url("https://i.imgur.com/9Xl9Z1m.jpg")
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+
 
 def main():
-    #crir uma caixa para o app
-    with st.sidebar:
-        # criar um título
-        st.title("Pokemons")
-        # criar um subtitulo
-        st.subheader("Digite o nome do pokemon")
-        # criar um input
-        pokemon = st.text_input("Digite o nome do pokemon", "pikachu")
-        # criar um botão
-        if st.button("Buscar"):
-            try:
-                # criar uma variável que recebe o pokemon digitado
-                data = get_pokemon(pokemon)
-                # mostrar os dados do pokemon
-                show_pokemon(data)
-                #mostra
-            except:
-                # mostra que o pokemon não existe
-                st.error("Pokemon não encontrado")
-        st.subheader("Lista de pokemons")
-        # criar um select
-        pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
-        # se pokemon for selecionado
-        if pokemon:
-            try:
-                # criar uma variável que recebe o pokemon digitado
-                data = get_pokemon(pokemon)
-                # mostrar os dados do pokemon
-                show_pokemon(data)
-                # mostrar a descrição do pokemon
-            except:
-                # mostra que o pokemon não existe
-                st.error("Pokemon não encontrado")
+    configurações()
+    # criar um título
+    st.title("Pokemons")
+    # criar um subtitulo
+    st.subheader("Digite o nome do pokemon")
+    # criar um input
+    pokemon = st.text_input("Digite o nome do pokemon", "pikachu")
+    # criar um botão
+    if st.button("Buscar"):
+        try:
+            # criar uma variável que recebe o pokemon digitado
+            data = get_pokemon(pokemon)
+            # mostrar os dados do pokemon
+            show_pokemon(data)
+            #mostra
+        except:
+            # mostra que o pokemon não existe
+            st.error("Pokemon não encontrado")
+    st.subheader("Lista de pokemons")
+    # criar um select
+    pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
+    # se pokemon for selecionado
+    if pokemon:
+        try:
+            # criar uma variável que recebe o pokemon digitado
+            data = get_pokemon(pokemon)
+            # mostrar os dados do pokemon
+            show_pokemon(data)
+            # mostrar a descrição do pokemon
+        except:
+            # mostra que o pokemon não existe
+            st.error("Pokemon não encontrado")
 
 
 
