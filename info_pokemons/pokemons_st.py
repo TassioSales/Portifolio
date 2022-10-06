@@ -38,7 +38,7 @@ def show_pokemon(data):
     st.markdown(f"""<p style="text-align: center;">Experiência base: {data['base_experience']}</p>""", unsafe_allow_html=True)
     st.markdown(f"""<p style="text-align: center;">Ordem: {data['order']}</p>""", unsafe_allow_html=True)
     st.markdown(f"""<p style="text-align: center;">ID: {data['id']}</p>""", unsafe_allow_html=True)
-    
+
 
 
 # criar função principal
@@ -57,7 +57,8 @@ def main():
             # mostrar os dados do pokemon
             show_pokemon(data)
         except:
-            st.error(traceback.format_exc())
+            #mostra que o pokemon não existe
+            st.error("Pokemon não encontrado")
     st.subheader("Lista de pokemons")
     # criar um select
     pokemon = st.selectbox("Selecione um pokemon", pokemons_ordem_alfabetica)
@@ -69,7 +70,8 @@ def main():
             # mostrar os dados do pokemon
             show_pokemon(data)
         except:
-            st.error(traceback.format_exc())
+            # mostra que o pokemon não existe
+            st.error("Pokemon não encontrado")
 
 
 
