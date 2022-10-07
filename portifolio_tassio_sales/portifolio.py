@@ -13,6 +13,20 @@ def config():
     st.set_page_config(page_title="Portifolio",page_icon=":smiley:",layout="centered",initial_sidebar_state="expanded",
     menu_items={"Get Help": "https://docs.streamlit.io/en/stable/troubleshooting/clean-install.html", "Report a bug": "https://streamlit.io/en/stable/troubleshooting/clean-install.html", "About": "https://streamlit.io/about"})
 
+#criar função com questionario de envio de email para o meu email
+def questionario():
+    #criar caixa com bordas para o conteudo
+    with st.expander("Envie um email para mim"):
+        st.title("Envie um email para mim")
+        #criar formulario para envio de email
+        nome = st.text_input("Nome")
+        email = st.text_input("Email")
+        mensagem = st.text_area("Mensagem")
+        #criar botao para enviar email
+        if st.button("Enviar"):
+            st.write("Enviado com sucesso")
+        st.expander("Contato", expanded=True)
+
 def paginacontato():
     #criar caixa com bordas para o conteudo
     with st.expander("Contato"):
@@ -28,47 +42,7 @@ def paginacontato():
         st.markdown('<a href="mailto:tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/newsletter.png" width="30px" height="30px" alt="email"></a> <a href="mailto:tassiolucian.ljs@gmail.com" target="_blank">Email</a>', unsafe_allow_html=True)
         #deixa st.expander aberto por padrao
         st.expander("Contato", expanded=True)
-        #usuario enviar mensagem para o meu email:
-        st.title("Enviar mensagem")
-        #criar um formulario para o usuario enviar mensagem para o meu email
-        st.form(key="form")
-        #criar um campo para o usuario digitar o nome
-        nome = st.text_input("Nome")
-        #criar um campo para o usuario digitar o email
-        email = st.text_input("Email")
-        #criar um campo para o usuario digitar a assunto
-        assunto = st.text_input("Assunto")
-        #criar um caixa de texto para o usuario digitar a mensagem
-        mensagem = st.text_area("Mensagem")
-        #criar um botao para enviar a mensagem
-        enviar = st.form_submit_button("Enviar")
-        #se o usuario clicar no botao enviar
-        if enviar:
-            #se o usuario nao digitar o nome
-            if nome == "":
-                #mostrar mensagem de erro
-                st.error("Digite o nome")
-            #se o usuario nao digitar o email
-            elif email == "":
-                #mostrar mensagem de erro
-                st.error("Digite o email")
-            #se o usuario nao digitar o assunto
-            elif assunto == "":
-                #mostrar mensagem de erro
-                st.error("Digite o assunto")
-            #se o usuario nao digitar a mensagem
-            elif mensagem == "":
-                #mostrar mensagem de erro
-                st.error("Digite a mensagem")
-            #se o usuario digitar tudo
-            else:
-                #mostrar mensagem de sucesso
-                st.success("Mensagem enviada com sucesso")
-                #limpar os campos
-                nome = ""
-                email = ""
-                assunto = ""
-                mensagem = ""
+
 
 
 def main():
