@@ -4,10 +4,19 @@
 import streamlit as st
 
 def paginacontato():
-    #criar display flexible para links de contatos
-    st.markdown("<style>div.row-widget.stRadio > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    #criar caixa com bordas para o conteudo
-    st.markdown("<style>div.Widget.row-widget.stRadio > div{border: 5px solid blue;}</style>", unsafe_allow_html=True)
+    github ="https://github.com/TassioSales"
+    linkedin ="https://www.linkedin.com/in/tassiosales/"
+    whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
+    email ='tassiosales@gmail.com'
+    #criando flexbox cons links
+    st.markdown(f"""
+    <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;">
+    <a href="{github}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/github.png"/></a>
+    <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/></a>
+    <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png"/></a>
+    <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/gmail.png"/></a>
+    </div>
+    """,unsafe_allow_html=True)
 
 
     
