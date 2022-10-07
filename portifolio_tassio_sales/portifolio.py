@@ -64,12 +64,11 @@ def paginaSobre():
 def main():
     try:
         st.sidebar.title("Menu")
-        menu = st.sidebar.radio("Menu",["Home","Sobre","Contato"])
+        menu = st.sidebar.radio("Menu",["Home","Sobre","Contato", "Mensagem"])
         if menu == "Home":
             st.title("Home")
             st.write("Bem vindo ao meu portifolio")
         elif menu == "Sobre":
-            st.title("Sobre Mim")
             paginaSobre()
         elif menu == "Contato":
             paginacontato()
