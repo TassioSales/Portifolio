@@ -99,6 +99,29 @@ def paginaSobre():
             <li>Pesquisar e implementar novas técnicas de machine learning e data mining, Trabalhar em estreita colaboração com outros cientistas de dados, engenheiros de software e outros profissionais de TI</li>
             <li>Desenvolver novas ideias para soluções de ciência de dados inovadoras.Continuar a aprender sobre novas ferramentas e técnicas.</li>
             <li>Comunicar resultados de análises de dados de forma clara e precisa.</li></ul>""", unsafe_allow_html=True)
+        with st.expander('Qual meu aplicativo favorito:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Meu aplicativo favorito é o spotify, pois eu gosto de ouvir musica enquanto estou trabalhando.</p>", unsafe_allow_html=True)
+        with st.expander('O que eu gosto de fazer nas horas vagas:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Eu gosto de ler, ouvir música, assistir filmes e séries, e jogar videogame.</p>", unsafe_allow_html=True)
+        with st.expander('Deixe-nos saber de um recurso interessante que você usou recentemente:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Recentemente eu usei o streamlit para criar um aplicativo web para analise de dados.</p>", unsafe_allow_html=True)
+        with st.expander('Você tem alguma dica para quem quer iniciar na carreira de TI?'):
+            st.markdown("<p style='text-align: justify; color: White;'>A minha dica para quem quer iniciar na carreira de TI é que você deve estudar bastante e se aperfeiçoar cada vez mais, pois a tecnologia está em constante evolução.E nunca desista, apesar de ser difícil no começo, se você persistir, vai conseguir chegar onde quer.</p>", unsafe_allow_html=True)
+        with st.expander('Onde você pode ser encontrado:'):
+            st.markdown(f"""
+            <div style="display: flex; justify-content: center; align-items:ajuste;">
+            <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>Github</a>
+            <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/>Linkedin</a>
+            <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/whatsapp.png"/>Whatsap</a>
+            <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/>Email</a>
+            </div>
+            """, unsafe_allow_html=True)
+
+
+
+       
+
+
 
             
 
