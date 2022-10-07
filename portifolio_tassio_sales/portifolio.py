@@ -18,12 +18,12 @@ def paginacontato():
         <th>Instagram</th>
     </tr>
     <tr>
-        <td>'<a href="https://www.linkedin.com/in/tassiosales/" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png" width="30px" height="30px" alt="linkedin"></a> <a href="https://www.linkedin.com/in/tassiosales/" target="_blank">Linkedin</a>'Linkedin</a></td>
-        <td><a href="https://github.com/TassioSales" target="_blank"><img src="https://img.icons8.com/color/48/000000/github--v1.png" width="30px" height="30px" alt="github"></a> <a href="https://github.com/TassioSales" target="_blank">Github</a></td>
-        <td><a href="https://api.whatsapp.com/send?phone=5561982970840" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="30px" height="30px" alt="whatsapp"></a> <a href="https://api.whatsapp.com/send?phone=5561982970840" target="_blank">WhatSapp</a></td>
-        <td><a href="mailto:tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/newsletter.png" width="30px" height="30px" alt="email"></a> <a href="mailto:tassiolucian.ljs@gmail.com" target="_blank">Email</a>'</td>
-        <td><a href="https://www.facebook.com/tassio.sales.7" target="_blank"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="30px" height="30px" alt="facebook"></a> <a href="https://www.facebook.com/tassio.sales.7" target="_blank">Facebook</a></td>
-        <td><a href="https://www.instagram.com/tassio_sales/" target="_blank"><img src="https://img.icons8.com/color/48/000000/instagram-new.png" width="30px" height="30px" alt="instagram"></a> <a href="https://www.instagram.com/tassio_sales/" target="_blank">Instagram</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Linkedin</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">GitHub</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Whatsaap</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">E-mail</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">FaceBook</a></td>
+        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Instagram</a></td>
     </tr>
     </table>
     """
