@@ -99,19 +99,23 @@ def funcFim():
     st.markdown("<style>body {background-color: #F8F8FF;}</style>", unsafe_allow_html=True)
     # Criar bordas para o app
     st.markdown("<style>div.Widget.row-widget.stRadio > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stText > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stButton > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stSelectbox > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stCheckbox > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stNumberInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stColorPicker > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stDateInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stTimeInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stFileUploader > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stSlider > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stTextArea > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
     # Criar bordas para o app
+    st.markdown("<style>div.Widget.row-widget.stText > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stButton > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSelectbox > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stCheckbox > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stNumberInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stColorPicker > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stDateInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTimeInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stFileUploader > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSlider > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTextArea > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
+    #trocar a cor do botão para vermelho
+    st.markdown("<style>div.stButton > button{background-color: #FF0000;}</style>", unsafe_allow_html=True)
+    #trocar a cor da pagina para azul
+    st.markdown("<style>div.stButton > button{background-color: #0000FF;}</style>", unsafe_allow_html=True)
     main()
 
 
