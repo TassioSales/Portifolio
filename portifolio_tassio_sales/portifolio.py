@@ -17,7 +17,7 @@ def paginacontato():
     st.markdown(f"""
     <div style="display: flex; justify-content: center; align-items:ajuste;">
     <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>Github</a>
-    <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/><Linkedin</a>
+    <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/>Linkedin</a>
     <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/whatsapp.png"/>Whatsap</a>
     <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/>Email</a>
     </div>
