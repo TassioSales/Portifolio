@@ -17,7 +17,6 @@ def config():
 def questionario():
     #criar caixa com bordas para o conteudo
     with st.expander("Envie um email para mim"):
-        st.expander("Contato", expanded=True)
         st.title("Envie um email para mim")
         #criar formulario para envio de email
         nome = st.text_input("Nome")
@@ -26,12 +25,11 @@ def questionario():
         #criar botao para enviar email
         if st.button("Enviar"):
             st.write("Enviado com sucesso")
-        
+        st.expander("Contato", expanded=True)
 
 def paginacontato():
     #criar caixa com bordas para o conteudo
     with st.expander("Contato"):
-        st.expander("Contato", expanded=True)
         st.title("Contatos")
         #configurando meus contatos em html
         #criar um link para o meu linkedin com o icone do linkedin e o nome do meu linkedin e botao para abrir em outra aba
@@ -43,7 +41,8 @@ def paginacontato():
         #criar um link para o meu email com o icone do email e o meu email e botao para abrir em outra aba
         st.markdown('<a href="mailto:tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/newsletter.png" width="30px" height="30px" alt="email"></a> <a href="mailto:tassiolucian.ljs@gmail.com" target="_blank">Email</a>', unsafe_allow_html=True)
         #deixa st.expander aberto por padrao
-        
+        st.expander("Contato", expanded=True)
+        questionario()
 
 
 
