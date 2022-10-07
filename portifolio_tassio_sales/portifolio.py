@@ -30,9 +30,9 @@ def paginacontato():
     
 def PaginadeMensagem():
     #configurando h1
-    st.markdown("<h1 style='text-align: center; color: red;'>Mensagem</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: White;'>Mensagem</h1>", unsafe_allow_html=True)
     #configurando h2
-    st.markdown("<h2 style='text-align: center; color: red;'>Aqui voce pode me deixar um mensagem ou um feedback</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: White;'>Aqui voce pode me deixar um mensagem ou um feedback</h2>", unsafe_allow_html=True)
     #criando um formulario para receber a mensagem do usuario
     with st.form("form1"):
         #criando um campo para o usuario digitar o nome
