@@ -56,22 +56,6 @@ def show_pokemon(data):
         # centrar a tabela
         st.markdown("<style>table {margin-left: auto; margin-right: auto;}</style>", unsafe_allow_html=True)
 
-#função com as configurações da pagina em html e css
-def configurações():
-    st.markdown(
-    """
-    <style>
-    .reportview-container {
-        background: url("https://i.imgur.com/9Xl9Z1m.jpg")
-    }
-    .sidebar .sidebar-content {
-        background: url("https://i.imgur.com/9Xl9Z1m.jpg")
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
-
 
 def main():
     # criar um título
