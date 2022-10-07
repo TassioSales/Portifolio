@@ -1,11 +1,6 @@
 #criar portifolio personalizado sobre mim
 #autor: Tassio Sales
 
-#src para o icone do de email
-#https://img.icons8.com/doodle/48/000000/newsletter.png
-
-
-
 import streamlit as st
 
 #funcao para configurçoes da pagina web em html
@@ -28,8 +23,7 @@ def paginacontato():
         #criar um link para o meu email com o icone do email e o meu email e botao para abrir em outra aba
         st.markdown('<a href="mailto:tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/newsletter.png" width="30px" height="30px" alt="email"></a> <a href="mailto:tassiolucian.ljs@gmail.com" target="_blank">Email</a>', unsafe_allow_html=True)
         #deixa st.expander aberto por padrao
-        st.expander("Contato", expanded=True)
-    questionario()
+    st.expander("Contato", expanded=True)
 
 def PaginadeMensagem():
     #configurando h1
@@ -63,6 +57,8 @@ def PaginadeMensagem():
             nome = ""
             email = ""
             mensagem = ""
+
+     
 def main():
     try:
         config()
