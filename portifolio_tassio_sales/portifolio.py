@@ -29,8 +29,6 @@ def PaginadeMensagem():
         #criando um campo para o usuario digitar o nome
         nome = st.text_input("Nome")
         #força o usuario a digitar algo no campo nome
-        if nome == "":
-            st.error("Por favor digite seu nome")
         #criando um campo para o usuario digitar o email
         email = st.text_input("Email")
         #criando um campo para o usuario digitar a mensagem
