@@ -70,15 +70,16 @@ def paginaSobre():
         whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
         email ='tassiosales@gmail.com'
     #criar caixa com bordas para o conteudo
-        #pegar foto do meu perfil do github
-        st.image("https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4", width=200)
-        #deixa imagem redonda
-        st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
-        #criar bordas para imagem
-        st.markdown("<style>img{border: 5px solid blue;}</style>", unsafe_allow_html=True)
-        #configurando h1
-        st.markdown("<h1 style='text-align: left; color: White;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
-        #configurando h2
+        with st.image():
+            #pegar foto do meu perfil do github
+            st.image("https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4", width=200)
+            #deixa imagem redonda
+            st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
+            #criar bordas para imagem
+            st.markdown("<style>img{border: 5px solid blue;}</style>", unsafe_allow_html=True)
+            #configurando h1
+            st.markdown("<h1 style='text-align: left; color: White;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
+            #configurando h2
 
         with st.expander('Sobre Mim:'):
             st.markdown("<p style='text-align: justify; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
@@ -112,6 +113,8 @@ def paginaSobre():
         with st.expander('Você tem alguma dica para quem quer iniciar na carreira de TI?'):
             st.markdown("<p style='text-align: justify; color: White;'>A minha dica para quem quer iniciar na carreira de TI é que você deve estudar bastante e se aperfeiçoar cada vez mais, pois a tecnologia está em constante evolução.E nunca desista, apesar de ser difícil no começo, se você persistir, vai conseguir chegar onde quer.</p>", unsafe_allow_html=True)
         with st.expander('Onde você pode ser encontrado:'):
+            #remover a borda das imagens
+            st.markdown("""<style>img{border_style="blue";}</style>""", unsafe_allow_html=True)
             st.markdown(f"""
             <div style="display: flex; justify-content: center; align-items:ajuste;">
             <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
@@ -120,6 +123,7 @@ def paginaSobre():
             <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></a>
             </div>
             """, unsafe_allow_html=True)
+      
 
 
 
