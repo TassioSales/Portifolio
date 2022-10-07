@@ -33,24 +33,28 @@ def PaginadeMensagem():
             st.error("Por favor digite seu nome")
         #criando um campo para o usuario digitar o email
         email = st.text_input("Email")
-        #força o usuario a digitar algo no campo email
-        if email == "":
-            st.error("Por favor digite seu email")
         #criando um campo para o usuario digitar a mensagem
         mensagem = st.text_area("Mensagem")
-        #força o usuario a digitar algo no campo mensagem
-        if mensagem == "":
-            st.error("Por favor digite sua mensagem")
         #criando um botao para enviar a mensagem
         submit_button = st.form_submit_button("Enviar")
         #se o botao for clicado
         if submit_button:
-            #mostrar mensagem de sucesso
-            st.success("Mensagem enviada com sucesso")
-            #limpar os campos
-            nome = ""
-            email = ""
-            mensagem = ""
+            #se o campo nome estiver vazio
+            if nome == "":
+                #mostra mensagem de erro
+                st.error("Por favor digite seu nome")
+            #se o campo email estiver vazio
+            elif email == "":
+                #mostra mensagem de erro
+                st.error("Por favor digite seu email")
+            #se o campo mensagem estiver vazio
+            elif mensagem == "":
+                #mostra mensagem de erro
+                st.error("Por favor digite sua mensagem")
+            #se todos os campos estiverem preenchidos
+            else:
+                #mostra mensagem de sucesso
+                st.success("Mensagem enviada com sucesso")
 
 def paginaSobre():
     #criar caixa com bordas para o conteud
