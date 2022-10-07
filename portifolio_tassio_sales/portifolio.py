@@ -66,7 +66,7 @@ def paginaSobre():
         #deixa imagem redonda
         st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
         #criar bordas para imagem
-        st.markdown("<style>img{border: 5px solid red;}</style>", unsafe_allow_html=True)
+        st.markdown("<style>img{border: 5px solid blue;}</style>", unsafe_allow_html=True)
         #configurando h1
         st.markdown("<h1 style='text-align: left; color: red;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
         #configurando h2
