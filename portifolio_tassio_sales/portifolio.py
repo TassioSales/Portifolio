@@ -55,7 +55,6 @@ def PaginadeMensagem():
      
 def main():
     try:
-        config()
         st.sidebar.title("Menu")
         menu = st.sidebar.radio("Menu",["Home","Sobre","Contato"])
         if menu == "Home":
