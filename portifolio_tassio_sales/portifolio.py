@@ -27,8 +27,9 @@ def paginacontato():
     </tr>
     </table>
     """
+    #mostrar tabela html
     container.markdown(html, unsafe_allow_html=True)
-
+    
 
 
 """#criando link para conta do linkedin
