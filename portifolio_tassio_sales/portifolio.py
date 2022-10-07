@@ -23,7 +23,8 @@ def main():
         st.title("Sobre")
         st.write("Sobre mim")
     elif menu == "Contato":
-        with st.beta_expander("Contato"):
+        #criar caixa com bordas para o conteudo
+        with st.sidebar.expander("Contato"):
             st.title("Contatos")
             #configurando meus contatos em html
             #criar um link para o meu linkedin com o icone do linkedin e o nome do meu linkedin e botao para abrir em outra aba
