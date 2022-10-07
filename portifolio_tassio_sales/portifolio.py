@@ -4,26 +4,11 @@
 import streamlit as st
 
 def paginacontato():
-    #criar tabela html para colocar link de contatos
-    with st.spinner("Carregando dados..."):
-        st.markdown("<h1 style='text-align: center; color: red;'>Contatos</h1>", unsafe_allow_html=True)
-        st.markdown("""
-        <table style="width:100%">
-        <tr>
-            <th>Linkedin</th>
-            <th>GitHub</th>
-            <th>Instagram</th>
-            <th>Facebook</th>
-            </tr>
-            <tr>
-            <td><a href="https://www.linkedin.com/in/tassio-sales-7b1b3b1b3/">Tassio Sales</a></td>
-            <td><a href="https://www.github.com/tassiosales">Tassio Sales</a></td>
-            <td><a href="https://www.instagram.com/tassiosales/">Tassio Sales</a></td>
-            <td><a href="https://www.facebook.com/tassio.sales.7">Tassio Sales</a></td>
-            </tr>
-            </table>
-            """, unsafe_allow_html=True)
-            
+    #criar display flexible para links de contatos
+    st.markdown("<style>div.row-widget.stRadio > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    #criar caixa com bordas para o conteudo
+    st.markdown("<style>div.Widget.row-widget.stRadio > div{border: 5px solid blue;}</style>", unsafe_allow_html=True)
+
 
     
 def PaginadeMensagem():
