@@ -67,13 +67,12 @@ def paginaSobre():
         st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
         #criar bordas para imagem
         st.markdown("<style>img{border: 5px solid blue;}</style>", unsafe_allow_html=True)
-        #alinhar immagem a esquerda
-        st.markdown("<style>img{float: left;}</style>", unsafe_allow_html=True)
+        #codigo httml para alinha imagem ao centro
+        st.markdown("<style>img{display: block;margin-left: center;margin-right: center;}</style>", unsafe_allow_html=True)
         #configurando h1
         st.markdown("<h1 style='text-align: left; color: red;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
         #configurando h2
         st.markdown("<p style='text-align: center; color: red;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
-        #deixa st.expander aberto por padrao
 
 
 
