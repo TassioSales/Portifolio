@@ -75,7 +75,8 @@ def paginaSobre():
             st.image("https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4", width=200)
             #deixa imagem redonda
             st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
-            #criar bordas para imagem
+           #jusificar imagem
+            st.markdown("<style>img{display: block;margin-left: auto;margin-right: auto;}</style>", unsafe_allow_html=True)
             #configurando h1
             st.markdown("<h1 style='text-align: left; color: White;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
             #configurando h2
