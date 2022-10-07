@@ -70,7 +70,7 @@ def paginaSobre():
         whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
         email ='tassiosales@gmail.com'
     #criar caixa com bordas para o conteudo
-        with st.image():
+        with st.container():
             #pegar foto do meu perfil do github
             st.image("https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4", width=200)
             #deixa imagem redonda
