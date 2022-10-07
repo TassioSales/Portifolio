@@ -116,6 +116,7 @@ def funcFim()
 
 
 if __name__ == "__main__":
+    funcFim()
 
 
 
