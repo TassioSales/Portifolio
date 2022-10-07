@@ -4,26 +4,27 @@
 import streamlit as st
 
 def paginacontato():
-    container.markdown("<h1 style='text-align: center; color: red;'>Contato</h1>", unsafe_allow_html=True)
-    container.markdown("<h2 style='text-align: center; color: red;'>Aqui voce pode me contatar</h2>", unsafe_allow_html=True)
     #criar tabela html para colocar link de contatos
-    html = f"""
-    <table style="width:100%">
-      <tr>
-        <th>Linkedin</th>
-        <th>GitHub</th>
-        <th>Instagram</th>
-        <th>Facebook</th>
-        </tr>
+    with st.spinner("Carregando dados..."):
+        st.markdown("<h1 style='text-align: center; color: red;'>Contatos</h1>", unsafe_allow_html=True)
+        st.markdown("""
+        <table style="width:100%">
         <tr>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-7b1b3b1b9/">Linkedin</a></td>
-        <td><a href="https://www.instagram.com/tassio_sales/">Instagram</a></td>
-        <td><a href="https://www.facebook.com/tassio.sales.7">Facebook</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-7b1b3b1b9/">Linkedin</a></td>
-        </tr>
-    </table>
-    """
-    container.markdown(html, unsafe_allow_html=True)
+            <th>Linkedin</th>
+            <th>GitHub</th>
+            <th>Instagram</th>
+            <th>Facebook</th>
+            </tr>
+            <tr>
+            <td><a href="https://www.linkedin.com/in/tassio-sales-7b1b3b1b3/">Tassio Sales</a></td>
+            <td><a href="https://www.github.com/tassiosales">Tassio Sales</a></td>
+            <td><a href="https://www.instagram.com/tassiosales/">Tassio Sales</a></td>
+            <td><a href="https://www.facebook.com/tassio.sales.7">Tassio Sales</a></td>
+            </tr>
+            </table>
+            """, unsafe_allow_html=True)
+            
+
     
 def PaginadeMensagem():
     #configurando h1
