@@ -91,7 +91,14 @@ def paginaSobre():
             st.markdown("<p style='text-align: justify; color: White;'>Eu espero conseguir uma oportunidade de trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
         with st.expander('Quais são os meus planos para o futuro:'):
             #criar lista em html
-            st.markdown("<ul style='text-align: justify; color: White;'><li>Meus planos para o futuro é conseguir uma oportunidade de trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</li><li>Continuar a aprender sobre novas e melhores maneiras de analisar dados, e também continuar a estudar novas linguagens de programação</li><li>Me tornar um profissional de destaque na área de Ciência de dados e Inteligencia artificial.</li><li>Me tornar um profissional de destaque na área de desenvolvimento de software.</li><li>Pesquisar e implementar novas técnicas de machine learning e data mining, Trabalhar em estreita colaboração com outros cientistas de dados, engenheiros de software e outros profissionais de TI</li><li>Desenvolver novas ideias para soluções de ciência de dados inovadoras.Continuar a aprender sobre novas ferramentas e técnicas.</li><li></li>Comunicar resultados de análises de dados de forma clara e precisa.</ul>", unsafe_allow_html=True)
+            st.markdown("""<ul style='text-align: justify; color: White;'>
+            <li>Meus planos para o futuro é conseguir uma oportunidade de trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</li>
+            <li>Continuar a aprender sobre novas e melhores maneiras de analisar dados, e também continuar a estudar novas linguagens de programação</li>
+            <li>Me tornar um profissional de destaque na área de Ciência de dados e Inteligencia artificial.</li>
+            <li>Me tornar um profissional de destaque na área de desenvolvimento de software.</li>
+            <li>Pesquisar e implementar novas técnicas de machine learning e data mining, Trabalhar em estreita colaboração com outros cientistas de dados, engenheiros de software e outros profissionais de TI</li>
+            <li>Desenvolver novas ideias para soluções de ciência de dados inovadoras.Continuar a aprender sobre novas ferramentas e técnicas.</li>
+            <li>Comunicar resultados de análises de dados de forma clara e precisa.</li></ul>""", unsafe_allow_html=True)
 
             
 
