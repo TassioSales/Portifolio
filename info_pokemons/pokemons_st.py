@@ -9,6 +9,8 @@ import traceback
 
 
 
+
+
 # criar funçaõ que retorna o pokemon que mostre o pokemon digitado
 def get_pokemon(pokemon):
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
@@ -93,4 +95,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #configurar o streamlit
+    st.set_page_config(page_title="Pokemons", page_icon=":smile:", layout="wide", initial_sidebar_state="expanded")
+    #trocar o tema do streamlit
+    st.markdown("<style>body {background-color: #f5f5f5;}</style>", unsafe_allow_html=True)
+    # criar uma caixa para o conteúdo da página
+    with st.container():
+        # chamar a função principal
+        main()
