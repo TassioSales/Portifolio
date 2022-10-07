@@ -96,7 +96,7 @@ def main():
 
 if __name__ == "__main__":
     #configurar o streamlit
-    st.set_page_config(page_title="Pokemons", page_icon=":smile:", layout="wide", initial_sidebar_state="auto")
+    st.set_page_config(page_title="Pokemons", page_icon=":smile:", initial_sidebar_state="auto")
     #trocar o tema do streamlit
     st.markdown("<style>body {background-color: #f5f5f5;}</style>", unsafe_allow_html=True)
     # criar uma caixa para o conteúdo da página
