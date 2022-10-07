@@ -114,11 +114,11 @@ def paginaSobre():
         with st.expander('Onde você pode ser encontrado:'):
             #remover a borda das imagen
             st.markdown(f"""
-            <div style="display: flex; justify-content: center; align-items:ajuste;">
-            <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
-            <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/></a>
-            <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/whatsapp.png"/></a>
-            <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></a>
+            <div style="display: flex; justify-content: justify; align-items:ajuste;">
+            <a href="{github}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/github.png"/></a>
+            <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/></a>
+            <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png"/></a>
+            <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/gmail.png"/></a>
             </div>
             """, unsafe_allow_html=True)
       
