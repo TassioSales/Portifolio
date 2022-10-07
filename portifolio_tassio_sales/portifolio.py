@@ -77,12 +77,25 @@ def paginaSobre():
         #configurando h2
 
         with st.expander('Sobre Mim:'):
-            st.markdown("<p style='text-align: center; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
         with st.expander('Formação Acadêmica:'):
-            st.markdown("<p style='text-align: center; color: White;'>Estou me formando em Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tambem tenho cursos tecnico na area de munutenção de computadores e rede.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Estou me formando em Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tambem tenho cursos tecnico na area de munutenção de computadores e rede.</p>", unsafe_allow_html=True)
         with st.expander('Experiência Profissional:'):
             #justificar texto
             st.markdown("<p style='text-align: justify; color: White;'>Estágio na procuradoria geral da Fazenda Nacional: La eu atuei com coleta de dados usando python(Webscraping), também fiz limpeza de dados usando python, sas ou r, assim como algumas analises usando as mesmas ferramentas, também lidei com banco de dados usando impala, ou SQL. Trabalho como Trainee da empresa iBlue Consulting onde eu prestava serviço com terceirizado para SAS la ele utiliza as seguintes ferramentas para banco de dados usávamos sql ou oracle, também desenvolvia nas linguagens sas, groovy ou jython, ferramentas que usavamos SAS Enterprise Guide, SaS Management Console, SAS data integration, mobaxterm, DBeaver, SoapUI e a ferramenta que mais atuava era Real-Time Decision Manager (RTDM).</p>", unsafe_allow_html=True)
+        with st.expander('Habilidades:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Python, R, SQL, Java, Apache Spark, Hadoop, Machine Learning, Data Mining, Data Science, jython, Groovy, SAS, Oracle</p>", unsafe_allow_html=True)
+        with st.expander('Qual minha principal dificuldade:'):
+            st.markdown("<p style='text-align: justify; color: White;'>A minha principal dificuldade é a falta de experiência na área, pois estou no inicio da minha carreira, mas estou disposto a aprender e a me aperfeiçoar cada vez mais.</p>", unsafe_allow_html=True)
+        with st.expander('O que eu espero daqui:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Eu espero conseguir uma oportunidade de trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+        with st.expander('Quais são os meus planos para o futuro:'):
+            st.markdown("<p style='text-align: justify; color: White;'>Meus planos para o futuro é conseguir uma oportunidade de trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Continuar a aprender sobre novas e melhores maneiras de analisar dados, e também continuar a estudar novas linguagens de programação.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Me tornar um profissional de destaque na área de Ciência de dados e Inteligencia artificial.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Me tornar um profissional de destaque na área de desenvolvimento de software.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: White;'>Pesquisar e implementar novas técnicas de machine learning e data mining, Trabalhar em estreita colaboração com outros cientistas de dados, engenheiros de software e outros profissionais de TI.Desenvolver novas ideias para soluções de ciência de dados inovadoras.Continuar a aprender sobre novas ferramentas e técnicas.Comunicar resultados de análises de dados de forma clara e precisa.</p>", unsafe_allow_html=True)
+            
 
 
 
