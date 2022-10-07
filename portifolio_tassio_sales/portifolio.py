@@ -8,28 +8,39 @@ def paginacontato():
     container.markdown("<h2 style='text-align: center; color: red;'>Aqui voce pode me contatar</h2>", unsafe_allow_html=True)
     #criar tabela html para colocar link de contatos
     html = f"""
-    <table style="width:100%">
     <tr>
+        #criar link para o meu linkedin com icone
         <th>Linkedin</th>
+        #criar link para o meu github com icone
         <th>GitHub</th>
+        #criar link para o meu whatsaap com icone
         <th>Whatsaap</th>
-        <th>E-mail</th>
+        #criar link para o meu email com icone
+        <th>E-mail</th>+
+        #criar link para o meu Facebook com icone
         <th>FaceBook</th>
+        #criar link para o meu facebook com icone
         <th>Instagram</th>
     </tr>
     <tr>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Linkedin</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">GitHub</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Whatsaap</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">E-mail</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">FaceBook</a></td>
-        <td><a href="https://www.linkedin.com/in/tassio-sales-0b0b3b1b9/">Instagram</a></td>
+        #criar link para o meu linkedin com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a></td>
+        #criar link para o meu github com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/github--v1.png"/></a></td>
+        #criar link para o meu whatsaap com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/></a></td>
+        #criar link para o meu email com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/gmail--v1.png"/></a></td>
+        #criar link para o meu facebook com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/facebook-new.png"/></a></td>
+        #criar link para o meu instagram com icone
+        <td><a href="https://www.linkedin.com/in/tassio-sales-7b5b3b1b3/" target="_blank"><img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"/></a></td>
     </tr>
     </table>
     """
     #mostrar tabela html
     container.markdown(html, unsafe_allow_html=True)
-    
+
 
 
 """#criando link para conta do linkedin
