@@ -94,13 +94,29 @@ def main():
                     # mostra que o pokemon não existe
                     st.error("Pokemon não encontrado")
 
+def funcFim()
+    #configurar o streamlit com html
+    st.markdown("<style>body {background-color: #F8F8FF;}</style>", unsafe_allow_html=True)
+    # Criar bordas para o app
+    st.markdown("<style>div.Widget.row-widget.stRadio > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stText > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stButton > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSelectbox > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stCheckbox > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stNumberInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stColorPicker > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stDateInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTimeInput > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stFileUploader > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSlider > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTextArea > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
+    # Criar bordas para o app
+    main()
 
 
 if __name__ == "__main__":
-    #configurar o streamlit
-    st.set_page_config(page_title="Pokemons", page_icon=":smile:", initial_sidebar_state="auto")
-    #trocar o tema do streamlit
-    st.markdown("<style>body {background-color: #;}</style>", unsafe_allow_html=True)
-    # criar uma caixa para o conteúdo da página
-    main()
+
+
+
 
