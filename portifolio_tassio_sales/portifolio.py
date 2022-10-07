@@ -81,9 +81,6 @@ def main():
                             email = ""
                             assunto = ""
                             mensagem = ""
-
-
-
     except Exception as e:
         print(e)
 
