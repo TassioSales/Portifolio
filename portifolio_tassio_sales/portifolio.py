@@ -5,7 +5,7 @@ import streamlit as st
 
 def paginacontato():
     #criar caixa com bordas para o conteudo
-    with st.expander("Contato"):
+    with st.form("Contato"):
         st.title("Contatos")
         #configurando meus contatos em html
         #criar um link para o meu linkedin com o icone do linkedin e o nome do meu linkedin e botao para abrir em outra aba
@@ -51,6 +51,7 @@ def PaginadeMensagem():
             nome = ""
             email = ""
             mensagem = ""
+
 def paginaSobre():
     #criar caixa com bordas para o conteud
         #configurando h1
