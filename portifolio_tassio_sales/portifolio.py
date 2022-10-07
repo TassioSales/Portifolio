@@ -79,9 +79,9 @@ def paginaSobre():
         with st.expander('Sobre Mim:'):
             st.markdown("<p style='text-align: center; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
         with st.expander('Formação Acadêmica:'):
-            st.markdown("<p style='text-align: center; color: White;'>Estou me formando em Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tambem tenho cursos tecnico na area de munutenção de computadores e rede</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: White;'>Estou me formando em Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tambem tenho cursos tecnico na area de munutenção de computadores e rede.</p>", unsafe_allow_html=True)
         with st.expander('Experiência Profissional:'):
-            st.markdown("<p style='text-align: center; color: White;'>Estágio na procuradoria geral da Fazenda Nacional: La eu atuei com coleta de dados usando python(Webscraping), também fiz limpeza de dados usando python, sas ou r, assim como algumas analises usando as mesmas ferramentas, também lidei com banco de dados usando impala, ou SQL/p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: White;'>Estágio na procuradoria geral da Fazenda Nacional: La eu atuei com coleta de dados usando python(Webscraping), também fiz limpeza de dados usando python, sas ou r, assim como algumas analises usando as mesmas ferramentas, também lidei com banco de dados usando impala, ou SQL. Trabalho </p>", unsafe_allow_html=True)
 
 
 
