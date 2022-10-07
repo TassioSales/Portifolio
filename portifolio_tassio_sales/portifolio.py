@@ -69,17 +69,14 @@ def paginaSobre():
         linkedin ="https://www.linkedin.com/in/tassiosales/"
         whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
         email ='tassiosales@gmail.com'
-    #criar caixa com bordas para o conteudo
-        with st.container():
-            #pegar foto do meu perfil do github
-            st.image("https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4", width=200)
-            #deixa imagem redonda
-            st.markdown("<style>img{border-radius: 50%;}</style>", unsafe_allow_html=True)
-           #jusificar imagem
-            st.markdown("<style>img{display: block;margin-left: auto;margin-right: auto;}</style>", unsafe_allow_html=True)
-            #configurando h1
-            st.markdown("<h1 style='text-align: left; color: White;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
-            #configurando h2
+        foto = "https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4"
+        #pegando a foto e alinhando no centro da tela com html
+        st.markdown(f"""
+        <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="{foto}" alt="Foto de Tassio Sales" width="200" height="200">
+        </div>
+        """, unsafe_allow_html=True)
+    
 
         with st.expander('Sobre Mim:'):
             st.markdown("<p style='text-align: justify; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
