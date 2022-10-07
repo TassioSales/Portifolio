@@ -13,18 +13,6 @@ def config():
     st.set_page_config(page_title="Portifolio",page_icon=":smiley:",layout="centered",initial_sidebar_state="expanded",
     menu_items={"Get Help": "https://docs.streamlit.io/en/stable/troubleshooting/clean-install.html", "Report a bug": "https://streamlit.io/en/stable/troubleshooting/clean-install.html", "About": "https://streamlit.io/about"})
 
-#criar função com questionario de envio de email para o meu email
-def questionario():
-    #criar caixa com bordas para o conteud
-    st.title("Envie um email para mim")
-    #criar formulario para envio de email
-    nome = st.text_input("Nome")
-    email = st.text_input("Email")
-    mensagem = st.text_area("Mensagem")
-    #criar botao para enviar email
-    if st.button("Enviar"):
-        st.write("Enviado com sucesso")
-    st.expander("Contato", expanded=True)
 
 def paginacontato():
     #criar caixa com bordas para o conteudo
@@ -43,6 +31,29 @@ def paginacontato():
         st.expander("Contato", expanded=True)
     questionario()
 
+def PaginadeMensagem():
+    #configurando h1
+    st.markdown("<h1 style='text-align: center; color: red;'>Mensagem</h1>", unsafe_allow_html=True)
+    #configurando h2
+    st.markdown("<h2 style='text-align: center; color: red;'>Aqui voce pode me deixar um mensagem ou um feedback</h2>", unsafe_allow_html=True)
+    #criando um formulario para receber a mensagem do usuario
+    with st.form("form1"):
+        #criando um campo para o usuario digitar o nome
+        nome = st.text_input("Nome")
+        #criando um campo para o usuario digitar o email
+        email = st.text_input("Email")
+        #criando um campo para o usuario digitar a mensagem
+        mensagem = st.text_area("Mensagem")
+        #criando um botao para enviar a mensagem
+        submit_button = st.form_submit_button("Enviar")
+        #se o botao for clicado
+        if submit_button:
+            #mostrar mensagem de sucesso
+            st.success("Mensagem enviada com sucesso")
+            #limpar os campos
+            nome = ""
+            email = ""
+            mensagem = ""
 
 
 def main():
@@ -58,6 +69,8 @@ def main():
             st.write("Sobre mim")
         elif menu == "Contato":
             paginacontato()
+        elif menu == "Mensagem":
+            PaginadeMensagem()
   
     except Exception as e:
         print(e)
