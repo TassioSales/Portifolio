@@ -6,7 +6,7 @@ import streamlit as st
 def paginacontato():
     container.markdown("<h1 style='text-align: center; color: red;'>Contato</h1>", unsafe_allow_html=True)
     container.markdown("<h2 style='text-align: center; color: red;'>Aqui voce pode me contatar</h2>", unsafe_allow_html=True)
-    col1, col2, col3 = st.beta_columns(4)
+    col1, col2, col3 = st.columns(4)
     with col1:
         #criando link para conta do linkedin
         container.markdown('<a href="https://www.linkedin.com/in/tassiosales/" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png" width="30px" height="30px" alt="linkedin"></a> <a href="https://www.linkedin.com/in/tassiosales/" target="_blank">Linkedin</a>', unsafe_allow_html=True)
