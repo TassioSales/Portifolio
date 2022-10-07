@@ -54,8 +54,6 @@ def PaginadeMensagem():
 
      
 def main():
-    st.set_page_config(page_title="Portifolio",page_icon=":smiley:",layout="centered",initial_sidebar_state="expanded",
-    menu_items={"Get Help": "https://www.google.com.br","Report a bug": "https://www.google.com.br","About": "https://www.google.com.br"})
     try:
         config()
         st.sidebar.title("Menu")
