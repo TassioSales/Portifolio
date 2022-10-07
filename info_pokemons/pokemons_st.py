@@ -114,8 +114,8 @@ def funcFim():
     st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
     #trocar a cor do botão para vermelho
     st.markdown("<style>div.stButton > button{background-color: #FF0000;}</style>", unsafe_allow_html=True)
-    #trocar a cor da pagina para azul
-    st.markdown("<style>div.stButton > button{background-color: #0000FF;}</style>", unsafe_allow_html=True)
+    #colocar uma imagem do pokemon de fundo do app
+    st.markdown("<style>body {background-image: url('https://i.pinimg.com/originals/0d/0d/0d/0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d.gif');}</style>", unsafe_allow_html=True)
     main()
 
 
