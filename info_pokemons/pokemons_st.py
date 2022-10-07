@@ -8,6 +8,7 @@ from lista_de_pokemons import pokemons_ordem_alfabetica
 import traceback
 
 
+
 # criar funçaõ que retorna o pokemon que mostre o pokemon digitado
 def get_pokemon(pokemon):
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
@@ -73,7 +74,6 @@ def configurações():
 
 
 def main():
-    configurações()
     # criar um título
     st.title("Pokemons")
     # criar um subtitulo
@@ -109,4 +109,5 @@ def main():
 
 
 if __name__ == "__main__":
+    configurações()
     main()
