@@ -15,17 +15,16 @@ def config():
 
 #criar função com questionario de envio de email para o meu email
 def questionario():
-    #criar caixa com bordas para o conteudo
-    with st.text("Questionario"):
-        st.title("Envie um email para mim")
-        #criar formulario para envio de email
-        nome = st.text_input("Nome")
-        email = st.text_input("Email")
-        mensagem = st.text_area("Mensagem")
-        #criar botao para enviar email
-        if st.button("Enviar"):
-            st.write("Enviado com sucesso")
-        st.expander("Contato", expanded=True)
+    #criar caixa com bordas para o conteud
+    st.title("Envie um email para mim")
+    #criar formulario para envio de email
+    nome = st.text_input("Nome")
+    email = st.text_input("Email")
+    mensagem = st.text_area("Mensagem")
+    #criar botao para enviar email
+    if st.button("Enviar"):
+        st.write("Enviado com sucesso")
+    st.expander("Contato", expanded=True)
 
 def paginacontato():
     #criar caixa com bordas para o conteudo
