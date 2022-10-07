@@ -75,7 +75,13 @@ def paginaSobre():
         #configurando h1
         st.markdown("<h1 style='text-align: left; color: red;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
         #configurando h2
-        st.markdown("<p style='text-align: center; color: red;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+        st.makdown("<p style='text-align: center; color: White;'>Atualmente estou estudando Python, Machine Learning, Deep Learning, Data Science, Data Engineering, Data Analysis, Data Visualization, SQL, NoSQL, MongoDB, MySQL, PostgreSQL, AWS, Azure, Google Cloud, Docker, Kubernetes, Linux, Git, GitHub, HTML, CSS, JavaScript, React, Node.js, Flask, Django, Streamlit, entre outras tecnologias.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: White;'>Meu objetivo é me tornar um profissional de sucesso na área de tecnologia, e contribuir para o crescimento da empresa e do mercado de trabalho.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: White;'>Se você gostou do meu trabalho, me contrate!</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: White;'>Se você não gostou do meu trabalho, me contrate e me ajude a melhorar!</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: White;'>Se você não tem interesse em me contratar, me contrate e me ajude a encontrar um emprego!</p>", unsafe_allow_html=True)
+     
 
     
 def main():
