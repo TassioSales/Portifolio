@@ -40,10 +40,19 @@ def PaginadeMensagem():
     with st.form("form1"):
         #criando um campo para o usuario digitar o nome
         nome = st.text_input("Nome")
+        #força o usuario a digitar algo no campo nome
+        if nome == "":
+            st.error("Por favor digite seu nome")
         #criando um campo para o usuario digitar o email
         email = st.text_input("Email")
+        #força o usuario a digitar algo no campo email
+        if email == "":
+            st.error("Por favor digite seu email")
         #criando um campo para o usuario digitar a mensagem
         mensagem = st.text_area("Mensagem")
+        #força o usuario a digitar algo no campo mensagem
+        if mensagem == "":
+            st.error("Por favor digite sua mensagem")
         #criando um botao para enviar a mensagem
         submit_button = st.form_submit_button("Enviar")
         #se o botao for clicado
@@ -54,8 +63,6 @@ def PaginadeMensagem():
             nome = ""
             email = ""
             mensagem = ""
-
-
 def main():
     try:
         config()
@@ -74,11 +81,6 @@ def main():
   
     except Exception as e:
         print(e)
-
-
-            
-    
-
 
 
 if __name__ == '__main__':
