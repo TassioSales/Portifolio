@@ -78,6 +78,8 @@ def paginaSobre():
 
         with st.expander('Sobre Mim:'):
             st.markdown("<p style='text-align: center; color: White;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</p>", unsafe_allow_html=True)
+        with st.expander('Formação Acadêmica:'):
+            st.markdown("<p style='text-align: center; color: White;'> </p>", unsafe_allow_html=True)
 
 
 
