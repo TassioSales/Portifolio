@@ -8,17 +8,19 @@ def paginacontato():
     linkedin ="https://www.linkedin.com/in/tassiosales/"
     whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
     email ='tassiosales@gmail.com'
-    #criando flexbox cons links
+    #criando flexbox cons links e ajuste automatically
     #criando Titulo
     st.markdown("<h1 style='text-align: center; color: White;'>Contatos</h1>", unsafe_allow_html=True)
-    st.markdown(f"""
-    <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;">
-    <a href="{github}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/github.png"/>GitHub</a>
-    <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>Linkedin</a>
-    <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png"/>Whatsaap</a>
-    <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/gmail.png"/>E-mail</a>
+    #criando flexbox
+    st.markdown(f""""
+    <div style="display: flex; justify-content: center; align-items: center;">
+    <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
+    <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/></a>
+    <a href="{whatsaap}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/whatsapp.png"/></a>
+    <a href="mailto:{email}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></a>
     </div>
-    """,unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+
 
 
     
