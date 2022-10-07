@@ -16,7 +16,7 @@ def config():
 #criar função com questionario de envio de email para o meu email
 def questionario():
     #criar caixa com bordas para o conteudo
-    with st.expander("Envie um email para mim"):
+    with st.text("Questionario"):
         st.title("Envie um email para mim")
         #criar formulario para envio de email
         nome = st.text_input("Nome")
