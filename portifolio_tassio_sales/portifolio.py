@@ -113,8 +113,7 @@ def paginaSobre():
         with st.expander('Você tem alguma dica para quem quer iniciar na carreira de TI?'):
             st.markdown("<p style='text-align: justify; color: White;'>A minha dica para quem quer iniciar na carreira de TI é que você deve estudar bastante e se aperfeiçoar cada vez mais, pois a tecnologia está em constante evolução.E nunca desista, apesar de ser difícil no começo, se você persistir, vai conseguir chegar onde quer.</p>", unsafe_allow_html=True)
         with st.expander('Onde você pode ser encontrado:'):
-            #remover a borda das imagens
-            st.markdown("""<style>img{border_style="blue";}</style>""", unsafe_allow_html=True)
+            #remover a borda das imagen
             st.markdown(f"""
             <div style="display: flex; justify-content: center; align-items:ajuste;">
             <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
