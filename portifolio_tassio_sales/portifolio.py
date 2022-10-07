@@ -32,7 +32,7 @@ def main():
         #criar um para meu whatsapp com o icone do whatsapp e o numero do meu whatsapp e botao para abrir em outra aba
         st.markdown('<a href="https://api.whatsapp.com/send?phone=5561982970840" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="30px" height="30px" alt="whatsapp"></a> <a href="https://api.whatsapp.com/send?phone=5561982970840" target="_blank">WhatSapp</a>', unsafe_allow_html=True)
         #criar um link para o meu email com o icone do email e o meu email e botao para abrir em outra aba
-        st.markdown('<a href="tassiolucian.ljs@gmail.com" target="_blank"><img src="#https://img.icons8.com/colored/48/000000/email.png width="30px" height="30px" alt="Email"></a> <a href="tassiolucian.ljs@gmail.com" target="_blank">E-mail</a>', unsafe_allow_html=True)
+        st.markdown('<a href="tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/colored/48/000000/email.png width="30px" height="30px" alt="Email"></a> <a href="tassiolucian.ljs@gmail.com" target="_blank">E-mail</a>', unsafe_allow_html=True)
         #criar um link para o meu email com o icone do email e o meu email e botao para abrir em outra aba
 
     
