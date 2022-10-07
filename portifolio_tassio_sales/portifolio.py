@@ -53,11 +53,10 @@ def PaginadeMensagem():
             mensagem = ""
 def paginaSobre():
     #criar caixa com bordas para o conteud
-        st.title("Sobre")
         #configurando h1
-        st.markdown("<h1 style='text-align: center; color: red;'>Sobre mim</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: right; color: red;'>Um pouco sobre mim:</h1>", unsafe_allow_html=True)
         #configurando h2
-        st.markdown("<h2 style='text-align: center; color: red;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</h2>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center; color: red;'>Meu nome é Tassio Sales, sou estudante de Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tenho 32 anos e sou apaixonado por tecnologia e programação, estou em busca de uma oportunidade de Trabalho na área de desenvolvimento de software, Engenheiro de dados ou como Cientista de dados.</h4>", unsafe_allow_html=True)
         #deixa st.expander aberto por padrao
 
 
