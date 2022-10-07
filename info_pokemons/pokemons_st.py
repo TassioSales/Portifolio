@@ -94,7 +94,7 @@ def main():
                     # mostra que o pokemon não existe
                     st.error("Pokemon não encontrado")
 
-def funcFim()
+def funcFim():
     #configurar o streamlit com html
     st.markdown("<style>body {background-color: #F8F8FF;}</style>", unsafe_allow_html=True)
     # Criar bordas para o app
