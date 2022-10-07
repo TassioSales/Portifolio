@@ -1,14 +1,12 @@
 # criar app que recebe um pokemon e retorna suas informações
 # acessar a api  https://pokeapi.co/api/v2/pokemon/{}
 
-import requests
 import json
+
+import requests
 import streamlit as st
+
 from lista_de_pokemons import pokemons_ordem_alfabetica
-import traceback
-
-
-
 
 
 # criar funçaõ que retorna o pokemon que mostre o pokemon digitado
@@ -75,7 +73,7 @@ def main():
                     data = get_pokemon(pokemon)
                     # mostrar os dados do pokemon
                     show_pokemon(data)
-                    #mostra
+                    # mostra
                 except:
                     # mostra que o pokemon não existe
                     st.error("Pokemon não encontrado")
@@ -94,34 +92,40 @@ def main():
                     # mostra que o pokemon não existe
                     st.error("Pokemon não encontrado")
 
+
 def funcFim():
-    #configurar o streamlit com html
+    # configurar o streamlit com html
     st.markdown("<style>body {background-color: #F8F8FF;}</style>", unsafe_allow_html=True)
     # Criar bordas para o app
     st.markdown("<style>div.Widget.row-widget.stRadio > div{border-radius: 10px;}</style>", unsafe_allow_html=True)
     # Criar bordas para o app
     st.markdown("<style>div.Widget.row-widget.stText > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stButton > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stSelectbox > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stCheckbox > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stNumberInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stColorPicker > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stDateInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stTimeInput > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stFileUploader > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stSlider > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stTextArea > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border: 2px solid #000000;}</style>", unsafe_allow_html=True)
-    #trocar a cor do botão para vermelho
+    st.markdown("<style>div.Widget.row-widget.stButton > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSelectbox > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stCheckbox > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stNumberInput > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stColorPicker > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stDateInput > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTimeInput > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stFileUploader > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stSlider > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stTextArea > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    st.markdown("<style>div.Widget.row-widget.stMultiselect > div{border: 2px solid #000000;}</style>",
+                unsafe_allow_html=True)
+    # trocar a cor do botão para vermelho
     st.markdown("<style>div.stButton > button{background-color: #FF0000;}</style>", unsafe_allow_html=True)
-    #colocar uma imagem do pokemon de fundo do app
-    st.markdown("<style>body {background-image: url('https://i.pinimg.com/originals/0d/0d/0d/0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d.gif');}</style>", unsafe_allow_html=True)
     main()
 
 
 if __name__ == "__main__":
     funcFim()
-
-
-
-
