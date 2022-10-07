@@ -14,7 +14,7 @@ def paginacontato():
     #criar caixa de texto explicativo sobre a pagina de contatos
     st.markdown("<p style='text-align: center; color: White;'>Aqui voce pode me encontrar em minhas redes sociais ou me mandar um email</p>", unsafe_allow_html=True)
     #criando flexbox
-    st.markdown(f""""
+    st.markdown(f"""
     <div style="display: flex; justify-content: center; align-items: center;">
     <a href="{github}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>Github</a>
     <a href="{linkedin}" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/linkedin.png"/><Linkedin/a>
