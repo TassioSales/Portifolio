@@ -81,7 +81,7 @@ def paginaSobre():
         with st.expander('Formação Acadêmica:'):
             st.markdown("<p style='text-align: center; color: White;'>Estou me formando em Ciência de dados e Inteligencia artificial pelo Instituto de Educação Superior de Brasília, tambem tenho cursos tecnico na area de munutenção de computadores e rede</p>", unsafe_allow_html=True)
         with st.expander('Experiência Profissional:'):
-            st.markdown("<p style='text-align: center; color: White;'>Estagiao da procuradoria gerak da Fazenda Nacional: La eu atuei com coleta de dados usando python(Webscraping), tambem fiz limpesa de dados usando python, sas ou r, assim como algummas analises usando as mesma ferramentas, tambem lidei com banco de dados usando impala, ou SQL</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: White;'>Estágio na procuradoria geral da Fazenda Nacional: La eu atuei com coleta de dados usando python(Webscraping), também fiz limpeza de dados usando python, sas ou r, assim como algumas analises usando as mesmas ferramentas, também lidei com banco de dados usando impala, ou SQL/p>", unsafe_allow_html=True)
 
 
 
