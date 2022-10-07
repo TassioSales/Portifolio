@@ -19,7 +19,7 @@ def paginacontato():
     with col4:
         #criando link para conta de email
         container.markdown('<a href="mailto:tassiolucian.ljs@gmail.com" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/newsletter.png" width="30px" height="30px" alt="email"></a> <a href="mailto:tassiolucian.ljs@gmail.com" target="_blank">Email</a>', unsafe_allow_html=True)
-
+    
     
 
 def PaginadeMensagem():
