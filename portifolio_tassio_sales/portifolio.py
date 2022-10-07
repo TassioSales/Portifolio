@@ -70,12 +70,14 @@ def paginaSobre():
         whatsaap = "https://api.whatsapp.com/send?phone=5561982970840"
         email ='tassiosales@gmail.com'
         foto = "https://avatars.githubusercontent.com/u/74218122?s=400&u=0ba1b9753d552bbc6cb3e54765d9ab4907e6d146&v=4"
-        #pegando a foto e alinhando no centro da tela com html
+        #pegando a foto e alinhando no centro da tela com html dexando imagem redonda e com bordas brancas
         st.markdown(f"""
         <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="{foto}" alt="Foto de Tassio Sales" width="200" height="200">
+        <img src="{foto}" style="border-radius: 50%; border: 5px solid white; width: 200px; height: 200px;"/>
         </div>
         """, unsafe_allow_html=True)
+        #criando Titulo
+        st.markdown("<h1 style='text-align: center; color: White;'>Um pouco sobre mim: </h1>", unsafe_allow_html=True)
     
 
         with st.expander('Sobre Mim:'):
