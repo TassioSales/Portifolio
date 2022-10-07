@@ -3,12 +3,6 @@
 
 import streamlit as st
 
-#funcao para configurçoes da pagina web em html
-def config():
-    st.set_page_config(page_title="Portifolio",page_icon=":smiley:",layout="centered",initial_sidebar_state="expanded",
-    menu_items={"Get Help": "https://docs.streamlit.io/en/stable/troubleshooting/clean-install.html", "Report a bug": "https://streamlit.io/en/stable/troubleshooting/clean-install.html", "About": "https://streamlit.io/about"})
-
-
 def paginacontato():
     #criar caixa com bordas para o conteudo
     with st.expander("Contato"):
@@ -60,6 +54,8 @@ def PaginadeMensagem():
 
      
 def main():
+    st.set_page_config(page_title="Portifolio",page_icon=":smiley:",layout="centered",initial_sidebar_state="expanded",
+    menu_items={"Get Help": "https://www.google.com.br","Report a bug": "https://www.google.com.br","About": "https://www.google.com.br"})
     try:
         config()
         st.sidebar.title("Menu")
