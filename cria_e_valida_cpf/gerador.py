@@ -162,7 +162,18 @@ def main():
             st.success('CNPJ Gerado com Sucesso')
             st.success('O CNPJ gerado é válido')
 
+#funçaõ com o layout da página
+def config_page():
+    st.set_page_config(
+        page_title='Validador de CPF e CNPJ',
+        page_icon=':moneybag:',
+        layout='wide',
+        initial_sidebar_state='auto'
+
+    )
+
 
 if __name__ == '__main__':
     # executar a função main
+    config_page()
     main()
