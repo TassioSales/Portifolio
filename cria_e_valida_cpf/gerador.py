@@ -30,7 +30,8 @@ def gerar_cpf():
                 d = 0
             total = 0  # reiniciar o total
             novo_cpf += str(d)  # concatenar o digito gerado no novo cpf
-    return novo_cpf
+    # escrever o novo cpf com os caracteres formatados
+    return f'{novo_cpf[:3]}.{novo_cpf[3:6]}.{novo_cpf[6:9]}-{novo_cpf[9:11]}'
 
 
 # criar função para gerar cnpj
@@ -56,7 +57,9 @@ def gerar_cnpj():
                 d = 0
             total = 0  # reiniciar o total
             novo_cnpj += str(d)  # concatenar o digito gerado no novo cnpj
-    return novo_cnpj
+            # escrever o novo cnpj com os caracteres formatados
+    return f'{novo_cnpj[:2]}.{novo_cnpj[2:5]}.{novo_cnpj[5:8]}/{novo_cnpj[8:12]}-{novo_cnpj[12:14]}'
+ 
 
 
 def valida_cpf(cpf):
