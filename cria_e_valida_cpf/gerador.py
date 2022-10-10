@@ -139,7 +139,10 @@ def main():
         if st.button('Gerar CNPJ'): # criar botão para gerar o cnpj
             st.write(gerar_cnpj()) # escrever o cnpj gerado
         if st.button('Validar CNPJ'): # criar botão para validar o cnpj
+            #criar caixa de texto para digitar o cnpj
+            st.text_input('Digite um CNPJ', 'Ex: 12345678901234')
             st.write(valida_cnpj(cnpj_input)) # escrever se o cnpj é valido ou não
+
 
 if __name__ == '__main__':
     # executar a função main
