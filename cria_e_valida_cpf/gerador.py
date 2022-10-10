@@ -167,4 +167,5 @@ def main():
             st.success('O CNPJ gerado é válido') # mensagem de sucesso
 
 if __name__ == '__main__':
+    # chamar a função main
     main()
