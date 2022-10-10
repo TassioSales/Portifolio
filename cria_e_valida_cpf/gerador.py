@@ -164,11 +164,13 @@ def main():
         if st.button('Validar CNPJ'):
             st.write(cnpj_validado)
             if cnpj_validado:
-                st.success('CNPJ Válido')
+                #colocar os caracteres especiais no cnpj
+                cnpj = cnpj[:2] + '.' + cnpj[2:5] + '.' + cnpj[5:8] + '/' + cnpj[8:12] + '-' + cnpj[12:]
+                st.success('CNPJ Válido {}'.format(cnpj))
             else:
-                st.error('CNPJ Inválido')
-    
-    
+                cnpj = cnpj[:2] + '.' + cnpj[2:5] + '.' + cnpj[5:8] + '/' + cnpj[8:12] + '-' + cnpj[12:]
+                st.error('CNPJ Inválido {}'.format(cnpj))
+
 if __name__ == '__main__':
     # executar a função main
     main()
