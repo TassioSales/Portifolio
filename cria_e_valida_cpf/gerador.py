@@ -135,33 +135,36 @@ def valida_cnpj(cnpj):
 
 
 def main():
+    # variavel para armazenar o cpf
     cpf = gerar_cpf()
+    # variavel para armazenar o cnpj
     cnpj = gerar_cnpj()
+    # titulo
     st.title('Validador de CPF e CNPJ')
+    # subtitulo
     menu = ['Validar CPF', 'Validar CNPJ', 'Gerar']
-    choice = st.sidebar.selectbox('Menu', menu)
-    if choice == 'Validar CPF':
-        st.subheader('Validar CPF')
-        cpf_input = st.text_input('CPF', 'Digite o CPF')
-        if st.button('Validar'):
-            valida_cpf(cpf_input)
-    elif choice == 'Validar CNPJ':
-        st.subheader('Validar CNPJ')
-        cnpj_input = st.text_input('CNPJ', 'Digite o CNPJ')
-        if st.button('Validar'):
-            valida_cnpj(cnpj_input)
-    elif choice == 'Gerar':
-        st.subheader('Gerar CPF e CNPJ')
-        if st.button('Gerar CPF'):
-            #trocando a cor do botão pra verde
-            st.markdown(f'<style>div.row-widget.stRadio > div{{color: green;}}</style>', unsafe_allow_html=True)
-            st.text_area('CPF Gerado:', cpf, height=100)
-            st.success('CPF Gerado com Sucesso')
-            st.success('O CPF gerado é válido')
-        if st.button('Gerar CNPJ'):
-            st.text_area('CNPJ Gerado:', cnpj, height=100)
-            st.success('CNPJ Gerado com Sucesso')
-            st.success('O CNPJ gerado é válido')
+    choice = st.sidebar.selectbox('Menu', menu) # menu lateral
+    if choice == 'Validar CPF': # no menu lateral selecionar a opção Validar cpf
+        st.subheader('Validar CPF') # subtitulo
+        cpf_input = st.text_input('CPF', 'Digite o CPF') # campo para digitar o cpf_input   
+        if st.button('Validar'): # botão para validar o cpf_input
+            valida_cpf(cpf_input) # chamar a função valida_cpf
+    elif choice == 'Validar CNPJ': # no menu lateral selecionar a opção Validar cnpj
+        st.subheader('Validar CNPJ') # subtitulo
+        cnpj_input = st.text_input('CNPJ', 'Digite o CNPJ') # campo para digitar o cnpj_input
+        if st.button('Validar'): # botão para validar o cnpj_input
+            valida_cnpj(cnpj_input) # chamar a função valida_cnpj
+    # no menu lateral selecionar a opção Gerar
+    elif choice == 'Gerar': # no menu lateral selecionar a opção Gerar
+        st.subheader('Gerar CPF e CNPJ') # subtitulo
+        if st.button('Gerar CPF'): # botão para gerar o cpf_input
+            st.text_area('CPF Gerado:', cpf, height=100) # campo para exibir o cpf gerado
+            st.success('CPF Gerado com Sucesso') # mensagem de sucesso
+            st.success('O CPF gerado é válido') # mensagem de sucesso
+        if st.button('Gerar CNPJ'): # botão para gerar o cnpj_input
+            st.text_area('CNPJ Gerado:', cnpj, height=100) # campo para exibir o cnpj gerado
+            st.success('CNPJ Gerado com Sucesso') # mensagem de sucesso
+            st.success('O CNPJ gerado é válido') # mensagem de sucesso
 
 if __name__ == '__main__':
     main()
