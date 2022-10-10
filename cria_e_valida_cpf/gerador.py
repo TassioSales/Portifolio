@@ -139,23 +139,24 @@ def main():
     cpf = gerar_cpf()
     cnpj = gerar_cnpj()
     st.title('Validador de CPF e CNPJ')
-    menu = ['Validar', 'Gerar']
+    menu = ['Validar CPF','Validar CNPJ', 'Gerar']
     choice = st.sidebar.selectbox('Menu', menu)
-    if choice == 'Validar':
-        st.subheader('Validar CPF e CNPJ')
+    if choice == 'Validar CPF':
+        st.subheader('Validar CPF')
         cpf_input = st.text_input('CPF', 'Digite o CPF')
-        cnpj_input = st.text_input('CNPJ', 'Digite o CNPJ')
         if st.button('Validar'):
             valida_cpf(cpf_input)
+    elif choice == 'Validar CNPJ':
+        st.subheader('Validar CNPJ')
+        cnpj_input = st.text_input('CNPJ', 'Digite o CNPJ')
+        if st.button('Validar'):
             valida_cnpj(cnpj_input)
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
         if st.button('Gerar CPF'):
-            st.success(cpf)
+            st.write(cpf)
         if st.button('Gerar CNPJ'):
-            st.success(cnpj)
-    else:
-        st.subheader('About')
+            st.write(cnpj)
 
 if __name__ == '__main__':
     # executar a função main
