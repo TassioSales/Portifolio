@@ -122,20 +122,25 @@ def valida_cnpj(cnpj):
 
 
 def main():
-    st.title('Gerador de CPF e CNPJ')
-    menu = ['CPF', 'CNPJ']
-    escolha = st.sidebar.selectbox('Escolha uma opção', menu)
-    if escolha == 'CPF':
-        st.subheader('Gerador de CPF')
-        cpf_input = st.text_input('Digite um CPF', 'Ex: 12345678901')
-        if st.button('Gerar CPF'):
-            st.write(gerar_cpf())
-        if st.button('Validar CPF'):
-            st.write(valida_cpf(cpf_input))
-    elif escolha == 'CNPJ':
-        st.subheader('Gerador de CNPJ')
-        cnpj_input = st.text_input('Digite um CNPJ', 'Ex: 12345678901234')
-        if st.button('Gerar CNPJ'):
-            st.write(gerar_cnpj())
-        if st.button('Validar CNPJ'):
-            st.write(valida_cnpj(cnpj_input))
+    # criar variavel para armazenar o cpf gerado
+    st.title('Gerador de CPF e CNPJ') # titulo da pagina
+    menu = ['CPF', 'CNPJ'] # criar lista para armazenar as opções do menu
+    escolha = st.sidebar.selectbox('Escolha uma opção', menu) # criar menu para escolher a opção
+    if escolha == 'CPF': # se a opção for CPF
+        st.subheader('Gerador de CPF') # subtitulo
+        cpf_input = st.text_input('Digite um CPF', 'Ex: 12345678901') # criar caixa de texto para digitar o cpf
+        if st.button('Gerar CPF'): # criar botão para gerar o cpf
+            st.write(gerar_cpf()) # escrever o cpf gerado
+        if st.button('Validar CPF'): # criar botão para validar o cpf
+            st.write(valida_cpf(cpf_input)) # escrever se o cpf é valido ou não
+    elif escolha == 'CNPJ': # se a opção for CNPJ
+        st.subheader('Gerador de CNPJ') # subtitulo
+        cnpj_input = st.text_input('Digite um CNPJ', 'Ex: 12345678901234') # criar caixa de texto para digitar o cnpj
+        if st.button('Gerar CNPJ'): # criar botão para gerar o cnpj
+            st.write(gerar_cnpj()) # escrever o cnpj gerado
+        if st.button('Validar CNPJ'): # criar botão para validar o cnpj
+            st.write(valida_cnpj(cnpj_input)) # escrever se o cnpj é valido ou não
+
+if __name__ == '__main__':
+    # executar a função main
+    main()
