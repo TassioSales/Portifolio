@@ -138,36 +138,24 @@ def valida_cnpj(cnpj):
 def main():
     cpf = gerar_cpf()
     cnpj = gerar_cnpj()
-    
     st.title('Validador de CPF e CNPJ')
     menu = ['Validar', 'Gerar']
     choice = st.sidebar.selectbox('Menu', menu)
     if choice == 'Validar':
         st.subheader('Validar CPF e CNPJ')
-        cpf = st.text_input('CPF', 'Digite o CPF')
+        cpf_input = st.text_input('CPF', 'Digite o CPF')
+        cnpj_input = st.text_input('CNPJ', 'Digite o CNPJ')
         if st.button('Validar'):
-            valida_cpf(cpf)
-        cnpj = st.text_input('CNPJ', 'Digite o CNPJ')
-        if st.button('Validar'):
-            valida_cnpj(cnpj)
+            valida_cpf(cpf_input)
+            valida_cnpj(cnpj_input)
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
-        option = st.selectbox('Escolha uma opção', ['CPF', 'CNPJ'])
-        if st.button('Gerar'):
-            if option == 'CPF':
-                gerar_cpf()
-                st.text_area('CPF Gerado', cpf)
-                st.success(f'O CPF: {cpf} gerado e valido')
-            elif option == 'CNPJ':
-                st.text_area('CNPJ gerado', cnpj)
-                st.success(f'O CNPJ: {cnpj} gerado e invalido')
+        if st.button('Gerar CPF'):
+            st.success(cpf)
+        if st.button('Gerar CNPJ'):
+            st.success(cnpj)
     else:
         st.subheader('About')
-
-
-                
-
-
 
 if __name__ == '__main__':
     # executar a função main
