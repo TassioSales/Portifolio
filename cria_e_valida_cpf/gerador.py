@@ -91,11 +91,11 @@ def valida_cpf(cpf):
                 novo_cpf += str(d) # concatenar o digito gerado no novo cpf
         sequencia = novo_cpf == str(novo_cpf[0]) * len(cpf) # verificar se todos os digitos são iguais
         if cpf == novo_cpf and not sequencia: # se o cpf for igual ao novo cpf e não for uma sequencia
+            st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
             st.success('CPF Válido')
-            st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
         else:
-            st.error('CPF Inválido')
             st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
+            st.error('CPF Inválido')
 
 
 def valida_cnpj(cnpj):
@@ -128,11 +128,11 @@ def valida_cnpj(cnpj):
                 novo_cnpj += str(d) # concatenar o digito gerado no novo cnpj
         sequencia = novo_cnpj == str(novo_cnpj[0]) * len(cnpj) # verificar se todos os digitos são iguais
         if cnpj == novo_cnpj and not sequencia: # se o cnpj for igual ao novo cnpj e não for uma sequencia
+            st.write(f' O CNPJ: {cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
             st.success('CNPJ Válido')
-            st.write(f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
         else:
-            st.error('CNPJ Inválido')
             st.write(f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
+            st.error('CNPJ Inválido')
 
 
 def main():
@@ -154,9 +154,14 @@ def main():
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
         if st.button('Gerar CPF'):
-            st.write(cpf)
+            st.text_area('CPF Gerado:', cpf, height=100)
+            st.success('CPF Gerado com Sucesso')
+            st.success('O CPF gerado é válido')
         if st.button('Gerar CNPJ'):
-            st.write(cnpj)
+            st.text_area('CNPJ Gerado:', cnpj, height=100)
+            st.success('CNPJ Gerado com Sucesso')
+            st.success('O CNPJ gerado é válido')
+
 
 if __name__ == '__main__':
     # executar a função main
