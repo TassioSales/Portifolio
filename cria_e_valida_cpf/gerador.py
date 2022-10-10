@@ -164,3 +164,4 @@ def main():
             st.success('O CNPJ gerado é válido')
 
 if __name__ == '__main__':
+    main()
