@@ -123,26 +123,29 @@ def valida_cnpj(cnpj):
 
 def main():
     # criar variavel para armazenar o cpf gerado
-    st.title('Gerador de CPF e CNPJ') # titulo da pagina
-    menu = ['CPF', 'CNPJ'] # criar lista para armazenar as opções do menu
-    escolha = st.sidebar.selectbox('Escolha uma opção', menu) # criar menu para escolher a opção
-    if escolha == 'CPF': # se a opção for CPF
-        st.subheader('Gerador de CPF') # subtitulo
-        cpf_input = st.text_input('Digite um CPF', 'Ex: 12345678901') # criar caixa de texto para digitar o cpf
-        if st.button('Gerar CPF'): # criar botão para gerar o cpf
-            st.write(gerar_cpf()) # escrever o cpf gerado
-        if st.button('Validar CPF'): # criar botão para validar o cpf
-            st.write(valida_cpf(cpf_input)) # escrever se o cpf é valido ou não
-    elif escolha == 'CNPJ': # se a opção for CNPJ
-        st.subheader('Gerador de CNPJ') # subtitulo
-        cnpj_input = st.text_input('Digite um CNPJ', 'Ex: 12345678901234') # criar caixa de texto para digitar o cnpj
-        if st.button('Gerar CNPJ'): # criar botão para gerar o cnpj
-            st.write(gerar_cnpj()) # escrever o cnpj gerado
-        if st.button('Validar CNPJ'): # criar botão para validar o cnpj
-            #criar caixa de texto para digitar o cnpj
-            st.text_input('Digite um CNPJ', 'Ex: 12345678901234')
-            st.write(valida_cnpj(cnpj_input)) # escrever se o cnpj é valido ou não
+    cpf = gerar_cpf()
+    # criar variavel para armazenar o cnpj gerado
+    cnpj = gerar_cnpj()
+    # criar variavel para armazenar o cpf validado
+    cpf_validado = valida_cpf(cpf)
+    # criar variavel para armazenar o cnpj validado
+    cnpj_validado = valida_cnpj(cnpj)
+    # crir menu para o usuario usando streamlit
+    menu = ['CPF', 'CNPJ']
+    with st.form('form1'):
+        escolha = st.selectbox('Escolha uma opção', menu)
+        submit = st.form_submit_button('Enviar')
+    if submit:
+        if escolha == 'CPF':
+            st.write(f'CPF gerado: {cpf}')
+            st.write(f'CPF validado: {cpf_validado}')
+        else:
+            st.write(f'CNPJ gerado: {cnpj}')
+            st.write(f'CNPJ validado: {cnpj_validado}')
+    
 
+
+    
 
 if __name__ == '__main__':
     # executar a função main
