@@ -158,8 +158,6 @@ def main():
     elif choice == 'Gerar': # no menu lateral selecionar a opção Gerar
         st.subheader('Gerar CPF e CNPJ') # subtitulo
         if st.button('Gerar CPF'): # botão para gerar o cpf_input
-            # configurar botao pra cor verde e fonte branca
-            st.markdown(f'<p style="color:green; font-size: 20px;">{cpf}</p>', unsafe_allow_html=True)
             st.text_area('CPF Gerado:', cpf, height=100) # campo para exibir o cpf gerado
             st.success('CPF Gerado com Sucesso') # mensagem de sucesso
             st.success('O CPF gerado é válido') # mensagem de sucesso
