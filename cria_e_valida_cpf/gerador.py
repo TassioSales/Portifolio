@@ -136,6 +136,9 @@ def valida_cnpj(cnpj):
 
 
 def main():
+    cpf = gerar_cpf()
+    cnpj = gerar_cnpj()
+
     st.title('Validador de CPF e CNPJ')
     menu = ['Validar', 'Gerar']
     choice = st.sidebar.selectbox('Menu', menu)
@@ -149,14 +152,14 @@ def main():
             valida_cnpj(cnpj)
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
-        option = st.selectbox('Escolha uma opção', ['CPF', 'CNPJ'])
-        if st.button('Gerar'):
-            if option == 'CPF':
-                st.text(gerar_cpf())
-                #mostra se cpf é valido ou invalido
-                valida_cpf(gerar_cpf())
-            elif option == 'CNPJ':
-                st.write(gerar_cnpj())
+        if st.button('Gerar CPF'):
+            st.write(cpf)
+            #mostra se cpf é valido ou não
+            valida_cpf(cpf)
+        if st.button('Gerar CNPJ'):
+            st.write(cnpj)
+            #mostra se cnpj é valido ou não
+            valida_cnpj(cnpj)
                 
 
 
