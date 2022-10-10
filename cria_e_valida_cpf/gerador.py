@@ -156,10 +156,11 @@ def main():
         if st.button('Gerar'):
             if option == 'CPF':
                 gerar_cpf()
+                st.text_area('CPF Gerado', cpf)
                 st.success(f'O {cpf} gerado e valido')
             elif option == 'CNPJ':
-                gerar_cpf()
-                st.success(f'O {cnpj} gerado e invalido')
+                st.text_area('CNPJ gerado', cnpj)
+                st.success(f'{cnpj} gerado e invalido')
     else:
         st.subheader('About')
 
