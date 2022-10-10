@@ -1,7 +1,4 @@
 # criar texto com frase digitada pelo usuário e usar o markovify para construir o texto
-
-import os
-import openai
 import spacy
 import streamlit as st
 import openai
