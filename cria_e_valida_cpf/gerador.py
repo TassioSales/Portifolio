@@ -153,6 +153,8 @@ def main():
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
         if st.button('Gerar CPF'):
+            #configuração do botão para ficar mais bonito em html
+            st.markdown(f'<p style="font-size: 20px; color: green;">{cpf}</p>', unsafe_allow_html=True)
             st.text_area('CPF Gerado:', cpf, height=100)
             st.success('CPF Gerado com Sucesso')
             st.success('O CPF gerado é válido')
@@ -161,52 +163,4 @@ def main():
             st.success('CNPJ Gerado com Sucesso')
             st.success('O CNPJ gerado é válido')
 
-
-# funçaõ com o layout da página
-def config_page():
-    st.set_page_config(
-        page_title="Validador de CPF e CNPJ",
-        page_icon=":moneybag:",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
-
-
-# função de configuraçoes de botton
-def config_button():
-    #deixar o botão do streamlit mais bonito
-    st.markdown(f"""
-    <style>config_button()
-    .reportview-container .main .block-container{{
-        max-width: 1000px;
-        padding-top: 1rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        padding-bottom: 1rem;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-    
-
-# configurações de roda pé
-def config_footer():
-    st.markdown(
-        """
-    <style>
-    .reportview-container .main footer {visibility: hidden;}
-    """,
-        unsafe_allow_html=True,
-    )
-
-
-# função principal
-
-def funcao_principal():
-    config_page()
-    config_button()
-    config_footer()
-    main()
-
-
 if __name__ == '__main__':
-    funcao_principal()
