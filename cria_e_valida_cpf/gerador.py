@@ -59,7 +59,6 @@ def gerar_cnpj():
             novo_cnpj += str(d)  # concatenar o digito gerado no novo cnpj
             # escrever o novo cnpj com os caracteres formatados
     return f'{novo_cnpj[:2]}.{novo_cnpj[2:5]}.{novo_cnpj[5:8]}/{novo_cnpj[8:12]}-{novo_cnpj[12:14]}'
- 
 
 
 def valida_cpf(cpf):
@@ -67,30 +66,30 @@ def valida_cpf(cpf):
     return:
         True para CPF válido
         False para CPF inválido"""
-    #remover caracteres especiais
+    # remover caracteres especiais
     cpf = cpf.replace('.', '')
     cpf = cpf.replace('-', '')
     # criar lista para armazenar os 9 primeiros digitos
-    if len(cpf) != 11:# se o tamanho da lista for diferente de 11
+    if len(cpf) != 11:  # se o tamanho da lista for diferente de 11
         return False
     else:
-        novo_cpf = cpf[:-2] # 9 primeiros digitos
-        reverso = 10 # contador reverso
-        total = 0 # soma dos digitos
-        for index in range(19): # criar laço para gerar os 9 primeiros digitos
-            if index > 8: # primeiro indice vai de 0 a 9
-                index -= 9 # segundo indice vai de 9 a 18
-            total += int(novo_cpf[index]) * reverso # valor total da multiplicação
-            reverso -= 1 # decrementar o contador reverso
-            if reverso < 2: # quando o contador chegar a 2
-                reverso = 11 # reiniciar o contador
-                d = 11 - (total % 11) # digito verificador
-                if d > 9: # se o digito for > 9 o valor é 0
+        novo_cpf = cpf[:-2]  # 9 primeiros digitos
+        reverso = 10  # contador reverso
+        total = 0  # soma dos digitos
+        for index in range(19):  # criar laço para gerar os 9 primeiros digitos
+            if index > 8:  # primeiro indice vai de 0 a 9
+                index -= 9  # segundo indice vai de 9 a 18
+            total += int(novo_cpf[index]) * reverso  # valor total da multiplicação
+            reverso -= 1  # decrementar o contador reverso
+            if reverso < 2:  # quando o contador chegar a 2
+                reverso = 11  # reiniciar o contador
+                d = 11 - (total % 11)  # digito verificador
+                if d > 9:  # se o digito for > 9 o valor é 0
                     d = 0
                 total = 0
-                novo_cpf += str(d) # concatenar o digito gerado no novo cpf
-        sequencia = novo_cpf == str(novo_cpf[0]) * len(cpf) # verificar se todos os digitos são iguais
-        if cpf == novo_cpf and not sequencia: # se o cpf for igual ao novo cpf e não for uma sequencia
+                novo_cpf += str(d)  # concatenar o digito gerado no novo cpf
+        sequencia = novo_cpf == str(novo_cpf[0]) * len(cpf)  # verificar se todos os digitos são iguais
+        if cpf == novo_cpf and not sequencia:  # se o cpf for igual ao novo cpf e não for uma sequencia
             st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
             st.success('CPF Válido')
         else:
@@ -103,31 +102,31 @@ def valida_cnpj(cnpj):
     return:
         True para CNPJ válido
         False para CNPJ inválido"""
-    #remover caracteres especiais
+    # remover caracteres especiais
     cnpj = cnpj.replace('.', '')
     cnpj = cnpj.replace('-', '')
     cnpj = cnpj.replace('/', '')
     # criar lista para armazenar os 12 primeiros digitos
-    if len(cnpj) != 14: # se o tamanho da lista for diferente de 14
-        return False # cnpj é invalido
-    else: # se o tamanho da lista for igual a 14
-        novo_cnpj = cnpj[:-2] # 12 primeiros digitos
-        reverso = 5 # contador reverso
-        total = 0 # soma dos digitos
-        for index in range(16): # criar laço para gerar os 12 primeiros digitos
-            if index > 11: # primeiro indice vai de 0 a 11
-                index -= 12 # segundo indice vai de 12 a 15
-            total += int(novo_cnpj[index]) * reverso # valor total da multiplicação
-            reverso -= 1 # decrementar o contador reverso
-            if reverso < 2: # quando o contador chegar a 2
-                reverso = 9 # reiniciar o contador
-                d = 11 - (total % 11) # digito verificador
-                if d > 9: # se o digito for > 9 o valor é 0
+    if len(cnpj) != 14:  # se o tamanho da lista for diferente de 14
+        return False  # cnpj é invalido
+    else:  # se o tamanho da lista for igual a 14
+        novo_cnpj = cnpj[:-2]  # 12 primeiros digitos
+        reverso = 5  # contador reverso
+        total = 0  # soma dos digitos
+        for index in range(16):  # criar laço para gerar os 12 primeiros digitos
+            if index > 11:  # primeiro indice vai de 0 a 11
+                index -= 12  # segundo indice vai de 12 a 15
+            total += int(novo_cnpj[index]) * reverso  # valor total da multiplicação
+            reverso -= 1  # decrementar o contador reverso
+            if reverso < 2:  # quando o contador chegar a 2
+                reverso = 9  # reiniciar o contador
+                d = 11 - (total % 11)  # digito verificador
+                if d > 9:  # se o digito for > 9 o valor é 0
                     d = 0
                 total = 0
-                novo_cnpj += str(d) # concatenar o digito gerado no novo cnpj
-        sequencia = novo_cnpj == str(novo_cnpj[0]) * len(cnpj) # verificar se todos os digitos são iguais
-        if cnpj == novo_cnpj and not sequencia: # se o cnpj for igual ao novo cnpj e não for uma sequencia
+                novo_cnpj += str(d)  # concatenar o digito gerado no novo cnpj
+        sequencia = novo_cnpj == str(novo_cnpj[0]) * len(cnpj)  # verificar se todos os digitos são iguais
+        if cnpj == novo_cnpj and not sequencia:  # se o cnpj for igual ao novo cnpj e não for uma sequencia
             st.write(f' O CNPJ: {cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
             st.success('CNPJ Válido')
         else:
@@ -139,7 +138,7 @@ def main():
     cpf = gerar_cpf()
     cnpj = gerar_cnpj()
     st.title('Validador de CPF e CNPJ')
-    menu = ['Validar CPF','Validar CNPJ', 'Gerar']
+    menu = ['Validar CPF', 'Validar CNPJ', 'Gerar']
     choice = st.sidebar.selectbox('Menu', menu)
     if choice == 'Validar CPF':
         st.subheader('Validar CPF')
@@ -162,18 +161,54 @@ def main():
             st.success('CNPJ Gerado com Sucesso')
             st.success('O CNPJ gerado é válido')
 
-#funçaõ com o layout da página
+
+# funçaõ com o layout da página
 def config_page():
     st.set_page_config(
-        page_title='Validador de CPF e CNPJ',
-        page_icon=':moneybag:',
-        layout='wide',
-        initial_sidebar_state='auto'
-
+        page_title="Validador de CPF e CNPJ",
+        page_icon=":moneybag:",
+        layout="wide",
+        initial_sidebar_state="expanded",
     )
 
 
-if __name__ == '__main__':
-    # executar a função main
+# função de configuraçoes de botton
+def config_button():
+    st.markdown(
+        """
+    <style>
+    .reportview-container .main .block-container{
+        max-width: 1000px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+
+
+# configurações de roda pé
+def config_footer():
+    st.markdown(
+        """
+    <style>
+    .reportview-container .main footer {visibility: hidden;}
+    """,
+        unsafe_allow_html=True,
+    )
+
+
+# função principal
+
+def funcao_principal():
     config_page()
+    config_button()
+    config_footer()
     main()
+
+
+if __name__ == '__main__':
+    funcao_principal()
