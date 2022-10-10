@@ -135,17 +135,28 @@ def main():
     escolha = st.sidebar.selectbox('Escolha uma opção', menu)   
     if escolha == 'CPF':
         st.subheader('Gerador de CPF')
-        cpf_input = st.text_input('CPF', cpf)
-        cpf_input = cpf_input.replace('.', '')
-        cpf_input = cpf_input.replace('-', '')
-        st.write('CPF válido' if valida_cpf(cpf_input) else 'CPF inválido')
+        # criar botão para gerar um novo cpf
+        if st.button('Gerar CPF'):
+            st.write(cpf)
+        # criar botão para validar o cpf gerado
+        if st.button('Validar CPF'):
+            st.write(cpf_validado)
+            if cpf_validado:
+                st.success('CPF Válido')
+            else:
+                st.error('CPF Inválido')
     elif escolha == 'CNPJ':
         st.subheader('Gerador de CNPJ')
-        cnpj_input = st.text_input('CNPJ', cnpj)
-        cnpj_input = cnpj_input.replace('.', '')
-        cnpj_input = cnpj_input.replace('-', '')
-        cnpj_input = cnpj_input.replace('/', '')
-        st.write('CNPJ válido' if valida_cnpj(cnpj_input) else 'CNPJ inválido')
+        # criar botão para gerar um novo cnpj
+        if st.button('Gerar CNPJ'):
+            st.write(cnpj)
+        # criar botão para validar o cnpj gerado
+        if st.button('Validar CNPJ'):
+            st.write(cnpj_validado)
+            if cnpj_validado:
+                st.success('CNPJ Válido')
+            else:
+                st.error('CNPJ Inválido')
     
     
 if __name__ == '__main__':
