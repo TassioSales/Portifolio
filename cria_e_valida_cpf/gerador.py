@@ -153,8 +153,8 @@ def main():
     elif choice == 'Gerar':
         st.subheader('Gerar CPF e CNPJ')
         if st.button('Gerar CPF'):
-            #configuração do botão para ficar mais bonito em html
-            st.markdown(f'<p style="font-size: 20px; color: green;">{cpf}</p>', unsafe_allow_html=True)
+            #trocando a cor do botão pra verde
+            st.markdown(f'<style>div.row-widget.stRadio > div{{color: green;}}</style>', unsafe_allow_html=True)
             st.text_area('CPF Gerado:', cpf, height=100)
             st.success('CPF Gerado com Sucesso')
             st.success('O CPF gerado é válido')
