@@ -91,9 +91,11 @@ def valida_cpf(cpf):
                 novo_cpf += str(d) # concatenar o digito gerado no novo cpf
         sequencia = novo_cpf == str(novo_cpf[0]) * len(cpf) # verificar se todos os digitos são iguais
         if cpf == novo_cpf and not sequencia: # se o cpf for igual ao novo cpf e não for uma sequencia
-            return True # cpf é valido
+            st.success('CPF Válido')
+            st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
         else:
-            return False # cpf é invalido
+            st.error('CPF Inválido')
+            st.write(f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}')
 
 
 def valida_cnpj(cnpj):
@@ -126,50 +128,33 @@ def valida_cnpj(cnpj):
                 novo_cnpj += str(d) # concatenar o digito gerado no novo cnpj
         sequencia = novo_cnpj == str(novo_cnpj[0]) * len(cnpj) # verificar se todos os digitos são iguais
         if cnpj == novo_cnpj and not sequencia: # se o cnpj for igual ao novo cnpj e não for uma sequencia
-            return True # cnpj é valido
+            st.success('CNPJ Válido')
+            st.write(f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
         else:
-            return False # cnpj é invalido
+            st.error('CNPJ Inválido')
+            st.write(f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}')
 
 
 def main():
-    # criar variavel para armazenar o cpf gerado
-    cpf = gerar_cpf()
-    # criar variavel para armazenar o cnpj gerado
-    cnpj = gerar_cnpj()
-    # criar variavel para armazenar o cpf validado
-    cpf_validado = valida_cpf(cpf)
-    # criar variavel para armazenar o cnpj validado
-    cnpj_validado = valida_cnpj(cnpj)
-    # crir menu para o usuario usando streamlit
-    menu = ['CPF', 'CNPJ']
-    escolha = st.sidebar.selectbox('Escolha uma opção', menu)   
-    if escolha == 'CPF':
-        st.subheader('Gerador de CPF')
-        # criar botão para gerar um novo cpf
-        if st.button('Gerar CPF'):
-            st.write(cpf)
-        # criar botão para validar o cpf gerado
-        if st.button('Validar CPF'):
-            st.write(cpf_validado)
-            if cpf_validado:
-                st.success('CPF Válido')
-            else:
-                st.error('CPF Inválido')
-    elif escolha == 'CNPJ':
-        st.subheader('Gerador de CNPJ')
-        # criar botão para gerar um novo cnpj
-        if st.button('Gerar CNPJ'):
-            st.write(cnpj)
-        # criar botão para validar o cnpj gerado
-        if st.button('Validar CNPJ'):
-            st.write(cnpj_validado)
-            if cnpj_validado:
-                #colocar os caracteres especiais no cnpj
-                st.success('CNPJ Válido')
-                st.write(cnpj)
-            else:
-                st.error('CNPJ Inválido')
-                st.write(cnpj)
+    st.title('Validador de CPF e CNPJ')
+    menu = ['Validar', 'Gerar']
+    choice = st.sidebar.selectbox('Menu', menu)
+    if choice == 'Validar':
+        st.subheader('Validar CPF e CNPJ')
+        cpf = st.text_input('CPF', 'Digite o CPF')
+        if st.button('Validar'):
+            valida_cpf(cpf)
+        cnpj = st.text_input('CNPJ', 'Digite o CNPJ')
+        if st.button('Validar'):
+            valida_cnpj(cnpj)
+    elif choice == 'Gerar':
+        st.subheader('Gerar CPF e CNPJ')
+        option = st.selectbox('Escolha uma opção', ['CPF', 'CNPJ'])
+        if st.button('Gerar'):
+            if option == 'CPF':
+                st.write(gerar_cpf())
+            elif option == 'CNPJ':
+                st.write(gerar_cnpj())
                 
 
 
