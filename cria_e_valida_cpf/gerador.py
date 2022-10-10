@@ -174,21 +174,19 @@ def config_page():
 
 # função de configuraçoes de botton
 def config_button():
-    st.markdown(
-        """
-    <style>
-    .reportview-container .main .block-container{
+    #deixar o botão do streamlit mais bonito
+    st.markdown(f"""
+    <style>config_button()
+    .reportview-container .main .block-container{{
         max-width: 1000px;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-    }
+        padding-top: 1rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+    }}
     </style>
-    """,
-        unsafe_allow_html=True,
-    )
-
+    """, unsafe_allow_html=True)
+    
 
 # configurações de roda pé
 def config_footer():
