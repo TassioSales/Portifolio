@@ -1,5 +1,3 @@
-import os
-import openai
 import spacy
 import traceback
 import streamlit as st
@@ -61,14 +59,25 @@ def traduz_texto(texto, idioma):
         traceback.print_exc()
         return None
 
-
 def main():
+    #titulo
+    st.title("Tradutor de Texto")
+    #subtitulo
+    st.subheader("Traduza textos para diversos idiomas")
+    #texto
+    st.write("Digite um texto e escolha o idioma para tradução")
+    #pedir frase ao usuário
     texto = get_input()
+    #corrigir texto
+    texto = corrige_texto(texto)
+    #escolher idioma
     idioma = escolhe_idioma()
-    if texto and idioma:
-        texto = corrige_texto(texto)
-        traducao = traduz_texto(texto, idioma)
+    #traduzir texto
+    traducao = traduz_texto(texto, idioma)
+    #criar botão mostrar tradução
+    if st.button("Mostrar tradução"):
         st.write(traducao)
+    
 
 if __name__ == "__main__":
     main()
