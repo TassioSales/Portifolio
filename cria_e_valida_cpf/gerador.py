@@ -132,21 +132,22 @@ def main():
     cnpj_validado = valida_cnpj(cnpj)
     # crir menu para o usuario usando streamlit
     menu = ['CPF', 'CNPJ']
-    with st.form('form1'):
-        escolha = st.selectbox('Escolha uma opção', menu)
-        submit = st.form_submit_button('Enviar')
-    if submit:
-        if escolha == 'CPF':
-            st.write(f'CPF gerado: {cpf}')
-            st.write(f'CPF validado: {cpf_validado}')
-        else:
-            st.write(f'CNPJ gerado: {cnpj}')
-            st.write(f'CNPJ validado: {cnpj_validado}')
+    escolha = st.sidebar.selectbox('Escolha uma opção', menu)   
+    if escolha == 'CPF':
+        st.subheader('Gerador de CPF')
+        cpf_input = st.text_input('CPF', cpf)
+        cpf_input = cpf_input.replace('.', '')
+        cpf_input = cpf_input.replace('-', '')
+        st.write('CPF válido' if valida_cpf(cpf_input) else 'CPF inválido')
+    elif escolha == 'CNPJ':
+        st.subheader('Gerador de CNPJ')
+        cnpj_input = st.text_input('CNPJ', cnpj)
+        cnpj_input = cnpj_input.replace('.', '')
+        cnpj_input = cnpj_input.replace('-', '')
+        cnpj_input = cnpj_input.replace('/', '')
+        st.write('CNPJ válido' if valida_cnpj(cnpj_input) else 'CNPJ inválido')
     
-
-
     
-
 if __name__ == '__main__':
     # executar a função main
     main()
