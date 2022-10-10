@@ -67,6 +67,9 @@ def valida_cpf(cpf):
     return:
         True para CPF válido
         False para CPF inválido"""
+    #remover caracteres especiais
+    cpf = cpf.replace('.', '')
+    cpf = cpf.replace('-', '')
     # criar lista para armazenar os 9 primeiros digitos
     if len(cpf) != 11:# se o tamanho da lista for diferente de 11
         return False
@@ -98,6 +101,10 @@ def valida_cnpj(cnpj):
     return:
         True para CNPJ válido
         False para CNPJ inválido"""
+    #remover caracteres especiais
+    cnpj = cnpj.replace('.', '')
+    cnpj = cnpj.replace('-', '')
+    cnpj = cnpj.replace('/', '')
     # criar lista para armazenar os 12 primeiros digitos
     if len(cnpj) != 14: # se o tamanho da lista for diferente de 14
         return False # cnpj é invalido
