@@ -152,7 +152,9 @@ def main():
         option = st.selectbox('Escolha uma opção', ['CPF', 'CNPJ'])
         if st.button('Gerar'):
             if option == 'CPF':
-                st.write(gerar_cpf())
+                st.text(gerar_cpf())
+                #mostra se cpf é valido ou invalido
+                valida_cpf(gerar_cpf())
             elif option == 'CNPJ':
                 st.write(gerar_cnpj())
                 
