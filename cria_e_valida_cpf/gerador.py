@@ -155,8 +155,10 @@ def main():
         option = st.selectbox('Escolha uma opção', ['CPF', 'CNPJ'])
         if st.button('Gerar'):
             if option == 'CPF':
+                gerar_cpf()
                 st.success(f'O {cpf} gerado e valido')
             elif option == 'CNPJ':
+                gerar_cpf()
                 st.success(f'O {cnpj} gerado e invalido')
     else:
         st.subheader('About')
