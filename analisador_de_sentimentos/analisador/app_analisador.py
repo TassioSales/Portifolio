@@ -6,6 +6,22 @@ from googletrans import Translator
 import streamlit as st
 
 
+import requests
+
+url = "https://google-translate1.p.rapidapi.com/language/translate/v2"
+
+payload = "q=Hello%2C%20world!&target=es&source=en"
+headers = {
+	"content-type": "application/x-www-form-urlencoded",
+	"Accept-Encoding": "application/gzip",
+	"X-RapidAPI-Key": "465714bfb2msh0bd0529770d8fa7p1772afjsn14f9735e14e9",
+	"X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+
 #criar função para pedir frase ao usuário
 def pedir_frase():
     frase = st.text_input('Digite uma frase:')
