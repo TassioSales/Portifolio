@@ -17,9 +17,6 @@ def pedir_frase():
         st.write(e)
 
 
-
-
-
 # funçao para pedir idioma para cliente
 def escolha_idioma():
     try:
@@ -50,16 +47,21 @@ def tradutor(texto, idioma):
 
 def main():
     try:
-        st.title('Tradutor de Texto')
-        st.write('Escolha seu idioma e digite sua frase para ser traduzida')
-        idioma = escolha_idioma()
-        texto = pedir_frase()
-        if st.button('Traduzir'):
-            traducao = tradutor(texto, idioma)
-            st.write(traducao)
+        with st.spinner('Carregando...'):
+            with st.sorted_container():
+                st.title('Tradutor de Texto')
+                st.write('Escolha seu idioma e digite sua frase para ser traduzida')
+                idioma = escolha_idioma()
+                texto = pedir_frase()
+                submit_button = st.form_submit_button("Traduzir")
+                if submit_button:
+                    if texto == '':
+                        st.write('Digite uma frase para ser traduzida')
+                    else:
+                        traducao = tradutor(texto, idioma)
+                        st.text_area('Tradução', traducao)
     except Exception as e:
         st.write(e)
-
 
 
 if __name__ == '__main__':
