@@ -2,7 +2,7 @@ import os
 import openai
 import streamlit as st
 
-openai.api_key = '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'
+openai.api_key = st.secrets["api"]
 
 
 def chat_bot():
@@ -32,4 +32,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
