@@ -48,7 +48,7 @@ def tradutor(texto, idioma):
 def main():
     try:
         with st.spinner('Carregando...'):
-            with st.sorted_container():
+            with st.form('form'):
                 st.title('Tradutor de Texto')
                 st.write('Escolha seu idioma e digite sua frase para ser traduzida')
                 idioma = escolha_idioma()
