@@ -4,8 +4,8 @@ from textblob import TextBlob
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import streamlit as st
 import openai
-import traceback
-nltk.download('vader_lexicon')
+import tracebac
+
 
 openai.api_key = st.secrets['api']
 
