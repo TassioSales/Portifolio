@@ -77,7 +77,7 @@ def main():
     #criar botão mostrar tradução
     if st.button("Mostrar tradução"):
         st.write(traducao)
-    
+
 
 if __name__ == "__main__":
     main()
