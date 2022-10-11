@@ -21,7 +21,7 @@ def pedir_frase():
 def escolha_idioma():
     try:
         # Criar lista de idiomas
-        idiomas = lista_idiomas_sem_repeticao
+        idiomas = lista_idiomas_ordenada
         idioma = st.selectbox('Escolha seu idioma', idiomas)
         return idioma
     except Exception as e:
