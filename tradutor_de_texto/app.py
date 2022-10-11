@@ -16,13 +16,6 @@ def pedir_frase():
         st.write(e)
 
 
-# funçao para tratamento de texto em portugues
-def tratamento_texto(texto):
-    nlp = spacy.load('pt_core_news_sm')
-    doc = nlp(texto)
-    return doc
-
-
 # funçao para pedir idioma para cliente
 def escolha_idioma():
     try:
@@ -68,14 +61,10 @@ def tradutor_ingles(texto, idioma):
 def main():
     try:
         st.title('Tradutor de Texto')
-        st.write('Tradutor de Texto')
-        st.write('Escolha o idioma e digite a frase para tradução')
+        frase = pedir_frase()
         idioma = escolha_idioma()
-        texto = pedir_frase()
-        if st.button('Traduzir'):
-            texto_tratado = tratamento_texto(texto)
-            traducao = tradutor_ingles(texto_tratado, idioma)
-            st.write(traducao)
+        traducao = tradutor_ingles(frase, idioma)
+        st.write(traducao)
     except Exception as e:
         st.write(e)
 
