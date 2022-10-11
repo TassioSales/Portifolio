@@ -13,7 +13,8 @@ def pedir_frase():
     try:
         return st.text_input('Digite sua Frase: ')
     except Exception as e:
-        print(e)
+        st.write(e)
+
 
 # funçao para tratamento de texto em portugues
 def tratamento_texto(texto):
@@ -35,43 +36,49 @@ def escolha_idioma():
                    'Afrikaans', 'Irish', 'Scottish', 'Welsh', 'Catalan', 'Basque', 'Galician', 'Maltese', 'Dutch',
                    'Danish', 'Norwegian', 'Swedish', 'Icelandic', 'Tagalog', 'Hawaiian', 'Maori', 'Indonesian',
                    'Malay', 'Burmese', 'Khmer', 'Lao', 'Tibetan', 'Amharic', 'Oromo', 'Somali', 'Swahili',
-                   'Kinyarwanda','Chichewa', 'Yoruba', 'Zulu', 'Xhosa', 'Malagasy', 'Hausa','Igbo', 'Yiddish',
+                   'Kinyarwanda', 'Chichewa', 'Yoruba', 'Zulu', 'Xhosa', 'Malagasy', 'Hausa', 'Igbo', 'Yiddish',
                    'Hebrew', 'Persian', 'Turkish', 'Greek', 'Polish', 'Romanian', 'Czech', 'Hungarian',
                    'Bulgarian', 'Serbian', 'Croatian', 'Slovak', 'Slovenian', 'Bosnian', 'Macedonian', 'Albanian',
                    'Finnish', 'Estonian', 'Lithuanian', 'Latvian', 'Afrikaans', 'Irish', 'Scottish', 'Welsh',
                    'Catalan', 'Basque', 'Galician', 'Maltese', 'Dutch', 'Danish', 'Norwegian', 'Swedish',
                    'Icelandic', 'Tagalog', 'Hawaiian', 'Maori']
-        return st.selectbox('Escolha o idioma:', idiomas)
+        st.selectbox('Escolha o idioma:', idiomas)
+        return idiomas
     except Exception as e:
-        print(e)
+        st.write(e)
 
 
 # funçao para traduzir frase
 def tradutor_ingles(texto, idioma):
-    response = openai.Completion.create(
-        model="text-davinci-002",
-        prompt=f"Translate this into 1. {idioma}\n\n{texto} ?\n\n1.",
-        temperature=0.3,
-        max_tokens=100,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-    return response.choices[0].text
+    try:
+        response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=f"Translate this into 1. {idioma}\n\n{texto} ?\n\n1.",
+            temperature=0.3,
+            max_tokens=100,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        return response.choices[0].text
+    except Exception as e:
+        st.write(e)
 
 
 def main():
-    st.title('Tradutor de Texto')
-    st.write('Tradutor de Texto')
-    st.write('Escolha o idioma e digite a frase para tradução')
-    idioma = escolha_idioma()
-    texto = pedir_frase()
-    if st.button('Traduzir'):
-        texto_tratado = tratamento_texto(texto)
-        traducao = tradutor_ingles(texto_tratado, idioma)
-        st.write(traducao)
+    try:
+        st.title('Tradutor de Texto')
+        st.write('Tradutor de Texto')
+        st.write('Escolha o idioma e digite a frase para tradução')
+        idioma = escolha_idioma()
+        texto = pedir_frase()
+        if st.button('Traduzir'):
+            texto_tratado = tratamento_texto(texto)
+            traducao = tradutor_ingles(texto_tratado, idioma)
+            st.write(traducao)
+    except Exception as e:
+        st.write(e)
+
 
 if __name__ == '__main__':
     main()
-
-
