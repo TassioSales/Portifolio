@@ -59,7 +59,7 @@ def main():
             st.write(traducao)
     except Exception as e:
         st.write(e)
-        
+
 
 
 if __name__ == '__main__':
