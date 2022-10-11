@@ -5,8 +5,7 @@ import streamlit as st
 import openai
 import spacy
 
-# usar chave de API do secrets do streamlit
-openai.api_key = st.secrets["api_key"]
+openai.api_key = st.secrets('api')
 
 
 # funçao para pedir frase para cliente
