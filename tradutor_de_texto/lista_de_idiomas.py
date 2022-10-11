@@ -9,9 +9,8 @@ lista_idiomas = ["French","Spanish", "Japanese", "Italian", "German", "Russian",
                     "Welsh", "Basque", "Catalan", "Galician", "Scottish Gaelic", "Irish", "Manx", "Cornish", "Breton",
                     "Akan", "Twi", "Fula", "Hausa", "Yoruba", "Igbo", "Swahili", "Zulu", "Xhosa", "Malagasy", "Maltese",
                     "Icelandic", "Albanian", "Serbian", "Croatian", "Bosnian", "Macedonian", "Slovenian", "Bulgarian",
-                    "English", "English (British)", "English (Australian)", "English (Canadian)", "English (New Zealand)"
-                    "English (South African)", "English (Indian)", "English (Irish)", "English (Jamaican)",
-                    "English (Scottish)"]
+                    "English", "Estonian", "Latvian", "Lithuanian", "Afrikaans", "Tagalog", "Haitian", "Cebuano",
+                    "Esperanto", "Welsh", "Basque", "Catalan", "Galician", "Scottish Gaelic", "Irish", "Manx", "Cornish"]
 
 #contar quantos idiomas tem na lista
 print(len(lista_idiomas))
