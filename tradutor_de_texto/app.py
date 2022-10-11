@@ -5,9 +5,8 @@ import streamlit as st
 import openai
 import spacy
 
-#usar chave de API do arquivo toml
-openai.api_key = open('api_key.toml').read()
-
+#usar chave de API do secrets do streamlit
+openai.api_key = st.secrets["api_key"]
 
 # funçao para pedir frase para cliente
 def pedir_frase():
