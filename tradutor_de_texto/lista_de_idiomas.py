@@ -1,34 +1,22 @@
-#criar uma lista de idiomas
-
-lista_idiomas =['Ingles', 'Espanhol', 'Frances', 'Italiano', 'Alemao', 'Portugues', 'Russo', 'Chines', 'Japones',
-                'Coreano', 'Arabe', 'Turco', 'Hindi', 'Indonesio', 'Vietnamita', 'Filipino', 'Thai', 'Malay',
-                'Bengali', 'Urdu', 'Tamil', 'Persa', 'Javanês', 'Mandarim', 'Cantonês', 'Sueco', 'Norueguês',
-                'Dinamarquês', 'Holandês', 'Finlandês', 'Polonês', 'Eslovaco', 'Esloveno', 'Catalão', 'Galego',
-                'Basco', 'Galês', 'Córnico', 'Bretão', 'Alemão', 'Inglês', 'Francês', 'Espanhol', 'Italiano',
-                'Português', 'Russo', 'Chinês', 'Japonês', 'Coreano', 'Árabe', 'Turco', 'Hindi', 'Indonésio',
-                'Vietnamita', 'Filipino', 'Thai', 'Malay', 'Bengali', 'Urdu', 'Tamil', 'Persa', 'Javanês', 'Mandarim',
-                'Cantonês', 'Sueco', 'Norueguês', 'Dinamarquês', 'Holandês', 'Finlandês', 'Polonês', 'Eslovaco',
-                'Esloveno', 'Catalão', 'Galego', 'Basco', 'Galês', 'Córnico', 'Bretão', 'Alemão', 'Inglês', 'Francês',
-                'Espanhol', 'Italiano', 'Português', 'Russo', 'Chinês', 'Japonês', 'Coreano', 'Árabe', 'Turco',
-                'Hindi', 'Indonésio', 'Vietnamita', 'Filipino', 'Thai', 'Malay', 'Bengali', 'Urdu', 'Tamil', 'Persa',
-                'Javanês', 'Mandarim', 'Cantonês', 'Sueco', 'Norueguês', 'Dinamarquês', 'Holandês', 'Finlandês',
-                'Polonês', 'Eslovaco', 'Esloveno', 'Catalão', 'Galego', 'Basco', 'Galês', 'Córnico', 'Bretão',
-                'Alemão', 'Inglês', 'Francês', 'Espanhol', 'Italiano', 'Português', 'Russo', 'Chinês', 'Japonês',
-                'Coreano', 'Árabe', 'Turco', 'Hindi', 'Indonésio', 'Vietnamita', 'Filipino', 'Thai', 'Malay',
-                'Bengali', 'Urdu', 'Tamil', 'Persa', 'Javanês', 'Mandarim', 'Cantonês', 'Sueco', 'Norueguês',
-                'Dinamarquês', 'Holandês', 'Finlandês', 'Polonês', 'Eslovaco', 'Esloveno', 'Catalão', 'Galego',
-                'Basco', 'Galês', 'Córnico', 'Bretão', 'Alemão', 'Inglês', 'Francês', 'Espanhol', 'Italiano',
-                'Português', 'Russo', 'Chinês', 'Japonês', 'Coreano', 'Árabe', 'Turco', 'Hindi', 'Indonésio']
+lista_idiomas = ["French","Spanish", "Japanese", "Italian", "German", "Russian", "Portuguese", "Chinese", "Korean",
+                    "Dutch", "Polish", "Swedish", "Turkish", "Greek", "Czech", "Hungarian", "Romanian", "Finnish",
+                    "Norwegian", "Danish", "Arabic", "Hebrew", "Hindi", "Thai", "Vietnamese", "Indonesian", "Malay",
+                    "Bengali", "Persian", "Urdu", "Tamil", "Telugu", "Kannada", "Malayalam", "Sinhala", "Burmese",
+                    "Khmer", "Lao", "Georgian", "Mongolian", "Amharic", "Gujarati", "Punjabi", "Oriya", "Marathi",
+                    "Sanskrit", "Hausa", "Yoruba", "Igbo", "Swahili", "Zulu", "Xhosa", "Malagasy", "Maltese",
+                    "Icelandic", "Albanian", "Serbian", "Croatian", "Bosnian", "Macedonian", "Slovenian", "Bulgarian",
+                    "Estonian", "Latvian", "Lithuanian", "Afrikaans", "Tagalog", "Haitian", "Cebuano", "Esperanto",
+                    "Welsh", "Basque", "Catalan", "Galician", "Scottish Gaelic", "Irish", "Manx", "Cornish", "Breton",
+                    "Akan", "Twi", "Fula", "Hausa", "Yoruba", "Igbo", "Swahili", "Zulu", "Xhosa", "Malagasy", "Maltese",
+                    "Icelandic", "Albanian", "Serbian", "Croatian", "Bosnian", "Macedonian", "Slovenian", "Bulgarian"]
 
 #contar quantos idiomas tem na lista
 print(len(lista_idiomas))
 #contar quantos idiomas repetidos tem na lista
 print(len(lista_idiomas) - len(set(lista_idiomas)))
+#criar lista de idiomas sem repetiçoes
+lista_idiomas_ordenada = sorted(set(lista_idiomas))
+#contar quantos idiomas tem na lista sem repetiçoes
+print(len(lista_idiomas_ordenada))
 
-#criar uma lista de idiomas sem repeticao
-lista_idiomas_sem_repeticao = list(set(lista_idiomas))
-#contar quantos idiomas tem na lista sem repeticao
-print(len(lista_idiomas_sem_repeticao))
 
-#ordenar a lista de idiomas em ordem alfabetica
-lista_idiomas_ordenada = sorted(lista_idiomas_sem_repeticao)
