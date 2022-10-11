@@ -19,30 +19,16 @@ def pedir_frase():
 # funçao para pedir idioma para cliente
 def escolha_idioma():
     try:
-        idiomas = ['Portuguese', 'Spanish', 'French', 'German', 'Italian', 'Russian', 'Japanese', 'Chinese', 'Korean',
-                   'Arabic', 'Hindi', 'Bengali', 'Punjabi', 'Urdu', 'Tamil', 'Telugu', 'Marathi', 'Gujarati', 'Kannada',
-                   'Malayalam', 'Odia', 'Thai', 'Vietnamese', 'Indonesian', 'Malay', 'Burmese', 'Khmer', 'Lao',
-                   'Tibetan', 'Amharic', 'Oromo', 'Somali', 'Swahili', 'Kinyarwanda', 'Chichewa', 'Yoruba', 'Zulu',
-                   'Xhosa', 'Malagasy', 'Hausa', 'Igbo', 'Yiddish', 'Hebrew', 'Persian', 'Turkish', 'Greek',
-                   'Polish', 'Romanian', 'Czech', 'Hungarian', 'Bulgarian', 'Serbian', 'Croatian', 'Slovak',
-                   'Slovenian', 'Bosnian', 'Macedonian', 'Albanian', 'Finnish', 'Estonian', 'Lithuanian', 'Latvian',
-                   'Afrikaans', 'Irish', 'Scottish', 'Welsh', 'Catalan', 'Basque', 'Galician', 'Maltese', 'Dutch',
-                   'Danish', 'Norwegian', 'Swedish', 'Icelandic', 'Tagalog', 'Hawaiian', 'Maori', 'Indonesian',
-                   'Malay', 'Burmese', 'Khmer', 'Lao', 'Tibetan', 'Amharic', 'Oromo', 'Somali', 'Swahili',
-                   'Kinyarwanda', 'Chichewa', 'Yoruba', 'Zulu', 'Xhosa', 'Malagasy', 'Hausa', 'Igbo', 'Yiddish',
-                   'Hebrew', 'Persian', 'Turkish', 'Greek', 'Polish', 'Romanian', 'Czech', 'Hungarian',
-                   'Bulgarian', 'Serbian', 'Croatian', 'Slovak', 'Slovenian', 'Bosnian', 'Macedonian', 'Albanian',
-                   'Finnish', 'Estonian', 'Lithuanian', 'Latvian', 'Afrikaans', 'Irish', 'Scottish', 'Welsh',
-                   'Catalan', 'Basque', 'Galician', 'Maltese', 'Dutch', 'Danish', 'Norwegian', 'Swedish',
-                   'Icelandic', 'Tagalog', 'Hawaiian', 'Maori']
-        st.selectbox('Escolha o idioma:', idiomas)
-        return idiomas
+        # Criar menu de idiomas
+        idiomas = ['Portuguese', 'Spanish', 'French', 'German', 'Italian', 'Japanese', 'Chinese', 'Korean']
+        idioma = st.selectbox('Escolha seu idioma', idiomas)
+        return idioma
     except Exception as e:
         st.write(e)
 
 
 # funçao para traduzir frase
-def tradutor_ingles(texto, idioma):
+def tradutor(texto, idioma):
     try:
         response = openai.Completion.create(
             model="text-davinci-002",
@@ -60,11 +46,13 @@ def tradutor_ingles(texto, idioma):
 
 def main():
     try:
-        st.title('Tradutor de Texto')
-        frase = pedir_frase()
+        st.title('Tradutor de Textos')
+        st.write('Escolha seu idioma e digite sua frase para ser traduzida')
         idioma = escolha_idioma()
-        traducao = tradutor_ingles(frase, idioma)
-        st.write(traducao)
+        texto = pedir_frase()
+        if st.button('Traduzir'):
+            traducao = tradutor(texto, idioma)
+            st.write(traducao)
     except Exception as e:
         st.write(e)
 
