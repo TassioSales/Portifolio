@@ -29,3 +29,6 @@ print(len(lista_idiomas) - len(set(lista_idiomas)))
 lista_idiomas_sem_repeticao = list(set(lista_idiomas))
 #contar quantos idiomas tem na lista sem repeticao
 print(len(lista_idiomas_sem_repeticao))
+
+#ordenar a lista de idiomas em ordem alfabetica
+lista_idiomas_ordenada = sorted(lista_idiomas_sem_repeticao)
