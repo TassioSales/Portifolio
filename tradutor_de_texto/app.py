@@ -4,6 +4,7 @@
 import streamlit as st
 import openai
 import spacy
+from lista_de_idiomas import lista_idiomas_sem_repeticao
 
 openai.api_key = st.secrets['api']
 
@@ -19,8 +20,8 @@ def pedir_frase():
 # funçao para pedir idioma para cliente
 def escolha_idioma():
     try:
-        # Criar menu de idiomas
-        idiomas = ['Portuguese', 'Spanish', 'French', 'German', 'Italian', 'Japanese', 'Chinese', 'Korean']
+        # Criar lista de idiomas
+        idiomas = lista_idiomas_sem_repeticao()
         idioma = st.selectbox('Escolha seu idioma', idiomas)
         return idioma
     except Exception as e:
@@ -52,7 +53,7 @@ def main():
         texto = pedir_frase()
         if st.button('Traduzir'):
             traducao = tradutor(texto, idioma)
-            st.write(traducao)
+            text_area = st.text_area('Tradução', traducao)
     except Exception as e:
         st.write(e)
 
