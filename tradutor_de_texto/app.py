@@ -4,7 +4,7 @@
 import streamlit as st
 import openai
 import spacy
-from lista_de_idiomas import lista_idiomas_sem_repeticao
+from lista_de_idiomas import lista_idiomas_ordenada
 
 openai.api_key = st.secrets['api']
 
@@ -21,7 +21,7 @@ def pedir_frase():
 def escolha_idioma():
     try:
         # Criar lista de idiomas
-        idiomas = lista_idiomas_sem_repeticao()
+        idiomas = lista_idiomas_sem_repeticao
         idioma = st.selectbox('Escolha seu idioma', idiomas)
         return idioma
     except Exception as e:
