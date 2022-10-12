@@ -105,22 +105,22 @@ def chat_bot_js():
     Returns: str: Chat bot response
     """
     #titulo
-    st.title("Chato Javascript")
-    with st.form("form"): #formulario
-        question = st.text_input("Humano: ")#campo de texto
+    st.title("Chat Bot J.S.")
+    with st.form("form"):
+        question = st.text_input("Humano: ")
         response = openai.Completion.create(
-            model="code-davinci-002",#modelo
-            prompt=f"Humano: {question}\nJavascript:",#prompt
-            temperature=0,#temperatura
-            max_tokens=60,#maximo de tokens
-            top_p=1,#top p
-            frequency_penalty=0.5,#penalidade de frequencia
-            presence_penalty=0,#penalidade de presença
-            stop=["You:"]#parar
+            model="text-davinci-002",
+            prompt=f"Humano: {question}\nJ.S.:",
+            temperature=0.5,
+            max_tokens=60,
+            top_p=1,
+            frequency_penalty=0.5,
+            presence_penalty=0
         )
-           # enviar a mensagem para o usuário
-        st.write(f"Javascript: {response['choices'][0]['text']}")#escrever a mensagem
-        st.form_submit_button("Enviar")#botão enviar
+        # enviar a mensagem para o usuário
+        st.write(f"J.S.: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar") 
+
 
 
 def main():
