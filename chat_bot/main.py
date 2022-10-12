@@ -28,7 +28,7 @@ def chat_bot_amigos():
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
             model="text-davinci-002",
-            prompt=f"Human: {question}\nfriend:",
+            prompt=f"Human: {question}\nAmigo IA:",
             temperature=0.5,
             max_tokens=60,
             top_p=1,
