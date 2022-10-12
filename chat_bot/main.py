@@ -126,7 +126,7 @@ def chat_bot_js():
 def main():
     st.sidebar.title("Menu")
     menu = ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin", "Chat Bot Alexa", "Chat Bot Javascript"]
-    choice = st.sidebar.selectbox("Escolha uma opção", menu
+    choice = st.sidebar.selectbox("Escolha uma opção", menu)
     if choice == "Chat Bot":
         chat_bot()
     elif choice == "Chat Bot Amigos":
