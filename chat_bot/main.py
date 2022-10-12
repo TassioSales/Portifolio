@@ -6,6 +6,8 @@ openai.api_key = st.secrets["api"]
 
 
 def chat_bot():
+    #titulo
+    st.title("Chat Bot")
     with st.form("form"):
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
@@ -24,6 +26,8 @@ def chat_bot():
 
 
 def chat_bot_amigos():
+    #titulo,
+    st.title("Chat Bot Amigos")
     with st.form("form"):
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
@@ -42,6 +46,8 @@ def chat_bot_amigos():
 
 
 def chat_bot_marv():
+    #titulo
+    st.title("Chat Bot Marvin")
     with st.form("form"):
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
@@ -56,11 +62,9 @@ def chat_bot_marv():
         # enviar a mensagem para o usuário
         st.write(f"Marvin: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-        
 
 
 def main():
-    st.title("Chat Bot")
     st.sidebar.title("Menu")
     menu = st.sidebar.radio("Menu", ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin"])
     if menu == "Chat Bot":
@@ -69,6 +73,7 @@ def main():
         chat_bot_amigos()
     elif menu == "Chat Bot Marvin":
         chat_bot_marv()
+
 
 if __name__ == "__main__":
     main()
