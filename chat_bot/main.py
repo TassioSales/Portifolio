@@ -7,7 +7,7 @@ openai.api_key = st.secrets["api"]
 
 def chat_bot():
     with st.form("form"):
-        question = st.write("Humano: ")
+        question = st.text_input("Humano: ")
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
