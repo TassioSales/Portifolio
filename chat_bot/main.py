@@ -64,16 +64,59 @@ def chat_bot_marv():
         st.form_submit_button("Enviar")
 
 
+def chat_bot_alexa():
+    #titulo
+    st.title("Chat Bot Alexa")
+    with st.form("form"):
+        question = st.text_input("Humano: ")
+        response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=f"Humano: {question}\nAlexa:",
+            temperature=0.5,
+            max_tokens=60,
+            top_p=0.3,
+            frequency_penalty=0.5,
+            presence_penalty=0
+        )
+        # enviar a mensagem para o usuário
+        st.write(f"Alexa: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar")
+
+
+def chat_bot_js():
+    #titulo
+    st.title("Chato Javascript")
+    response = openai.Completion.create(
+        model="code-davinci-002",
+        prompt="function add(a, b) {\n  return a + b;\n}\n\nadd(1, 2);",
+        temperature=0,
+        max_tokens=60,
+        top_p=1,
+        frequency_penalty=0.5,
+        presence_penalty=0,
+        stop=["You:"]
+    )
+    st.write(f"IA: {response['choices'][0]['text']}")
+    st.form_submit_button("Enviar")
+
+
 def main():
     st.sidebar.title("Menu")
-    menu = st.sidebar.radio("Menu", ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin"])
-    if menu == "Chat Bot":
+    menu = ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin", "Chat Bot Alexa", "Chat Bot Javascript"]
+    choice = st.sidebar.selectbox("Escolha uma opção", menu)
+    if choice == "Chat Bot":
         chat_bot()
-    elif menu == "Chat Bot Amigos":
+    elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
-    elif menu == "Chat Bot Marvin":
+    elif choice == "Chat Bot Marvin":
         chat_bot_marv()
-
+    elif choice == "Chat Bot Alexa":
+        chat_bot_alexa()
+    elif choice == "Chat Bot Javascript":
+        chat_bot_js()
+    else:
+        st.write("Escolha uma opção no menu")
+        
 
 if __name__ == "__main__":
     main()
