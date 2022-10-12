@@ -23,9 +23,33 @@ def chat_bot():
         st.form_submit_button("Enviar")
 
 
+def chat_bot_amigos():
+    with st.form("form"):
+        question = st.text_input("Humano: ")
+        response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=f"Human: {question}\nfriend:",
+            temperature=0.5,
+            max_tokens=60,
+            top_p=1,
+            frequency_penalty=0.5,
+            presence_penalty=0,
+            stop=["Humano:"]
+    )
+        # enviar a mensagem para o usuário
+        st.write(f"Amigo: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar")
+
+
+
 def main():
-    st.title("Chatbot")
-    chat_bot()
+    st.title("Chat Bot")
+    st.sidebar.title("Menu")
+    menu = st.sidebar.selectbox("Menu", ["Chat Bot", "Chat Bot Amigos"])
+    if menu == "Chat Bot":
+        chat_bot()
+    elif menu == "Chat Bot Amigos":
+        chat_bot_amigos()
 
 
 if __name__ == "__main__":
