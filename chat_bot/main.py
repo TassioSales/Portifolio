@@ -28,18 +28,17 @@ def chat_bot_amigos():
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
             model="text-davinci-002",
-            prompt=f"Human: {question}\nAmigo IA:",
+            prompt=f"Humano: {question}\nAmigo IA:",
             temperature=0.5,
             max_tokens=60,
             top_p=1,
             frequency_penalty=0.5,
             presence_penalty=0,
             stop=["Humano:"]
-    )
+        )
         # enviar a mensagem para o usuário
         st.write(f"Amigo: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-
 
 
 def main():
