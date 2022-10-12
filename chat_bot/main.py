@@ -86,19 +86,22 @@ def chat_bot_alexa():
 def chat_bot_js():
     #titulo
     st.title("Chato Javascript")
-    response = openai.Completion.create(
-        model="code-davinci-002",
-        prompt="function add(a, b) {\n  return a + b;\n}\n\nadd(1, 2);",
-        temperature=0,
-        max_tokens=60,
-        top_p=1,
-        frequency_penalty=0.5,
-        presence_penalty=0,
-        stop=["You:"]
-    )
-    st.write(f"IA: {response['choices'][0]['text']}")
-    st.form_submit_button("Enviar")
-
+    with st.form("form"):
+        question = st.text_input("Humano: ")
+        response = openai.Completion.create(
+            model="code-davinci-002",
+            prompt=f"Humano: {question}\nJavascript:",
+            temperature=0,
+            max_tokens=60,
+            top_p=1,
+            frequency_penalty=0.5,
+            presence_penalty=0,
+            stop=["You:"]
+        )
+           # enviar a mensagem para o usuário
+        st.write(f"Javascript: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar")
+        
 
 def main():
     st.sidebar.title("Menu")
@@ -116,7 +119,7 @@ def main():
         chat_bot_js()
     else:
         st.write("Escolha uma opção no menu")
-        
+
 
 if __name__ == "__main__":
     main()
