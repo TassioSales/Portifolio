@@ -28,10 +28,8 @@ def chat_bot():
 
 
 def main():
-    st.title("Chat Bot")
-    st.write("Chat Bot")
+    st.title("Chatbot")
     chat_bot()
-
 
 if __name__ == "__main__":
     main()
