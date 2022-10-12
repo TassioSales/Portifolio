@@ -41,15 +41,30 @@ def chat_bot_amigos():
         st.form_submit_button("Enviar")
 
 
+def chat_bot_marv():
+    with st.form("form"):
+        question = st.text_input("Humano: ")
+        response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=f"Humano: {question}\nMarvin:",
+            temperature=0.5,
+            max_tokens=60,
+            top_p=0.3,
+            frequency_penalty=0.5,
+            presence_penalty=0
+        )
+
+
 def main():
     st.title("Chat Bot")
     st.sidebar.title("Menu")
-    menu = st.sidebar.selectbox("Menu", ["Chat Bot", "Chat Bot Amigos"])
+    menu = st.sidebar.radio("Menu", ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin"])
     if menu == "Chat Bot":
         chat_bot()
     elif menu == "Chat Bot Amigos":
         chat_bot_amigos()
-
-
+    elif menu == "Chat Bot Marvin":
+        chat_bot_marv()
+    
 if __name__ == "__main__":
     main()
