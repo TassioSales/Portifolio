@@ -37,7 +37,7 @@ def chat_bot_amigos():
             stop=["Humano:"]
         )
         # enviar a mensagem para o usuário
-        st.write(f"Amigo: {response['choices'][0]['text']}")
+        st.write(f"Amigo IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
 
 
