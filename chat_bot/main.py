@@ -53,6 +53,10 @@ def chat_bot_marv():
             frequency_penalty=0.5,
             presence_penalty=0
         )
+        # enviar a mensagem para o usuário
+        st.write(f"Marvin: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar")
+        
 
 
 def main():
@@ -65,6 +69,6 @@ def main():
         chat_bot_amigos()
     elif menu == "Chat Bot Marvin":
         chat_bot_marv()
-    
+
 if __name__ == "__main__":
     main()
