@@ -12,7 +12,8 @@ def chat_bot():
     """
     # titulo
     st.title("Chat Bot")
-    with st.form("form"):
+    with st.expander("Ajuda"):
+        st.write("Escreva uma mensagem e clique em enviar")
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -27,9 +28,6 @@ def chat_bot():
         # enviar a mensagem para o utilizador
         st.write(f"IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-        #mostra o fluxo da conversa sem atuar sobre o chatbot
-        with st.expander("Ver fluxo da conversa"):
-            st.write(response)
 
 
 
