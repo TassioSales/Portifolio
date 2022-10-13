@@ -220,9 +220,10 @@ def main():
         question = ""
         #apagar resposta após enviar
         response = ""
-        #apagar historico
-        with open("chat.txt", "w") as f:
-            f.write("")
+        #criar botão para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat.txt", "w") as f:
+                f.write("")
     # chatbot amigos
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
