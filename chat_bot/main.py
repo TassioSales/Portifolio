@@ -19,6 +19,7 @@ def chat_bot():
     st.title("Chat Bot")
     with st.form("form"):
         question = st.text_input("Humano: ")
+        st.form_submit_button("Enviar")
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
@@ -29,9 +30,12 @@ def chat_bot():
             presence_penalty=0.6,
             stop=["\n", " Human:", " IA:"]
         )
+        # criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            os.remove("chat.txt")
+
         # enviar a mensagem para o utilizador
         st.text_area("IA:", value=response['choices'][0]['text'], height=50)
-        st.form_submit_button("Enviar")
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat.txt", "a") as f:
@@ -39,11 +43,6 @@ def chat_bot():
         # mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
-        # limpar o historico
-        if st.button("Limpar o historico"):
-            os.remove("chat.txt")
-            st.write("Historico limpo")
-        
 
 
 def chat_bot_amigos():
