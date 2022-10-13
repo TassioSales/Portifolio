@@ -34,24 +34,6 @@ def chat_bot():
         #mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
-        #criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            os.remove("chat.txt")
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def chat_bot_amigos():
@@ -160,6 +142,9 @@ def main():
         chat_bot_js()
     else:
         st.write("Escolha uma opção no menu")
+    #criar um botao para limpar o historico
+    if st.button("Limpar Historico"):
+        os.remove("chat.txt")
 
 
 if __name__ == "__main__":
