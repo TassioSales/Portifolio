@@ -181,6 +181,10 @@ def chat_bot_js():
         # mostrar o historico
         with open("chat_js.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
+    #apagar o historico
+    if st.button("Apagar Historico"):
+        with open("chat_js.txt", "w") as f:
+            f.write("")
 
 
 # função para limpar o historico
@@ -216,14 +220,6 @@ def main():
     # chatbot
     if choice == "Chat Bot":
         chat_bot()
-        #apagar pergunta após enviar
-        question = ""
-        #apagar resposta após enviar
-        response = ""
-        #criar botão para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat.txt", "w") as f:
-                f.write("")
     # chatbot amigos
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
