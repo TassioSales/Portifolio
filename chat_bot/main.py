@@ -20,8 +20,6 @@ def chat_bot():
     with st.form("form"):
         question = st.text_input("Humano: ")
         st.form_submit_button("Enviar")
-        #limpar caixa de texto depois de enviar
-
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
@@ -36,6 +34,9 @@ def chat_bot():
         st.text_area("IA:", value=response['choices'][0]['text'], height=50)
         pergunta = question
         resposta = response['choices'][0]['text']
+        #criar botao para apagar o historico
+        if st.button("Limpar Historico"):
+            os.remove("chat.txt")
         with open("chat.txt", "a") as f:
             f.write(f"Humano: {pergunta} \n IA: {resposta}\n")
         # mostrar o historico
@@ -57,6 +58,7 @@ def chat_bot_amigos():
     st.title("Chat Bot Amigos")
     with st.form("form"):
         question = st.text_input("Humano: ")
+        st.form_submit_button("Enviar")
         response = openai.Completion.create(
             model="text-davinci-002",
             prompt=f"Humano: {question}\nAmigo IA:",
@@ -69,7 +71,6 @@ def chat_bot_amigos():
         )
         # enviar a mensagem para o utilizador
         st.write(f"Amigo IA: {response['choices'][0]['text']}")
-        st.form_submit_button("Enviar")
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_amigos.txt", "a") as f:
@@ -93,6 +94,7 @@ def chat_bot_marv():
     st.title("Chat Bot Marvin")
     with st.form("form"):
         question = st.text_input("Humano: ")
+        st.form_submit_button("Enviar")
         response = openai.Completion.create(
             model="text-davinci-002",
             prompt=f"Humano: {question}\nMarvin:",
@@ -104,7 +106,6 @@ def chat_bot_marv():
         )
         # enviar a mensagem para o utilizador
         st.write(f"Marvin: {response['choices'][0]['text']}")
-        st.form_submit_button("Enviar")
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_marv.txt", "a") as f:
@@ -128,6 +129,7 @@ def chat_bot_alexa():
     st.title("Chat Bot Alexa")
     with st.form("form"):
         question = st.text_input("Humano: ")
+        st.form_submit_button("Enviar")
         response = openai.Completion.create(
             model="text-davinci-002",
             prompt=f"Humano: {question}\nAlexa:",
@@ -139,7 +141,6 @@ def chat_bot_alexa():
         )
         # enviar a mensagem para o utilizador
         st.write(f"Alexa: {response['choices'][0]['text']}")
-        st.form_submit_button("Enviar")
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_alexa.txt", "a") as f:
@@ -163,6 +164,7 @@ def chat_bot_js():
     st.title("Chat Bot J.S.")
     with st.form("form"):
         question = st.text_input("Humano: ")
+        st.form_submit_button("Enviar")
         response = openai.Completion.create(
             model="text-davinci-002",
             prompt=f"Humano: {question}\nJ.S.:",
@@ -174,7 +176,6 @@ def chat_bot_js():
         )
         # enviar a mensagem para o utilizador
         st.write(f"J.S.: {response['choices'][0]['text']}")
-        st.form_submit_button("Enviar")
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_js.txt", "a") as f:
@@ -237,27 +238,31 @@ def main():
         st.text("Data: 2022-10-13")
         st.text("Versão: 1.0.0")
         #falar sobre python
-        st.text_area("Python", value="Python é uma linguagem de programação de alto nível, interpretada, imperativa,"
-                                     "orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por "
-                                     "Guido van Rossum em 1991.", height=200)
+        st.subheader("Sobre Python")
+        st.text("Python é uma linguagem de programação interpretada de alto nível, de script "
+                "geral-purpose, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. "
+                "Foi lançada por Guido van Rossum em 1991.")
         #falar sobre streamlit
-        st.text_area("Streamlit", value="Streamlit é uma biblioteca de código aberto que permite criar aplicativos "
-                                        "interativos de análise de dados em Python.", height=200)
+        st.subheader("Sobre Streamlit")
+        st.text("Streamlit é uma biblioteca de código aberto para criar aplicativos de IA e "
+                "aprendizado de máquina para a Web em Python. É baseado em Streamlit Sharing, "
+                "uma plataforma de hospedagem de aplicativos de IA em nuvem.")
         #falar sobre openai
-        st.text_area("OpenAI", value="OpenAI é uma organização sem fins lucrativos de pesquisa em inteligência artificial "
-                                     "fundada em 2015 por Elon Musk, Sam Altman, Ilya Sutskever, Greg Brockman, Peter "
-                                     "Norvig e outros.", height=200)
-        #falar sobre chatbot
-        st.text_area("Chat Bot", value='Um chatbot é um programa de computador que simula a conversa humana através de '
-                                       'teclados ou voz. Os chatbots são usados ​​em uma ampla variedade de '
-                                       'aplicações, incluindo aplicativos de mensagens, sites e aplicativos de '
-                                       'voz.', height=200)
+        st.subheader("Sobre OpenAI")
+        st.text("OpenAI é uma organização sem fins lucrativos de pesquisa em inteligência artificial "
+                "com sede em San Francisco, Califórnia. Foi fundada em 2015 por Elon Musk, Sam Altman, "
+                "e outros investidores de tecnologia. A organização tem como objetivo desenvolver "
+                "e promover a inteligência artificial de forma segura para benefício da humanidade.")
+        #falar sobre o chatbot
+        st.subheader("Sobre o ChatBot")
+        st.text("O ChatBot é um programa de computador que simula conversas com humanos por meio "
+                "de mensagens de texto ou voz. Eles são usados ​​para simular conversas com clientes, "
+                "para fornecer informações sobre produtos e serviços e para fornecer suporte ao cliente.")
         #falar sobre o desenvolvedor
-        st.text_area("Desenvolvedor", value="Tássio Sales é um desenvolvedor de software, apaixonado por tecnologia e "
-                                            "programação.", height=200)
-        #falar sobre o projeto
+        st.subheader("Sobre o Desenvolvedor")
+        st.text("Tássio Sales é um desenvolvedor de software, apaixonado por tecnologia.")
 
-        
+
 
 
 
