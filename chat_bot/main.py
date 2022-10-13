@@ -35,7 +35,7 @@ def chat_bot():
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat.txt", "a") as f:
-            f.write(f"Humano: {pergunta} IA: {resposta}\n")
+            f.write(f"Humano: {pergunta} \n IA: {resposta}\n")
         # mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
@@ -71,7 +71,7 @@ def chat_bot_amigos():
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_amigos.txt", "a") as f:
-            f.write(f"Homano: {pergunta} Amigo: {resposta}\n")
+            f.write(f"Humano: {pergunta} \n Amigo: {resposta}\n")
         # mostrar o historico
         with open("chat_amigos.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
@@ -106,7 +106,7 @@ def chat_bot_marv():
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_marv.txt", "a") as f:
-            f.write(f"Humano: {pergunta} Marvin: {resposta}\n")
+            f.write(f"Humano: {pergunta} \n Marvin: {resposta}\n")
         # mostrar o historico
         with open("chat_marv.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
@@ -141,7 +141,7 @@ def chat_bot_alexa():
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_alexa.txt", "a") as f:
-            f.write(f"Humano: {pergunta} Alexa: {resposta}\n")
+            f.write(f"Humano: {pergunta} \n Alexa: {resposta}\n")
         # mostrar o historico
         with open("chat_alexa.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
@@ -176,7 +176,7 @@ def chat_bot_js():
         pergunta = question
         resposta = response['choices'][0]['text']
         with open("chat_js.txt", "a") as f:
-            f.write(f"Humano: {pergunta} J.S.: {resposta}\n")
+            f.write(f"Humano: {pergunta} \n J.S.: {resposta}\n")
         # mostrar o historico
         with open("chat_js.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
