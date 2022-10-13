@@ -39,6 +39,11 @@ def chat_bot():
         # mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
+        # limpar o historico
+        if st.button("Limpar o historico"):
+            os.remove("chat.txt")
+            st.write("Historico limpo")
+        
 
 
 def chat_bot_amigos():
@@ -216,28 +221,18 @@ def main():
     # chatbot
     if choice == "Chat Bot":
         chat_bot()
-        if st.button("Limpar Historico do ChatBot"):
-            os.remove("chat.txt")
     # chatbot amigos
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
-        if st.button("Limpar Historico Amigos"):
-            os.remove("chat_amigos.txt")
     # chatbot marvin
     elif choice == "Chat Bot Marvin":
         chat_bot_marv()
-        if st.button("Limpar Historico Marvin"):
-            os.remove("chat_marv.txt")
     # chatbot alexa
     elif choice == "Chat Bot Alexa":
         chat_bot_alexa()
-        if st.button("Limpar Historico Alexa"):
-            os.remove("chat_alexa.txt")
     # chat bot javascript
     elif choice == "Chat Bot Javascript":
         chat_bot_js()
-        if st.button("Limpar Historico J.S."):
-            os.remove("chat_js.txt")
     else:
         st.write("Escolha uma opção no menu")
 
