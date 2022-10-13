@@ -31,7 +31,11 @@ def chat_bot():
         resposta = response['choices'][0]['text']
         with open("chat.txt", "a") as f:
             f.write(f"{pergunta} {resposta}\n")
+        #mostrar o historico
+        with open("chat.txt", "r") as f:
+            st.text_area("Historico", value=f.read(), height=200)
             
+
 
 
 
