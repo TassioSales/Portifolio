@@ -27,7 +27,12 @@ def chat_bot():
         # enviar a mensagem para o utilizador
         st.write(f"IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-        st.text_area("Prompt", value=response['choices'][0]['text'], height=200, max_chars=None, key=None)
+        #mostra o fluxo da conversa sem atuar sobre o chatbot
+        st.text_area(response['choices'][0]['text'])
+
+
+
+
 
 
 def chat_bot_amigos():
