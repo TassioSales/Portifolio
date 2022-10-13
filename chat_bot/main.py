@@ -34,7 +34,12 @@ def chat_bot():
         #mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
-            
+        #criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            os.remove("chat.txt")
+
+    
+
 
 
 
