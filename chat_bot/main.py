@@ -7,8 +7,13 @@ openai.api_key = st.secrets["api"]
 
 def chat_bot():
     """Chatbot function
-    Returns:
-        str: Chat bot response
+    Returns: str: Chat bot response
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    :parameter pergunta: str: User question
+    :parameter resposta: str: Chat bot response
+    :parameter f: str: Chat bot response
+    :param bot: str: Chat bot name
     """
     # titulo
     st.title("Chat Bot")
@@ -38,8 +43,13 @@ def chat_bot():
 
 def chat_bot_amigos():
     """Chat Bot com amigos
-    Returns:
-        str: Chat bot response
+    Returns:str: Chat bot response
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    :parameter pergunta: str: User question
+    :parameter resposta: str: Chat bot response
+    :parameter f: str: Chat bot response
+    :param bot: str: Chat bot name
     """
     # titulo,
     st.title("Chat Bot Amigos")
@@ -70,6 +80,12 @@ def chat_bot_amigos():
 def chat_bot_marv():
     """Chat Bot com Marv
     Returns: str: Chat bot response
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    :parameter pergunta: str: User question
+    :parameter resposta: str: Chat bot response
+    :parameter f: str: Chat bot response
+    :param bot: str: Chat bot name
     """
     # titulo
     st.title("Chat Bot Marvin")
@@ -99,6 +115,12 @@ def chat_bot_marv():
 def chat_bot_alexa():
     """Chat Bot com Alexa
     Returns: str: Chat bot response
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    :parameter pergunta: str: User question
+    :parameter resposta: str: Chat bot response
+    :parameter f: str: Chat bot response
+    :param bot: str: Chat bot name
     """
     # titulo
     st.title("Chat Bot Alexa")
@@ -126,8 +148,14 @@ def chat_bot_alexa():
 
 
 def chat_bot_js():
-    """Chat Bot com J.S.
+    """Chat Bot com JavaScript]
     Returns: str: Chat bot response
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    :parameter pergunta: str: User question
+    :parameter resposta: str: Chat bot response
+    :parameter f: str: Chat bot response
+    :param bot: str: Chat bot name
     """
     # titulo
     st.title("Chat Bot J.S.")
@@ -154,44 +182,64 @@ def chat_bot_js():
             st.text_area("Historico", value=f.read(), height=200)
 
 
+# função para limpar o historico
+def confingurar_button():
+    # configurar cor do botão
+    # deixar o botão com vermelho
+    # deixa o botão arredondado
+    st.markdown(
+        """
+        <style>
+        .reportview-container .main .block-container{
+            max-width: 1000px;
+            padding-top: 0.5rem;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 def main():
+    """Main function
+    :param bot: str: Chat bot name
+    :param question: str: User question
+    :parameter response: str: Chat bot response
+    """
+    confingurar_button()
     st.sidebar.title("Menu")
     menu = ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin", "Chat Bot Alexa", "Chat Bot Javascript"]
     choice = st.sidebar.selectbox("Escolha uma opção", menu)
+    # chatbot
     if choice == "Chat Bot":
         chat_bot()
-        #criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat.txt", "w") as f:
-                f.write("")
+        if st.button("Limpar Historico do ChatBot"):
+            os.remove("chat.txt")
+    # chatbot amigos
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
-        # criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat_amigos.txt", "w") as f:
-                f.write("")
+        if st.button("Limpar Historico Amigos"):
+            os.remove("chat_amigos.txt")
+    # chatbot marvin
     elif choice == "Chat Bot Marvin":
         chat_bot_marv()
-        # criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat_marv.txt", "w") as f:
-                f.write("")
+        if st.button("Limpar Historico Marvin"):
+            os.remove("chat_marv.txt")
+    # chatbot alexa
     elif choice == "Chat Bot Alexa":
         chat_bot_alexa()
-        # criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat_alexa.txt", "w") as f:
-                f.write("")
+        if st.button("Limpar Historico Alexa"):
+            os.remove("chat_alexa.txt")
+    # chat bot javascript
     elif choice == "Chat Bot Javascript":
         chat_bot_js()
-        # criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            with open("chat_js.txt", "w") as f:
-                f.write("")
+        if st.button("Limpar Historico J.S."):
+            os.remove("chat_js.txt")
     else:
         st.write("Escolha uma opção no menu")
-    # criar um botao para limpar o historico
-
 
 
 if __name__ == "__main__":
