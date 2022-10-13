@@ -27,8 +27,8 @@ def chat_bot():
         # enviar a mensagem para o utilizador
         st.write(f"IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-    st.write(f'Prompt: {response["choices"][0]["prompt"]}')
-    
+    st.write(f'Prompt: {response["choices"][0]["text"]}')
+
 
 
 
