@@ -12,8 +12,7 @@ def chat_bot():
     """
     # titulo
     st.title("Chat Bot")
-    with st.expander("Ajuda"):
-        st.write("Escreva uma mensagem e clique em enviar")
+    with st.form("form"):
         question = st.text_input("Humano: ")
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -26,8 +25,11 @@ def chat_bot():
             stop=["\n", " Human:", " IA:"]
         )
         # enviar a mensagem para o utilizador
-    st.write(f"IA: {response['choices'][0]['text']}")
-    st.form_submit_button("Enviar")
+        st.write(f"IA: {response['choices'][0]['text']}")
+        st.form_submit_button("Enviar")
+    st.write(f'Prompt: {response["choices"][0]["prompt"]}')
+    
+
 
 
 
