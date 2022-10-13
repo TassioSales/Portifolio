@@ -20,8 +20,8 @@ def chat_bot():
     with st.form("form"):
         question = st.text_input("Humano: ")
         st.form_submit_button("Enviar")
-        #limpar caixa de texto
-        st.empty()
+        #limpar caixa de texto depois de enviar
+
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
@@ -204,21 +204,6 @@ def confingurar_button():
         unsafe_allow_html=True
     )
 
-
-# criar uma função para limpar o historico de cada chat
-def limpar_historico():
-    if st.button("Limpar historico"):
-        with open("chat_amigos.txt", "w") as f:
-            f.write("")
-        with open("chat_marv.txt", "w") as f:
-            f.write("")
-        with open("chat_alexa.txt", "w") as f:
-            f.write("")
-        with open("chat_js.txt", "w") as f:
-            f.write("")
-        st.success("Historico limpo com sucesso!")
-
-
 def main():
     """Main function
     :param bot: str: Chat bot name
@@ -227,7 +212,7 @@ def main():
     """
     confingurar_button()
     st.sidebar.title("Menu")
-    menu = ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin", "Chat Bot Alexa", "Chat Bot Javascript"]
+    menu = ["Chat Bot", "Chat Bot Amigos", "Chat Bot Marvin", "Chat Bot Alexa", "Chat Bot Javascript", "Sobre"]
     choice = st.sidebar.selectbox("Escolha uma opção", menu)
     # chatbot
     if choice == "Chat Bot":
@@ -244,11 +229,38 @@ def main():
     # chat bot javascript
     elif choice == "Chat Bot Javascript":
         chat_bot_js()
-    else:
-        st.write("Escolha uma opção no menu")
-    # limpar historico
-    limpar_historico()
+    # sobre
+    elif choice == "Sobre":
+        st.subheader("Sobre")
+        st.text("Chat Bot com OpenAI, Streamlit e Python")
+        st.text("Desenvolvido por: Tássio Sales")
+        st.text("Data: 2022-10-13")
+        st.text("Versão: 1.0.0")
+        #falar sobre python
+        st.text_area("Python", value="Python é uma linguagem de programação de alto nível, interpretada, imperativa,"
+                                     "orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por "
+                                     "Guido van Rossum em 1991.", height=200)
+        #falar sobre streamlit
+        st.text_area("Streamlit", value="Streamlit é uma biblioteca de código aberto que permite criar aplicativos "
+                                        "interativos de análise de dados em Python.", height=200)
+        #falar sobre openai
+        st.text_area("OpenAI", value="OpenAI é uma organização sem fins lucrativos de pesquisa em inteligência artificial "
+                                     "fundada em 2015 por Elon Musk, Sam Altman, Ilya Sutskever, Greg Brockman, Peter "
+                                     "Norvig e outros.", height=200)
+        #falar sobre chatbot
+        st.text_area("Chat Bot", value='Um chatbot é um programa de computador que simula a conversa humana através de '
+                                       'teclados ou voz. Os chatbots são usados ​​em uma ampla variedade de '
+                                       'aplicações, incluindo aplicativos de mensagens, sites e aplicativos de '
+                                       'voz.', height=200)
+        #falar sobre o desenvolvedor
+        st.text_area("Desenvolvedor", value="Tássio Sales é um desenvolvedor de software, apaixonado por tecnologia e "
+                                            "programação.", height=200)
+        #falar sobre o projeto
+
+        
 
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()
+
