@@ -44,11 +44,8 @@ def chat_bot():
     if st.button("Apagar Historico"):
         os.remove("chat.txt")
         #limpar text_area
-        st.text_area("Historico", value="", height=200)
-        #limpar resposta da IA
-        st.text_area("IA:", value="", height=50)
-        #limpar pergunta do humano
-        st.text_input("Humano: ", value="")
+        st.text_area.empty()
+        st.text_input.empty()
         st.success("Historico apagado com sucesso")
 
 
