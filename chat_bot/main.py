@@ -20,6 +20,8 @@ def chat_bot():
     with st.form("form"):
         question = st.text_input("Humano: ")
         st.form_submit_button("Enviar")
+        #limpar caixa de texto
+        st.empty()
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
