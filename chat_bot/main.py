@@ -218,6 +218,13 @@ def main():
     # chatbot
     if choice == "Chat Bot":
         chat_bot()
+        #apagar pergunta após enviar
+        question = ""
+        #apagar resposta após enviar
+        response = ""
+        #apagar historico
+        with open("chat.txt", "w") as f:
+            f.write("")
     # chatbot amigos
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
