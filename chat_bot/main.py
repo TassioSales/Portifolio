@@ -119,7 +119,7 @@ def chat_bot_js():
         )
         # enviar a mensagem para o usuário
         st.write(f"J.S.: {response['choices'][0]['text']}")
-        st.form_submit_button("Enviar") 
+        st.form_submit_button("Enviar")
 
 
 
