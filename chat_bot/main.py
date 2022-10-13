@@ -34,16 +34,16 @@ def chat_bot():
         st.text_area("IA:", value=response['choices'][0]['text'], height=50)
         pergunta = question
         resposta = response['choices'][0]['text']
-        #criar botao para apagar o historico
+        # criar botao para apagar o historico
         with open("chat.txt", "a") as f:
             f.write(f"Humano: {pergunta} \n IA: {resposta}\n")
         # mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
-    #apagar o historico
+    # apagar o historico
     if st.button("Apagar Historico"):
-        with open("chat_js.txt", "w") as f:
-            f.write("")
+        os.remove("chat.txt")
+        st.success("Historico apagado com sucesso")
 
 
 def chat_bot_amigos():
@@ -187,7 +187,6 @@ def chat_bot_js():
             st.text_area("Historico", value=f.read(), height=200)
 
 
-
 # função para limpar o historico
 def confingurar_button():
     # configurar cor do botão
@@ -207,6 +206,7 @@ def confingurar_button():
         """,
         unsafe_allow_html=True
     )
+
 
 def main():
     """Main function
@@ -240,35 +240,31 @@ def main():
         st.text("Desenvolvido por: Tássio Sales")
         st.text("Data: 2022-10-13")
         st.text("Versão: 1.0.0")
-        #falar sobre python
+        # falar sobre python
         st.subheader("Sobre Python")
         st.text("Python é uma linguagem de programação interpretada de alto nível, de script "
                 "geral-purpose, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. "
                 "Foi lançada por Guido van Rossum em 1991.")
-        #falar sobre streamlit
+        # falar sobre streamlit
         st.subheader("Sobre Streamlit")
         st.text("Streamlit é uma biblioteca de código aberto para criar aplicativos de IA e "
                 "aprendizado de máquina para a Web em Python. É baseado em Streamlit Sharing, "
                 "uma plataforma de hospedagem de aplicativos de IA em nuvem.")
-        #falar sobre openai
+        # falar sobre openai
         st.subheader("Sobre OpenAI")
         st.text("OpenAI é uma organização sem fins lucrativos de pesquisa em inteligência artificial "
                 "com sede em San Francisco, Califórnia. Foi fundada em 2015 por Elon Musk, Sam Altman, "
                 "e outros investidores de tecnologia. A organização tem como objetivo desenvolver "
                 "e promover a inteligência artificial de forma segura para benefício da humanidade.")
-        #falar sobre o chatbot
+        # falar sobre o chatbot
         st.subheader("Sobre o ChatBot")
         st.text("O ChatBot é um programa de computador que simula conversas com humanos por meio "
                 "de mensagens de texto ou voz. Eles são usados ​​para simular conversas com clientes, "
                 "para fornecer informações sobre produtos e serviços e para fornecer suporte ao cliente.")
-        #falar sobre o desenvolvedor
+        # falar sobre o desenvolvedor
         st.subheader("Sobre o Desenvolvedor")
         st.text("Tássio Sales é um desenvolvedor de software, apaixonado por tecnologia.")
 
 
-
-
-
 if __name__ == '__main__':
     main()
-
