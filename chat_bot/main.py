@@ -27,12 +27,11 @@ def chat_bot():
         # enviar a mensagem para o utilizador
         st.text_area("IA:", value=response['choices'][0]['text'], height=50)
         st.form_submit_button("Enviar")
-        lista_perguntas = [question]
-        lista_respostas = [response['choices'][0]['text']]
-        #mostra fluxo de conversa
-    st.write("Fluxo de conversa")
-    st.write(lista_perguntas)
-    st.write(lista_respostas)
+        pergunta = question
+        resposta = response['choices'][0]['text']
+        with open("chat.txt", "a") as f:
+            f.write(f"{pergunta} {resposta}\n")
+            
 
 
 
