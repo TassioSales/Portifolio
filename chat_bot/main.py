@@ -35,8 +35,6 @@ def chat_bot():
         pergunta = question
         resposta = response['choices'][0]['text']
         #criar botao para apagar o historico
-        if st.button("Limpar Historico"):
-            os.remove("chat.txt")
         with open("chat.txt", "a") as f:
             f.write(f"Humano: {pergunta} \n IA: {resposta}\n")
         # mostrar o historico
