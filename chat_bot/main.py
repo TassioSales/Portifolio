@@ -28,7 +28,12 @@ def chat_bot():
         st.write(f"IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
         #mostra o fluxo da conversa sem atuar sobre o chatbot
-        st.text_area(response['choices'][0]['text'])
+        with st.expander("Ver fluxo da conversa"):
+            st.write(response)
+
+
+
+
 
 
 
