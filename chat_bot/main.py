@@ -6,12 +6,11 @@ openai.api_key = st.secrets["api"]
 
 
 def chat_bot():
-    """Chat bot function
+    """Chatbot function
     Returns:
         str: Chat bot response
     """
-
-    #titulo
+    # titulo
     st.title("Chat Bot")
     with st.form("form"):
         question = st.text_input("Humano: ")
@@ -25,9 +24,10 @@ def chat_bot():
             presence_penalty=0.6,
             stop=["\n", " Human:", " IA:"]
         )
-        # enviar a mensagem para o usuário
+        # enviar a mensagem para o utilizador
         st.write(f"IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
+        st.text_area("Prompt", value=response['choices'][0]['text'], height=200, max_chars=None, key=None)
 
 
 def chat_bot_amigos():
@@ -35,7 +35,7 @@ def chat_bot_amigos():
     Returns:
         str: Chat bot response
     """
-    #titulo,
+    # titulo,
     st.title("Chat Bot Amigos")
     with st.form("form"):
         question = st.text_input("Humano: ")
@@ -49,7 +49,7 @@ def chat_bot_amigos():
             presence_penalty=0,
             stop=["Humano:"]
         )
-        # enviar a mensagem para o usuário
+        # enviar a mensagem para o utilizador
         st.write(f"Amigo IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
 
@@ -58,9 +58,7 @@ def chat_bot_marv():
     """Chat Bot com Marv
     Returns: str: Chat bot response
     """
-
-
-    #titulo
+    # titulo
     st.title("Chat Bot Marvin")
     with st.form("form"):
         question = st.text_input("Humano: ")
@@ -73,7 +71,7 @@ def chat_bot_marv():
             frequency_penalty=0.5,
             presence_penalty=0
         )
-        # enviar a mensagem para o usuário
+        # enviar a mensagem para o utilizador
         st.write(f"Marvin: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
 
@@ -82,7 +80,7 @@ def chat_bot_alexa():
     """Chat Bot com Alexa
     Returns: str: Chat bot response
     """
-    #titulo
+    # titulo
     st.title("Chat Bot Alexa")
     with st.form("form"):
         question = st.text_input("Humano: ")
@@ -95,7 +93,7 @@ def chat_bot_alexa():
             frequency_penalty=0.5,
             presence_penalty=0
         )
-        # enviar a mensagem para o usuário
+        # enviar a mensagem para o utilizador
         st.write(f"Alexa: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
 
@@ -104,7 +102,7 @@ def chat_bot_js():
     """Chat Bot com J.S.
     Returns: str: Chat bot response
     """
-    #titulo
+    # titulo
     st.title("Chat Bot J.S.")
     with st.form("form"):
         question = st.text_input("Humano: ")
@@ -117,10 +115,9 @@ def chat_bot_js():
             frequency_penalty=0.5,
             presence_penalty=0
         )
-        # enviar a mensagem para o usuário
+        # enviar a mensagem para o utilizador
         st.write(f"J.S.: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
-
 
 
 def main():
