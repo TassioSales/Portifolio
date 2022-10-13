@@ -25,7 +25,7 @@ def chat_bot():
             stop=["\n", " Human:", " IA:"]
         )
         # enviar a mensagem para o utilizador
-        st.text_area("IA:", value=response['choices'][0]['text'], height=200)
+        st.text_area("IA:", value=response['choices'][0]['text'], height=50)
         st.text_area("Log:", value=response, height=200)
         st.form_submit_button("Enviar")
 
