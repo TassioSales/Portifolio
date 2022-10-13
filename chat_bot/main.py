@@ -31,7 +31,7 @@ def chat_bot():
         resposta = response['choices'][0]['text']
         with open("chat.txt", "a") as f:
             f.write(f"{pergunta} {resposta}\n")
-        #mostrar o historico
+        # mostrar o historico
         with open("chat.txt", "r") as f:
             st.text_area("Historico", value=f.read(), height=200)
 
@@ -58,6 +58,13 @@ def chat_bot_amigos():
         # enviar a mensagem para o utilizador
         st.write(f"Amigo IA: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
+        pergunta = question
+        resposta = response['choices'][0]['text']
+        with open("chat_amigos.txt", "a") as f:
+            f.write(f"Homano: {pergunta} Amigo: {resposta}\n")
+        # mostrar o historico
+        with open("chat_amigos.txt", "r") as f:
+            st.text_area("Historico", value=f.read(), height=200)
 
 
 def chat_bot_marv():
@@ -80,6 +87,13 @@ def chat_bot_marv():
         # enviar a mensagem para o utilizador
         st.write(f"Marvin: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
+        pergunta = question
+        resposta = response['choices'][0]['text']
+        with open("chat_marv.txt", "a") as f:
+            f.write(f"Humano: {pergunta} Marvin: {resposta}\n")
+        # mostrar o historico
+        with open("chat_marv.txt", "r") as f:
+            st.text_area("Historico", value=f.read(), height=200)
 
 
 def chat_bot_alexa():
@@ -102,6 +116,13 @@ def chat_bot_alexa():
         # enviar a mensagem para o utilizador
         st.write(f"Alexa: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
+        pergunta = question
+        resposta = response['choices'][0]['text']
+        with open("chat_alexa.txt", "a") as f:
+            f.write(f"Humano: {pergunta} Alexa: {resposta}\n")
+        # mostrar o historico
+        with open("chat_alexa.txt", "r") as f:
+            st.text_area("Historico", value=f.read(), height=200)
 
 
 def chat_bot_js():
@@ -124,6 +145,13 @@ def chat_bot_js():
         # enviar a mensagem para o utilizador
         st.write(f"J.S.: {response['choices'][0]['text']}")
         st.form_submit_button("Enviar")
+        pergunta = question
+        resposta = response['choices'][0]['text']
+        with open("chat_js.txt", "a") as f:
+            f.write(f"Humano: {pergunta} J.S.: {resposta}\n")
+        # mostrar o historico
+        with open("chat_js.txt", "r") as f:
+            st.text_area("Historico", value=f.read(), height=200)
 
 
 def main():
@@ -132,19 +160,38 @@ def main():
     choice = st.sidebar.selectbox("Escolha uma opção", menu)
     if choice == "Chat Bot":
         chat_bot()
+        #criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat.txt", "w") as f:
+                f.write("")
     elif choice == "Chat Bot Amigos":
         chat_bot_amigos()
+        # criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat_amigos.txt", "w") as f:
+                f.write("")
     elif choice == "Chat Bot Marvin":
         chat_bot_marv()
+        # criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat_marv.txt", "w") as f:
+                f.write("")
     elif choice == "Chat Bot Alexa":
         chat_bot_alexa()
+        # criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat_alexa.txt", "w") as f:
+                f.write("")
     elif choice == "Chat Bot Javascript":
         chat_bot_js()
+        # criar um botao para limpar o historico
+        if st.button("Limpar Historico"):
+            with open("chat_js.txt", "w") as f:
+                f.write("")
     else:
         st.write("Escolha uma opção no menu")
-    #criar um botao para limpar o historico
-    if st.button("Limpar Historico"):
-        os.remove("chat.txt")
+    # criar um botao para limpar o historico
+
 
 
 if __name__ == "__main__":
