@@ -3,6 +3,7 @@ import openai
 import streamlit as st
 
 openai.api_key = st.secrets["api"]
+limpar = st.empty()
 
 
 def chat_bot():
@@ -20,6 +21,7 @@ def chat_bot():
     with st.form("form"):
         question = st.text_input("Humano: ")
         st.form_submit_button("Enviar")
+        question = limpar.text_input("Humano: ")
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Human: {question}\nIA:",
