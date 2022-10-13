@@ -30,10 +30,6 @@ def chat_bot():
             presence_penalty=0.6,
             stop=["\n", " Human:", " IA:"]
         )
-        # criar um botao para limpar o historico
-        if st.button("Limpar Historico"):
-            os.remove("chat.txt")
-
         # enviar a mensagem para o utilizador
         st.text_area("IA:", value=response['choices'][0]['text'], height=50)
         pergunta = question
@@ -207,6 +203,20 @@ def confingurar_button():
     )
 
 
+# criar uma função para limpar o historico de cada chat
+def limpar_historico():
+    if st.button("Limpar historico"):
+        with open("chat_amigos.txt", "w") as f:
+            f.write("")
+        with open("chat_marv.txt", "w") as f:
+            f.write("")
+        with open("chat_alexa.txt", "w") as f:
+            f.write("")
+        with open("chat_js.txt", "w") as f:
+            f.write("")
+        st.success("Historico limpo com sucesso!")
+
+
 def main():
     """Main function
     :param bot: str: Chat bot name
@@ -234,6 +244,8 @@ def main():
         chat_bot_js()
     else:
         st.write("Escolha uma opção no menu")
+    # limpar historico
+    limpar_historico()
 
 
 if __name__ == "__main__":
