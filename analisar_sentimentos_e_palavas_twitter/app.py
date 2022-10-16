@@ -122,3 +122,20 @@ def realizar_limpeza():
 
 #gerar database
 dataframe = realizar_limpeza()
+
+
+#percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
+def analisar_sentimento_open(df):
+    for tweet in df['Tweets']:
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Decida se o sentimento de um Tweet é Positivo, Neutro ou Negativo.\n\nTweet: \"{tweet}\"\nSentimento:",
+            temperature=0.9,
+            max_tokens=5,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
+        )
+        print(f"Tweet: {tweet}")
+        print("Sentimento: {}".format(response.choices[0].text))
+        print("")
