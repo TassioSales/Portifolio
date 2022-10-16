@@ -79,6 +79,8 @@ def limpar_tweets():
         df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r"\b\w{1,3}\b", "", x))
         #remover palavras com mais de 15 letras usando regex usando a função lambda
         df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r"\b\w{15,}\b", "", x))
+        #remover RT usando regex usando a função lambda
+        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r"RT", "", x))
         #salvar os tweets limpos em um arquivo csv
         df.to_csv(path_or_buf='tweets_limpos.csv', index=False)
         ##ler o arquivo csv e mostrar o dataframe
