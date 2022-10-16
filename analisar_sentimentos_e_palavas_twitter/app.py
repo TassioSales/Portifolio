@@ -126,6 +126,14 @@ dataframe = realizar_limpeza()
 
 #percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
 def analisar_sentimento_open(df):
+    """[summary]
+    Realiza a análise de sentimento dos tweets
+    Returns: string
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets
+    :param: df['Tweets']: coluna com os tweets limpos
+    :param: df['Sentimento']: coluna com o sentimento do tweet
+    """
     for tweet in df['Tweets']:
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -136,6 +144,37 @@ def analisar_sentimento_open(df):
             frequency_penalty=0,
             presence_penalty=0.6,
         )
-        print(f"Tweet: {tweet}")
-        print("Sentimento: {}".format(response.choices[0].text))
-        print("")
+        #titulo
+        st.title('Análise de Sentimento OpenAI')
+        st.write(f"Tweet: {tweet}")
+        st.write("Sentimento: {}".format(response.choices[0].text))
+        
+#analisa o sentimento do tweet usando o nltk
+def analisar_sentimento_nltk(df):
+    #traduzir os tweets para inglês usando openai
+    for tweet in df['Tweets']:
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
+            temperature=0.9,
+            max_tokens=50,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
+        )
+        st.title('Análise de Sentimento NLTK')
+        st.write(f"Tweet: {tweet}")
+        traducao = response.choices[0].text
+        #analisa o sentimento do tweet usando o nltk
+        sid = SentimentIntensityAnalyzer()
+        ss = sid.polarity_scores(traducao)
+        for k in sorted(ss):
+            st.write(f"{k}: {ss[k]}")
+        #mostra o sentimento do tweet e positivo, negativo ou neutro
+        if ss['compound'] >= 0.05:
+            st.write("Sentimento: Positivo")
+        elif ss['compound'] <= - 0.05:
+            st.write("Sentimento: Negativo")
+        else:
+            st.write("Sentimento: Neutro")
+        
