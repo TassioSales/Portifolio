@@ -118,14 +118,14 @@ def analisar_sentimento_open(df):
         if st.button("Mostrar Sentimento"):
             #mostra o sentimento do tweet
             st.write(f"Sentimento: {response['choices'][0]['text']}")
-        #criar um dataframe com os tweets e o sentimento
-        df['Sentimento'] = response['choices'][0]['text']
+            #criar um dataframe com os tweets e o sentimento
+            df['Sentimento'] = response['choices'][0]['text']
         #salvar o dataframe em um arquivo csv
         df.to_csv(path_or_buf='tweets_sentimento_openia.csv', index=False)
-        if st.button("Mostrar Tabela com Sentimento"):
-            #ler o arquivo csv e mostrar o dataframe
-            df = pd.read_csv('tweets_sentimento_openia.csv')
-            st.table(df)
+    if st.button("Mostrar Tabela com Sentimento"):
+        #ler o arquivo csv e mostrar o dataframe
+        df = pd.read_csv('tweets_sentimento_openia.csv')
+        st.table(df)
    
         
 #função principal
