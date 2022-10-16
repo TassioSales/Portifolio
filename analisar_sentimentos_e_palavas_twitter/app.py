@@ -91,17 +91,45 @@ def limpar_tweets():
             st.table(tweets_limpos)
     except Exception as e:
         st.write(e)
-    
         
-        
-        
-        
+#percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
+def analisar_sentimento_open(df):
+    """[summary]
+    Realiza a análise de sentimento dos tweets
+    Returns: string
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets
+    :param: df['Tweets']: coluna com os tweets limpos
+    :param: df['Sentimento']: coluna com o sentimento do tweet
+    """
+    for tweet in df['Tweets']:
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Decida se o sentimento de um Tweet é Positivo, Neutro ou Negativo.\n\nTweet: \"{tweet}\"\nSentimento:",
+            temperature=0.9,
+            max_tokens=5,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
+        )
+        #titulo
+        st.title('Análise de Sentimento OpenAI')
+        st.write(f"Tweet: {tweet}")
+        st.write("Sentimento: {}".format(response.choices[0].text))
         
 #função principal
 def main():
+    #chamar a função para autenticar
     autenticar()
+    #chamar a função para pegar os tweets
     pegar_tweets()
+    #chamar a função para limpar os tweets
     limpar_tweets()
+    #ler o arquivo csv com os tweets limpos
+    df = pd.read_csv('tweets_limpos.csv')
+    #chamar a função para analisar o sentimento dos tweets
+    analisar_sentimento_open(df)
+    
                 
 if __name__ == '__main__':
     main()
