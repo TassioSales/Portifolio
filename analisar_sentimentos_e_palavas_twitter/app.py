@@ -238,5 +238,55 @@ def wordcloud(df):
     plt.tight_layout(pad = 0)
     st.pyplot()
     
+    #criar uma uma tabela com a contagem de palavras
+def grafico(df):
+    #criar uma string com todas as palavras
+    palavras = ''
+    for tweet in df['Tweets']:
+        palavras += tweet
+    palavras = palavras.split()
+    palavras = Counter(palavras)
+    palavras = pd.DataFrame(palavras.most_common(), columns=['palavras', 'contagem'])
+    palavras = palavras.head(10)
+    palavras = palavras.sort_values(by='contagem')
+    #configurar uma cor diferente para cada barra
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'brown', 'grey', 'black']
+    #plotar a tabela
+    plt.barh(palavras['palavras'], palavras['contagem'], color=colors)
+    plt.title('Contagem de palavras')
+    plt.xlabel('Contagem')
+    plt.ylabel('Palavras')
+    st.pyplot()
     
+    
+def main():
+    #criar um menu com as opções
+    menu = ['Home', 'Análise de Sentimento OpenAI', 'Análise de Sentimento NLTK', 'Análise de Sentimento TextBlob', 'WordCloud', 'Gráfico']
+    choice = st.sidebar.selectbox('Menu', menu)
+    #carregar os dados
+    df = carregar_dados()
+    #limpar os dados
+    df = limpar_dados(df)
+    #mostrar os dados
+    if choice == 'Home':
+        st.subheader('Dados coletados')
+        st.dataframe(df)
+    #analisar o sentimento dos tweets usando o openai
+    elif choice == 'Análise de Sentimento OpenAI':
+        analisar_sentimento_openai(df)
+    #analisar o sentimento dos tweets usando o nltk
+    elif choice == 'Análise de Sentimento NLTK':
+        analisar_sentimento_nltk(df)
+    #analisar o sentimento dos tweets usando o TextBlob
+    elif choice == 'Análise de Sentimento TextBlob':
+        analisar_sentimento_textblob(df)
+    #criar uma wordclod com as palavras mais usadas
+    elif choice == 'WordCloud':
+        wordcloud(df)
+    #criar uma uma tabela com a contagem de palavras
+    elif choice == 'Gráfico':
+        grafico(df)
+        
+if __name__ == '__main__':
+    main()
         
