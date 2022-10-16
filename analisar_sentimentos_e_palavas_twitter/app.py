@@ -37,6 +37,7 @@ def autenticar():
 
 # função para pesquisar os tweets usando o StreamlitAPIException
 def pegar_tweets():
+    api = autenticar()
     try:
         #perguntar ao usaurio o tema dos tweets
         tema = st.text_input("Digite o tema dos tweets que deseja pesquisar: ")
