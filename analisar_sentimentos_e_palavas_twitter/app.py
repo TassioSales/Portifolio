@@ -45,9 +45,9 @@ def pegar_tweets():
         #pesquisar os tweets
         tweets = tw.Cursor(api.search_tweets, q=tema, lang="pt").items(quantidade)
         #salvar os tweets em uma lista em arquivo csv com a coluna Tweets
-        pd = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])
+        tweets = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])
         #salvar os tweets em um arquivo csv
-        pd.to_csv(path_or_buf='tweets.csv', index=False)
+        tweets.to_csv(path_or_buf='tweets.csv', index=False)
         #ler o arquivo csv e mostrar o dataframe
         df = pd.read_csv('tweets.csv')
         st.table(df)
