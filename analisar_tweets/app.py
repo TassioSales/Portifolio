@@ -70,3 +70,4 @@ def pegar_tweets():
     #ignnoras tweets repetidos
     tweets = list(set(tweets))
     return tweets
+
