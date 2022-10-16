@@ -114,12 +114,12 @@ def analisar_sentimento_open(df):
             presence_penalty=0.6,
         )
         #titulo
-        st.write(f"Tweet: {tweet}")
-        if st.button("Mostrar Sentimento"):
-            df['Sentimento'] = response['choices'][0]['text']
-            st.table(df)
-        else:
-            st.write("Clique no botão para mostrar o sentimento do tweet")
+
+    if st.button("Mostrar Sentimento"):
+        df['Sentimento'] = response['choices'][0]['text']
+        st.table(df)
+    else:
+        st.write("Clique no botão para mostrar o sentimento do tweet")
             
    
         
@@ -138,6 +138,7 @@ def main():
     if choice == "Limpar Tweets":
         limpar_tweets() 
     if choice == "Analisar Sentimento OpenAI":
+        df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimento_open(df)
 
                 
