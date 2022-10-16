@@ -79,8 +79,6 @@ def limpar_tweets():
         df['Tweets'] = df['Tweets'].apply(lambda x: x.strip())
         # remove palavras com menos de 3 caracteres
         df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) > 3]))
-        # remove palavras com menos de 3 caracteres
-        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if w not in stop_words]))
         #remove palavras com mais de 15 caracteres
         df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) < 15]))
         #remover emojis
