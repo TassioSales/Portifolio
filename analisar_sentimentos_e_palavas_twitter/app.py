@@ -138,7 +138,10 @@ def main():
     if choice == "Limpar Tweets":
         limpar_tweets() 
     if choice == "Analisar Sentimento OpenAI":
+        #ler o arquivo csv e mostrar o dataframe
         df = pd.read_csv('tweets_limpos.csv')
+        #Criar titulo
+        st.altair_chart(analisar_sentimento_open(df))
         analisar_sentimento_open(df)
 
                 
