@@ -57,7 +57,7 @@ def perguntar_numero():
     numero = st.text_input("Digite o número de tweets que deseja")
     return numero
 
-# função para pesquisar os tweets
+# função para pesquisar os tweets usando o StreamlitAPIException
 def pegar_tweets():
     """[summary]
     Função para pesquisar os tweets
@@ -69,11 +69,10 @@ def pegar_tweets():
     """
     tema = perguntar()
     numero = perguntar_numero()
-    tweets = tw.Cursor(api.search_tweets,
-                       q=tema,
-                       lang="pt",
-                       tweet_mode='extended').items(int(numero))
+    autenticar()
+    tweets = tw.Cursor(api.search, q=tema, lang='pt', tweet_mode='extended').items(int(numero))
     return tweets
+
 
 
 #função para gerar um data frame com os tweets
