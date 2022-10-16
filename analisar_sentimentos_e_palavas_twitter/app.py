@@ -115,7 +115,10 @@ def analisar_sentimento_open(df):
         )
         #titulo
         st.write(f"Tweet: {tweet}")
-        st.write("Sentimento: {}".format(response.choices[0].text))
+        #mostra o sentimento do tweets em forma de botão gerando uma tabela com o sentimento
+        if st.button("Mostrar Sentimento"):
+            df['Sentimento'] = response['choices'][0]['text']
+            st.table(df)
         
 #função principal
 def main():
