@@ -50,12 +50,53 @@ def pegar_tweets():
         tweets.to_csv(path_or_buf='tweets.csv', index=False)
         #ler o arquivo csv e mostrar o dataframe
         df = pd.read_csv('tweets.csv')
-        st.table(df)
+        #criar botao para mostrar os tweets
+        mostrar_tweets = st.button("Mostrar Tweets")
+        if mostrar_tweets:
+            st.table(df)
     except Exception as e:
         st.write(e)
-    
-if __name__ == '__main__':
+        
+#função com botao para limpar tweets do arquivo csv e mostra a tabela com os tweets limpos
+def limpar_tweets():
+    try:
+        df = pd.read_csv('tweets.csv')
+        for item in df['Tweets']:
+            #remover links
+            item = re.sub(r"http\S+", "", item)
+            #remover @
+            item = re.sub(r"@\S+", "", item)
+            #remover #
+            item = re.sub(r"#\S+", "", item)
+            #remover emojis
+            item = re.sub(r"\\[a-z][a-z]?[0-9]+", "", item)
+            #remover pontuação
+            item = re.sub(r"[^\w\s]", "", item)
+            #remover números
+            item = re.sub(r"\d+", "", item)
+            #remover espaços em branco
+            item = re.sub(r"\s+", " ", item)
+            #remover espaços no inicio e no fim
+            item = item.strip()
+            #remover stopwords usando nltk
+            stopwords = nltk.corpus.stopwords.words('portuguese')
+            #salvar os tweets limpos em um arquivo csv
+            df.to_csv(path_or_buf='tweets_limpos.csv', index=False)
+            #ler o arquivo csv e mostrar o dataframe
+            df = pd.read_csv('tweets_limpos.csv')
+            #Criar botão para limpar os tweets
+            limpar_tweets = st.button("Limpar Tweets")
+            if limpar_tweets:
+                st.table(df)
+    except Exception as e:
+        st.write(e)
+        
+#função principal
+def main():
     autenticar()
     pegar_tweets()
-
+    limpar_tweets()
+                
+if __name__ == '__main__':
+    main()
         
