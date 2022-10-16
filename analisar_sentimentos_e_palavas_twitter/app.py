@@ -221,7 +221,22 @@ def analisar_sentimento_textblob(df):
         else:
             st.write("Sentimento: Neutro")
             
-#analisar sentimento VADER
-def analisar_sentimento_vader(df):
+#criar uma wordclod com as palavras mais usadas
+def wordcloud(df):
+    #criar uma string com todas as palavras
+    palavras = ''
+    for tweet in df['Tweets']:
+        palavras += tweet
+    #criar uma wordclod com as palavras mais usadas
+    wordcloud = WordCloud(width = 800, height = 800,
+                background_color ='white', offset=0, number=100,
+                min_font_size = 10).generate(palavras)
+    #mostrar a wordclod
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    st.pyplot()
+    
     
         
