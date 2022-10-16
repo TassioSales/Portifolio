@@ -223,6 +223,12 @@ def analisar_sentimento_textblob(df):
             
 #criar uma wordclod com as palavras mais usadas
 def wordcloud(df):
+    """[summary]
+    Cria uma wordcloud com as palavras mais usadas
+    :return: wordcloud
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets:
+    """
     #criar uma string com todas as palavras
     palavras = ''
     for tweet in df['Tweets']:
@@ -240,6 +246,14 @@ def wordcloud(df):
     
     #criar uma uma tabela com a contagem de palavras
 def grafico(df):
+    """[summary]
+    Cria um gráfico com a contagem de palavras
+    Returns: gráfico
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets
+    :param: df['Tweets']: coluna com os tweets limpos
+    :param: df['Sentimento']: coluna com o sentimento do tweet
+    """
     #criar uma string com todas as palavras
     palavras = ''
     for tweet in df['Tweets']:
@@ -257,35 +271,34 @@ def grafico(df):
     plt.xlabel('Contagem')
     plt.ylabel('Palavras')
     st.pyplot()
-    
-    
-def main():
-    #criar um menu com as opções
-    menu = ['Home', 'Análise de Sentimento OpenAI', 'Análise de Sentimento NLTK', 'Análise de Sentimento TextBlob', 'WordCloud', 'Gráfico']
-    choice = st.sidebar.selectbox('Menu', menu)
-    #carregar os dados
-    df = carregar_dados()
-    #limpar os dados
-    df = limpar_dados(df)
-    #mostrar os dados
-    if choice == 'Home':
-        st.subheader('Dados coletados')
-        st.dataframe(df)
-    #analisar o sentimento dos tweets usando o openai
-    elif choice == 'Análise de Sentimento OpenAI':
+
+#criar função com o menu com todas as opções
+def menu():
+    """[summary]
+    Função com o menu com todas as opções
+    """
+    #menu
+    st.sidebar.title('Menu')
+    opcao = st.sidebar.selectbox('Selecione uma opção', ['Análise de Sentimento OpenAI', 'Análise de Sentimento NLTK', 'Análise de Sentimento TextBlob', 'WordCloud', 'Gráfico'])
+    #selecionar a opção
+    if opcao == 'Análise de Sentimento OpenAI':
         analisar_sentimento_openai(df)
-    #analisar o sentimento dos tweets usando o nltk
-    elif choice == 'Análise de Sentimento NLTK':
+    elif opcao == 'Análise de Sentimento NLTK':
         analisar_sentimento_nltk(df)
-    #analisar o sentimento dos tweets usando o TextBlob
-    elif choice == 'Análise de Sentimento TextBlob':
+    elif opcao == 'Análise de Sentimento TextBlob':
         analisar_sentimento_textblob(df)
-    #criar uma wordclod com as palavras mais usadas
-    elif choice == 'WordCloud':
+    elif opcao == 'WordCloud':
         wordcloud(df)
-    #criar uma uma tabela com a contagem de palavras
-    elif choice == 'Gráfico':
+    elif opcao == 'Gráfico':
         grafico(df)
+        
+def main():
+    """[summary]
+    Função principal
+    """
+    menu()
+    
+    
         
 if __name__ == '__main__':
     main()
