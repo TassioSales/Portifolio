@@ -69,7 +69,7 @@ def pegar_tweets():
     """
     tema = perguntar()
     numero = perguntar_numero()
-    tweets = tw.Cursor(api.search,
+    tweets = tw.Cursor(api.search_tweets,
                        q=tema,
                        lang="pt",
                        tweet_mode='extended').items(int(numero))
