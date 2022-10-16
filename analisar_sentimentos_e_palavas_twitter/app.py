@@ -120,19 +120,20 @@ def analisar_sentimento_open(df):
 def main():
     #criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento OpenAI"]
-    with st.sidebar:
-        escolha = st.selectbox("Menu", menu)
-        if escolha == "Home":
-            st.title("Análise de Sentimento de Tweets")
-            st.subheader("Análise de Sentimento de Tweets com OpenAI")
-        if escolha == "Pesquisar Tweets":
-            pesquisar_tweets()
-        if escolha == "Limpar Tweets":
-            limpar_tweets() 
-        if escolha == "Analisar Sentimento OpenAI":
-            df = pd.read_csv('tweets_limpos.csv')
-            analisar_sentimento_open(df)
-    
+    #criar o selectbox
+    choice = st.sidebar.selectbox("Menu", menu)
+    #selecionar a opção do menu
+    if choice == "Home":
+        st.title("Análise de Sentimento de Tweets")
+        st.subheader("Análise de Sentimento de Tweets com OpenAI")
+    if choice == "Pesquisar Tweets":
+        pesquisar_tweets()
+    if choice == "Limpar Tweets":
+        limpar_tweets() 
+    if choice == "Analisar Sentimento OpenAI":
+        df = pd.read_csv('tweets_limpos.csv')
+        analisar_sentimento_open(df)
+
                 
 if __name__ == '__main__':
     main()
