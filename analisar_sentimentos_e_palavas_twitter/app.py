@@ -12,13 +12,13 @@ import numpy as np
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from collections import Counter
-import Streamlit as st
+import streamlit as st
 
 #chaves de acesso
-consumer_key = st.secrets["consumer_key"]
-consumer_secret = st.secrets["consumer_secret"]
-access_token = st.secrets["access_token"]
-access_token_secret = st.secrets["access_token_secret"]
+consumer_key = st.secrets["ck"]
+consumer_secret = st.secrets["cs"]
+access_token = st.secrets["act"]
+access_token_secret = st.secrets["ats"]
 openai.api_key = st.secrets["api"]
 
 # função para autenticar twitter
