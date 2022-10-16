@@ -127,7 +127,7 @@ def main():
         st.title("Análise de Sentimento de Tweets")
         st.subheader("Análise de Sentimento de Tweets com OpenAI")
     if choice == "Pesquisar Tweets":
-        pesquisar_tweets()
+        pegar_tweets()
     if choice == "Limpar Tweets":
         limpar_tweets() 
     if choice == "Analisar Sentimento OpenAI":
