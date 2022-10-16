@@ -61,22 +61,20 @@ def perguntar_numero():
 def pegar_tweets():
     """[summary]
     Função para pesquisar os tweets
-    Returns: string
+    Returns:
+        [type]: [description]
     :param: tema: tema que desejado
     :param: numero: número de tweets que desejada
     :param: tweets: lista de tweets
     """
     tema = perguntar()
     numero = perguntar_numero()
-    autenticar()
-    tweets = tw.Cursor(api.search_tweets, q=tema, lang='pt', tweet_mode='extended').items(int(numero))
-    #ignorar os retweets
-    tweets = [tweet for tweet in tweets if not tweet.retweeted]
-    #ignorar os tweets que não tem texto
-    tweets = [tweet for tweet in tweets if tweet.full_text]
-    #ignnoras tweets repetidos
-    tweets = list(set(tweets))
+    tweets = tw.Cursor(api.search,
+                       q=tema,
+                       lang="pt",
+                       tweet_mode='extended').items(int(numero))
     return tweets
+
 
 #função para gerar um data frame com os tweets
 def gerar_dataframe():
