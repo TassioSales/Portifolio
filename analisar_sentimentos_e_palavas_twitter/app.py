@@ -120,8 +120,10 @@ def realizar_limpeza():
     df['Tweets'] = df['Tweets'].apply(lambda x: x.encode('ascii', 'ignore').decode('ascii'))
     return df
 
-#gerar database
-dataframe = realizar_limpeza()
+#função para retorna dataframe
+def gerar_dataframe_limpo():
+    dataframe = realizar_limpeza()
+    return dataframe
 
 
 #percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
@@ -274,28 +276,33 @@ def grafico(df):
 
 #criar função com o menu com todas as opções
 def menu():
-    """[summary]
-    Função com o menu com todas as opções
-    """
-    #menu
-    st.sidebar.title('Menu')
-    opcao = st.sidebar.selectbox('Selecione uma opção', ['Análise de Sentimento OpenAI', 'Análise de Sentimento NLTK', 'Análise de Sentimento TextBlob', 'WordCloud', 'Gráfico'])
-    #selecionar a opção
-    if opcao == 'Análise de Sentimento OpenAI':
+    #ler dataframe com os tweets
+    df = gerar_dataframe_limpo()
+    #criar menu com as opções
+    opcoes = ['Analise sentimento openai', 'Análise de Sentimento NLTK', 'Análise de Sentimento TextBlob', 'Wordcloud', 'Gráfico']
+    opcao = st.sidebar.selectbox('Escolha uma opção', opcoes)
+    if opcao == 'Analise sentimento openai':
         analisar_sentimento_openai(df)
     elif opcao == 'Análise de Sentimento NLTK':
         analisar_sentimento_nltk(df)
     elif opcao == 'Análise de Sentimento TextBlob':
         analisar_sentimento_textblob(df)
-    elif opcao == 'WordCloud':
+    elif opcao == 'Wordcloud':
         wordcloud(df)
     elif opcao == 'Gráfico':
         grafico(df)
-        
+    else:
+        st.write('Erro')
+    
+    
 def main():
     """[summary]
     Função principal
     """
+    #configurar o título com html
+    
+    
+    
     menu()
     
     
