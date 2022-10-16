@@ -15,11 +15,11 @@ from collections import Counter
 import streamlit as st
 
 #chaves de acesso
-consumer_key = st.secrets["ck"]
-consumer_secret = st.secrets["cs"]
-access_token = st.secrets["act"]
-access_token_secret = st.secrets["ats"]
-openai.api_key = st.secrets["api"]
+consumer_key = st.secrets['ck']
+consumer_secret = st.secrets['cs']
+access_token = st.secrets['act']
+access_token_secret = st.secrets['ats']
+openai.api_key = st.secrets['api']
 
 # função para autenticar twitter
 def autenticar():
