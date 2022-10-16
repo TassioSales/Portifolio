@@ -54,6 +54,8 @@ def pegar_tweets():
         mostrar_tweets = st.button("Mostrar Tweets")
         if mostrar_tweets:
             st.table(df)
+        #deixa a tabela fixa na tela
+        st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     except Exception as e:
         st.write(e)
         
@@ -86,6 +88,8 @@ def limpar_tweets():
         limpar_tweets = st.button("Limpar Tweets")
         if limpar_tweets:
             st.table(df)
+            #deixa a tabela fixa na tela
+        st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     except Exception as e:
         st.write(e)
         
