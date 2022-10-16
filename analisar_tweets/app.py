@@ -71,3 +71,13 @@ def pegar_tweets():
     tweets = list(set(tweets))
     return tweets
 
+#função para gerar um data frame com os tweets
+def gerar_dataframe():
+    tweets = pegar_tweets()
+    df = pd.DataFrame(data=[tweet.full_text for tweet in tweets], columns=['Tweets'])
+    return df
+
+
+
+
+
