@@ -57,11 +57,16 @@ def perguntar_numero():
     numero = st.text_input("Digite o número de tweets que deseja")
     return numero
 
-
-
-
-
-
-
-
-
+# função para pesquisar os tweets
+def pegar_tweets():
+    tema = perguntar()
+    numero = perguntar_numero()
+    autenticar()
+    tweets = tw.Cursor(api.search_tweets, q=tema, lang='pt', tweet_mode='extended').items(int(numero))
+    #ignorar os retweets
+    tweets = [tweet for tweet in tweets if not tweet.retweeted]
+    #ignorar os tweets que não tem texto
+    tweets = [tweet for tweet in tweets if tweet.full_text]
+    #ignnoras tweets repetidos
+    tweets = list(set(tweets))
+    return tweets
