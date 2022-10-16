@@ -138,7 +138,6 @@ def main():
     if choice == "Limpar Tweets":
         limpar_tweets() 
     if choice == "Analisar Sentimento OpenAI":
-        df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimento_open(df)
 
                 
