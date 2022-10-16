@@ -78,8 +78,6 @@ def limpar_tweets():
             item = re.sub(r"\s+", " ", item)
             #remover espaços no inicio e no fim
             item = item.strip()
-            #remover stopwords usando nltk
-            stopwords = nltk.corpus.stopwords.words('portuguese')
             #salvar os tweets limpos em um arquivo csv
             df.to_csv(path_or_buf='tweets_limpos.csv', index=False)
             #ler o arquivo csv e mostrar o dataframe
