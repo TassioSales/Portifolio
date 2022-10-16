@@ -113,22 +113,25 @@ def analisar_sentimento_open(df):
             presence_penalty=0.6,
         )
         #titulo
-        st.title('Análise de Sentimento OpenAI')
         st.write(f"Tweet: {tweet}")
         st.write("Sentimento: {}".format(response.choices[0].text))
         
 #função principal
 def main():
-    #chamar a função para autenticar
-    autenticar()
-    #chamar a função para pegar os tweets
-    pegar_tweets()
-    #chamar a função para limpar os tweets
-    limpar_tweets()
-    #ler o arquivo csv com os tweets limpos
-    df = pd.read_csv('tweets_limpos.csv')
-    #chamar a função para analisar o sentimento dos tweets
-    analisar_sentimento_open(df)
+    #criar o menu
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento OpenAI"]
+    with st.sidebar:
+        escolha = st.selectbox("Menu", menu)
+        if escolha == "Home":
+            st.title("Análise de Sentimento de Tweets")
+            st.subheader("Análise de Sentimento de Tweets com OpenAI")
+        if escolha == "Pesquisar Tweets":
+            pesquisar_tweets()
+        if escolha == "Limpar Tweets":
+            limpar_tweets() 
+        if escolha == "Analisar Sentimento OpenAI":
+            df = pd.read_csv('tweets_limpos.csv')
+            analisar_sentimento_open(df)
     
                 
 if __name__ == '__main__':
