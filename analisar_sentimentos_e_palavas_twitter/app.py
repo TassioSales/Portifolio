@@ -54,8 +54,6 @@ def pegar_tweets():
         mostrar_tweets = st.button("Mostrar Tweets")
         if mostrar_tweets:
             st.table(df)
-        #deixa a tabela fixa na tela
-        st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     except Exception as e:
         st.write(e)
         
@@ -63,33 +61,37 @@ def pegar_tweets():
 def limpar_tweets():
     try:
         df = pd.read_csv('tweets.csv')
-        for item in df['Tweets']:
-            #remover links
-            item = re.sub(r"http\S+", "", item)
-            #remover @
-            item = re.sub(r"@\S+", "", item)
-            #remover #
-            item = re.sub(r"#\S+", "", item)
-            #remover emojis
-            item = re.sub(r"\\[a-z][a-z]?[0-9]+", "", item)
-            #remover pontuação
-            item = re.sub(r"[^\w\s]", "", item)
-            #remover números
-            item = re.sub(r"\d+", "", item)
-            #remover espaços em branco
-            item = re.sub(r"\s+", " ", item)
-            #remover espaços no inicio e no fim
-            item = item.strip()
-            #salvar os tweets limpos em um arquivo csv
-            df.to_csv(path_or_buf='tweets_limpos.csv', index=False)
-            #ler o arquivo csv e mostrar o dataframe
-            df = pd.read_csv('tweets_limpos.csv')
-            #Criar botão para limpar os tweets
+        #remover #
+        df['Tweets'] = df['Tweets'].str.replace('#', '')
+        #remover numeros
+        df['Tweets'] = df['Tweets'].str.replace('\d+', '')
+        #remover links
+        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'http\S+', '', x))
+        #remover @
+        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'RT', '', x))
+        #remover @
+        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'@[A-Za-z0-9]+', '', x))
+        # remove pontuação
+        df['Tweets'] = df['Tweets'].apply(lambda x: x.translate(str.maketrans('', '', string.punctuation)))
+        # remove números
+        df['Tweets'] = df['Tweets'].apply(lambda x: x.translate(str.maketrans('', '', string.digits)))
+        # remove espaços em branco
+        df['Tweets'] = df['Tweets'].apply(lambda x: x.strip())
+        # remove palavras com menos de 3 caracteres
+        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) > 3]))
+        # remove stopwords
+        stop_words = nltk.corpus.stopwords.words('portuguese')
+        # remove palavras com menos de 3 caracteres
+        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if w not in stop_words]))
+        #remove palavras com mais de 15 caracteres
+        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) < 15]))
+        #remover emojis
+        df['Tweets'] = df['Tweets'].apply(lambda x: x.encode('ascii', 'ignore').decode('ascii'))
+        df = pd.read_csv('tweets_limpos.csv')
+        #Criar botão para limpar os tweets
         limpar_tweets = st.button("Limpar Tweets")
         if limpar_tweets:
             st.table(df)
-            #deixa a tabela fixa na tela
-        st.markdown('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     except Exception as e:
         st.write(e)
         
@@ -101,4 +103,6 @@ def main():
                 
 if __name__ == '__main__':
     main()
+
+
         
