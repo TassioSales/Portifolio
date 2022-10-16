@@ -43,7 +43,7 @@ def pegar_tweets():
         #perquentar ao usuario a quantidade de tweets
         quantidade =st.number_input("Digite a quantidade de tweets que deseja pesquisar: ")
         #pesquisar os tweets
-        tweets = tw.Cursor(api.search, q=tema, lang="pt").items(quantidade)
+        tweets = tw.Cursor(api.search_tweets, q=tema, lang="pt").items(quantidade)
         #salvar os tweets em uma lista em arquivo csv com a coluna Tweets
         pd = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])
         #salvar os tweets em um arquivo csv
