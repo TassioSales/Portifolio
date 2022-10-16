@@ -220,4 +220,8 @@ def analisar_sentimento_textblob(df):
             st.write("Sentimento: Negativo")
         else:
             st.write("Sentimento: Neutro")
+            
+#analisar sentimento VADER
+def analisar_sentimento_vader(df):
+    
         
