@@ -151,6 +151,14 @@ def analisar_sentimento_open(df):
         
 #analisa o sentimento do tweet usando o nltk
 def analisar_sentimento_nltk(df):
+    """[summary]
+    Realiza a análise de sentimento dos tweets usando NLTK
+    Returns: string
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets
+    :param: df['Tweets']: coluna com os tweets limpos
+    :param: df['Sentimento']: coluna com o sentimento do tweet
+    """
     #traduzir os tweets para inglês usando openai
     for tweet in df['Tweets']:
         response = openai.Completion.create(
@@ -174,6 +182,41 @@ def analisar_sentimento_nltk(df):
         if ss['compound'] >= 0.05:
             st.write("Sentimento: Positivo")
         elif ss['compound'] <= - 0.05:
+            st.write("Sentimento: Negativo")
+        else:
+            st.write("Sentimento: Neutro")
+            
+#analisar sentimento TextBlob
+def analisar_sentimento_textblob(df):
+    """[summary]
+    Realiza a análise de sentimento dos tweets usando TextBlob
+    Returns: string
+    :param: df: dataframe com os tweets
+    :param: df['Tweets']: coluna com os tweets
+    :param: df['Tweets']: coluna com os tweets limpos
+    :param: df['Sentimento']: coluna com o sentimento do tweet
+    """
+    for tweet in df['Tweets']:
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
+            temperature=0.9,
+            max_tokens=50,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
+        )
+        st.title('Análise de Sentimento TextBlob')
+        st.write(f"Tweet: {tweet}")
+        traducao = response.choices[0].text
+        #analisa o sentimento do tweet usando o TextBlob
+        traducao = TextBlob(traducao)
+        traducao = traducao.sentiment
+        print(traducao)
+        #mostra o sentimento do tweet e positivo, negativo ou neutro
+        if traducao.polarity > 0:
+            st.write("Sentimento: Positivo")
+        elif traducao.polarity < 0:
             st.write("Sentimento: Negativo")
         else:
             st.write("Sentimento: Neutro")
