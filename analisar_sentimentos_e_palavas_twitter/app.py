@@ -83,9 +83,9 @@ def limpar_tweets():
             #ler o arquivo csv e mostrar o dataframe
             df = pd.read_csv('tweets_limpos.csv')
             #Criar botão para limpar os tweets
-            limpar_tweets = st.button("Limpar Tweets")
-            if limpar_tweets:
-                st.table(df)
+        limpar_tweets = st.button("Limpar Tweets")
+        if limpar_tweets:
+            st.table(df)
     except Exception as e:
         st.write(e)
         
