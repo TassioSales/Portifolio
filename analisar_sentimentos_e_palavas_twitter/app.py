@@ -61,35 +61,41 @@ def pegar_tweets():
 def limpar_tweets():
     try:
         df = pd.read_csv('tweets.csv')
-        #remover #
-        df['Tweets'] = df['Tweets'].str.replace('#', '')
-        #remover numeros
-        df['Tweets'] = df['Tweets'].str.replace('\d+', '')
-        #remover links
-        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'http\S+', '', x))
-        #remover @
-        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'RT', '', x))
-        #remover @
-        df['Tweets'] = df['Tweets'].apply(lambda x: re.sub(r'@[A-Za-z0-9]+', '', x))
-        # remove pontuação
-        df['Tweets'] = df['Tweets'].apply(lambda x: x.translate(str.maketrans('', '', string.punctuation)))
-        # remove números
-        df['Tweets'] = df['Tweets'].apply(lambda x: x.translate(str.maketrans('', '', string.digits)))
-        # remove espaços em branco
-        df['Tweets'] = df['Tweets'].apply(lambda x: x.strip())
-        # remove palavras com menos de 3 caracteres
-        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) > 3]))
-        #remove palavras com mais de 15 caracteres
-        df['Tweets'] = df['Tweets'].apply(lambda x: ' '.join([w for w in x.split() if len(w) < 15]))
-        #remover emojis
-        df['Tweets'] = df['Tweets'].apply(lambda x: x.encode('ascii', 'ignore').decode('ascii'))
-        df = pd.read_csv('tweets_limpos.csv')
-        #Criar botão para limpar os tweets
-        limpar_tweets = st.button("Limpar Tweets")
-        if limpar_tweets:
-            st.table(df)
+        #remeover links usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"http\S+", "", x), inplace=True)
+        #remover @ usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"@\S+", "", x), inplace=True)
+        #remover # usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"#\S+", "", x), inplace=True)
+        #remover emojis usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"\\U\S+", "", x), inplace=True)
+        #remover pontuação usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"[^\w\s]", "", x), inplace=True)
+        #remover números usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"\d+", "", x), inplace=True)
+        #remover espaços em branco usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"\s+", " ", x), inplace=True)
+        #remover palavras com menos de 3 letras usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"\b\w{1,3}\b", "", x), inplace=True)
+        #remover palavras com mais de 15 letras usando regex usando a função lambda e inplace=True
+        df['Tweets'].apply(lambda x: re.sub(r"\b\w{15,}\b", "", x), inplace=True)
+        #remover stopwords usando a função lambda e inplace=True
+        df['Tweets'].apply(func=lambda x: ' '.join([word for word in x.split() if word not in (stopwords)]), inplace=True)
+        #salvar os tweets limpos em um arquivo csv
+        df.to_csv(path_or_buf='tweets_limpos.csv', index=False)
+        ##ler o arquivo csv e mostrar o dataframe
+        tweets_limpos = pd.read_csv('tweets_limpos.csv')
+        #criar botao para mostrar os tweets limpos
+        mostrar_tweets_limpos = st.button("Mostrar Tweets Limpos")
+        if mostrar_tweets_limpos:
+            st.table(tweets_limpos)
     except Exception as e:
         st.write(e)
+    
+        
+        
+        
+        
         
 #função principal
 def main():
