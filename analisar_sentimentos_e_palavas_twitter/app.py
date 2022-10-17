@@ -240,6 +240,7 @@ def wordcloud(df):
     plt.axis("off")
     plt.tight_layout(pad = 0)
     plt.show()
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
     
    
