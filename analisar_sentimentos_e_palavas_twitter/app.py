@@ -132,7 +132,8 @@ def analisar_sentimentos_nltk(df):
         nltk.download('vader_lexicon')
         for tweet in df['Tweets']:
             #traducao
-            traducao = Translator.translate(tweet, dest='en')        
+            translator = Translator()
+            tweet = translator.translate(tweet, dest='en')      
             #analisa o sentimento do tweet usando o nltk
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao)
