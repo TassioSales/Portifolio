@@ -139,21 +139,18 @@ def analisar_sentimentos_nltk(df):
             #analisar o sentimento dos tweets
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao.text)
-        if ss['compounds'] < 0:
-            df['Sentimento'] = 'Negativo'
-        elif ss['compounds'] == 0:
-            df['Sentimento'] = 'Neutro'
-        else:
-            df['Sentimento'] = 'Positivo'
-        #criar botao para mostrar os tweets com o sentimento
-        if st.button("Mostrar Sentimento"):
-            st.table(df)
-        else:
-            st.write("Clique no botão para mostrar o sentimento do tweet")
-        #salvar os tweets com o sentimento em um arquivo csv apartir da nova lista criando uma coluna com tweets e outra com o sentimento
-        df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
-    except Exception as e:
-        st.write(e)
+            #mostrar o sentimento dos tweets
+            for k in sorted(ss):
+                st.write('{0}: {1}, '.format(k, ss[k]), end='')
+                #motrar o sentimento dos tweets sao positivos, negativos ou neutros
+                if k in ss:
+                    if ss[k] >= 0.05:
+                        st.write("Positivo")
+                    elif ss[k] <= -0.05:
+                        st.write("Negativo")
+                    else:
+                        st.write("Neutro")
+            
         
         
         
