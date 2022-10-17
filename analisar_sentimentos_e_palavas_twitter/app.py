@@ -145,13 +145,12 @@ def analisar_sentimentos_nltk(df):
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao)
             #cria dataframe com sentimento se negativos se positivo se neutro de lambda
-            if sid.polarity_scores(traducao) == 0:
-                df['Sentimento'] = 'Neutro'
-            elif sid.polarity_scores(traducao) > 0:
-                df['Sentimento'] = 'Positivo'
-            else:
+            if ss['compound'] < 0:
                 df['Sentimento'] = 'Negativo'
-        #cria botao para mostrar dataframe
+            elif ss['compound'] == 0:
+                df['Sentimento'] = 'Neutro'
+            else:
+                df['Sentimento'] = 'Positivo'
         if st.button("Mostrar Sentimento"):
             st.table(df)
         else:
