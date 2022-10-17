@@ -130,28 +130,29 @@ def analisar_sentimento_open(df):
 def analisar_sentimentos_nltk(df):
     try:
         nltk.download('vader_lexicon')
-        for tweet in df['Tweets']:
-            #traducao
+        nova_lista = [word.encode('utf-8') for word in df['Tweets']]
+        #ler tweets da nova_lista
+        for tweet in nova_lista:
+            #traduzir os tweets para o ingles
             translator = Translator()
-            tweet = translator.translate(tweet, dest='en')      
-            #analisa o sentimento do tweet usando o nltk
-            sid = SentimentIntensityAnalyzer()
-            ss = sid.polarity_scores(tweet)
-            #cria dataframe com sentimento se negativos se positivo se neutro de lambda
-            if ss['compound'] < 0:
-                df['Sentimento'] = 'Negativo'
-            elif ss['compound'] == 0:
-                df['Sentimento'] = 'Neutro'
+            traducao = translator.translate(tweet, dest='en')
+            #analisar o sentimento dos tweets
+            analyzer = SentimentIntensityAnalyzer()
+            vs = analyzer.polarity_scores(traducao.text)
+            #mostrar o sentimento dos tweets
+            if st.button("Mostrar Sentimento"):
+                if vs['compound'] >= 0.05:
+                    st.write('Positivo')
+                elif vs['compound'] <= -0.05:
+                    st.write('Negativo')
+                else:
+                    st.write('Neutro')
             else:
-                df['Sentimento'] = 'Positivo'
-        if st.button("Mostrar Sentimento"):
-            st.table(df)
-        else:
-            st.write("Clique no botão para mostrar o sentimento do tweet")
-        #salvar os tweets com o sentimento em um arquivo csv
-        df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
-    except Exception as e:
-        st.write(e)    
+                st.write("Clique no botão para mostrar o sentimento do tweet")            
+        
+            
+            
+ 
            
     
     
