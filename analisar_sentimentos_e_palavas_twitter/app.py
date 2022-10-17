@@ -15,7 +15,7 @@ from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
 from googletrans import Translator
-from stop_word import stopWords
+from stop_word import stop_palavras
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -97,6 +97,7 @@ def limpar_tweets():
             st.table(tweets_limpos)
     except Exception as e:
         st.write(e)
+        st.write(e.__class__())
         
 def analisar_sentimentos_nltk(df):
     #criar coluna Traducao no dataframe
@@ -224,7 +225,6 @@ def grafico_pizza():
 def wordcloud(df):
     try:
         palavras = ''
-        stopWords = stopWords
         for tweet in df['Tweets']:
             palavras += tweet
             # remove palavras com menos de 3 caracteres
@@ -234,7 +234,7 @@ def wordcloud(df):
             #remover palavras repetidas
             palavras = ' '.join(set(palavras.split()))
             #remover stopWords
-            palavras = ' '.join(set(stopWords.split()))
+            palavras = ' '.join(set(stop_palavras.split()))
             #criar uma wordclod com as palavras mais usadas
         wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='white',
@@ -248,7 +248,8 @@ def wordcloud(df):
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     except Exception as e:
-        st.error("exceptions")
+        st.write(e)
+        st.write(e.__class__())
         
         
    
