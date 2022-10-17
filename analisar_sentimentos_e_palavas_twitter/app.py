@@ -124,17 +124,62 @@ def analisar_sentimento_open(df):
     #salvar os tweets com o sentimento em um arquivo csv
     df.to_csv(path_or_buf='tweets_sentimento_openia.csv', index=False)
     
+    
+def analisar_sentimentos_nltk(df):
+    for tweet in df['Tweets']:
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
+            temperature=0.9,
+            max_tokens=50,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
+        )
+        st.title('Análise de Sentimento NLTK')
+        st.write(f"Tweet: {tweet}")
+        traducao = response.choices[0].text
+        #analisa o sentimento do tweet usando o nltk
+        sid = SentimentIntensityAnalyzer()
+        ss = sid.polarity_scores(traducao)
+        #mostra o sentimento do tweet e positivo, negativo ou neutro
+        if ss['compound'] >= 0.05:
+            df['Sentimento'] = 'Positivo'
+        elif ss['compound'] <= - 0.05:
+            df['Sentimento'] = 'Negativo'
+        else:
+            df['Sentimento'] = 'Neutro'
+        if st.button("Mostrar Sentimento nltk"):
+            st.table(df)
+        else:
+            st.write("Clique no botão para mostrar o sentimento do tweet")
+        #salvar os tweets com o sentimento em um arquivo csv
+        df.to_csv(path_or_buf='tweets_sentimento_nlkt.csv', index=False)
+    
+    
+    
+    
 #criar função para criar grafico de barras
 def grafico_barras():
-    # ler o arquivo csv com os tweets e o sentimento
-    df = pd.read_csv('tweets_sentimento_openia.csv')
-    #criar um dataframe com a coluna Sentimento
-    df_sentimento = df['Sentimento']
-    #criar um grafico de barras com a contagem de cada sentimento
-    st.bar_chart(df_sentimento.value_counts())
-    string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
-    st.write(string)
-    
+    if st.button('Grafico OPENIA'):
+        # ler o arquivo csv com os tweets e o sentimento
+        df = pd.read_csv('tweets_sentimento_openia.csv')
+        #criar um dataframe com a coluna Sentimento
+        df_sentimento = df['Sentimento']
+        #criar um grafico de barras com a contagem de cada sentimento
+        st.bar_chart(df_sentimento.value_counts())
+        string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+        st.write(string)
+    if st.button('Grafico NLTK'):
+        # ler o arquivo csv com os tweets e o sentimento
+        df = pd.read_csv('tweets_sentimento_nlkt.csv')
+        #criar um dataframe com a coluna Sentimento
+        df_sentimento = df['Sentimento']
+        #criar um grafico de barras com a contagem de cada sentimento
+        st.bar_chart(df_sentimento.value_counts())
+        string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+        st.write(string)
+        
     
 
      
@@ -142,7 +187,7 @@ def grafico_barras():
 #função principal
 def main():
     #criar o menu
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento OpenAI", "Mostrar Gráfico OpenAI"]
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento OpenAI","Analisar Sentimento NLTK","Mostrar Gráfico OpenAI"]
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
