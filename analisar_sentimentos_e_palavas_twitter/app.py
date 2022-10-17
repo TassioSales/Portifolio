@@ -275,27 +275,28 @@ def main():
         st.write("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
         st.write("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
         st.write("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
-    if choice == "Pesquisar Tweets":
+        option = st.selectbox('Selecione a opção desejada', ('Pesquisar Tweets', 'Limpar Tweets', 'Analisar Sentimento NLTK', 'Analise de Sentimento TextBlob', 'Mostrar Gráficos Barras', 'Mostrar Gráficos Pizza', 'Mostrar WordCloud'))
+    if choice == "Pesquisar Tweets" or option == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
         pegar_tweets()
-    if choice == "Limpar Tweets":
+    if choice == "Limpar Tweets" or option == "Limpar Tweets":
         st.title("Limpar Tweets")
         limpar_tweets() 
-    if choice == "Analisar Sentimento NLTK":
+    if choice == "Analisar Sentimento NLTK" or option == "Analisar Sentimento NLTK":
         st.title("Analisar Sentimento NLTK")
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_nltk(df)
-    if choice == "Analise de Sentimento TextBlob":
+    if choice == "Analise de Sentimento TextBlob" or option == "Analise de Sentimento TextBlob":
         st.title('Analise de Sentimento TextBlob')
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_textblob(df)
-    if choice == "Mostrar Gráficos Barras":
+    if choice == "Mostrar Gráficos Barras" or option == "Mostrar Gráficos Barras":
         st.title('Gráficos de Barras')
         grafico_barras()
-    if choice == "Mostrar Gráficos Pizza":
+    if choice == "Mostrar Gráficos Pizza" or option == "Mostrar Gráficos Pizza":
         st.title("Gráfico de Pizza")
         grafico_pizza()
-    if choice == "Mostrar WordCloud":
+    if choice == "Mostrar WordCloud" or option == "Mostrar WordCloud":
         st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
