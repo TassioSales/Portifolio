@@ -128,6 +128,8 @@ def analisar_sentimento_open(df):
     
     
 def analisar_sentimentos_nltk(df):
+    #criar coluna Traducao no dataframe
+    df['Traducao'] = ""
     try:
         for tweet in df['Tweets']:
             translator = Translator()
