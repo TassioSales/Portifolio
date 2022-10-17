@@ -252,6 +252,10 @@ def wordcloud(df):
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
+        
+#criar função para navegar entre as paginas
+def navegar():
+    
       
 #função principal
 def main():
@@ -261,6 +265,7 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
     if choice == "Home":
+        st.sidebar.selectbox("Menu", menu)
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
         st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
@@ -273,7 +278,7 @@ def main():
         st.write("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
         st.write("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
         st.write("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
-    if choice == "Pesquisar Tweets" or option == "Pesquisar Tweets":
+    if choice == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
         pegar_tweets()
     if choice == "Limpar Tweets":
