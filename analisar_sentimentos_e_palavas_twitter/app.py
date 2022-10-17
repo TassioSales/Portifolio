@@ -162,8 +162,6 @@ def analisar_sentimentos_nltk(df):
         df_sentimeto.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
     except Exception as e:
         st.write(e)
-    except Exception as e:
-        st.write(e)
         
 #criar função para criar grafico de barras
 def grafico_barras():
