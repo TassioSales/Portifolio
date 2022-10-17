@@ -226,7 +226,7 @@ def WordCloud(df):
         palavras = palavras + ' ' + item
         #remover STOPWORDS em portuguese
         stopwords = set(STOPWORDS)
-        wordcloud = WordCloud(width = 800, height = 800,
+    wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
                 min_font_size = 10).generate(palavras)
     #plotar a wordclod
