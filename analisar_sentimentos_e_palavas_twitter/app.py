@@ -129,6 +129,7 @@ def analisar_sentimento_open(df):
     
 def analisar_sentimentos_nltk(df):
     try:
+        df_sentimeto = pd.DataFrame(coluns=['Tweets', 'Sentimento'])
         nltk.download('vader_lexicon')
         nova_lista = [word.encode('utf-8') for word in df['Tweets']]
         #ler tweets da nova_lista
@@ -139,19 +140,17 @@ def analisar_sentimentos_nltk(df):
             #analisar o sentimento dos tweets
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao.text)
-            # criar um dataframe vazio com as coluna tweets e sentimento
-            df = pd.DataFrame(coluns=['Tweets', 'Sentimento'])
             #mostrar o sentimento dos tweets
             for k in sorted(ss):
                 #motrar o sentimento dos tweets sao positivos, negativos ou neutros
                 if k in ss:
                     if ss[k] >= 0.05:
                         #adicionar os tweets e o sentimento no dataframe
-                        df = df.append({'Tweets': tweet, 'Sentimento': 'Positivo'}, ignore_index=True) 
+                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Positivo'}, ignore_index=True)
                     elif ss[k] <= -0.05:
-                        df = df.append({'Tweets': tweet, 'Sentimento': 'Negativo'}, ignore_index=True)
+                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Negativo'}, ignore_index=True)
                     else:
-                        df = df.append({'Tweets': tweet, 'Sentimento': 'Neutro'}, ignore_index=True)
+                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Neutro'}, ignore_index=True)
         #mostrar o dataframe com os tweets e o sentimento
         st.table(df)    
     except Exception as e:
