@@ -225,7 +225,7 @@ def wordcloud(df):
     for tweet in df['Tweets']:
         palavras += tweet
         # remove palavras com menos de 3 caracteres
-        palavras = ' '.join([w for w in palavras.split() if w not in stop_words])
+        palavras = re.sub(r'\W*\b\w{1,3}\b', '', palavras)
         #remover palavras com mais de 15 caracteres
         palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
         #remover palavras repetidas
