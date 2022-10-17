@@ -283,11 +283,14 @@ def main():
             "NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
         st.write("6 - Recomendo que que a limpeza dos tweets seja feita antes de analisar o sentimento dos tweets.")
         st.write(
-            "7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão Mostrar Gráfico.")
+            "7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão "
+            "Mostrar Gráfico.")
         st.write(
-            "8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
+            "8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão "
+            "Mostrar Gráfico.")
         st.write(
-            "9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
+            "9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar "
+            "WordCloud.")
         st.write("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
     if choice == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
