@@ -15,7 +15,7 @@ from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
 from googletrans import Translator
-from nltk.corpus import stopwords
+from stop_word import stopWords
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -222,33 +222,35 @@ def grafico_pizza():
         st.write(e.__class__())
         
 def wordcloud(df):
-    #criar uma string com todas as palavras
-    palavras = ''
-    for tweet in df['Tweets']:
-        palavras += tweet
-        # remove palavras com menos de 3 caracteres
-        palavras = re.sub(r'\W*\b\w{1,3}\b', '', palavras)
-        #remover palavras com mais de 15 caracteres
-        palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
-        #remover palavras repetidas
-        palavras = ' '.join(set(palavras.split()))
-        #remover stopwords    
-    for item in range(len(palavras)):
-        words = nltk.tokenize(palavras[item])
-        newwords = [word for word in words if word not in nltk.corpus]
-        palavras[item] = ' '.join(newwords)
-    wordcloud = WordCloud(width = 800, height = 800,
-                background_color ='white',
-                min_font_size = 10).generate(palavras)
-    #plotar a wordclod
-    plt.figure(figsize = (8, 8), facecolor = None)
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad = 0)
-    plt.show()
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
-    
+    try:
+        palavras = ''
+        stopWords = stopWords
+        for tweet in df['Tweets']:
+            palavras += tweet
+            # remove palavras com menos de 3 caracteres
+            palavras = re.sub(r'\W*\b\w{1,3}\b', '', palavras)
+            #remover palavras com mais de 15 caracteres
+            palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
+            #remover palavras repetidas
+            palavras = ' '.join(set(palavras.split()))
+            #remover stopWords
+            palavras = ' '.join(set(stopWords.split()))
+            #criar uma wordclod com as palavras mais usadas
+        wordcloud = WordCloud(width = 800, height = 800,
+                    background_color ='white',
+                    min_font_size = 10).generate(palavras)
+        #plotar a wordclod
+        plt.figure(figsize = (8, 8), facecolor = None)
+        plt.imshow(wordcloud)
+        plt.axis("off")
+        plt.tight_layout(pad = 0)
+        plt.show()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
+    except Exception as e:
+        st.error("exceptions")
+        
+        
    
 #função principal
 def main():
