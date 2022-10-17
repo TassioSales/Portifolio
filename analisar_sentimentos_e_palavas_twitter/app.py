@@ -133,7 +133,7 @@ def analisar_sentimentos_nltk(df):
             translator = Translator()
             traduzir = translator.translate(tweet, dest='en')
             #criar coluna com a tradução dos tweets
-            df['Tradução'] = traduzir.text
+            df = df.append({'Traducao': traduzir.text}, ignore_index=True)
         #mostra dataframe
         st.table(df)
     except Exception as e:
