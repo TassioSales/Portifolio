@@ -130,9 +130,7 @@ def grafico_barras(df):
     fig.update_layout(title_text='Sentimento dos Tweets')
     fig.show()   
 
-    
-            
-   
+     
         
 #função principal
 def main():
