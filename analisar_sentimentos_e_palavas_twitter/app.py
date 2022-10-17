@@ -236,7 +236,6 @@ def wordcloud(df):
         #criar uma wordclod com as palavras mais usadas
     wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
-                stopwords=stop_words,
                 min_font_size = 10).generate(palavras)
     #plotar a wordclod
     plt.figure(figsize = (8, 8), facecolor = None)
