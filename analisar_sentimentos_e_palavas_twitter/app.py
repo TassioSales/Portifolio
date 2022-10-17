@@ -263,6 +263,43 @@ def wordcloud(df):
         st.write(e.__class__())
 
 
+# criar função para navegar entre as páginas
+def navegar():
+    try:
+        # criar menu de navegação com as páginas
+        menupaginas = st.sidebar.radio('Menu de Navegação', ["Home", "Pesquisar Tweets", "Análise de Sentimento NLTK",
+                                                             "Análise de Sentimento TextBlob", "Gráfico de Barras",
+                                                             "Gráfico de Pizza", "WordCloud"])
+        # se a página selecionada for home, chamar a função
+        if menupaginas == "Home":
+            main()
+        # se a página selecionada for pesquisar tweets, chamar a função
+        elif menupaginas == "Pesquisar Tweets":
+            pegar_tweets()
+        # se a página selecionada for análise de sentimento nltk, chamar a função
+        elif menupaginas == "Análise de Sentimento NLTK":
+            df = pd.read_csv('tweets_limpos.csv')
+            analisar_sentimentos_nltk(df)
+        # se a página selecionada for análise de sentimento textblob, chamar a função
+        elif menupaginas == "Análise de Sentimento TextBlob":
+            df = pd.read_csv('tweets_limpos.csv')
+            analisar_sentimentos_textblob(df)
+        # se a página selecionada for gráfico de barras, chamar a função
+        elif menupaginas == "Gráfico de Barras":
+            grafico_barras()
+        # se a página selecionada for gráfico de pizza, chamar a função
+        elif menupaginas == "Gráfico de Pizza":
+            grafico_pizza()
+        # se a página selecionada for wordcloud, chamar a função
+        elif menupaginas == "WordCloud":
+            df = pd.read_csv('tweets_limpos.csv')
+            wordcloud(df)
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
+        # criar um if para cada
+
+
 # função principal
 def main():
     # criar o menu
@@ -271,6 +308,8 @@ def main():
     # criar o selectbox configurando o menu para ficar sempre visivel
     choice = st.sidebar.selectbox("Menu", menu, index=0, key='1')
     if choice == "Home":
+        # chamar a função navegar
+        navegar()
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
         st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
@@ -312,7 +351,6 @@ def main():
         st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
-    # como deixar o menu aberto para o usuário
 
 
 if __name__ == '__main__':
