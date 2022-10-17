@@ -260,7 +260,7 @@ def main():
     #criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
     #criar o selectbox
-    choice = st.sidebar.selectbox("Menu", menu, key=1)
+    choice = st.sidebar.selectbox("Menu", menu, key=1, text=choice)
     #selecionar a opção do menu
     if choice == "Home":
         st.title("Análise de Sentimento de Tweets")
@@ -275,7 +275,6 @@ def main():
         st.text("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
         st.text("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
         st.text("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
-        st.subheader("Análise de Sentimento de Tweets com OpenAI")
     if choice == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
         pegar_tweets()
