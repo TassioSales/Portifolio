@@ -136,7 +136,7 @@ def analisar_sentimentos_nltk(df):
             tweet = translator.translate(tweet, dest='en')      
             #analisa o sentimento do tweet usando o nltk
             sid = SentimentIntensityAnalyzer()
-            ss = sid.polarity_scores(traducao)
+            ss = sid.polarity_scores(tweet)
             #cria dataframe com sentimento se negativos se positivo se neutro de lambda
             if ss['compound'] < 0:
                 df['Sentimento'] = 'Negativo'
