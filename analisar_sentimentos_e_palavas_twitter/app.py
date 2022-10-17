@@ -129,7 +129,7 @@ def analisar_sentimento_open(df):
     
 def analisar_sentimentos_nltk(df):
     try:
-        df_sentimeto = pd.DataFrame(columns=['Sentimento'])
+        df_sentimeto = pd.DataFrame(columns=['Tweets', 'Sentimento'])
         nltk.download('vader_lexicon')
         nova_lista = [word.encode('utf-8') for word in df['Tweets']]
         #ler tweets da nova_lista
@@ -146,16 +146,20 @@ def analisar_sentimentos_nltk(df):
             if k in ss:
                 if ss[k] >= 0.05:
                     #adicionar o sentimento dos tweets ao dataframe
-                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Positivo'}, ignore_index=True)
+                    df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Positivo'}, ignore_index=True)
                 elif ss[k] <= -0.05:
-                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Negativos'}, ignore_index=True)
+                    df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Negativos'}, ignore_index=True)
                 else:
-                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Neutron'}, ignore_index=True)
-        #concatenar df com df_sentimeto
-        df = pd.concat([df, df_sentimeto], axis=1)
-        st.table(df)
+                    df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Neutro'}, ignore_index=True)
+        #mostrar o dataframe com os tweets e o sentimento
+        if st.button("Mostrar Sentimento"):
+            st.table(df_sentimeto)
+        else:
+            st.write("Clique no botão para mostrar o sentimento do tweet")
         #salvar os tweets com o sentimento em um arquivo csv
-        df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
+        df_sentimeto.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
+    except Exception as e:
+        st.write(e)
     except Exception as e:
         st.write(e)
         
