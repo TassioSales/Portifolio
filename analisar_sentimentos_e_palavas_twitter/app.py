@@ -263,7 +263,6 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
     if choice == "Home":
-        st.sidebar.selectbox("Menu", menu)
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
         st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
