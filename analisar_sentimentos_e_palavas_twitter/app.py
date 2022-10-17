@@ -130,9 +130,9 @@ def analisar_sentimento_open(df):
 def analisar_sentimentos_nltk(df):
     try:
         translator = Translator()
-        traduzir = translator.translate(df)
-        #criar um coluna no datafra com a traducao de cada twee
-        df['Traducao'] = traduzir.text
+        traduzir = translator.translate(dest='en')
+        for tweet in df['Tweets']:
+            df['Traducao']= traduzir.append(tweet.text)
     except:
         st.write("Erro ao traduzir os tweets")
 
