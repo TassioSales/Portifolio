@@ -223,7 +223,7 @@ def grafico_pizza():
         
 def wordcloud(df):
     #criar uma string com todas as palavras
-    stop_words = set(stopwords.words('portuguese'))
+    stop_words = set(sw.words('portuguese'))
     palavras = ''
     for tweet in df['Tweets']:
         palavras += tweet
