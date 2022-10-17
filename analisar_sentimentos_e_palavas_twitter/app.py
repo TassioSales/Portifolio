@@ -263,31 +263,13 @@ def wordcloud(df):
         st.write(e.__class__())
 
 
-def configpage():
-    # deixar o menu aberto
-    st.sidebar.markdown("<h1 style='text-align: center; color: black;'>Menu</h1>", unsafe_allow_html=True)
-    # deixar botoes redondos
-    st.sidebar.markdown("<style>div.row-widget.stRadio > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    # deixa o menu fixo
-    st.sidebar.markdown(
-        "<style>div.sidebar .sidebar-content {position: fixed; top: 0; bottom: 0; left: 0; width: 20rem;}</style>",
-        unsafe_allow_html=True)
-    # deixa botoes do menu com o mesmo tamanho
-    st.sidebar.markdown("<style>div.sidebar .sidebar-content {width: 20rem;}</style>", unsafe_allow_html=True)
-    # deixar botoes com a cor verde
-    st.sidebar.markdown("<style>div.row-widget.stRadio > div > label{background-color: #4CAF50; color: white;}</style>",
-                        unsafe_allow_html=True)
-
-
-
 # função principal
 def main():
     # criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento NLTK", "Analise de Sentimento TextBlob",
             "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
-    # criar o selectbox
-    choice = st.sidebar.selectbox("Menu", menu)
-    # selecionar a opção do menu
+    # criar o selectbox configurando o menu para ficar sempre visivel
+    choice = st.sidebar.selectbox("Menu", menu, index=0, key='1')
     if choice == "Home":
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
@@ -296,7 +278,8 @@ def main():
         st.write("3 - Recomendo para Quantidade de tweets não ultrapassar 1000, pois o tempo de processamento é maior.")
         st.write("4 - Para limpar os tweets, basta selecionar a opção Limpar Tweets e clicar no botão Limpar.")
         st.write(
-            "5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
+            "5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento "
+            "NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
         st.write("6 - Recomendo que que a limpeza dos tweets seja feita antes de analisar o sentimento dos tweets.")
         st.write(
             "7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão Mostrar Gráfico.")
@@ -333,5 +316,4 @@ def main():
 
 
 if __name__ == '__main__':
-    configpage()
     main()
