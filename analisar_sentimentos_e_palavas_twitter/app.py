@@ -5,7 +5,7 @@ import tweepy as tw
 import re
 import string
 import nltk
-from wordcloud import WordCloud, STOPWORDS
+from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -230,9 +230,13 @@ def wordcloud(df):
         palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
         #remover palavras repetidas
         palavras = ' '.join(set(palavras.split()))
-    #criar uma wordclod com as palavras mais usadas
+        #criar lista de stopwords
+        stopwords = ['']
+         
+        #criar uma wordclod com as palavras mais usadas
     wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
+                stopwords=stop_words,
                 min_font_size = 10).generate(palavras)
     #plotar a wordclod
     plt.figure(figsize = (8, 8), facecolor = None)
