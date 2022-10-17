@@ -118,11 +118,11 @@ def analisar_sentimento_open(df):
             presence_penalty=0.6,
         )
         if response['choices'][0]['text'] == 'Positivo':
-            df['Sentimento'] = 'Positivo'
+            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Positivo'
         elif response['choices'][0]['text'] == 'Negativo':
-            df['Sentimento'] = 'Negativo'
+            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Negativo'
         else:
-            df['Sentimento'] = 'Neutro'
+            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Neutro'
     if st.button("Mostrar Sentimento"):
         st.table(df)
     else:
