@@ -106,7 +106,7 @@ def analisar_sentimento_open(df):
     :param: df['Tweets']: coluna com os tweets limpos
     :param: df['Sentimento']: coluna com o sentimento do tweet
     """
-    df['Sentimento'] = " "
+    df['Sentimento'] = ""
     for tweet in df['Tweets']:
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -117,8 +117,12 @@ def analisar_sentimento_open(df):
             frequency_penalty=0,
             presence_penalty=0.6,
         )
-        #titulo
-    df['Sentimento'].loc[df['Tweets'] == tweet] = response['choices'][0]['text']
+    if response['choices'][0]['text'] == "Positivo":
+        df['Sentimento'] = "Positivo"
+    elif response['choices'][0]['text'] == "Negativo":
+        df['Sentimento'] = "Negativo"
+    else:
+        df['Sentimento'] = "Neutro"
     if st.button("Mostrar Sentimento"):
         st.table(df)
     else:
