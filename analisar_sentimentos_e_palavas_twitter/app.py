@@ -13,6 +13,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from collections import Counter
 import streamlit as st
+import plotly.graph_objects as go
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
