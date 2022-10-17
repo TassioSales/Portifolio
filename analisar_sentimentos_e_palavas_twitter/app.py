@@ -138,8 +138,6 @@ def analisar_sentimentos_nltk(df):
                 frequency_penalty=0,
                 presence_penalty=0.6,
             )
-            st.title('Análise de Sentimento NLTK')
-            st.write(f"Tweet: {tweet}")
             traducao = response.choices[0].text
             #analisa o sentimento do tweet usando o nltk
             sid = SentimentIntensityAnalyzer()
