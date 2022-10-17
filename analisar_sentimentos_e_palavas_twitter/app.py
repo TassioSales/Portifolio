@@ -187,11 +187,36 @@ def grafico_barras():
         st.write(e)
         st.write(e.__class__())
         
+#criar função para criar grafico de pizza
+def grafico_pizza():
+    try:
+        if st.button('Grafico NLTK'):
+            # ler o arquivo csv com os tweets e o sentimento
+            df = pd.read_csv('tweets_sentimento_nltk.csv')
+            #criar um dataframe com a coluna Sentimento
+            df_sentimento = df['Sentimento']
+            #criar um grafico de pizza com a contagem de cada sentimento
+            st.write(df_sentimento.value_counts().plot.pie(autopct="%1.1f%%"))
+            string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+            st.write(string)
+        if st.button('Grafico TextBlob'):
+            # ler o arquivo csv com os tweets e o sentimento
+            df = pd.read_csv('tweets_sentimento_textblob.csv')
+            #criar um dataframe com a coluna Sentimento
+            df_sentimento = df['Sentimento']
+            #criar um grafico de pizza com a contagem de cada sentimento
+            st.write(df_sentimento.value_counts().plot.pie(autopct="%1.1f%%"))
+            string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+            st.write(string)
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
+        
    
 #função principal
 def main():
     #criar o menu
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos"]
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza"]
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
@@ -210,6 +235,8 @@ def main():
         analisar_sentimentos_textblob(df)
     if choice == "Mostrar Gráficos":
         grafico_barras()
+    if choice == "Mostrar Gráficos Pizza":
+        WordCloud()
 
                 
 if __name__ == '__main__':
