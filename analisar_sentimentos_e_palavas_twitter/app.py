@@ -120,6 +120,22 @@ def analisar_sentimento_open(df):
         st.table(df)
     else:
         st.write("Clique no botão para mostrar o sentimento do tweet")
+    #salvar os tweets com o sentimento em um arquivo csv
+    df.to_csv(path_or_buf='tweets_sentimento.csv', index=False)
+    
+#função para mostrar o gráfico de barras com a quantidade de tweets positivos, negativos e neutros do arquivo tweets_sentimento.csv
+def mostrar_grafico_openia(df):
+    #criar um dataframe com a coluna Sentimento
+    df_sentimento = df['Sentimento']
+    #criar um dataframe com a coluna Sentimento e a quantidade de cada sentimento
+    df_sentimento = df_sentimento.value_counts()
+    #criar botao para mostrar o grafico
+    if st.button("Mostrar Gráfico"):
+        #mostrar o grafico de barras
+        st.bar_chart(df_sentimento)
+    
+
+    
             
    
         
@@ -140,9 +156,11 @@ def main():
     if choice == "Analisar Sentimento OpenAI":
         #ler o arquivo csv e mostrar o dataframe
         df = pd.read_csv('tweets_limpos.csv')
+        df_sentimento = pd.read_csv('tweets_sentimento.csv')
         #Criar titulo
-        st.altair_chart(analisar_sentimento_open(df))
-        #analisar_sentimento_open(df)
+        st.title("Análise de Sentimento de Tweets openAI")
+        analisar_sentimento_open(df)
+        mostrar_grafico_openia(df_sentimento)
 
                 
 if __name__ == '__main__':
