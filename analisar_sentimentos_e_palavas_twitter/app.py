@@ -224,8 +224,6 @@ def wordcloud(df):
     palavras = ''
     for tweet in df['Tweets']:
         palavras += tweet
-        #remover as stopwords
-        stop_words = nltk.corpus.stopwords.words('portuguese')
         # remove palavras com menos de 3 caracteres
         palavras = ' '.join([w for w in palavras.split() if w not in stop_words])
         #remover palavras com mais de 15 caracteres
