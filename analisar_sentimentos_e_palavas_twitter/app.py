@@ -65,7 +65,7 @@ def pegar_tweets():
 
 
 # função com botao para limpar tweets do arquivo csv e mostra a tabela com os tweets limpos
-def limpar_tweets():
+def pesquisar_tweets():
     try:
         df = pd.read_csv('tweets.csv')
         # remeover links usando regex usando a função lambda
@@ -271,85 +271,23 @@ def main():
     opcoes = st.sidebar.selectbox("Menu", menu)
     # criar um titulo
     st.title("Análise de Sentimento de Tweets")
-    # criar um subtitulo
     if opcoes == "Home":
-        st.subheader("Home")
+        # criar um subtitulo
+        st.subheader("Análise de Sentimento de Tweets")
         # criar um texto
-        st.write("Escolha uma opção no menu lateral para começar")
-        st.title("Tutorial")
-        st.write("1 - Pesquisar Tweets - Escolha uma palavra chave e o número de tweets que deseja pesquisar.")
-        st.write("2 - Limpar Tweets - Limpa os tweets que foram pesquisados - Recomendado para realizar as próximas etapas.")
-        st.write("3 - WordCloud - Cria uma wordcloud com as palavras mais usadas nos tweets.")
-        st.write("4 - Analise de Sentimento NLTK - Analisa o sentimento dos tweets usando a biblioteca NLTK.")
-        st.write("5 - Analise de Sentimento TextBlob - Analisa o sentimento dos tweets usando a biblioteca TextBlob.")
-        st.write("6 - Grafico de Barras - Cria um gráfico de barras com a quantidade de tweets positivos, negativos e neutros.")
-        st.write("7 - Grafico de Pizza - Cria um gráfico de pizza com a quantidade de tweets positivos, negativos e neutros.")
-        st.write("9 - Sempre que quiser voltar para a tela inicial, basta clicar em Home no menu lateral.")
-
+        st.text("Escolha uma opção no menu ao lado")
     elif opcoes == "Pesquisar Tweets":
+        # criar um subtitulo
         st.subheader("Pesquisar Tweets")
         # criar um texto
-        st.write("Digite a palavra que deseja pesquisar e o número de tweets que deseja")
-        # criar um campo para digitar a palavra
-        palavra = st.text_input("Palavra")
-        # criar um campo para digitar o numero de tweets
-        numero = st.number_input("Numero de Tweets", 1, 100)
-        # criar um botão para pesquisar os tweets
+        st.text("Pesquise por tweets")
+        # criar um campo para digitar o texto
+        texto = st.text_input("Digite o texto")
+        # criar um botão para pesquisar
         if st.button("Pesquisar"):
-            # chamar a função para pesquisar os tweets
-            pegar_tweets()
-    elif opcoes == "Limpar Tweets":
-        st.subheader("Limpar Tweets")
-        # criar um texto
-        st.write("Clique no botão para limpar os tweets")
-        # criar um botão para limpar os tweets
-        if st.button("Limpar"):
-            # chamar a função para limpar os tweets
-            limpar_tweets()
-    elif opcoes == "WordCloud":
-        st.subheader("WordCloud")
-        # criar um texto
-        st.write("Clique no botão para gerar a WordCloud")
-        # criar um botão para gerar a wordcloud
-        if st.button("WordCloud"):
-            df = pd.read_csv("tweets_limpos.csv")
-            wordcloud(df)
-    elif opcoes == "Analise de Sentimento NLTK":
-        st.subheader("Analise de Sentimento NLTK")
-        # criar um texto
-        st.write("Clique no botão para gerar a analise de sentimento")
-        # criar um botão para gerar a analise de sentimento
-        if st.button("Analise de Sentimento NLTK"):
-            # chamar a função para gerar a analise de sentimento
-            df = pd.read_csv("tweets_limpos.csv")
-            analisar_sentimentos_nltk()
-    elif opcoes == "Analise de Sentimento TextBlob":
-        st.subheader("Analise de Sentimento TextBlob")
-        # criar um texto
-        st.write("Clique no botão para gerar a analise de sentimento")
-        # criar um botão para gerar a analise de sentimento
-        if st.button("Analise de Sentimento TextBlob"):
-            # chamar a função para gerar a analise de sentimento
-            df = pd.read_csv("tweets_limpos.csv")
-            analisar_sentimentos_textblob()
-    elif opcoes == "Grafico de Barras":
-        st.subheader("Grafico de Barras")
-        # criar um texto
-        st.write("Clique no botão para gerar o grafico de barras")
-        # criar um botão para gerar o grafico de barras
-        if st.button("Grafico de Barras"):
-            # chamar a função para gerar o grafico de barras
-            df = pd.read_csv("tweets_limpos.csv")
-            grafico_barras(df)
-    elif opcoes == "Grafico de Pizza":
-        st.subheader("Grafico de Pizza")
-        # criar um texto
-        st.write("Clique no botão para gerar o grafico de pizza")
-        # criar um botão para gerar o grafico de pizza
-        if st.button("Grafico de Pizza"):
-            # chamar a função para gerar o grafico de pizza
-            df = pd.read_csv("tweets_limpos.csv")
-            grafico_pizza(df)
+            # chamar a função para pesquisar tweets
+            pesquisar_tweets()
+            
 
 
 
