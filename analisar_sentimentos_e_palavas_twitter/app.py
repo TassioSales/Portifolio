@@ -125,15 +125,10 @@ def analisar_sentimento_open(df):
     
 #função para mostrar o gráfico de barras com a quantidade de tweets positivos, negativos e neutros do arquivo tweets_sentimento.csv
 def mostrar_grafico_openia(df):
-    #criar um dataframe com a coluna Sentimento
-    df_sentimento = df['Sentimento']
-    #criar um dataframe com a coluna Sentimento e a quantidade de cada sentimento
-    df_sentimento = df_sentimento.value_counts()
-    #criar botao para mostrar o grafico
-    if st.button("Mostrar Gráfico"):
-        #mostrar o grafico de barras
-        st.bar_chart(df_sentimento)
-    
+    #criar um grafico de barras com a quantidade de tweets positivos, negativos e neutros
+    fig = px.bar(df, x='Sentimento', color='Sentimento', title='Quantidade de Tweets Positivos, Negativos e Neutros')
+    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True, sharing='streamlit', height=500, width=500)    
 
     
             
