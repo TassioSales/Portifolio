@@ -133,8 +133,10 @@ def analisar_sentimentos_nltk(df):
         traduzir = translator.translate(dest='en')
         for tweet in df['Tweets']:
             df['Traducao']= traduzir.append(tweet.text)
-    except:
-        st.write("Erro ao traduzir os tweets")
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
+        
 
         
 #criar função para criar grafico de barras
