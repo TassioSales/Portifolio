@@ -96,41 +96,6 @@ def limpar_tweets():
     except Exception as e:
         st.write(e)
         
-#percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
-def analisar_sentimento_open(df):
-    """[summary]
-    Realiza a análise de sentimento dos tweets
-    Returns: string
-    :param: df: dataframe com os tweets
-    :param: df['Tweets']: coluna com os tweets
-    :param: df['Tweets']: coluna com os tweets limpos
-    :param: df['Sentimento']: coluna com o sentimento do tweet
-    """
-    df['Sentimento'] = ""
-    for tweet in df['Tweets']:
-        response = openai.Completion.create(
-            engine="text-davinci-002",
-            prompt=f"Decida se o sentimento de um Tweet é Positivo, Neutro ou Negativo.\n\nTweet: \"{tweet}\"\nSentimento:",
-            temperature=0.9,
-            max_tokens=5,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0.6,
-        )
-    if response['choices'][0]['text'] == "Positivo":
-        df['Sentimento'].loc[response['choices'][0]['text']]['value'] = response['choices'][0]['text']
-    elif response['choices'][0]['text'] == "Negativo":
-        df['Sentimento'].loc[response['choices'][0]['text']]['value'] = response['choices'][0]['text']
-    else:
-        df['Sentimento'].loc[response['choices'][0]['text']]['value'] = response['choices'][0]['text']
-    if st.button("Mostrar Sentimento"):
-        st.table(df)
-    else:
-        st.write("Clique no botão para mostrar o sentimento do tweet")
-    #salvar os tweets com o sentimento em um arquivo csv
-    df.to_csv(path_or_buf='tweets_sentimento_openia.csv', index=False)
-    
-    
 def analisar_sentimentos_nltk(df):
     #criar coluna Traducao no dataframe
     df['Traducao'] = ""
@@ -165,28 +130,53 @@ def analisar_sentimentos_nltk(df):
         st.write(e)
         st.write(e.__class__())
         
-
+def analisar_sentimentos_textblob(df):
+    #criar coluna Traducao no dataframe
+    df['Traducao'] = ""
+    df['Sentimento_completo'] = ""
+    df['Sentimento'] = ""
+    try:
+        for tweet in df['Tweets']:
+            translator = Translator()
+            traduzir = translator.translate(tweet, dest='en')
+            #colocar traducao para cada tweet na coluna traducao
+            df['Traducao'].loc[df['Tweets'] == tweet] = traduzir.text
+        for tweet in df['Traducao']:
+            traducao = TextBlob(tweet)
+            df['Sentimento_completo'].loc[df['Traducao'] == tweet] = traducao.sentiment.polarity
+        for tweet in df['Sentimento_completo']:
+            if tweet > 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Positivo'
+            if tweet < 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Negativo'
+            if tweet == 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Neutro'
+        if st.button("Mostrar Sentimento"):
+            st.table(df)
+        else:
+          st.write("Clique no botão para mostrar o sentimento do tweet")
+        #salvar os tweets com o sentimento em um arquivo csv
+        df.to_csv(path_or_buf='tweets_sentimento_textblob.csv', index=False)
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
         
+
 #criar função para criar grafico de barras
 def grafico_barras():
-    if st.button('Grafico OPENIA'):
-        # ler o arquivo csv com os tweets e o sentimento
-        df = pd.read_csv('tweets_sentimento_openia.csv')
-        #criar um dataframe com a coluna Sentimento
-        df_sentimento = df['Sentimento']
-        #criar um grafico de barras com a contagem de cada sentimento
-        st.bar_chart(df_sentimento.value_counts())
-        string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
-        st.write(string)
-    if st.button('Grafico NLTK'):
-        # ler o arquivo csv com os tweets e o sentimento
-        df = pd.read_csv('tweets_sentimento_nltk.csv')
-        #criar um dataframe com a coluna Sentimento
-        df_sentimento = df['Sentimento']
-        #criar um grafico de barras com a contagem de cada sentimento
-        st.bar_chart(df_sentimento.value_counts())
-        string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
-        st.write(string)
+    try:
+        if st.button('Grafico NLTK'):
+            # ler o arquivo csv com os tweets e o sentimento
+            df = pd.read_csv('tweets_sentimento_nltk.csv')
+            #criar um dataframe com a coluna Sentimento
+            df_sentimento = df['Sentimento']
+            #criar um grafico de barras com a contagem de cada sentimento
+            st.bar_chart(df_sentimento.value_counts())
+            string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+            st.write(string)
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
         
     
 
@@ -195,7 +185,7 @@ def grafico_barras():
 #função principal
 def main():
     #criar o menu
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento OpenAI","Analisar Sentimento NLTK","Mostrar Gráfico OpenAI"]
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos"]
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
@@ -206,14 +196,13 @@ def main():
         pegar_tweets()
     if choice == "Limpar Tweets":
         limpar_tweets() 
-    if choice == "Analisar Sentimento OpenAI":
-        #ler o arquivo csv e mostrar o dataframe
-        df = pd.read_csv('tweets_limpos.csv')
-        analisar_sentimento_open(df)
     if choice == "Analisar Sentimento NLTK":
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_nltk(df)
-    if choice == "Mostrar Gráfico OpenAI":
+    if choice == "Analise de Sentimento TextBlob":
+        df = pd.read_csv('tweets_limpos.csv')
+        analisar_sentimentos_textblob(df)
+    if choice == "Mostrar Gráfico":
         grafico_barras()
 
                 
