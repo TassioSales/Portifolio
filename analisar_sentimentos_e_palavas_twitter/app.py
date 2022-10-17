@@ -236,8 +236,7 @@ def wordcloud(df):
             #remover palavras repetidas
             palavras = ' '.join(set(palavras.split()))
             #remover stopwords caso ele exista nas palavras
-            if stop in palavras:
-                palavras = palavras.replace(stop, '')
+            palavras = ' '.join(set(palavras.split()) - set(stop))
             #criar uma wordclod com as palavras mais usadas
         wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='white',
