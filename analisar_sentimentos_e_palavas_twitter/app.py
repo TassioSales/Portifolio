@@ -14,6 +14,8 @@ from textblob import TextBlob
 from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
+#importar biblioteca para traducao de portuguese para ingles
+import googletrans as gt
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -129,16 +131,8 @@ def analisar_sentimentos_nltk(df):
     try:
         nltk.download('vader_lexicon')
         for tweet in df['Tweets']:
-            response = openai.Completion.create(
-                engine="text-davinci-002",
-                prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
-                temperature=0.9,
-                max_tokens=50,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0.6,
-            )
-            traducao = response.choices[0].text
+            #traducao
+            traducao = translator.translate(tweet, dest='en')          
             #analisa o sentimento do tweet usando o nltk
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao)
