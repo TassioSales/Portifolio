@@ -127,6 +127,7 @@ def analisar_sentimento_open(df):
     
 def analisar_sentimentos_nltk(df):
     try:
+        nltk.download('vader_lexicon')
         for tweet in df['Tweets']:
             response = openai.Completion.create(
                 engine="text-davinci-002",
