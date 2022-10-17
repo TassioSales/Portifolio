@@ -131,6 +131,7 @@ def analisar_sentimentos_nltk(df):
     #criar coluna Traducao no dataframe
     df['Traducao'] = ""
     df['Sentimento_completo'] = ""
+    df['Sentimento'] = ""
     try:
         for tweet in df['Tweets']:
             translator = Translator()
