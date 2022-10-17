@@ -125,10 +125,17 @@ def analisar_sentimento_open(df):
     df.to_csv(path_or_buf='tweets_sentimento_openia.csv', index=False)
     
 #criar função para criar grafico de barras
-def grafico_barras(df):
-    fig = go.Figure(data=[go.Bar(x=df['Sentimento'], y=df['Tweets'])])
-    fig.update_layout(title_text='Sentimento dos Tweets')
-    fig.show()   
+def grafico_barras():
+    # ler o arquivo csv com os tweets e o sentimento
+    df = pd.read_csv('tweets_sentimento_openia.csv')
+    #criar um dataframe com a coluna Sentimento
+    df_sentimento = df['Sentimento']
+    #criar um grafico de barras com a contagem de cada sentimento
+    st.bar_chart(df_sentimento.value_counts())
+    string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+    st.write(string)
+    
+    
 
      
         
