@@ -123,20 +123,11 @@ def analisar_sentimento_open(df):
     #salvar os tweets com o sentimento em um arquivo csv
     df.to_csv(path_or_buf='tweets_sentimento_openia.csv', index=False)
     
-def mostrar_grafico_openia(df):
-    #criar botao para mostrar o grafico de pizza com a porcentagem de tweets positivos, negativos e neutros
-    if st.button("Mostrar Gráfico de Pizza"):
-        fig = go.figure(data=[go.Pie(labels=df['Sentimento'].value_counts().index, values=df['Sentimento'].value_counts().values)], layout_title_text="Gráfico de Pizza")
-        fig.show()
-            
-    #criar botao para mostrar o grafico de barras com a quantidade de tweets positivos, negativos e neutros
-    if st.button("Mostrar Gráfico de Barras"):
-        fig = go.figure()
-        fig.add_trace(go.Bar(x=df['Sentimento'].value_counts().index, y=df['Sentimento'].value_counts().values))
-        st.plotly_chart(fig)
-        fig.show()
-    
-    
+#criar função para criar grafico de barras
+def grafico_barras(df):
+    fig = go.Figure(data=[go.Bar(x=df['Sentimento'], y=df['Tweets'])])
+    fig.update_layout(title_text='Sentimento dos Tweets')
+    fig.show()   
 
     
             
@@ -162,8 +153,7 @@ def main():
         analisar_sentimento_open(df)
     if choice == "Mostrar Gráfico OpenAI":
         df = pd.read_csv('tweets_sentimento_openia.csv')
-        mostrar_grafico_openia(df)
-
+        grafico_barras(df)
                 
 if __name__ == '__main__':
     main()
