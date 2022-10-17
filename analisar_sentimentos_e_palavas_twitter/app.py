@@ -224,9 +224,15 @@ def WordCloud(df):
     palavras = ''
     for item in df['Tweets']:
         palavras = palavras + ' ' + item
-        #remover STOPWORDS em portuguese
-        stopwords = set(STOPWORDS)
-    WordCloud(stopwords=stopwords).generate(palavras), plt.imshow(WordCloud(stopwords=stopwords).generate(palavras)), plt.axis("off"), plt.show(), plt.xlabel("Stopwords em portuguese")
+        #remover STOPWORDS em portugues
+    wordcloud = WordCloud(background_color='white', 
+                          stopwords=stopwords, 
+                          max_words=100, 
+                          max_font_size=50, 
+                          random_state=42).generate(palavras)
+    plt.imshow(wordcloud, interpolpolation='bilinear')
+    plt.axis('off')
+    plt.show()
     st.pyplot() 
    
 #função principal
