@@ -130,7 +130,7 @@ def analisar_sentimento_open(df):
 def analisar_sentimentos_nltk(df):
     #criar coluna Traducao no dataframe
     df['Traducao'] = ""
-    df['Sentimento'] = ""
+    df['Sentimento_completo'] = ""
     try:
         for tweet in df['Tweets']:
             translator = Translator()
@@ -140,12 +140,7 @@ def analisar_sentimentos_nltk(df):
         for tweet in df['Traducao']:
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(tweet)
-            if ss['compounds'] >= 0.05:
-                df['Sentimento'].loc[df['Traducao'] == tweet] = "Positivo"
-            elif ss['compounds'] <= -0.05:
-                df['Sentimento'].loc[df['Traducao'] == tweet] = "Negativo"
-            else:
-                df['Sentimento'].loc[df['Traducao'] == tweet] = "Neutro"           
+            df['Sentimento_completo'].loc[df['Traducao'] == tweet] = ss
         if st.button("Mostrar Sentimento"):
             st.table(df)
         else:
