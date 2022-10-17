@@ -225,6 +225,8 @@ def grafico_pizza():
 def wordcloud(df):
     try:
         palavras = ''
+        #criar lista com stop words
+        stop = stop_palavras
         for tweet in df['Tweets']:
             palavras += tweet
             # remove palavras com menos de 3 caracteres
@@ -233,8 +235,9 @@ def wordcloud(df):
             palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
             #remover palavras repetidas
             palavras = ' '.join(set(palavras.split()))
-            #remover stopWords
-            palavras = ' '.join(set(stop_palavras.split()))
+            #remover stopwords caso ele exista nas palavras
+            if stop in palavras:
+                palavras = palavras.replace(stop, '')
             #criar uma wordclod com as palavras mais usadas
         wordcloud = WordCloud(width = 800, height = 800,
                     background_color ='white',
