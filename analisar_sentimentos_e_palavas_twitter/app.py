@@ -199,6 +199,7 @@ def grafico_pizza():
             fig = go.Figure(data=[go.Pie(labels=df_sentimento.value_counts().index, values=df_sentimento.value_counts().values)])
             fig.update_traces(textposition='inside', textinfo='percent+label')
             fig.update_layout(title_text="Sentimento dos Tweets NTL", title_x=0.5, title_font_size=20, autosize = True, width = 500, height = 500)
+            st.plotly_chart(fig)
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
             st.write(string)
         if st.button('Grafico TextBlob'):
