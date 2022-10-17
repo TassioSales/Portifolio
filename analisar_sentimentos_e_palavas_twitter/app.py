@@ -253,8 +253,6 @@ def wordcloud(df):
         st.write(e)
         st.write(e.__class__())
         
-#criar função para navegar entre as paginas
-def navegar():
     
       
 #função principal
