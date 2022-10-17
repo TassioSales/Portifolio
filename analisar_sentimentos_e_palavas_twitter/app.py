@@ -176,7 +176,7 @@ def grafico_barras():
         st.write(string)
     if st.button('Grafico NLTK'):
         # ler o arquivo csv com os tweets e o sentimento
-        df = pd.read_csv('tweets_sentimento_nlkt.csv')
+        df = pd.read_csv('tweets_sentimento_nltk.csv')
         #criar um dataframe com a coluna Sentimento
         df_sentimento = df['Sentimento']
         #criar um grafico de barras com a contagem de cada sentimento
