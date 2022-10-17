@@ -117,7 +117,7 @@ def analisar_sentimento_open(df):
             presence_penalty=0.6,
         )
         #titulo
-        df['Sentimento'] = df['Tweets'].apply(lambda x: response['choices'][0]['text'])
+        df['Sentimento'].loc[df['Tweets'] == tweet] = response['choices'][0]['text']
     if st.button("Mostrar Sentimento"):
         st.table(df)
     else:
