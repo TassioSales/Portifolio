@@ -15,7 +15,7 @@ from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
 #importar biblioteca para traducao de portuguese para ingles
-from googletrans import translator
+from googletrans import Translator
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
