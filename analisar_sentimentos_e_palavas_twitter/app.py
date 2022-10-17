@@ -14,8 +14,8 @@ from textblob import TextBlob
 from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
-#importar biblioteca para traducao de portuguese para ingles
 from googletrans import Translator
+from stop_words import get_stop_words
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -23,6 +23,8 @@ consumer_secret = st.secrets['cs']
 access_token = st.secrets['act']
 access_token_secret = st.secrets['ats']
 openai.api_key = st.secrets['api']
+
+
 
 # função para autenticar twitter
 def autenticar():
@@ -221,6 +223,7 @@ def grafico_pizza():
         
 def wordcloud(df):
     #criar uma string com todas as palavras
+    stop_words = set(stopwords.words('portuguese'))
     palavras = ''
     for tweet in df['Tweets']:
         palavras += tweet
@@ -230,9 +233,8 @@ def wordcloud(df):
         palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
         #remover palavras repetidas
         palavras = ' '.join(set(palavras.split()))
-        #criar lista de stopwords
-        stopwords = ['']
-         
+        #remover stopwords
+        palavras = ' '.join(set(stopwords.split()))
         #criar uma wordclod com as palavras mais usadas
     wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
