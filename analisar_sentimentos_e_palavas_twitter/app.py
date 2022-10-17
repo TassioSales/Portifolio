@@ -287,6 +287,15 @@ def main():
         if st.button("Pesquisar"):
             # chamar a função para pesquisar tweets
             pesquisar_tweets()
+    elif opcoes == "Limpar Tweets":
+        # criar um subtitulo
+        st.subheader("Limpar Tweets")
+        # criar um texto
+        st.text("Limpar tweets")
+        # criar um botão para limpar tweets
+        if st.button("Limpar Tweets"):
+            # chamar a função para limpar tweets
+            limpar_tweets()
 
 
 
