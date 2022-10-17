@@ -150,7 +150,9 @@ def analisar_sentimentos_nltk(df):
         if st.button("Mostrar Sentimento"):
             st.table(df)
         else:
-          st.write("Clique no botão para mostrar o sentimento do tweet")  
+          st.write("Clique no botão para mostrar o sentimento do tweet")
+        #salvar os tweets com o sentimento em um arquivo csv
+        df.to_csv(path_or_buffer='tweets_sentimento_nltk.csv', index=False))  
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
