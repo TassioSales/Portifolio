@@ -309,7 +309,6 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu, index=0, key='1')
     if choice == "Home":
         # chamar a função navegar
-        navegar()
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
         st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
@@ -354,4 +353,5 @@ def main():
 
 
 if __name__ == '__main__':
+    navegar()
     main()
