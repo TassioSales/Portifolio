@@ -141,12 +141,13 @@ def analisar_sentimentos_nltk(df):
             vs = analyzer.polarity_scores(traducao.text)
             #mostrar o sentimento dos tweets
         if st.button("Mostrar Sentimento"):
-            if vs['compound'] >= 0.05:
-                st.write('Positivo')
-            elif vs['compound'] <= -0.05:
-                st.write('Negativo')
+            if analizey['compound'] >= 0.05:
+                df['Sentimento'] = 'Positivo'
+            elif analizey['compound'] <= -0.05:
+                df['Sentimento'] = 'Negativo'
             else:
-                st.write('Neutro')    
+                df['Sentimento'] = 'Neutro'
+            st.table(df)
     except Exception as e:
         st.write(e)
         
