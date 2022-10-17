@@ -150,6 +150,9 @@ def analisar_sentimentos_nltk(df):
                         st.write("Negativo")
                     else:
                         st.write("Neutro")
+                        
+    except Exception as e:
+        st.write(e)
             
         
         
