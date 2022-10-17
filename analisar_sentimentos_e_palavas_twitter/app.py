@@ -149,14 +149,11 @@ def analisar_sentimentos_nltk(df):
                     st.write('Neutro')
             else:
                 st.write("Clique no botão para mostrar o sentimento do tweet")            
+    except Exception as e:
+        st.write(e)
         
-            
-            
- 
-           
-    
-    
-    
+        
+        
 #criar função para criar grafico de barras
 def grafico_barras():
     if st.button('Grafico OPENIA'):
