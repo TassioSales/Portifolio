@@ -126,37 +126,39 @@ def analisar_sentimento_open(df):
     
     
 def analisar_sentimentos_nltk(df):
-    for tweet in df['Tweets']:
-        response = openai.Completion.create(
-            engine="text-davinci-002",
-            prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
-            temperature=0.9,
-            max_tokens=50,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0.6,
-        )
-        st.title('Análise de Sentimento NLTK')
-        st.write(f"Tweet: {tweet}")
-        traducao = response.choices[0].text
-        #analisa o sentimento do tweet usando o nltk
-        sid = SentimentIntensityAnalyzer()
-        ss = sid.polarity_scores(traducao)
-        #cria dataframe com sentimento se negativos se positivo se neutro de lambda
-        if sid.polarity_scores(traducao) == 0:
-            df['Sentimento'] = 'Neutro'
-        elif sid.polarity_scores(traducao) > 0:
-            df['Sentimento'] = 'Positivo'
+    try:
+        for tweet in df['Tweets']:
+            response = openai.Completion.create(
+                engine="text-davinci-002",
+                prompt=f"Traduza o seguinte Tweet para o Inglês:\n\nTweet: \"{tweet}\"\nTradução:",
+                temperature=0.9,
+                max_tokens=50,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0.6,
+            )
+            st.title('Análise de Sentimento NLTK')
+            st.write(f"Tweet: {tweet}")
+            traducao = response.choices[0].text
+            #analisa o sentimento do tweet usando o nltk
+            sid = SentimentIntensityAnalyzer()
+            ss = sid.polarity_scores(traducao)
+            #cria dataframe com sentimento se negativos se positivo se neutro de lambda
+            if sid.polarity_scores(traducao) == 0:
+                df['Sentimento'] = 'Neutro'
+            elif sid.polarity_scores(traducao) > 0:
+                df['Sentimento'] = 'Positivo'
+            else:
+                df['Sentimento'] = 'Negativo'
+        #cria botao para mostrar dataframe
+        if st.button("Mostrar Sentimento"):
+            st.table(df)
         else:
-            df['Sentimento'] = 'Negativo'
-    #cria botao para mostrar dataframe
-    if st.button("Mostrar Sentimento"):
-        st.table(df)
-    else:
-        st.write("Clique no botão para mostrar o sentimento do tweet")
-    #salvar os tweets com o sentimento em um arquivo csv
-    df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
-    
+            st.write("Clique no botão para mostrar o sentimento do tweet")
+        #salvar os tweets com o sentimento em um arquivo csv
+        df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
+    except Exception as e:
+        st.write(e)    
            
     
     
