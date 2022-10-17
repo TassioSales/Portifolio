@@ -206,7 +206,9 @@ def grafico_pizza():
             df_sentimento = df['Sentimento']
             #Plotar grafico de pizza usando plotly.graph_objects
             fig = go.Figure(data=[go.Pie(labels=df_sentimento.value_counts().index, values=df_sentimento.value_counts().values)])
-            st.plotly_chart_protocol(fig)
+            fig.update_traces(textposition='inside', textinfo='percent+label')
+            #mostra o grafico:
+            fig.show()
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
             st.write(string)
     except Exception as e:
