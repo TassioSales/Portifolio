@@ -174,14 +174,20 @@ def grafico_barras():
             st.bar_chart(df_sentimento.value_counts())
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
             st.write(string)
+        if st.button('Grafico TextBlob'):
+            # ler o arquivo csv com os tweets e o sentimento
+            df = pd.read_csv('tweets_sentimento_textblob.csv')
+            #criar um dataframe com a coluna Sentimento
+            df_sentimento = df['Sentimento']
+            #criar um grafico de barras com a contagem de cada sentimento
+            st.bar_chart(df_sentimento.value_counts())
+            string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
+            st.write(string)
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
         
-    
-
-     
-        
+   
 #função principal
 def main():
     #criar o menu
