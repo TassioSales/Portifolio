@@ -301,9 +301,9 @@ def main():
         st.text("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
         st.text("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
         st.text("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
+    #deixa o menu fixo
+    st.sidebar.markdown("<h1 style='text-align: center; color: black;'>Menu</h1>", unsafe_allow_html=True)
+    
                 
 if __name__ == '__main__':
     main()
-
-
-        
