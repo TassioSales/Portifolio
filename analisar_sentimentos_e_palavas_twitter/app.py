@@ -285,7 +285,7 @@ def main():
         st.write("6 - Grafico de Barras - Cria um gráfico de barras com a quantidade de tweets positivos, negativos e neutros.")
         st.write("7 - Grafico de Pizza - Cria um gráfico de pizza com a quantidade de tweets positivos, negativos e neutros.")
         st.write("9 - Sempre que quiser voltar para a tela inicial, basta clicar em Home no menu lateral.")
-       
+
     elif opcoes == "Pesquisar Tweets":
         st.subheader("Pesquisar Tweets")
         # criar um texto
@@ -297,7 +297,7 @@ def main():
         # criar um botão para pesquisar os tweets
         if st.button("Pesquisar"):
             # chamar a função para pesquisar os tweets
-            pegar_tweets(palavra, numero)
+            pegar_tweets()
     elif opcoes == "Limpar Tweets":
         st.subheader("Limpar Tweets")
         # criar um texto
@@ -312,8 +312,8 @@ def main():
         st.write("Clique no botão para gerar a WordCloud")
         # criar um botão para gerar a wordcloud
         if st.button("WordCloud"):
-            # chamar a função para gerar a wordcloud
-            wordcloud()
+            df = pd.read_csv("tweets_limpos.csv")
+            wordcloud(df)
     elif opcoes == "Analise de Sentimento NLTK":
         st.subheader("Analise de Sentimento NLTK")
         # criar um texto
