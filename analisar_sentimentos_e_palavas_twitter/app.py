@@ -126,14 +126,20 @@ def analisar_sentimento_open(df):
 def mostrar_grafico_openia(df):
     #criar botao para mostrar o grafico de pizza com a porcentagem de tweets positivos, negativos e neutros
     if st.button("Mostrar Gráfico de Pizza"):
-        fig = go.Figure()
         fig.add_trace(go.Pie(labels=df['Sentimento'].value_counts().index, values=df['Sentimento'].value_counts().values))
         st.plotly_chart(fig)
+    else:
+        fig = go.Figure(data=[go.Pie(labels=df['Sentimento'].value_counts().index, values=df['Sentimento'].value_counts().values)],
+            layout_title_text="Sentimento dos Tweets")
+        st.plotly_chart(fig)
+            
+        
     #criar botao para mostrar o grafico de barras com a quantidade de tweets positivos, negativos e neutros
     if st.button("Mostrar Gráfico de Barras"):
-        fig = go.Figure()
+        
         fig.add_trace(go.Bar(x=df['Sentimento'].value_counts().index, y=df['Sentimento'].value_counts().values))
         st.plotly_chart(fig)
+        fig.show()
     
     
 
