@@ -236,8 +236,7 @@ def wordcloud(df):
         palavras = nltk.sent_tokenize(palavras)
         #remover stopwords    
     for item in range(len(palavras)):
-        words = nltk.tokenize(palavras[item])
-        newwords = [word for word in words if word not in nltk.corpus.stopwords.words('portuguese')]
+        palavras[item] = ' '.join([word for word in palavras[item].split() if word not in (stopwords.words('portuguese'))])
         palavras[item] = ' '.join(newwords)
     wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
