@@ -252,15 +252,13 @@ def wordcloud(df):
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
-        
-        
-   
+      
 #função principal
 def main():
     #criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
     #criar o selectbox
-    choice = st.sidebar.selectbox("Menu", menu, key=1, label_visibility="Visibility")
+    choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
     if choice == "Home":
         st.title("Análise de Sentimento de Tweets")
