@@ -196,7 +196,9 @@ def grafico_pizza():
             #criar um dataframe com a coluna Sentimento
             df_sentimento = df['Sentimento']
             #criar um grafico de pizza com a contagem de cada sentimento
-            st.write(df_sentimento.value_counts().plot.pie(autopct="%1.1f%%"))
+            fig = go.Figure(data=[go.Pie(labels=df_sentimento.value_counts().index, values=df_sentimento.value_counts().values)])
+            fig.update_traces(textposition='inside', textinfo='percent+label')
+            fig.update_layout(title_text="Sentimento dos Tweets NTL", title_x=0.5, title_font_size=20, autosize = True, width = 500, height = 500)
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
             st.write(string)
         if st.button('Grafico TextBlob'):
@@ -207,6 +209,7 @@ def grafico_pizza():
             #Plotar grafico de pizza usando plotly.graph_objects
             fig = go.Figure(data=[go.Pie(labels=df_sentimento.value_counts().index, values=df_sentimento.value_counts().values)])
             fig.update_traces(textposition='inside', textinfo='percent+label')
+            fig.update_layout(title_text="Sentimento dos Tweets TextBlob", title_x=0.5, title_font_size=20, autosize = True, width = 500, height = 500)
             #mostra o grafico:
             st.plotly_chart(fig)
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
