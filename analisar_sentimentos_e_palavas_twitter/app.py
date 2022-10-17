@@ -159,7 +159,7 @@ def main():
         analisar_sentimento_open(df)
     if choice == "Mostrar Gráfico OpenAI":
         df = pd.read_csv('tweets_sentimento_openia.csv')
-        grafico_barras(df)
+        grafico_barras()
                 
 if __name__ == '__main__':
     main()
