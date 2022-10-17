@@ -119,7 +119,7 @@ def analisar_sentimento_open(df):
         #titulo
 
     if st.button("Mostrar Sentimento"):
-        df['Sentimento'] = response['choices'][0]['text']
+        df['Sentimento'] = df['Tweets'].apply(lambda x: response['choices'][0]['text'])
         st.table(df)
     else:
         st.write("Clique no botão para mostrar o sentimento do tweet")
