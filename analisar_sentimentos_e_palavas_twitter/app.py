@@ -240,7 +240,7 @@ def main():
     if choice == "Analise de Sentimento TextBlob":
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_textblob(df)
-    if choice == "Mostrar Gráficos":
+    if choice == "Mostrar Gráficos Barras":
         grafico_barras()
     if choice == "Mostrar Gráficos Pizza":
         grafico_pizza()
