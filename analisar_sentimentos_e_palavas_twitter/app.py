@@ -15,7 +15,7 @@ from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
 from googletrans import Translator
-import stop_words as sw
+from nltk.corpus import stopwords
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -223,7 +223,7 @@ def grafico_pizza():
         
 def wordcloud(df):
     #criar uma string com todas as palavras
-    stop_words = set(sw.words('portuguese'))
+    stopwords = set(stopwords.words('portuguese'))
     palavras = ''
     for tweet in df['Tweets']:
         palavras += tweet
