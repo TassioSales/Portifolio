@@ -223,7 +223,6 @@ def grafico_pizza():
         
 def wordcloud(df):
     #criar uma string com todas as palavras
-    stopwords = set(stopwords.words('portuguese'))
     palavras = ''
     for tweet in df['Tweets']:
         palavras += tweet
@@ -233,9 +232,13 @@ def wordcloud(df):
         palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
         #remover palavras repetidas
         palavras = ' '.join(set(palavras.split()))
-        #remover stopwords
-        palavras = ' '.join(set(stopwords.split()))
-        #criar uma wordclod com as palavras mais usadas
+        #tokenize palavras
+        palavras = nltk.sent_tokenize(palavras)
+        #remover stopwords    
+    for item in range(len(palavras)):
+        words = nltk.tokenize(palavras[item])
+        newwords = [word for word in words if word not in stopwords.words('portuguese')]
+        palavras[item] = ' '.join(newwords)
     wordcloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
                 min_font_size = 10).generate(palavras)
