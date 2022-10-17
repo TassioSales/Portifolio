@@ -226,18 +226,8 @@ def WordCloud(df):
         palavras = palavras + ' ' + item
         #remover STOPWORDS em portuguese
         stopwords = set(STOPWORDS)
-    wordcloud = WordCloud(width = 800, height = 800,
-                background_color ='white',
-                min_font_size = 10).generate(palavras)
-    #plotar a wordclod
-    plt.figure(figsize = (8, 8), facecolor = None)
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad = 0)
-    st.pyplot(plt)
-        
-        
-        
+    WordCloud(stopwords=stopwords).generate(palavras), plt.imshow(WordCloud(stopwords=stopwords).generate(palavras)), plt.axis("off"), plt.show(), plt.xlabel("Stopwords em portuguese")
+    st.pyplot() 
    
 #função principal
 def main():
