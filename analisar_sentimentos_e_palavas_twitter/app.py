@@ -141,7 +141,8 @@ def analisar_sentimentos_nltk(df):
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(tweet)
             for k in sorted(ss):
-                df['Sentimento_completo'].loc[df['Traducao'] == tweet] = f"{k}: {ss[k]}"
+                if k == 'compound':
+                    df['Sentimento_completo'].loc[df['Traducao'] == tweet] = ss[k]
         if st.button("Mostrar Sentimento"):
             st.table(df)
         else:
