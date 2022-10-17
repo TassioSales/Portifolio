@@ -15,7 +15,7 @@ from collections import Counter
 import streamlit as st
 import plotly.graph_objects as go
 #importar biblioteca para traducao de portuguese para ingles
-import googletrans as gt
+from googletrans import translator
 
 #chaves de acesso
 consumer_key = st.secrets['ck']
@@ -132,7 +132,7 @@ def analisar_sentimentos_nltk(df):
         nltk.download('vader_lexicon')
         for tweet in df['Tweets']:
             #traducao
-            traducao = translator.translate(tweet, dest='en')          
+            traducao = Translator.translate(tweet, dest='en')        
             #analisa o sentimento do tweet usando o nltk
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao)
