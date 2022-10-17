@@ -143,6 +143,13 @@ def analisar_sentimentos_nltk(df):
             for k in sorted(ss):
                 if k == 'compound':
                     df['Sentimento_completo'].loc[df['Traducao'] == tweet] = ss[k]
+        for tweet in df['Sentimento_completo']:
+            if tweet > 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Positivo'
+            if tweet < 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Negativo'
+            if tweet == 0:
+                df['Sentimento'].loc[df['Sentimento_completo'] == tweet] = 'Neutro'
         if st.button("Mostrar Sentimento"):
             st.table(df)
         else:
