@@ -262,7 +262,9 @@ def main():
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu, key=1, label_visibility="Visibility")
     #selecionar a opção do menu
+    option = st.selectbox('Selecione a opção desejada', ('Pesquisar Tweets', 'Limpar Tweets', 'Analisar Sentimento NLTK', 'Analise de Sentimento TextBlob', 'Mostrar Gráficos Barras', 'Mostrar Gráficos Pizza', 'Mostrar WordCloud'))
     if choice == "Home":
+        option = st.selectbox('Selecione a opção desejada', ('Pesquisar Tweets', 'Limpar Tweets', 'Analisar Sentimento NLTK', 'Analise de Sentimento TextBlob', 'Mostrar Gráficos Barras', 'Mostrar Gráficos Pizza', 'Mostrar WordCloud'))
         st.title("Análise de Sentimento de Tweets")
         st.warning("Tutorial")
         st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
@@ -275,7 +277,6 @@ def main():
         st.write("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
         st.write("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
         st.write("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
-        option = st.selectbox('Selecione a opção desejada', ('Pesquisar Tweets', 'Limpar Tweets', 'Analisar Sentimento NLTK', 'Analise de Sentimento TextBlob', 'Mostrar Gráficos Barras', 'Mostrar Gráficos Pizza', 'Mostrar WordCloud'))
     if choice == "Pesquisar Tweets" or option == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
         pegar_tweets()
