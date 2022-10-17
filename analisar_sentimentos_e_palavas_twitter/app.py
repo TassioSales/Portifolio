@@ -220,7 +220,7 @@ def grafico_pizza():
         st.write(e.__class__())
         
 #criar função para criar grafico de nuvem de palavras
-def WordCloud():
+def WordCloud(df):
     palavras = ''
     for item in df['Tweets']:
         palavras = palavras + ' ' + item
@@ -264,7 +264,8 @@ def main():
     if choice == "Mostrar Gráficos Pizza":
         grafico_pizza()
     if choice == "Mostrar WordCloud":
-        WordCloud()
+        df = pd.read_csv('tweets_limpos.csv')
+        WordCloud(df)
                 
 if __name__ == '__main__':
     main()
