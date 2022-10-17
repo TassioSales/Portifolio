@@ -271,7 +271,7 @@ def main():
         grafico_pizza()
     if choice == "Mostrar WordCloud":
         df = pd.read_csv('tweets_limpos.csv')
-        WordCloud(df)
+        wordcloud(df)
                 
 if __name__ == '__main__':
     main()
