@@ -204,8 +204,8 @@ def grafico_pizza():
             df = pd.read_csv('tweets_sentimento_textblob.csv')
             #criar um dataframe com a coluna Sentimento
             df_sentimento = df['Sentimento']
-            #criar um grafico de pizza com a contagem de cada sentimento
-            st.write(df_sentimento.value_counts().plot.pie(autopct="%1.1f%%"))
+            #Plotar grafico de pizza usando plotly.graph_objects
+            fig = go.Figure(data=[go.Pie(labels=df_sentimento.value_counts().index, values=df_sentimento.value_counts().values)])
             string = "O gráfico acima mostra a quantidade de tweets positivos, negativos e neutros."
             st.write(string)
     except Exception as e:
@@ -216,7 +216,7 @@ def grafico_pizza():
 #função principal
 def main():
     #criar o menu
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza"]
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
@@ -237,7 +237,8 @@ def main():
         grafico_barras()
     if choice == "Mostrar Gráficos Pizza":
         grafico_pizza()
-
+    if choice == "Mostrar WordCloud":
+        WordCloud()
                 
 if __name__ == '__main__':
     main()
