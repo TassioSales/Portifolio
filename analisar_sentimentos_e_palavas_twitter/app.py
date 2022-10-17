@@ -151,8 +151,9 @@ def analisar_sentimentos_nltk(df):
                     df_sentimeto = df_sentimeto.append({'Sentimento': 'Negativos'}, ignore_index=True)
                 else:
                     df_sentimeto = df_sentimeto.append({'Sentimento': 'Neutron'}, ignore_index=True)
-        #mostrar o dataframe com os tweets e o sentimento
-        st.table(df_sentimeto)    
+        #concatenar df com df_sentimeto
+        df = pd.concat([df, df_sentimeto], axis=1)
+        st.table(df)
     except Exception as e:
         st.write(e)
             
