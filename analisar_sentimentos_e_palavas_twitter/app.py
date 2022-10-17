@@ -41,7 +41,7 @@ def autenticar():
 
 
 # função para pesquisar os tweets usando o StreamlitAPIException
-def pegar_tweets():
+def pesquisar_tweets():
     api = autenticar()
     try:
         # perguntar ao usaurio o tema dos tweets
@@ -65,7 +65,7 @@ def pegar_tweets():
 
 
 # função com botao para limpar tweets do arquivo csv e mostra a tabela com os tweets limpos
-def pesquisar_tweets():
+def limpar_tweets():
     try:
         df = pd.read_csv('tweets.csv')
         # remeover links usando regex usando a função lambda
@@ -287,7 +287,7 @@ def main():
         if st.button("Pesquisar"):
             # chamar a função para pesquisar tweets
             pesquisar_tweets()
-            
+
 
 
 
