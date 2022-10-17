@@ -219,17 +219,31 @@ def grafico_pizza():
         st.write(e)
         st.write(e.__class__())
         
-#criar função para criar grafico de nuvem de palavras
-def WordCloud(df):
+def wordcloud(df):
+    #criar uma string com todas as palavras
     palavras = ''
-    for item in df['Tweets']:
-        palavras = palavras + ' ' + item
-        #remover STOPWORDS em portugues
-    wordcloud = WordCloud(background_color="#f5f5f5", colormap = 'Dark2').generate(palavras)
-    plt.imshow(wordcloud, interpolpolation='bilinear')
-    plt.axis('off')
+    for tweet in df['Tweets']:
+        palavras += tweet
+        #remover as stopwords
+        stop_words = nltk.corpus.stopwords.words('portuguese')
+        # remove palavras com menos de 3 caracteres
+        palavras = ' '.join([w for w in palavras.split() if w not in stop_words])
+        #remover palavras com mais de 15 caracteres
+        palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
+        #remover palavras repetidas
+        palavras = ' '.join(set(palavras.split()))
+    #criar uma wordclod com as palavras mais usadas
+    wordcloud = WordCloud(width = 800, height = 800,
+                background_color ='white',
+                min_font_size = 10).generate(palavras)
+    #plotar a wordclod
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
     plt.show()
-    st.pyplot() 
+    st.pyplot()
+    
    
 #função principal
 def main():
