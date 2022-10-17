@@ -140,11 +140,10 @@ def analisar_sentimentos_nltk(df):
         for tweet in df['Traducao']:
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(tweet)
-        for k in ss:
-            if k == 'compound':
-                if ss[k] >= 0.05:
+            if ss == 'compound':
+                if ss >= 0.05:
                     df['Sentimento'].loc[df['Traducao'] == tweet] = 'Positivo'
-                elif ss[k] <= -0.05:
+                elif ss <= -0.05:
                     df['Sentimento'].loc[df['Traducao'] == tweet] = 'Negativo'
                 else:
                     df['Sentimento'].loc[df['Traducao'] == tweet] = 'Neutro'
