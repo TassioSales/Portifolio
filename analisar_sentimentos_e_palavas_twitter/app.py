@@ -236,7 +236,7 @@ def main():
     if choice == "Mostrar Gráficos":
         grafico_barras()
     if choice == "Mostrar Gráficos Pizza":
-        WordCloud()
+        grafico_pizza()
 
                 
 if __name__ == '__main__':
