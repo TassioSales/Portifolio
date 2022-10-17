@@ -260,7 +260,7 @@ def main():
     #criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
     #criar o selectbox
-    choice = st.sidebar.selectbox("Menu", menu, key=1, disable_on_select=False)
+    choice = st.sidebar.selectbox("Menu", menu, key=1)
     #selecionar a opção do menu
     if choice == "Home":
         st.title("Análise de Sentimento de Tweets")
