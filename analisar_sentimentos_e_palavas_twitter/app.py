@@ -154,11 +154,10 @@ def analisar_sentimentos_nltk(df):
         #concatenar df com df_sentimeto
         df = pd.concat([df, df_sentimeto], axis=1)
         st.table(df)
+        #salvar os tweets com o sentimento em um arquivo csv
+        df.to_csv(path_or_buf='tweets_sentimento_nltk.csv', index=False)
     except Exception as e:
         st.write(e)
-            
-        
-        
         
 #criar função para criar grafico de barras
 def grafico_barras():
