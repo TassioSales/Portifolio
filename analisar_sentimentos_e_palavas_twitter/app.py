@@ -204,9 +204,12 @@ def main():
         #ler o arquivo csv e mostrar o dataframe
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimento_open(df)
+    if choice == "Analisar Sentimento NLTK":
+        df = pd.read_csv('tweets_limpos.csv')
+        analisar_sentimentos_nltk(df)
     if choice == "Mostrar Gráfico OpenAI":
-        df = pd.read_csv('tweets_sentimento_openia.csv')
         grafico_barras()
+
                 
 if __name__ == '__main__':
     main()
