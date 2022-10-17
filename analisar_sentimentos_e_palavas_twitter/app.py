@@ -278,24 +278,24 @@ def main():
     if choice == "Pesquisar Tweets" or option == "Pesquisar Tweets":
         st.title("Pesquisar Tweets")
         pegar_tweets()
-    if choice == "Limpar Tweets" or option == "Limpar Tweets":
+    if choice == "Limpar Tweets":
         st.title("Limpar Tweets")
         limpar_tweets() 
-    if choice == "Analisar Sentimento NLTK" or option == "Analisar Sentimento NLTK":
+    if choice == "Analisar Sentimento NLTK":
         st.title("Analisar Sentimento NLTK")
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_nltk(df)
-    if choice == "Analise de Sentimento TextBlob" or option == "Analise de Sentimento TextBlob":
+    if choice == "Analise de Sentimento TextBlob":
         st.title('Analise de Sentimento TextBlob')
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_textblob(df)
-    if choice == "Mostrar Gráficos Barras" or option == "Mostrar Gráficos Barras":
+    if choice == "Mostrar Gráficos Barras":
         st.title('Gráficos de Barras')
         grafico_barras()
-    if choice == "Mostrar Gráficos Pizza" or option == "Mostrar Gráficos Pizza":
+    if choice == "Mostrar Gráficos Pizza":
         st.title("Gráfico de Pizza")
         grafico_pizza()
-    if choice == "Mostrar WordCloud" or option == "Mostrar WordCloud":
+    if choice == "Mostrar WordCloud":
         st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
