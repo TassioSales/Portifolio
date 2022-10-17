@@ -5,7 +5,7 @@ import tweepy as tw
 import re
 import string
 import nltk
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -218,6 +218,25 @@ def grafico_pizza():
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
+        
+#criar função para criar grafico de nuvem de palavras
+def WordCloud():
+    palavras = ''
+    for item in df['Tweets']:
+        palavras = palavras + ' ' + item
+        #remover STOPWORDS em portuguese
+        stopwords = set(STOPWORDS)
+        wordcloud = WordCloud(width = 800, height = 800,
+                background_color ='white',
+                min_font_size = 10).generate(palavras)
+    #plotar a wordclod
+    plt.figure(figsize = (8, 8), facecolor = None)
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.tight_layout(pad = 0)
+    st.pyplot(plt)
+        
+        
         
    
 #função principal
