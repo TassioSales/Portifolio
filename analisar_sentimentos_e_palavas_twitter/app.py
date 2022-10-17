@@ -98,7 +98,6 @@ def limpar_tweets():
         
 #percorre a coluna de tweets e mostra se o tweet é positivo, negativo ou neutro
 def analisar_sentimento_open(df):
-    df['Sentimento'] = ""
     """[summary]
     Realiza a análise de sentimento dos tweets
     Returns: string
@@ -107,6 +106,7 @@ def analisar_sentimento_open(df):
     :param: df['Tweets']: coluna com os tweets limpos
     :param: df['Sentimento']: coluna com o sentimento do tweet
     """
+    df['Sentimento'] = " "
     for tweet in df['Tweets']:
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -117,12 +117,8 @@ def analisar_sentimento_open(df):
             frequency_penalty=0,
             presence_penalty=0.6,
         )
-        if response['choices'][0]['text'] == 'Positivo':
-            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Positivo'
-        elif response['choices'][0]['text'] == 'Negativo':
-            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Negativo'
-        else:
-            df['Sentimento'].loc[df['Tweets'] == tweet] = 'Neutro'
+        #titulo
+    df['Sentimento'].loc[df['Tweets'] == tweet] = response['choices'][0]['text']
     if st.button("Mostrar Sentimento"):
         st.table(df)
     else:
