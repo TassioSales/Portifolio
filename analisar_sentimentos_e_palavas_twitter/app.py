@@ -146,11 +146,16 @@ def analisar_sentimentos_nltk(df):
                 if k in ss:
                     if ss[k] >= 0.05:
                         #adicionar os tweets e o sentimento no dataframe
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Positivo'}, ignore_index=True)
+                        df_sentimeto['Tweets'] = tweet
+                        df_sentimeto['Sentimento'] = 'Positivo'
                     elif ss[k] <= -0.05:
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Negativo'}, ignore_index=True)
+                        #adicionar os tweets e o sentimento no dataframe
+                        df_sentimeto['Tweets'] = tweet
+                        df_sentimeto['Sentimento'] = 'Negativo'
                     else:
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Neutro'}, ignore_index=True)
+                        #adicionar os tweets e o sentimento no dataframe
+                        df_sentimeto['Tweets'] = tweet
+                        df_sentimeto['Sentimento'] = 'Neutro'
         #mostrar o dataframe com os tweets e o sentimento
         st.table(df_sentimeto)    
     except Exception as e:
