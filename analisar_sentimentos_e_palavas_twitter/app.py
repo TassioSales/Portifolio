@@ -269,7 +269,7 @@ def main():
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento NLTK", "Analise de Sentimento TextBlob",
             "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
     # criar o selectbox
-    choice = st.sidebar.selectbox("Menu", menu, key=1, label_visibility="Visibility")
+    choice = st.sidebar.selectbox("Menu", menu)
     # selecionar a opção do menu
     if choice == "Home":
         st.title("Análise de Sentimento de Tweets")
@@ -279,7 +279,8 @@ def main():
         st.write("3 - Recomendo para Quantidade de tweets não ultrapassar 1000, pois o tempo de processamento é maior.")
         st.write("4 - Para limpar os tweets, basta selecionar a opção Limpar Tweets e clicar no botão Limpar.")
         st.write(
-            "5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
+            "5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento"
+            "NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
         st.write("6 - Recomendo que que a limpeza dos tweets seja feita antes de analisar o sentimento dos tweets.")
         st.write(
             "7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão Mostrar Gráfico.")
