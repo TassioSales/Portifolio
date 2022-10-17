@@ -141,16 +141,18 @@ def analisar_sentimentos_nltk(df):
             sid = SentimentIntensityAnalyzer()
             ss = sid.polarity_scores(traducao.text)
             #mostrar o sentimento dos tweets
+        for tweet in df['Tweets']:
+            df_sentimeto = df.append({'Tweets': tweet}, ignore_index=True)
         for k in sorted(ss):
-            for tweet in df['Tweets']:
-                if k in ss:
-                    if ss[k] >= 0.05:
-                        #adicionar o sentimento dos tweets ao dataframe
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Positivo'}, ignore_index=True)
-                    elif ss[k] <= -0.05:
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Negativos'}, ignore_index=True)
-                    else:
-                        df_sentimeto = df_sentimeto.append({'Tweets': tweet, 'Sentimento': 'Neutro'}, ignore_index=True)
+            #motrar o sentimento dos tweets sao positivos, negativos ou neutros
+            if k in ss:
+                if ss[k] >= 0.05:
+                    #adicionar o sentimento dos tweets ao dataframe
+                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Positivo'}, ignore_index=True)
+                elif ss[k] <= -0.05:
+                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Negativos'}, ignore_index=True)
+                else:
+                    df_sentimeto = df_sentimeto.append({'Sentimento': 'Neutro'}, ignore_index=True)
         #mostrar o dataframe com os tweets e o sentimento
         if st.button("Mostrar Sentimento"):
             st.table(df_sentimeto)
