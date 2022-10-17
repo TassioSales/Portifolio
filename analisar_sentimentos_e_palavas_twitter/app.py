@@ -258,7 +258,7 @@ def wordcloud(df):
 #função principal
 def main():
     #criar o menu
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets","Analisar Sentimento NLTK","Analise de Sentimento TextBlob" ,"Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud", "Tutorial"]
     #criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     #selecionar a opção do menu
@@ -266,22 +266,41 @@ def main():
         st.title("Análise de Sentimento de Tweets")
         st.subheader("Análise de Sentimento de Tweets com OpenAI")
     if choice == "Pesquisar Tweets":
+        st.title("Pesquisar Tweets")
         pegar_tweets()
     if choice == "Limpar Tweets":
+        st.title("Limpar Tweets")
         limpar_tweets() 
     if choice == "Analisar Sentimento NLTK":
+        st.title("Analisar Sentimento NLTK")
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_nltk(df)
     if choice == "Analise de Sentimento TextBlob":
+        st.title('Analise de Sentimento TextBlob')
         df = pd.read_csv('tweets_limpos.csv')
         analisar_sentimentos_textblob(df)
     if choice == "Mostrar Gráficos Barras":
+        st.title('Gráficos de Barras')
         grafico_barras()
     if choice == "Mostrar Gráficos Pizza":
+        st.title("Gráfico de Pizza")
         grafico_pizza()
     if choice == "Mostrar WordCloud":
+        st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
+    if choice == "Tutorial":
+        st.warning("Tutorial")
+        st.text("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
+        st.text("2 - Para pesquisar os tweets, basta digitar a palavra chave e clicar no botão Pesquisar.")
+        st.text("3 - Recomendo para Quantidade de tweets não ultrapassar 1000, pois o tempo de processamento é maior.")
+        st.text("4 - Para limpar os tweets, basta selecionar a opção Limpar Tweets e clicar no botão Limpar.")
+        st.text("5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
+        st.text("6 - Recomendo que que a limpeza dos tweets seja feita antes de analisar o sentimento dos tweets.")
+        st.text("7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão Mostrar Gráfico.")
+        st.text("8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
+        st.text("9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
+        st.text("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
                 
 if __name__ == '__main__':
     main()
