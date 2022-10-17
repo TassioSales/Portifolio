@@ -263,41 +263,55 @@ def wordcloud(df):
         st.write(e.__class__())
 
 
-# criar função principal
+# função principal
 def main():
-    # criar um menu com as opções
-    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "WordCloud", "Analise de Sentimento NLTK",
-            "Analise de Sentimento TextBlob", "Grafico de Barras", "Grafico de Pizza", "WordCloud", "tutorial"]
-    opcoes = st.sidebar.selectbox("Menu", menu)
-    # criar um titulo
-    st.title("Análise de Sentimento de Tweets")
-    if opcoes == "Home":
-        # criar um subtitulo
-        st.subheader("Análise de Sentimento de Tweets")
-        # criar um texto
-        st.text("Escolha uma opção no menu ao lado")
-    elif opcoes == "Pesquisar Tweets":
-        # criar um subtitulo
-        st.subheader("Pesquisar Tweets")
-        # criar um texto
-        st.text("Pesquise por tweets")
-        # criar um campo para digitar o texto
-        texto = st.text_input("Digite o texto")
-        # criar um botão para pesquisar
-        if st.button("Pesquisar"):
-            # chamar a função para pesquisar tweets
-            pesquisar_tweets()
-    elif opcoes == "Limpar Tweets":
-        # criar um subtitulo
-        st.subheader("Limpar Tweets")
-        # criar um texto
-        st.text("Limpar tweets")
-        # criar um botão para limpar tweets
-        if st.button("Limpar Tweets"):
-            # chamar a função para limpar tweets
-            limpar_tweets()
-
-
+    # criar o menu
+    menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento NLTK", "Analise de Sentimento TextBlob",
+            "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
+    # criar o selectbox
+    choice = st.sidebar.selectbox("Menu", menu, key=1, label_visibility="Visibility")
+    # selecionar a opção do menu
+    if choice == "Home":
+        st.title("Análise de Sentimento de Tweets")
+        st.warning("Tutorial")
+        st.write("1 - Para utilizar o aplicativo, basta selecionar a opção desejada no menu lateral.")
+        st.write("2 - Para pesquisar os tweets, basta digitar a palavra chave e clicar no botão Pesquisar.")
+        st.write("3 - Recomendo para Quantidade de tweets não ultrapassar 1000, pois o tempo de processamento é maior.")
+        st.write("4 - Para limpar os tweets, basta selecionar a opção Limpar Tweets e clicar no botão Limpar.")
+        st.write(
+            "5 - Recomendo que para analisar o sentimento dos tweets, basta selecionar a opção Analisar Sentimento NLTK ou Analisar Sentimento TextBlob e clicar no botão Analisar Sentimento")
+        st.write("6 - Recomendo que que a limpeza dos tweets seja feita antes de analisar o sentimento dos tweets.")
+        st.write(
+            "7 - Para mostrar os gráficos de barras, basta selecionar a opção Mostrar Gráficos Barras e clicar no botão Mostrar Gráfico.")
+        st.write(
+            "8 - Para mostrar os gráficos de pizza, basta selecionar a opção Mostrar Gráficos Pizza e clicar no botão Mostrar Gráfico.")
+        st.write(
+            "9 - Para mostrar a wordcloud, basta selecionar a opção Mostrar WordCloud e clicar no botão Mostrar WordCloud.")
+        st.write("10- E de suma importacia que a coleta e limpesa sejam feitas antes de qualque outra ação.")
+    if choice == "Pesquisar Tweets":
+        st.title("Pesquisar Tweets")
+        pesquisar_tweets()
+    if choice == "Limpar Tweets":
+        st.title("Limpar Tweets")
+        limpar_tweets()
+    if choice == "Analisar Sentimento NLTK":
+        st.title("Analisar Sentimento NLTK")
+        df = pd.read_csv('tweets_limpos.csv')
+        analisar_sentimentos_nltk(df)
+    if choice == "Analise de Sentimento TextBlob":
+        st.title('Analise de Sentimento TextBlob')
+        df = pd.read_csv('tweets_limpos.csv')
+        analisar_sentimentos_textblob(df)
+    if choice == "Mostrar Gráficos Barras":
+        st.title('Gráficos de Barras')
+        grafico_barras()
+    if choice == "Mostrar Gráficos Pizza":
+        st.title("Gráfico de Pizza")
+        grafico_pizza()
+    if choice == "Mostrar WordCloud":
+        st.title("WordCloud")
+        df = pd.read_csv('tweets_limpos.csv')
+        wordcloud(df)
 
 
 if __name__ == '__main__':
