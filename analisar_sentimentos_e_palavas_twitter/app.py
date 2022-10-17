@@ -128,8 +128,8 @@ def analisar_sentimento_open(df):
     
     
 def analisar_sentimentos_nltk(df):
-    df_sentimeto = pd.DataFrame(coluns=['Tweets', 'Sentimento'])
     try:
+        df_sentimeto = pd.DataFrame(columns=['Tweets', 'Sentimento'])
         nltk.download('vader_lexicon')
         nova_lista = [word.encode('utf-8') for word in df['Tweets']]
         #ler tweets da nova_lista
