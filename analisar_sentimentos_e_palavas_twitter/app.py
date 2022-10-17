@@ -136,8 +136,21 @@ def analisar_sentimentos_nltk(df):
             traduzir = translator.translate(tweet, dest='en')
             #colocar traducao para cada tweet na coluna traducao
             df['Traducao'].loc[df['Tweets'] == tweet] = traduzir.text
-        #mostra dataframe
-        st.table(df)
+        for tweet in df['Traducao']:
+            sid = SentimentIntensityAnalyzer()
+            ss = sid.polarity_scores(tweet)
+            for k in ss:
+                if k == 'compound':
+                    if ss[k] >= 0.05:
+                        df['Sentimento'] = 'Positivo'
+                    elif ss[k] <= -0.05:
+                        df['Sentimento'] = 'Negativo'
+                    else:
+                        df['Sentimento'] = 'Neutro'
+        if st.button("Mostrar Sentimento"):
+            st.table(df)
+        else:
+          st.write("Clique no botão para mostrar o sentimento do tweet")  
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
