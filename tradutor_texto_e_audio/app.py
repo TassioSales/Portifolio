@@ -82,18 +82,21 @@ def falar(texto, idioma):
     
 #função principal
 def main():
-    #cria o menu
-    idioma = menu()
-    #configura o pyaudio
-    config_pyAudio()
-    #chama a função para ouvir e reconhecer a fala
-    texto = ouvir_microfone()
-    #chama a função para traduzir o texto
-    texto_traduzido = traduzir(texto, idioma)
-    #chama a função para falar o texto
-    falar(texto_traduzido, idioma)
-    #mostra o texto traduzido
-    st.text_area("Texto traduzido: " + texto_traduzido)
+    #titulo da pagina
+    st.title("Tradutor de voz")
+    #criar botao para iniciar o programa
+    if st.button("Iniciar"):
+        #chama a função para ouvir e reconhecer a fala
+        texto = ouvir_microfone()
+        #chama a função para traduzir o texto
+        idioma = menu()
+        traducao = traduzir(texto, idioma)
+        #chama a função para falar o texto
+        falar(traducao, idioma)
+        st.text_area("Tradução: " + traducao)
+        #criar botao para sair do programa
+        if st.button("Sair"):
+            exit()
 
 #chama a função principal
 if __name__ == '__main__':
