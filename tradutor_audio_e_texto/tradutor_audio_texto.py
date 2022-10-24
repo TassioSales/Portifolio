@@ -8,6 +8,7 @@ from gtts import gTTS
 from playsound import playsound
 #baixar biblioteca Streamlit para criar a interface
 import streamlit as st
+import PyAudio 
 
 #função para reconhecer a voz
 def ouvir_microfone():
