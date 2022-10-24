@@ -37,7 +37,6 @@ pipwin==0.5.2
 playsound==1.2.2
 protobuf==3.20.3
 pyarrow==9.0.0
-PyAudio @ file:///C:/Users/tassi/OneDrive%20-%20CESB%20-%20Centro%20de%20Educa%C3%A7%C3%A3o%20Superior%20de%20Brasilia%20LTDA/projetos/Projetos/Portifolio/tradutor_audio_e_texto/PyAudio-0.2.11-cp310-cp310-win_amd64.whl
 pydeck==0.8.0b4
 Pygments==2.13.0
 pyjsparser==2.7.1
