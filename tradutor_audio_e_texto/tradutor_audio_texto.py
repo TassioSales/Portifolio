@@ -18,13 +18,18 @@ def ouvir_microfone():
         microfone.adjust_for_ambient_noise(source)
         #Avisa ao usuário que está pronto para ouvir
         st.write("Diga alguma coisa: ")
-        #Armazena a informação de áudio na variável
-        audio = microfone.listen(source)
+        #Criar botao para iniciar a gravação
+        if st.button("Iniciar Gravação"):
+            #Armazena a informação de áudio na variável
+            audio = microfone.listen(source)
+        #criar botao para parar a gravação
+        if st.button("Parar Gravação"):
+            microfone.stop_listening()
         try:
             #Passa o áudio para o reconhecedor de padroes do speech_recognition
             frase = microfone.recognize_google(audio, language='pt-BR')
             #Após alguns segundos, retorna a frase falada
-            st.write("Você disse: " + frase)
+            st.text_area("Você disse: " + frase)
             #Caso nao tenha reconhecido o padrao de fala, exibe esta mensagem
         except sr.UnknownValueError:
             st.write("Não entendi")
