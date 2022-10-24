@@ -96,8 +96,7 @@ def main():
     st.write("Texto traduzido: " + texto_traduzido)
     #chama a função falar e fala o texto traduzido
     falar(texto_traduzido, idioma)
-    
-    
+
 #chama a função principal
 if __name__ == '__main__':
     main()
