@@ -36,6 +36,17 @@ def ouvir_microfone():
             st.write("Não entendi")
     return frase
 
+#função para configurar pyaudio
+def config_pyAudio():
+    #cria um objeto
+    p = pyaudio.PyAudio()
+    #abre o stream
+    stream = p.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=1024)
+    #fecha o stream
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
 #menu para escolher para qual idioma traduzir
 def menu():
     st.write("Escolha o idioma para traduzir")
@@ -82,24 +93,18 @@ def falar(texto, idioma):
     
 #função principal
 def main():
-    #define o título
-    st.title("Tradutor de Texto")
-    #define o subtítulo
-    st.subheader("Tradutor de Texto")
-    #exibe o texto
-    st.write("Esse é um tradutor de texto")
-    #exibe o texto
-    st.write("Para começar, diga alguma coisa")
+    #cria o menu
+    idioma = menu()
+    #configura o pyaudio
+    config_pyAudio()
     #chama a função para ouvir e reconhecer a fala
     texto = ouvir_microfone()
-    #chama a função menu e recebe o idioma digitado
-    idioma = menu()
-    #chama a função traduzir e recebe o texto traduzido
+    #chama a função para traduzir o texto
     texto_traduzido = traduzir(texto, idioma)
-    #exibe o texto traduzido
-    st.write("Texto traduzido: " + texto_traduzido)
-    #chama a função falar e fala o texto traduzido
+    #chama a função para falar o texto
     falar(texto_traduzido, idioma)
+    #mostra o texto traduzido
+    st.text_area("Texto traduzido: " + texto_traduzido)
 
 #chama a função principal
 if __name__ == '__main__':
