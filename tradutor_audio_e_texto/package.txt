@@ -33,6 +33,7 @@ Pillow==9.2.0
 playsound==1.2.2
 protobuf==3.20.3
 pyarrow==9.0.0
+PyAudio==0.2.12
 pydeck==0.8.0b4
 Pygments==2.13.0
 Pympler==1.0.1
