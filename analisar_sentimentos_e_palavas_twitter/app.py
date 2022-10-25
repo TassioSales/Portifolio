@@ -101,23 +101,42 @@ def limpar_tweets():
         st.write(e.__class__())
         
 #criar dataframe com conatagem de palavras
-def contar_palavras(tweets_limpos):
-    try:
-        tweets_limpos = pd.read_csv('tweets_limpos.csv')
-        # remover stopwords
-        tweets_limpos['Tweets'] = tweets_limpos['Tweets'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_palavras)]))
-        # criar dataframe com conatagem de palavras
-        df = pd.DataFrame(Counter(" ".join(tweets_limpos["Tweets"]).split()).most_common(20), columns=['Palavras', 'Quantidade'])
-        # criar botao para mostrar os tweets limpos
-        mostrar_contagem_palavras = st.button("Mostrar Contagem de Palavras")
-        if mostrar_contagem_palavras:
-            st.table(df)
-        # criar gráfico de barras
-        fig = px.bar(df, x='Palavras', y='Quantidade', color='Palavras', title='Contagem de Palavras')
-        st.plotly_chart(fig)
-    except Exception as e:
-        st.write(e)
-        st.write(e.__class__())
+def ContagemDePalavra(df):
+    #criar uma lista com as palavras
+    lista = []
+    for i in df['Tweets']:
+        lista.append(i)
+    #juntar todas as palavras em uma string
+    palavras = ' '.join(lista)
+    #remover palavras com menos de 3 letras
+    palavras = re.sub(r"\b\w{1,3}\b", "", palavras)
+    #remover palavras com mais de 15 letras
+    palavras = re.sub(r"\b\w{15,}\b", "", palavras)
+    #remover pontuação
+    palavras = re.sub(r"[^\w\s]", "", palavras)
+    #remover números
+    palavras = re.sub(r"\d+", "", palavras)
+    #remover espaços em branco
+    palavras = re.sub(r"\s+", " ", palavras)
+    #remover RT
+    palavras = re.sub(r"RT", "", palavras)
+    #remover links
+    palavras = re.sub(r"http\S+", "", palavras)
+    #remover @
+    palavras = re.sub(r"@\S+", "", palavras)
+    #remover #
+    palavras = re.sub(r"#\S+", "", palavras)
+    #remover emojis
+    palavras = re.sub(r"\\U\S+", "", palavras)
+    #remover stopwords
+    palavras = ' '.join([palavra for palavra in palavras.split() if palavra not in stop_palavras])
+    #criar um dataframe com a contagem de palavras
+    df = pd.DataFrame(Counter(palavras.split()).most_common(20), columns=['Palavras', 'Contagem'])
+    #Mostrar o dataframe
+    st.table(df)
+    #criar um gráfico de barras
+    fig = px.bar(df, x='Palavras', y='Contagem', color='Contagem', height=400)
+    st.plotly_chart(fig)
 
 
 def analisar_sentimentos_nltk(df):
@@ -340,7 +359,7 @@ def main():
     if choice == "Contagem de Palavras":
         st.title("Contagem de Palavras")
         df = pd.read_csv('tweets_limpos.csv')
-        contagem_palavras(df)
+        ContagemDePalavra(df)
 
 if __name__ == '__main__':
     main()
