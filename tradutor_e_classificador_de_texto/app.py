@@ -115,8 +115,13 @@ def analisar_emocoes(text):
     trust = emotion.raw_emotion_scores['trust']
     #criar um dicionário com as emoções e seus valores
     emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust}
-    #mostra o top 3 de emoções do texto
-    st.write(sorted(emocoes.items(), key=lambda x: x[1], reverse=True)[:3])      
+    #organizar o dicionário em ordem decrescente
+    emocoes = sorted(emocoes.items(), key=lambda x: x[1], reverse=True)
+    #mostrar o top 3 de emoções
+    st.write(f'A {emocoes[0][0]} é a emoção mais forte do texto sua pontuação é {emocoes[0][1]}')
+    st.write(f'A {emocoes[1][0]} é a segunda emoção mais forte do texto sua pontuação é {emocoes[1][1]}')
+    st.write(f'A {emocoes[2][0]} é a terceira emoção mais forte do texto sua potuação é {emocoes[2][1]}')
+    
         
 def main():
     st.title("Tradutor de Texto")
