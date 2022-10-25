@@ -101,7 +101,7 @@ def limpar_tweets():
         st.write(e.__class__())
         
 #criar dataframe com conatagem de palavras
-def contar_palavras():
+def contar_palavras(tweets_limpos):
     try:
         tweets_limpos = pd.read_csv('tweets_limpos.csv')
         # remover stopwords
