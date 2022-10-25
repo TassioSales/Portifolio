@@ -16,6 +16,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from googletrans import Translator
 from stop_word import stop_palavras
+import plotly.express as px
 
 # chaves de acesso
 consumer_key = st.secrets['ck']
