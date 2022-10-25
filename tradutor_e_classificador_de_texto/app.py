@@ -104,11 +104,19 @@ def analisar_emocoes(text):
     emotion = NRCLex(text)
     #mostra emoçoes do texto em forma de dicionário
     st.write(emotion.raw_emotion_scores)
-    #mostra emoções do texto em forma de gráfico
-    st.bar_chart(emotion.raw_emotion_scores)
-    #mostra emoções do texto em forma de texto
-    st.write(emotion.top_emotions)
-        
+    #pegar resultado do de cada emoção
+    anger = emotion.raw_emotion_scores['anger']
+    anticipation = emotion.raw_emotion_scores['anticipation']
+    disgust = emotion.raw_emotion_scores['disgust']
+    fear = emotion.raw_emotion_scores['fear']
+    joy = emotion.raw_emotion_scores['joy']
+    sadness = emotion.raw_emotion_scores['sadness']
+    surprise = emotion.raw_emotion_scores['surprise']
+    trust = emotion.raw_emotion_scores['trust']
+    #criar um dicionário com as emoções e seus valores
+    emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust}
+    #mostra o top 3 de emoções do texto
+    st.write(sorted(emocoes.items(), key=lambda x: x[1], reverse=True)[:3])      
         
 def main():
     st.title("Tradutor de Texto")
