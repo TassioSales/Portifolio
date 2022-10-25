@@ -113,8 +113,8 @@ def analisar_emocoes(text):
     sadness = emotion.raw_emotion_scores['sadness']
     surprise = emotion.raw_emotion_scores['surprise']
     trust = emotion.raw_emotion_scores['trust']
-    positivo = emotion.raw_emotion_scores['positivo']
-    negativo = emotion.raw_emotion_scores['negativo']
+    positivo = emotion.raw_emotion_scores['positive']
+    negativo = emotion.raw_emotion_scores['negative']
     #criar um dicionário com as emoções e seus valores
     emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust,"Positivo":positivo, "Negativo":negativo}
     #organizar o dicionário em ordem decrescente
