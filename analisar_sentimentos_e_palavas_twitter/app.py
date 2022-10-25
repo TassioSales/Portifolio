@@ -134,9 +134,12 @@ def ContagemDePalavra(df):
     df = pd.DataFrame(Counter(palavras.split()).most_common(20), columns=['Palavras', 'Contagem'])
     #Mostrar o dataframe
     st.table(df)
-    #criar um gráfico de barras
-    fig = px.bar(df, x='Palavras', y='Contagem', color='Contagem', height=400)
-    st.plotly_chart(fig)
+    #criar um botao para mostrar o grafico de barras
+    mostrar_grafico = st.button("Mostrar Grafico")
+    if mostrar_grafico:
+        #criar um grafico de barras
+        fig = px.bar(df, x='Palavras', y='Contagem', color='Contagem', title='Contagem de Palavras')
+        st.plotly_chart(fig)
 
 
 def analisar_sentimentos_nltk(df):
