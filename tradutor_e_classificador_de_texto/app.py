@@ -1,26 +1,29 @@
-#biblioteca para classificar o tipo de texto
-from langdetect import detect
 #biblioteca para traduzir o texto
 from googletrans import Translator
 #biblioteca para ambiente web
 import streamlit as st
-#biblioteca para classificar o tipo de texto em poesia ou prosa ou poema etc..
-from textblob import TextBlob
-
+#usar nltk para classificar o texto
+import nltk
+from nltk.stem import RSLPStemmer
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import re
+from bases import stop_palavras
+from nltk.tokenize import word_tokenize
+from nrclex import NRCLex
+import json
 
 #função para pedir texto para o usuário
 def get_text():
     text = st.text_area("Digite o texto a ser traduzido")
-    return text
+    if text:
+        return text
 
 #menu de idiomas para tradução
 def get_lang():
     try:
-        lang = st.selectbox("Selecione o idioma",("Alemão","Português","Inglês","Espanhol","Francês","Italiano","Japonês","Coreano","Chinês"))
+        lang = st.selectbox("Selecione o idioma",("Alemão","Inglês","Espanhol","Francês","Italiano","Japonês","Coreano","Chinês"))
         if lang == "Alemão":
             return "de"
-        elif lang == "Português":
-            return "pt"
         elif lang == "Inglês":
             return "en"
         elif lang == "Espanhol":
@@ -38,77 +41,90 @@ def get_lang():
     except Exception as e:
         print("Erro ao selecionar idioma",e)
 
-#funçao para detectar o idioma do texto
-def detect_lang(text):
+#traduzir o texto do português para o idioma selecionado
+def translate_text(text, lang):
+    translator = Translator()
     try:
-        lang = detect(text)
-        if lang == "de":
-            return "Alemão"
-        elif lang == "pt":
-            return "Português"
-        elif lang == "en":
-            return "Inglês"
-        elif lang == "es":
-            return "Espanhol"
-        elif lang == "fr":
-            return "Francês"
-        elif lang == "it":
-            return "Italiano"
-        elif lang == "ja":
-            return "Japonês"
-        elif lang == "ko":
-            return "Coreano"
-        elif lang == "zh-CN":
-            return "Chinês"
+        translated = translator.translate(text, dest=lang)
+        return translated.text
     except Exception as e:
-        print("Erro ao detectar idioma",e)
+        print("Erro ao traduzir o texto",e)
         
-#função para traduzir o texto apartir do idioma selecionado e idioma detectado do texto
-def translate_text(text,lang):
-    try:
-        translator = Translator()
-        translated_text = translator.translate(text,dest=lang)
-        return translated_text.text
-    except Exception as e:
-        print("Erro ao traduzir texto",e)
+#remover stopwords do texto
+def remove_stopwords(text):
+    stopwords = stop_palavras
+    text = [word for word in text if word not in stopwords]
+    return text
+        
+#função para traduzir o texto sempre para o inglês
+def traduzirParaIngles(texto):
+    translator = Translator()
+    texto = translator.translate(texto, dest="en")
+    return texto.text
+
+#funçao para stemizar o texto
+def Stemize(text):
+    stemmer = RSLPStemmer()
+    stem = []
+    for i in text:
+        stem.append(stemmer.stem(i))
+    return stem
+
+#função para tokenizar o texto
+def Tokenize(text):
+    text = word_tokenize(text)
+    return text
+
+def tratar_texto(text):
+    #traduzir o texto para o inglês
+    text = traduzirParaIngles(text)
+    #tokenizar o texto
+    text = Tokenize(text)
+    #remover stopwords do texto
+    text = remove_stopwords(text)
+    #stemizar o texto
+    text = Stemize(text)
+    return text
+
+#função para analisar sentimento do texto
+def analisar_sentimento(text):
+    sid = SentimentIntensityAnalyzer()
+    score = sid.polarity_scores(text)
+    #retornar se o texto é positivo, negativo ou neutro
+    st.write(score)
+    if score['compound'] > 0.0:
+        st.text("O sentimento do texto é positivo")
+    elif score['compound'] < 0.0:
+        st.write("O sentimento do texto é negativo")
+    else:
+        st.write("O sentimento do texto é neutro")
+        
+#função para analisar emoções do texto
+def analisar_emocoes(text):
+    emotion = NRCLex(text)
+    #mostra emoçoes do texto em forma de dicionário
+    st.write(emotion.raw_emotion_scores)
+    #mostra o top 2 de emoções do texto
+    st.write(emotion.top_emotions)
         
         
-#função para mostrar o texto antiguo e o texto traduzido
-def show_text(text,translated_text):
-    st.write("Texto original:",text)
-    st.write("Texto traduzido:",translated_text)
-    
-#função para classificar o tipo de texto
-def classify_text(text):
-    try:
-        blob = TextBlob(text)
-        if blob.detect_language() == "en":
-            return blob.tags
-        else:
-            return blob.translate(to="en").tags
-    except Exception as e:
-        print("Erro ao classificar texto",e)
-        
-        
-#função para mostrar o tipo de texto
-def show_classified_text(text):
-    try:
-        classified_text = classify_text(text)
-        st.write("Tipo de texto:",classified_text)
-    except Exception as e:
-        print("Erro ao mostrar texto classificado",e)
-        
-        
-#função principal
 def main():
-    st.title("Tradutor de Textos")
+    st.title("Tradutor de Texto")
     text = get_text()
     lang = get_lang()
-    if text:
-        translated_text = translate_text(text,lang)
-        show_text(text,translated_text)
-        show_classified_text(text)
-        
+    #criar um botão para traduzir o texto
+    if st.button("Traduzir"):
+        translated_text = translate_text(text, lang)
+        st.text_area(f"Tradução para {lang}",translated_text)
+    #criar um botão para classificar o texto
+    if st.button("Classificar"):    
+        text = tratar_texto(text)
+        text = ' '.join(text)
+        analisar_sentimento(text)
+    if st.button("Analisar emoções"):
+        text = tratar_texto(text)
+        text = ' '.join(text)
+        analisar_emocoes(text)
         
 if __name__ == "__main__":
     main()
