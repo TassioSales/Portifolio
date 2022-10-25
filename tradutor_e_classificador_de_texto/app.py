@@ -116,7 +116,8 @@ def analisar_emocoes(text):
     positivo = emotion.raw_emotion_scores['positive']
     negativo = emotion.raw_emotion_scores['negative']
     #criar um dicionário com as emoções e seus valores
-    emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust,"Positivo":positivo, "Negativo":negativo}
+    emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust}
+    sentimento = max("Positivo":positivo, "Negativo":negativo)
     #organizar o dicionário em ordem decrescente
     emocoes = sorted(emocoes.items(), key=lambda x: x[1], reverse=True)
     #mostrar o top 3 de emoções
@@ -124,16 +125,10 @@ def analisar_emocoes(text):
     st.write(f'A {emocoes[1][0]} é a segunda emoção mais forte do texto sua pontuação é {emocoes[1][1]}')
     st.write(f'A {emocoes[2][0]} é a terceira emoção mais forte do texto sua potuação é {emocoes[2][1]}')
     #mostrar o top se o texto é positivo ou negativo
-    if emocoes[8][1] > emocoes[9][1]:
+    if sentimento[0][1] > sentmento[1][1]:
         st.write("Em resumo o texto é positivo")
     else:
         st.write("Em resumo o texto é negativo")
-    #criar um botao para mostrar o gráfico de emoções
-    if st.button("Mostrar gráfico de emoções"):
-        #criar um gráfico de barras com as emoções
-        fig = px.bar(x=[emocoes[0][0],emocoes[1][0],emocoes[2][0]],y=[emocoes[0][1],emocoes[1][1],emocoes[2][1]],labels={'x':'Emoções','y':'Pontuação'})
-        fig.update_layout(title_text="Top 3 de emoções do texto")
-        st.plotly_chart(fig)
 
     
         
