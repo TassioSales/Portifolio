@@ -11,6 +11,7 @@ from bases import stop_palavras
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import json
+nltk.download('punkt')
 
 #função para pedir texto para o usuário
 def get_text():
