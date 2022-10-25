@@ -288,7 +288,7 @@ def wordcloud(df):
 def main():
     # criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento NLTK", "Analise de Sentimento TextBlob",
-            "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud", "Mostrar 10 Palavras Mais Usadas"]
+            "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud", "Contagem de Palavras"]
     # criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     # selecionar a opção do menu
