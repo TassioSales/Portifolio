@@ -11,8 +11,7 @@ from bases import stop_palavras
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import json
-nltk.download('punkt')
-
+nltk.download('all')
 #função para pedir texto para o usuário
 def get_text():
     text = st.text_area("Digite o texto a ser traduzido")
