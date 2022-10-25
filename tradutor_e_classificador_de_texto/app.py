@@ -104,7 +104,9 @@ def analisar_emocoes(text):
     emotion = NRCLex(text)
     #mostra emoçoes do texto em forma de dicionário
     st.write(emotion.raw_emotion_scores)
-    #mostra o top 2 de emoções do texto
+    #mostra emoções do texto em forma de gráfico
+    st.bar_chart(emotion.raw_emotion_scores)
+    #mostra emoções do texto em forma de texto
     st.write(emotion.top_emotions)
         
         
