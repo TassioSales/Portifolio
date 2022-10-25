@@ -99,6 +99,25 @@ def limpar_tweets():
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
+        
+#criar dataframe com conatagem de palavras
+def contar_palavras():
+    try:
+        tweets_limpos = pd.read_csv('tweets_limpos.csv')
+        # remover stopwords
+        tweets_limpos['Tweets'] = tweets_limpos['Tweets'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_palavras)]))
+        # criar dataframe com conatagem de palavras
+        df = pd.DataFrame(Counter(" ".join(tweets_limpos["Tweets"]).split()).most_common(20), columns=['Palavras', 'Quantidade'])
+        # criar botao para mostrar os tweets limpos
+        mostrar_contagem_palavras = st.button("Mostrar Contagem de Palavras")
+        if mostrar_contagem_palavras:
+            st.table(df)
+        # criar gráfico de barras
+        fig = px.bar(df, x='Palavras', y='Quantidade', color='Palavras', title='Contagem de Palavras')
+        st.plotly_chart(fig)
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
 
 
 def analisar_sentimentos_nltk(df):
@@ -264,33 +283,7 @@ def wordcloud(df):
         st.write(e)
         st.write(e.__class__())
         
-#criar grafico de bar_plot com as 10 palavras mais usadas no tweet
-def grafico_barras_palavras_mais_usadas(df):
-    try:
-        palavras = ''
-        # criar lista com stop words
-        stop = stop_palavras
-        for tweet in df['Tweets']:
-            palavras += tweet
-            # remove palavras com menos de 3 caracteres
-            palavras = re.sub(r'\W*\b\w{1,3}\b', '', palavras)
-            # remover palavras com mais de 15 caracteres
-            palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
-            # remover palavras repetidas
-            palavras = ' '.join(set(palavras.split()))
-            # remover stopwords caso ele exista nas palavras
-            palavras = ' '.join(set(palavras.split()) - set(stop))
-            # criar um dataframe com as palavras e suas frequencias
-            df_palavras = pd.DataFrame(palavras.split(), columns=['Palavras'])
-            # criar um grafico de barras com as 10 palavras mais usadas
-            st.bar_chart(df_palavras['Palavras'].value_counts()[:10])
-            string = "O gráfico acima mostra as 10 palavras mais usadas nos tweets."
-            st.write(string)
-    except Exception as e:
-        st.write(e)
-        st.write(e.__class__())
 
-    
 # função principal
 def main():
     # criar o menu
@@ -344,11 +337,10 @@ def main():
         st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
-    if choice == "Mostrar 10 Palavras Mais Usadas":
-        st.title("10 Palavras Mais Usadas")
+    if choice == "Contagem de Palavras":
+        st.title("Contagem de Palavras")
         df = pd.read_csv('tweets_limpos.csv')
-        grafico_barras_palavras_mais_usadas(df)
-
+        contagem_palavras(df)
 
 if __name__ == '__main__':
     main()
