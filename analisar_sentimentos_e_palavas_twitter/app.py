@@ -233,6 +233,40 @@ def grafico_pizza():
 
 def wordcloud(df):
     try:
+        #criar botao para mostrar wordcloud
+        if st.button("WordCloud"):
+            palavras = ''
+            # criar lista com stop words
+            stop = stop_palavras
+            for tweet in df['Tweets']:
+                palavras += tweet
+                # remove palavras com menos de 3 caracteres
+                palavras = re.sub(r'\W*\b\w{1,3}\b', '', palavras)
+                # remover palavras com mais de 15 caracteres
+                palavras = ' '.join([w for w in palavras.split() if len(w) < 15])
+                # remover palavras repetidas
+                palavras = ' '.join(set(palavras.split()))
+                # remover stopwords caso ele exista nas palavras
+                palavras = ' '.join(set(palavras.split()) - set(stop))
+                # criar uma wordclod com as palavras mais usadas
+            wordcloud = WordCloud(width=800, height=800,
+                                background_color='white',
+                                min_font_size=10).generate(palavras)
+            # plotar a wordclod
+            plt.figure(figsize=(8, 8), facecolor=None)
+            plt.imshow(wordcloud)
+            plt.axis("off")
+            plt.tight_layout(pad=0)
+            plt.show()
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+            st.pyplot()
+    except Exception as e:
+        st.write(e)
+        st.write(e.__class__())
+        
+#criar grafico de bar_plot com as 10 palavras mais usadas no tweet
+def grafico_barras_palavras_mais_usadas(df):
+    try:
         palavras = ''
         # criar lista com stop words
         stop = stop_palavras
@@ -246,28 +280,22 @@ def wordcloud(df):
             palavras = ' '.join(set(palavras.split()))
             # remover stopwords caso ele exista nas palavras
             palavras = ' '.join(set(palavras.split()) - set(stop))
-            # criar uma wordclod com as palavras mais usadas
-        wordcloud = WordCloud(width=800, height=800,
-                              background_color='white',
-                              min_font_size=10).generate(palavras)
-        # plotar a wordclod
-        plt.figure(figsize=(8, 8), facecolor=None)
-        plt.imshow(wordcloud)
-        plt.axis("off")
-        plt.tight_layout(pad=0)
-        plt.show()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+            # criar um dataframe com as palavras e suas frequencias
+            df_palavras = pd.DataFrame(palavras.split(), columns=['Palavras'])
+            # criar um grafico de barras com as 10 palavras mais usadas
+            st.bar_chart(df_palavras['Palavras'].value_counts()[:10])
+            string = "O gráfico acima mostra as 10 palavras mais usadas nos tweets."
+            st.write(string)
     except Exception as e:
         st.write(e)
         st.write(e.__class__())
 
-
+    
 # função principal
 def main():
     # criar o menu
     menu = ["Home", "Pesquisar Tweets", "Limpar Tweets", "Analisar Sentimento NLTK", "Analise de Sentimento TextBlob",
-            "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud"]
+            "Mostrar Gráficos Barras", "Mostrar Gráficos Pizza", "Mostrar WordCloud", "Mostrar 10 Palavras Mais Usadas"]
     # criar o selectbox
     choice = st.sidebar.selectbox("Menu", menu)
     # selecionar a opção do menu
@@ -316,6 +344,10 @@ def main():
         st.title("WordCloud")
         df = pd.read_csv('tweets_limpos.csv')
         wordcloud(df)
+    if choice == "Mostrar 10 Palavras Mais Usadas":
+        st.title("10 Palavras Mais Usadas")
+        df = pd.read_csv('tweets_limpos.csv')
+        grafico_barras_palavras_mais_usadas(df)
 
 
 if __name__ == '__main__':
