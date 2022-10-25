@@ -11,7 +11,7 @@ from bases import stop_palavras
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import json
-import plotly.graph_objects as go
+import plotly.express as px
 nltk.download('all')
 #função para pedir texto para o usuário
 def get_text():
@@ -145,9 +145,11 @@ def grafico_barras(emocoes):
     sadness = emotion.raw_emotion_scores['sadness']
     surprise = emotion.raw_emotion_scores['surprise']
     trust = emotion.raw_emotion_scores['trust']
-    #criar grafico de barras
-    fig = go.Figure(data=[go.Bar(x=emocoes, y=[anger, anticipation, disgust, fear, joy, sadness, surprise, trust])])
-    fig.update_layout(title_text='Emoções do texto')
+    emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust}
+    #organizar o dicionário em ordem decrescente
+    emocoes = sorted(emocoes.items(), key=lambda x: x[1], reverse=True)
+    #criar um grafico de barras com as emoções e seus valores usando o streamlit
+    fig = px.bar(emocoes, x=emocoes[0], y=emocoes[1], color=emocoes[0], title="Emoções do texto")
     st.plotly_chart(fig)
 
     
