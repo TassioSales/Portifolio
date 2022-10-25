@@ -117,7 +117,7 @@ def analisar_emocoes(text):
     negativo = emotion.raw_emotion_scores['negative']
     #criar um dicionário com as emoções e seus valores
     emocoes = {"Raiva":anger,"Antecipação":anticipation,"Nojo":disgust,"Medo":fear,"Alegria":joy,"Tristeza":sadness,"Surpresa":surprise,"Confiança":trust}
-    sentimento = max("Positivo":positivo, "Negativo":negativo)
+    sentimento = {"Positivo":positivo, "Negativo":negativo}
     #organizar o dicionário em ordem decrescente
     emocoes = sorted(emocoes.items(), key=lambda x: x[1], reverse=True)
     #mostrar o top 3 de emoções
@@ -129,6 +129,8 @@ def analisar_emocoes(text):
         st.write("Em resumo o texto é positivo")
     else:
         st.write("Em resumo o texto é negativo")
+        
+#função pa
 
     
         
