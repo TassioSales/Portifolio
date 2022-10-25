@@ -11,6 +11,7 @@ from bases import stop_palavras
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import json
+import plotly.graph_objects as go
 nltk.download('all')
 #função para pedir texto para o usuário
 def get_text():
@@ -130,7 +131,24 @@ def analisar_emocoes(text):
     else:
         st.write("Em resumo o texto é negativo")
         
-#função pa
+#função para criar grafico de barras
+def grafico_barras(emocoes):
+    emotion = NRCLex(text)
+    #mostra emoçoes do texto em forma de dicionário
+    st.write(emotion.raw_emotion_scores)
+    #pegar resultado do de cada emoção
+    anger = emotion.raw_emotion_scores['anger']
+    anticipation = emotion.raw_emotion_scores['anticipation']
+    disgust = emotion.raw_emotion_scores['disgust']
+    fear = emotion.raw_emotion_scores['fear']
+    joy = emotion.raw_emotion_scores['joy']
+    sadness = emotion.raw_emotion_scores['sadness']
+    surprise = emotion.raw_emotion_scores['surprise']
+    trust = emotion.raw_emotion_scores['trust']
+    #criar grafico de barras
+    fig = go.Figure(data=[go.Bar(x=emocoes, y=[anger, anticipation, disgust, fear, joy, sadness, surprise, trust])])
+    fig.update_layout(title_text='Emoções do texto')
+    st.plotly_chart(fig)
 
     
         
@@ -151,6 +169,10 @@ def main():
         text = tratar_texto(text)
         text = ' '.join(text)
         analisar_emocoes(text)
+    if st.button("Grafico de barras"):
+        text = tratar_texto(text)
+        text = ' '.join(text)
+        grafico_barras(text)
         
 if __name__ == "__main__":
     main()
