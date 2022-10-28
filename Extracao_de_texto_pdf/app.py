@@ -20,7 +20,6 @@ import string
 import heapq
 import nltk
 import openai
-nltk.download('all')
 
 
 
