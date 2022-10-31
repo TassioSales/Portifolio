@@ -170,18 +170,7 @@ def resumo_texto():
     )
     st.write(response["choices"][0]["text"])
     
-    
-    
-    
-    
-    
-    
 
-
-
-     
-                
-          
 def main():
     #criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras", "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo"]
@@ -191,7 +180,7 @@ def main():
         st.subheader("Por favor faça upload do arquivo PDF")
         get_file()
     elif choice == "Mostrar Texto original":
-        st.title("Trecho do Texto original")
+        st.title("Trecho do Texto original")        
         #procurar o arquivo usando arquivo.pdf ou arquivo.txt
         if os.path.exists("arquivo.pdf"):
             arquivo = "arquivo.pdf"
@@ -236,10 +225,6 @@ def main():
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             resumo_texto()
 
-        
-                        
-
-    
-        
+         
 if __name__ == '__main__':
     main()
