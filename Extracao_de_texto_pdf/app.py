@@ -1,23 +1,20 @@
 # criar programa bara analisar o arquivo pdf ou txt fornecido pelo usuario
 # e retornar o resultado da analise
 # importar bibliotecas
+import base64
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
 import pdfplumber
-from stop_word import stop_palavras
 import re
 import time
 import os
-from nltk.stem import RSLPStemmer
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
 from wordcloud import WordCloud
-import string
 from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
@@ -184,7 +181,7 @@ def sumarize_text_portugues(n_send=2):
 
 
 # criar função para realizar download do Resumo
-def download_resumo(n_send=2):
+def gerar_resumo(n_send=2):
     texto = read_file_pdf()
     word_not_stopwords = set(stopwords.words('portuguese'))
     sentences = sent_tokenize(texto)
@@ -203,6 +200,27 @@ def download_resumo(n_send=2):
     for i in sorted(idx_importante_sentencas):
         resumo = resumo + sentences[i]
     return resumo
+
+
+# criar função para transformar o resumo em pdf
+def transformar_pdf():
+    resumo = gerar_resumo()
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, txt=resumo, ln=1, align="C")
+    pdf.output("Resumo.pdf")
+
+
+# criar função para realizar download do pdf
+def download_pdf():
+    if os.path.exists("Resumo.pdf"):
+        with open("Resumo.pdf", "rb") as f:
+            b64 = base64.b64encode(f.read()).decode()
+            href = f'<a href="data:file/pdf;base64,{b64}" download="Resumo.pdf">Download Resumo</a>'
+            st.markdown(href, unsafe_allow_html=True)
+    else:
+        st.write("Nenhum Resumo gerado")
 
 
 def main():
@@ -260,9 +278,12 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        resumo = download_resumo(n_send)
-        st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.pdf",
-                           mime="application/pdf")
+        # criar botao para transformar o resumo em pdf
+        if st.button("Transformar em PDF", key="pdf", help="Clique aqui para transformar o resumo em PDF"):
+            transformar_pdf()
+        #criar botão para baixar pdf
+        if st.button('Baixar Resumo', key= 'Download', help = 'Baixar arquivo pdf com resumo'):
+            download_pdf()
 
 
 if __name__ == '__main__':
