@@ -231,6 +231,7 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
         #criar botao para gerar o resumo
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+            sumarize_text_portugues()
             
 
          
