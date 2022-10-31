@@ -247,7 +247,7 @@ def main():
             pdf.set_font("Arial", size=12)
             pdf.output("resumo.pdf")
             st.success("PDF gerado com sucesso")
-            st.download_button(label="Download PDF", data=resumo, file_name="resumo.pdf", mime="application/pdf")
+            st.download_button(label="Download PDF", data=resumo, file_name="resumo.pdf")
 
         
         
