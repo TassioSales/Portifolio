@@ -239,19 +239,22 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        #gerar pdf do resumo para download
-        if st.button("Gerar PDF do Resumo", key="pdf", help="Clique aqui para gerar o PDF do resumo"):
-            texto = sumarize_text_portugues(n_send)
-            pdf = FPDF()
-            pdf.add_page()
-            pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
-            pdf.cell(200, 10, txt=texto, ln=2, align="C")
-            pdf.output("resumo.pdf")
-            st.success("PDF gerado com sucesso")
-            #abrir o pdf gerado
-            if st.button("Abrir PDF", key="abrir", help="Clique aqui para abrir o PDF"):
-                os.startfile("resumo.pdf")
+            #gerar pdf do resumo para download
+            if st.button("Gerar PDF", key="pdf", help="Clique aqui para gerar o PDF"):
+                pdf = FPDF()
+                pdf.add_page()
+                pdf.set_font("Arial", size=15)
+                pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
+                pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
+                pdf.output("resumo.pdf")
+                st.success("PDF gerado com sucesso")
+                #download do pdf
+                if st.button("Download PDF", key="download", help="Clique aqui para fazer o download do PDF"):
+                    with open("resumo.pdf", "rb") as f:
+                        b64 = base64.b64encode(f.read()).decode()
+                        href = f'<a href="data:file/pdf;base64,{b64}" download="resumo.pdf">Download PDF</a>'
+                        st.markdown(href, unsafe_allow_html=True)
+            
             
             
         
