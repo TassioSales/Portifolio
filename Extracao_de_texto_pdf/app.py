@@ -252,6 +252,12 @@ def main():
             pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
             pdf.output("resumo.pdf")
             st.success("Arquivo gerado com sucesso")
+            #mostrar o arquivo pdf usando pdflumbber
+            if os.path.exists("resumo.pdf"):
+                arquivo = "resumo.pdf"
+                with pdfplumber.open(arquivo) as pdf:
+                    page = pdf.pages[0]
+                    st.write(page.extract_text())
 
                 
 
