@@ -239,15 +239,7 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-            #gerar pdf do resumo para download
-        if st.button("Gerar PDF", key="pdf", help="Clique aqui para gerar o PDF"):
-            resumo = sumarize_text_portugues(n_send)
-            pdf = FPDF()
-            pdf.add_page()
-            pdf.set_font("Arial", size=12)
-            pdf.output("resumo.pdf")
-            st.success("PDF gerado com sucesso")
-            st.download_button(label="Download PDF", data=resumo, file_name="resumo.pdf")
+        st.download_button(label="Download PDF", data=sumarize_text_portugues(n_send), file_name="resumo.pdf")
 
         
         
