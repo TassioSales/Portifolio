@@ -160,8 +160,11 @@ def resumo_texto():
     nltk.download('all')
     arquivo = retorna_texto()
     #tokenize o texto
-    sentencas = sent_tokenize(arquivo)
-    st.write(sentencas)
+    text = ""
+    for i in range(len(arquivo)):
+        text = text + arquivo[i]
+    text = text.split()
+    st.write(text)
     
     
     
