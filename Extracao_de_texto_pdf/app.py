@@ -266,7 +266,9 @@ def main():
             sumarize_text_portugues(n_send)
             #salvar texto resumo em uma variavel
             texto_resumo = sumarize_text_portugues(n_send)
-            #salvar o texto resumo em um arquivo pdfplumber
+            #criar botao para fazer download do resumo
+            if st.button("Download Resumo", key="download_resumo", help="Clique aqui para fazer download do resumo"):
+                download_resumo(n_send)
             
 
 
