@@ -127,6 +127,7 @@ def mostra_grafico_nuvem():
     
 #analise de sentimento da pagina escolhida pelo usuario
 def analise_sentimento():
+    nltk.download('vader_lexicon')
     arquivo = retorna_texto()
     #pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
     pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
