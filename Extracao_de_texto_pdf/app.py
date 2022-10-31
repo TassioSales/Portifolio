@@ -162,7 +162,7 @@ def resumo_texto():
     texto = retorna_texto()
     #chamar openai para criar resumo
     response = openai.Completion.create(
-        engine="davinci",
+        model="text-davinci-002",
         prompt=texto,
         temperature=0.9,
         max_tokens=150,
