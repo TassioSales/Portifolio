@@ -267,7 +267,7 @@ def main():
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
         resumo = download_resumo(n_send)
-        st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.txt", mime="text/plain")
+        st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.pdf", mime="application/pdf")
             
 
 
