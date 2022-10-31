@@ -208,6 +208,7 @@ def transformar_pdf():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
+    fpdf.add_font("Arial", "", "arial.ttf", uni=True)
     pdf.cell(200, 10, txt=resumo, ln=1, align="C")
     pdf.output("Resumo.pdf")
 
