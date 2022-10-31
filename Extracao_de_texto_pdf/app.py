@@ -65,6 +65,10 @@ def limpar_texto(texto):
     texto = re.sub(r'[óòôõ]', 'o', texto)
     texto = re.sub(r'[úù]', 'u', texto)
     texto = re.sub(r'[ç]', 'c', texto)
+    # remover aspas simples
+    texto = re.sub(r'[’]', '', texto)
+    #remover aspas duplas
+    texto = re.sub(r'["]', '', texto)
     return texto
 
 
@@ -207,8 +211,8 @@ def transformar_pdf():
     resumo = gerar_resumo()
     pdf = FPDF()
     pdf.add_page()
+    pdf.encode('latin1')
     pdf.set_font("Arial", size=12)
-    fpdf.add_font("Arial", "", "arial.ttf", uni=True)
     pdf.cell(200, 10, txt=resumo, ln=1, align="C")
     pdf.output("Resumo.pdf")
 
