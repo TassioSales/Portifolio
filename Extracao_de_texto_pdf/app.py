@@ -159,12 +159,7 @@ def analise_sentimento():
 def resumo_texto():
     nltk.download('all')
     arquivo = retorna_texto()
-    #retornar o resumo do texto
-    translator = Translator()
-    resumo = translator.translate(arquivo, dest="en").text
-    #concatenar arquivo em uma string
-    text = " ".join(resumo)
-    st.write(text)
+    st.write(arquivo)
     
     
     
