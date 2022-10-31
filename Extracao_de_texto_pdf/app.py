@@ -266,9 +266,8 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        if st.button("Download Resumo", key="download_resumo", help="Clique aqui para fazer download do resumo"):
-            resumo = download_resumo(n_send)
-            st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.txt", mime="text/plain")
+        resumo = download_resumo(n_send)
+        st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.txt", mime="text/plain")
             
 
 
