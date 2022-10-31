@@ -18,7 +18,7 @@ from nltk.probability import FreqDist
 from googletrans import Translator
 from wordcloud import WordCloud
 import string
-import heapq
+from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords 
 from collections import defaultdict
