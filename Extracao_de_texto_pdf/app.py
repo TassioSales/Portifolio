@@ -245,7 +245,7 @@ def main():
             sumarize_text_portugues(n_send)
             #salvar texto resumo em uma variavel
             texto_resumo = sumarize_text_portugues(n_send)
-            #salvar o texto resumo em um arquivo pdfplumber
+        if st.button("Salvar Resumo", key="salvar_resumo", help="Clique aqui para salvar o resumo"):
             pdf = FPDF()
             pdf.add_page()
             pdf.set_font("Arial", size=12)
