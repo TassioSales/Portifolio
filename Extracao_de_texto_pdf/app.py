@@ -177,7 +177,11 @@ def sumarize_text_portugues(n_send = 2):
     numb_send = int(n_send)
     idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
     
-    return idx_importante_sentencas
+    
+    for i in sorted(idx_importante_sentencas):
+        st.write(sentences[i])
+    
+
     
         
         
@@ -238,9 +242,18 @@ def main():
         #criar botao para gerar o resumo
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            resumo = sumarize_text_portugues(n_send)
-            for i in sorted(resumo):
-                st.write(resumo[i])
+            sumarize_text_portugues(n_send)
+        if st.button('Gerar arquivo pdf', key="arquivo", help="Clique aqui para gerar o arquivo pdf"):
+            sumarize_text_portugues(n_send)
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_font("Arial", size=15)
+            f = open("resumo.txt", "r")
+            for x in f:
+                pdf.cell(200, 10, txt=x, ln=1, align='C')
+            pdf.output("resumo.pdf")
+            st.success("Arquivo gerado com sucesso")    
+
                 
 
 
