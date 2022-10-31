@@ -108,7 +108,7 @@ def mostra_grafico_barras(dataframe):
     
 #mostrar o grafico de pizza
 def mostra_grafico_pizza(dataframe):
-    #criar grafico de pizza somente com top 15 palavras
+    #criar grafico de pizza somente com top 5 palavras
     dados = dataframe.head(5)
     fig = px.pie(dados, values="Quantidade", names="Palavras", title="Top 15 palavras")
     st.plotly_chart(fig)
