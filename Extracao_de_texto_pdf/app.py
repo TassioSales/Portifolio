@@ -156,22 +156,20 @@ def analise_sentimento():
         
 
 #criar função para gerar resumo do texto
-def resumo_texto():
-    arquivo = retorna_texto()
-    #tokenize o texto
-    text = ""
-    for i in range(len(arquivo)):
-        text = text + arquivo[i]
-    clean_text = text.lower()
-    sentecas = sent_tokenize(text)
-    word2count = {}
-    for word in nltk.word_tokenize(text):
-        if word not in stop_palavras:
-            if word not in word2count.keys():
-                word2count[word] = 1
-            else:
-                word2count[word] += 1
-    st.write(word2count)
+def sumarize_text_portugues(n_send = 2):
+    texto = read_file_pdf()
+    word_not_stopwords = [word for word in texto.split() if word not in stop_palavras]
+    senteces = sent_tokenize(text)
+    frequency = FreqDist(word_not_stopwords)
+    for i, senteces in enumerate(sentences):
+        for word in word_tokenize(sentece.lower()):
+            if word in frequency:
+                important_setences[i] += frequency[word]
+    numb_sent = n_send
+    idx_important_setences = nlargest(numb_sent, important_setences, important_setences.get)
+    important_setences = [sentences[i] for i in sorted(idx_important_setences)]
+    st.write(important_setences)
+        
         
     
     
