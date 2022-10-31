@@ -171,19 +171,8 @@ def resumo_texto():
                 word2count[word] = 1
             else:
                 word2count[word] += 1
-    for key in word2count.keys():
-        word2count[key] = word2count[key]/max(word2count.values())
-        
-    sent2score = {}
-    for sent in sentecas:
-        for word in nltk.word_tokenize(sent.lower()):
-            if word in word2count.keys():
-                if len(sent.split(' ')) < 30:
-                    if sent not in sent2score.keys():
-                        sent2score[sent] = word2count[word]
-                    else:
-                        sent2score[sent] += word2count[word]
     st.write(word2count)
+        
     
     
     
