@@ -212,7 +212,6 @@ def transformar_pdf():
     pdf = FPDF()
     pdf.add_page()
     pdf.encode('latin1')
-    pdf.set_font("Arial", size=12)
     pdf.cell(200, 10, txt=resumo, ln=1, align="C")
     pdf.output("Resumo.pdf")
 
