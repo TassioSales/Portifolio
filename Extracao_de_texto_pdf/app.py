@@ -22,6 +22,7 @@ from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords 
 from collections import defaultdict
+from fpdf import FPDF
 
 
 
