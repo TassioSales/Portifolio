@@ -242,16 +242,8 @@ def main():
         #gerar pdf do resumo para download
         if st.button("Gerar PDF do Resumo", key="pdf", help="Clique aqui para gerar o PDF do resumo"):
             texto = sumarize_text_portugues(n_send)
+            #gerar pdf do resumo para download
             pdf = FPDF()
-            pdf.add_page()
-            pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
-            pdf.cell(200, 10, txt=texto, ln=2, align="C")
-            pdf.output("resumo.pdf")
-            st.success("PDF gerado com sucesso")
-            #abrir o pdf gerado
-            if st.button("Abrir PDF", key="abrir", help="Clique aqui para abrir o PDF"):
-                os.startfile("resumo.pdf")
         
             
 
