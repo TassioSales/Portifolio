@@ -160,7 +160,7 @@ def sumarize_text_portugues(n_send = 2):
     nltk.download('all')
     texto = read_file_pdf()
     word_not_stopwords = [word for word in texto.split() if word not in stop_palavras]
-    senteces = sent_tokenize(text)
+    senteces = sent_tokenize(texto)
     frequency = FreqDist(word_not_stopwords)
     for i, senteces in enumerate(sentences):
         for word in word_tokenize(sentece.lower()):
