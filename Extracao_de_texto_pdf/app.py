@@ -267,8 +267,8 @@ def main():
             #salvar texto resumo em uma variavel
             texto_resumo = sumarize_text_portugues(n_send)
             #criar botao para fazer download do resumo
-            if st.button("Download Resumo", key="download_resumo", help="Clique aqui para fazer download do resumo"):
-                download_resumo(n_send)
+        if st.button("Download Resumo", key="download_resumo", help="Clique aqui para fazer download do resumo"):
+            download_resumo(n_send)
             
 
 
