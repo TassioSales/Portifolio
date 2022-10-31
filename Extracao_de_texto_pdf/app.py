@@ -159,7 +159,10 @@ def analise_sentimento():
 def resumo_texto():
     arquivo = retorna_texto()
     #retornar o resumo do texto
-    resumo = summarize(arquivo, ratio=0.1)
+    translator = Translator()
+    resumo = translator.translate(arquivo, dest="en").text
+    resumo = summarize(resumo, ratio=0.1)
+    resumo = translator.translate(resumo, dest="pt").text
     st.write(resumo)
 
 
