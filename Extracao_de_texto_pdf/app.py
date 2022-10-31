@@ -249,11 +249,11 @@ def main():
             pdf.output("resumo.pdf")
             st.success("PDF gerado com sucesso")
             #download do pdf
-            if st.button("Download PDF", key="download", help="Clique aqui para fazer o download do PDF"):
-                with open("resumo.pdf", "rb") as f:
-                    b64 = base64.b64encode(f.read()).decode()
-                    href = f'<a href="data:file/pdf;base64,{b64}" download="resumo.pdf">Download PDF</a>'
-                    st.markdown(href, unsafe_allow_html=True)
+        if st.button("Download PDF", key="download", help="Clique aqui para fazer o download do PDF"):
+            with open("resumo.pdf", "rb") as f:
+                b64 = base64.b64encode(f.read()).decode()
+                href = f'<a href="data:file/pdf;base64,{b64}" download="resumo.pdf">Download PDF</a>'
+                st.markdown(href, unsafe_allow_html=True)
             
             
             
