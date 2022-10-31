@@ -19,7 +19,6 @@ from wordcloud import WordCloud
 import string
 import heapq
 import nltk
-import openai
 
 
 
@@ -155,23 +154,27 @@ def analise_sentimento():
                 
         
         
-#criar função pra criar resumo do usando openai
+
+#criar função para gerar resumo do texto
 def resumo_texto():
-    #abrir chave da api
-    openai.api_key = st.secrets['api']
-    texto = retorna_texto()
-    #chamar openai para criar resumo
-    response = openai.Completion.create(
-    model="text-davinci-002",
-    prompt=f"{texto}.\n\nTl;dr",
-    temperature=0.7,
-    max_tokens=60,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0
-    )   
-    #mostrar resumo
-    st.write(response["choices"][0]["text"])
+    arquivo = retorna_texto()
+    #pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
+    pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
+    #mostrar o texto da pagina escolhida
+    if os.path.exists("arquivo.pdf"):
+        with pdfplumber.open("arquivo.pdf") as pdf:
+            texto = pdf.pages[pagina].extract_text()
+            st.write(texto)
+            #se o texo estiver em portugues, traduzir para ingles
+            if texto.isascii():
+                texto = texto
+            else:
+                translator = Translator()
+                texto = translator.translate(texto, dest="en").text
+            #gerar resumo do texto
+            resumo = summarize(texto, word_count=100)
+            st.write(resumo)
+
 
 def main():
     #criar menu
