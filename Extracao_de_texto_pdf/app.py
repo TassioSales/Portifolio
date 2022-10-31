@@ -197,10 +197,13 @@ def download_resumo(n_send = 2):
     numb_send = int(n_send)
     idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
     
-    
+    resumo = " "
     for i in sorted(idx_importante_sentencas):
-        st.write(sentences[i])
-    st.markdown(get_table_download_link(pd.DataFrame(sentences[i])), unsafe_allow_html=True)
+        resumo = resumo + sentences[i]
+        
+    st.button.download(resumo)
+    
+
     
 
     
