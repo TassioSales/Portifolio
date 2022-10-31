@@ -243,21 +243,17 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        if st.button('Gerar arquivo pdf', key="arquivo", help="Clique aqui para gerar o arquivo pdf"):
-            sumarize_text_portugues(n_send)
+            #salvar texto resumo em uma variavel
+            texto_resumo = sumarize_text_portugues(n_send)
+            #salvar o texto resumo em um arquivo pdfplumber
             pdf = FPDF()
             pdf.add_page()
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
-            pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
+            pdf.cell(200, 10, txt=texto_resumo, ln=1, align="C")
             pdf.output("resumo.pdf")
-            st.success("Arquivo gerado com sucesso")
-            #mostrar o arquivo pdf usando pdflumbber
-            if os.path.exists("resumo.pdf"):
-                arquivo = "resumo.pdf"
-                with pdfplumber.open(arquivo) as pdf:
-                    page = pdf.pages[0]
-                    st.write(page.extract_text())
+            #mostrar o arquivo pdf
+            st.markdown(get_binary_file_downloader_html("resumo.pdf", "Download Resumo"), unsafe_allow_html=True)
+            
 
                 
 
