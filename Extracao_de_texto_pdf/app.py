@@ -157,6 +157,7 @@ def analise_sentimento():
 
 #criar função para gerar resumo do texto
 def resumo_texto():
+    nltk.download('all')
     arquivo = retorna_texto()
     #retornar o resumo do texto
     translator = Translator()
