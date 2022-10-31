@@ -157,14 +157,15 @@ def analise_sentimento():
 
 #criar função para gerar resumo do texto
 def resumo_texto():
-    nltk.download('all')
     arquivo = retorna_texto()
     #tokenize o texto
     text = ""
     for i in range(len(arquivo)):
         text = text + arquivo[i]
     text = text.split()
+    clean_text = text.lower()
     sentecas = sent_tokenize(text)
+    
     st.warning(sentecas)
     
     
