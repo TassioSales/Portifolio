@@ -253,14 +253,8 @@ def main():
                     page = pdf.pages[0]
                     st.write(page.extract_text())
         #criar botao para download do pdf 
-        if st.button("Download PDF", key="download", help="Clique aqui para fazer o download do PDF"):
-            st.download_button(
-                label="Download PDF",
-                data=open("resumo.pdf", "rb").read(),
-                file_name="resumo.pdf",
-                mime="application/pdf",
-            )
-            
+        st.download_button("Download PDF", "resumo.pdf")
+        
             
             
         
