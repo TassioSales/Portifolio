@@ -164,10 +164,27 @@ def resumo_texto():
         text = text + arquivo[i]
     clean_text = text.lower()
     sentecas = sent_tokenize(text)
-    stop_words = set(stopwords.words("portuguese"))
-    
-    
-    
+    word2count = {}
+    for word in nltk.word_tokenize(text):
+        if word not in stop_palavras:
+            if word not in word2count.keys():
+                word2count[word] = 1
+            else:
+                word2count[word] += 1
+    for key in word2count.keys():
+        word2count[key] = word2count[key]/max(word2count.values())
+        
+    sent2score = {}
+    for sent in sentecas:
+        for word in nltk.word_tokenize(sent.lower()):
+            if word in word2count.keys():
+                if len(sent.split(' ')) < 30:
+                    if sent not in sent2score.keys():
+                        sent2score[sent] = word2count[word]
+                    else:
+                        sent2score[sent] += word2count[word]
+    best_sentences = heapq.nlargest(5, sent2score, key=sent2score.get)
+    st.write(" ".join(best_sentences))
     
     
     
