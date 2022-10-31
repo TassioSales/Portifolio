@@ -283,6 +283,7 @@ def main():
             save_sumarize_text_portugues()
         #criar botao para baixar o resumo
         if st.button("Baixar Resumo", key="baixar", help="Clique aqui para baixar o resumo"):
+            download_sumarize_text_portugues()  
  
             
 
