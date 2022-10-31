@@ -159,7 +159,9 @@ def analise_sentimento():
 def resumo_texto():
     nltk.download('all')
     arquivo = retorna_texto()
-    st.write(arquivo)
+    #tokenize o texto
+    sentencas = sent_tokenize(arquivo)
+    st.write(sentencas)
     
     
     
