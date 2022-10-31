@@ -161,11 +161,46 @@ def resumo_texto():
     #retornar o resumo do texto
     translator = Translator()
     resumo = translator.translate(arquivo, dest="en").text
-    resumo = summarize(resumo, ratio=0.1)
-    resumo = translator.translate(resumo, dest="pt").text
-    st.write(resumo)
+    #concatenar arquivo em uma string
+    text = " ".join(resumo)
+    text = re.sub(r'[[0-9]*]',' ', text)
+    text = re.sub(r's+',' ', text)
 
+    clean_text = text.lower()
+    clean_text = re.sub(r'W', ' ', clean_text)
+    clean_text = re.sub(r'd', ' ', clean_text)
+    clean_text = re.sub(r's+', ' ', clean_text)
 
+    sentences = nltk.sent_tokenize(text)
+    #remover stopwords
+    stopwords = nltk.corpus.stopwords.words('english')
+    word2count = {}
+    for word in nltk.word_tokenize(clean_text):
+        if word not in stopwords:
+            if word not in word2count.keys():
+                word2count[word] = 1
+            else:
+                word2count[word] += 1
+                
+    sent2score = {}
+    for sent in sentences:
+        for word in nltk.word_tokenize(sent.lower()):
+            if word in word2count.keys():
+                if len(sent.split(' ')) < 30:
+                    if sent not in sent2score.keys():
+                        sent2score[sent] = word2count[word]
+                    else:
+                        sent2score[sent] += word2count[word]
+    best_sentences = heapq.nlargest(5, sent2score, key=sent2score.get)
+    for setenca in best_sentences:
+        st.write(setenca)
+    
+    
+    
+    
+    
+    
+    
 def main():
     #criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras", "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo"]
