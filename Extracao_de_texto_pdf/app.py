@@ -252,8 +252,18 @@ def main():
                 with pdfplumber.open(arquivo) as pdf:
                     page = pdf.pages[0]
                     st.write(page.extract_text())
-        #criar botao para download do pdf 
-        st.download_button("Download PDF", "resumo.pdf")
+        #criar botao para download do arquivo resumo.pdf 
+        if st.button.download("Download PDF", key="download", help="Clique aqui para fazer o download do PDF"):
+            if os.path.exists("resumo.pdf"):
+                arquivo = "resumo.pdf"
+                with pdfplumber.open(arquivo) as pdf:
+                    page = pdf.pages[0]
+                    st.write(page.extract_text())
+        
+        
+        
+        
+        
         
             
             
