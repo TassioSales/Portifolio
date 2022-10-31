@@ -181,8 +181,8 @@ def sumarize_text_portugues(n_send = 2):
     for i in sorted(idx_importante_sentencas):
         st.write(sentences[i])
         
-#criar funçao para salvar resumo em um arquivo pdf
-def save_sumarize_text_portugues():
+#criar função para realizar download do Resumo
+def download_resumo(n_send = 2):
     texto = read_file_pdf()
     word_not_stopwords = set(stopwords.words('portuguese'))
     sentences = sent_tokenize(texto)
@@ -194,28 +194,14 @@ def save_sumarize_text_portugues():
             if word in frequency:
                 sentencas_importante[i] += frequency[word]
                 
-    numb_send = int(2)
+    numb_send = int(n_send)
     idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
-        
-    #salvar arquivo pdf
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
+    
+    
     for i in sorted(idx_importante_sentencas):
-        pdf.cell(200, 10, txt=sentences[i], ln=1, align="C")
-    pdf.output("resumo.pdf")
+        st.write(sentences[i])
+    st.markdown(get_table_download_link(pd.DataFrame(sentences[i])), unsafe_allow_html=True)
     
-    
-#criar função para baixar o resumo.pdf
-def download_sumarize_text_portugues():
-    if os.path.exists("resumo.pdf"):
-        with open("resumo.pdf", "rb") as f:
-            bytes = f.read()
-            b64 = base64.b64encode(bytes).decode()
-            href = f'<a href="data:file/pdf;base64,{b64}" download="resumo.pdf">Download resumo</a>'
-            st.markdown(href, unsafe_allow_html=True)
-    else:
-        st.warning("Resumo não encontrado")
 
     
         
@@ -278,14 +264,11 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        #criar botao para salvar o resumo
-        if st.button("Salvar Resumo", key="salvar", help="Clique aqui para salvar o resumo"):
-            save_sumarize_text_portugues()
-        #criar botao para baixar o resumo
-        if st.button("Baixar Resumo", key="baixar", help="Clique aqui para baixar o resumo"):
-            download_sumarize_text_portugues()  
- 
+            #salvar texto resumo em uma variavel
+            texto_resumo = sumarize_text_portugues(n_send)
+            #salvar o texto resumo em um arquivo pdfplumber
             
+
 
                 
 
