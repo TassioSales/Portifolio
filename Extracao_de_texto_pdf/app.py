@@ -164,15 +164,19 @@ def sumarize_text_portugues(n_send = 2):
     texto = read_file_pdf()
     word_not_stopwords = set(stopwords.words('portuguese'))
     sentences = sent_tokenize(texto)
+    sentencas_importante = defaultdict(int)
+    
     frequency = FreqDist(word_not_stopwords)
-    for i, sentece in enumerate(sentences):
-        for word in word_tokenize(sentece.lower()):
+    for i, sentence in enumerate(sentences):
+        for word in word_tokenize(sentence.lower()):
             if word in frequency:
-                important_setences[i] += frequency[word]
-    numb_sent = n_send
-    idx_important_setences = nlargest(numb_sent, important_setences, important_setences.get)
-    important_setences = [sentences[i] for i in sorted(idx_important_setences)]
-    st.write(important_setences)
+                sentencas_importante[i] += frequency[word]
+                
+    numb_send = int(n_send)
+    idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
+    
+    for i in sorted(idx_importante_sentencas):
+        st.write(sentences[i])
         
         
     
