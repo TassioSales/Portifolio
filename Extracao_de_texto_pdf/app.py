@@ -149,9 +149,9 @@ def analise_sentimento():
             if ss["compound"] >= 0.05:
                 st.success("O Sentimento dessa pagina e positivo")
             elif ss["compound"] <= -0.05:
-                st.write("O Sentimento dessa pagina Negativo")
+                st.error("O Sentimento dessa pagina Negativo")
             else:
-                st.write("O Sentimento dessa pagina Neutro")
+                st.alert("O Sentimento dessa pagina Neutro")
                 
         
         
