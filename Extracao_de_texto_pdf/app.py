@@ -177,9 +177,7 @@ def sumarize_text_portugues(n_send = 2):
     numb_send = int(n_send)
     idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
     
-    
-    for i in sorted(idx_importante_sentencas):
-        st.write(sentences[i])
+    return idx_importante_sentencas
     
         
         
