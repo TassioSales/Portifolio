@@ -151,7 +151,7 @@ def analise_sentimento():
             elif ss["compound"] <= -0.05:
                 st.error("O Sentimento dessa pagina Negativo")
             else:
-                st.alert("O Sentimento dessa pagina Neutro")
+                st.al("O Sentimento dessa pagina Neutro")
                 
         
         
@@ -160,14 +160,15 @@ def resumo_texto():
     #abrir chave da api
     openai.api_key = st.secrets['api']
     texto = retorna_texto()
+    #criar resumo do texto
     response = openai.Completion.create(
-    model="text-davinci-002",
-    prompt=f"{texto}.\n\nTl;dr",
-    temperature=0.7,
-    max_tokens=60,
-    top_p=1.0,
-    frequency_penalty=0.0,
-    presence_penalty=0.0
+      engine="davinci",
+      prompt=texto,
+      temperature=0.9,
+      max_tokens=150,
+      top_p=1,
+      frequency_penalty=0,
+      presence_penalty=0.6
     )
     st.write(response["choices"][0]["text"])
     
