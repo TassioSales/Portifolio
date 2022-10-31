@@ -183,8 +183,7 @@ def resumo_texto():
                         sent2score[sent] = word2count[word]
                     else:
                         sent2score[sent] += word2count[word]
-    best_sentences = heapq.nlargest(5, sent2score, key=sent2score.get)
-    st.write(" ".join(best_sentences))
+    st.write(sent2score)
     
     
     
