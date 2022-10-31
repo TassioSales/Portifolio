@@ -177,8 +177,8 @@ def sumarize_text_portugues(n_send = 2):
     numb_send = int(n_send)
     idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
     
-    for i in sorted(idx_importante_sentencas):
-        st.write(sentences[i])
+    return idx_importante_sentencas
+    
         
         
     
@@ -239,7 +239,8 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             resumo = sumarize_text_portugues(n_send)
-        st.download_button(label="Download", data=resumo, file_name="resumo.pdf")
+            for i in resumo:
+                st.write(resumo[i])
 
         
         
