@@ -162,15 +162,14 @@ def resumo_texto():
     texto = retorna_texto()
     #chamar openai para criar resumo
     response = openai.Completion.create(
-        model="text-davinci-002",
-        prompt=texto,
-        temperature=0.9,
-        max_tokens=150,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0.6,
-        stop=["\n"]
-    )
+    model="text-davinci-002",
+    prompt=f"{texto}.\n\nTl;dr",
+    temperature=0.7,
+    max_tokens=60,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
+    )   
     #mostrar resumo
     st.write(response["choices"][0]["text"])
 
