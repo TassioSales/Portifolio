@@ -14,11 +14,14 @@ from nltk.stem import RSLPStemmer
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.probability import FreqDist
 from googletrans import Translator
 from wordcloud import WordCloud
 import string
 import heapq
 import nltk
+from nltk.corpus import stopwords 
+
 
 
 
@@ -156,10 +159,10 @@ def analise_sentimento():
         
 
 #criar função para gerar resumo do texto
-def sumarize_text_portugues(n_send = 2):
+def sumarize_text_portugues(text ,n_send = 2):
     nltk.download('all')
     texto = read_file_pdf()
-    word_not_stopwords = [word for word in texto.split() if word not in stop_palavras]
+    word_not_stopwords = set(stopwords.words('portuguese'))
     senteces = sent_tokenize(texto)
     frequency = FreqDist(word_not_stopwords)
     for i, senteces in enumerate(sentences):
