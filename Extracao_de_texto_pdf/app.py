@@ -158,22 +158,9 @@ def analise_sentimento():
 #criar função para gerar resumo do texto
 def resumo_texto():
     arquivo = retorna_texto()
-    #pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-    pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
-    #mostrar o texto da pagina escolhida
-    if os.path.exists("arquivo.pdf"):
-        with pdfplumber.open("arquivo.pdf") as pdf:
-            texto = pdf.pages[pagina].extract_text()
-            st.write(texto)
-            #se o texo estiver em portugues, traduzir para ingles
-            if texto.isascii():
-                texto = texto
-            else:
-                translator = Translator()
-                texto = translator.translate(texto, dest="en").text
-            #gerar resumo do texto
-            resumo = summarize(texto, word_count=100)
-            st.write(resumo)
+    #retornar o resumo do texto
+    resumo = summarize(arquivo, ratio=0.1)
+    st.write(resumo)
 
 
 def main():
