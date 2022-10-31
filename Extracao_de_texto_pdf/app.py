@@ -157,6 +157,7 @@ def analise_sentimento():
 
 #criar função para gerar resumo do texto
 def sumarize_text_portugues(n_send = 2):
+    nltk.download('all')
     texto = read_file_pdf()
     word_not_stopwords = [word for word in texto.split() if word not in stop_palavras]
     senteces = sent_tokenize(text)
