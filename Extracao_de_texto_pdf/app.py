@@ -162,7 +162,6 @@ def resumo_texto():
     text = ""
     for i in range(len(arquivo)):
         text = text + arquivo[i]
-    text = text.split()
     clean_text = text.lower()
     sentecas = sent_tokenize(text)
     
