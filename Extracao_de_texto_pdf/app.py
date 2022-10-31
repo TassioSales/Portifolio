@@ -252,7 +252,7 @@ def main():
                 with pdfplumber.open(arquivo) as pdf:
                     page = pdf.pages[0]
                     st.write(page.extract_text())
-            st.download_button(label="Download PDF", data=resumo, file_name="resumo.pdf", mime="application/pdf")
+        st.download_button(label="Download PDF", data=resumo, file_name="resumo.pdf", mime="application/pdf")
 
         
         
