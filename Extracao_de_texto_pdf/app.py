@@ -164,8 +164,7 @@ def resumo_texto():
         text = text + arquivo[i]
     clean_text = text.lower()
     sentecas = sent_tokenize(text)
-    
-    st.warning(sentecas)
+    stop_words = set(stopwords.words("portuguese"))
     
     
     
