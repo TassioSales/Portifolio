@@ -183,7 +183,7 @@ def resumo_texto():
                         sent2score[sent] = word2count[word]
                     else:
                         sent2score[sent] += word2count[word]
-    st.write(sent2score)
+    st.write(word2count)
     
     
     
