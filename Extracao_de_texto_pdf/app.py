@@ -200,9 +200,8 @@ def download_resumo(n_send = 2):
     resumo = " "
     for i in sorted(idx_importante_sentencas):
         resumo = resumo + sentences[i]
-        
-    st.button.download(resumo)
     
+    return resumo
 
     
 
@@ -267,11 +266,9 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-            #salvar texto resumo em uma variavel
-            texto_resumo = sumarize_text_portugues(n_send)
-            #criar botao para fazer download do resumo
         if st.button("Download Resumo", key="download_resumo", help="Clique aqui para fazer download do resumo"):
-            download_resumo(n_send)
+            resumo = download_resumo(n_send)
+            st.download_button("Download Resumo", key="download_resumo", data=resumo, file_name="resumo.txt", mime="text/plain")
             
 
 
