@@ -245,15 +245,13 @@ def main():
             pdf = FPDF()
             pdf.add_page()
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt="Resumo", ln=1, align="C")
-            pdf.cell(200, 10, txt=resumo, ln=2, align="C")
             pdf.output("resumo.pdf")
             st.success("PDF gerado com sucesso")
-            #mostra o arquivo resumo
-            with open("resumo.pdf", "rb") as f:
-                base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-                href = f'<a href="data:file/pdf;base64,{base64_pdf}" download="resumo.pdf">Download PDF</a>'
-                st.markdown(href, unsafe_allow_html=True)
+            if os.path.exists("resumo.pdf"):
+                arquivo = "resumo.pdf"
+                with pdfplumber.open(arquivo) as pdf:
+                    page = pdf.pages[0]
+                    st.write(page.extract_text())
             
             
             
