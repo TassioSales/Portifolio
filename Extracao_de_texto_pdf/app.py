@@ -165,7 +165,7 @@ def sumarize_text_portugues(n_send = 2):
     word_not_stopwords = set(stopwords.words('portuguese'))
     senteces = sent_tokenize(texto)
     frequency = FreqDist(word_not_stopwords)
-    for i, senteces in enumerate(sentences):
+    for i, sentece in enumerate(sentences):
         for word in word_tokenize(sentece.lower()):
             if word in frequency:
                 important_setences[i] += frequency[word]
