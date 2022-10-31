@@ -164,37 +164,7 @@ def resumo_texto():
     resumo = translator.translate(arquivo, dest="en").text
     #concatenar arquivo em uma string
     text = " ".join(resumo)
-    text = re.sub(r'[[0-9]*]',' ', text)
-    text = re.sub(r's+',' ', text)
-
-    clean_text = text.lower()
-    clean_text = re.sub(r'W', ' ', clean_text)
-    clean_text = re.sub(r'd', ' ', clean_text)
-    clean_text = re.sub(r's+', ' ', clean_text)
-
-    sentences = nltk.sent_tokenize(text)
-    #remover stopwords
-    stopwords = nltk.corpus.stopwords.words('english')
-    word2count = {}
-    for word in nltk.word_tokenize(clean_text):
-        if word not in stopwords:
-            if word not in word2count.keys():
-                word2count[word] = 1
-            else:
-                word2count[word] += 1
-                
-    sent2score = {}
-    for sent in sentences:
-        for word in nltk.word_tokenize(sent.lower()):
-            if word in word2count.keys():
-                if len(sent.split(' ')) < 30:
-                    if sent not in sent2score.keys():
-                        sent2score[sent] = word2count[word]
-                    else:
-                        sent2score[sent] += word2count[word]
-    best_sentences = heapq.nlargest(5, sent2score, key=sent2score.get)
-    for setenca in best_sentences:
-        st.write(setenca)
+    st.write(text)
     
     
     
