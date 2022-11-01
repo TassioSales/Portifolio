@@ -203,7 +203,7 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-#criar função para gerar resumo do texto com o sumy
+# criar função para gerar resumo do texto com o sumy
 def sumarize_text_portugues(porcentagem):
     try:
         nltk.download('punkt')
@@ -224,7 +224,6 @@ def sumarize_text_portugues(porcentagem):
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível gerar o resumo")
-
 
 
 # criar função para gerar resumo do texto
