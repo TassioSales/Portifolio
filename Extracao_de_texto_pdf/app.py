@@ -183,49 +183,6 @@ def sumarize_text_portugues(n_send=2):
     for i in sorted(idx_importante_sentencas):
         st.write(sentences[i])
 
-
-# criar função para realizar download do Resumo
-def gerar_resumo(n_send=2):
-    texto = read_file_pdf()
-    word_not_stopwords = set(stopwords.words('portuguese'))
-    sentences = sent_tokenize(texto)
-    sentencas_importante = defaultdict(int)
-
-    frequency = FreqDist(word_not_stopwords)
-    for i, sentence in enumerate(sentences):
-        for word in word_tokenize(sentence.lower()):
-            if word in frequency:
-                sentencas_importante[i] += frequency[word]
-
-    numb_send = int(n_send)
-    idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
-
-    resumo = " "
-    for i in sorted(idx_importante_sentencas):
-        resumo = resumo + sentences[i]
-    return resumo
-
-
-# criar função para transformar o resumo em pdf
-def transformar_pdf():
-    resumo = gerar_resumo()
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.cell(200, 10, txt=resumo, ln=1, align="C")
-    pdf.output("Resumo.pdf")
-
-
-# criar função para realizar download do pdf
-def download_pdf():
-    if os.path.exists("Resumo.pdf"):
-        with open("Resumo.pdf", "rb") as f:
-            b64 = base64.b64encode(f.read()).decode()
-            href = f'<a href="data:file/pdf;base64,{b64}" download="Resumo.pdf">Download Resumo</a>'
-            st.markdown(href, unsafe_allow_html=True)
-    else:
-        st.write("Nenhum Resumo gerado")
-
-
 def main():
     # criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras",
@@ -282,12 +239,6 @@ def main():
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
         # criar botao para transformar o resumo em pdf
-        if st.button("Transformar em PDF", key="pdf", help="Clique aqui para transformar o resumo em PDF"):
-            transformar_pdf()
-            st.success("Resumo transformado em PDF")
-        #criar botão para baixar pdf
-        if st.button('Baixar Resumo', key= 'Download', help = 'Baixar arquivo pdf com resumo'):
-            download_pdf()
 
 
 if __name__ == '__main__':
