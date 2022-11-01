@@ -209,7 +209,6 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('punkt')
         texto = retorna_texto()
         # remover palavras duplicadas
-        texto = set(texto.split())
         texto = " ".join(texto)
         # remover palavras com menos de 3 letras
         texto = re.sub(r'\b\w{1,3}\b', '', texto)
