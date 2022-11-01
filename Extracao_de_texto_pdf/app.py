@@ -1,6 +1,7 @@
 # criar programa bara analisar o arquivo pdf ou txt fornecido pelo usuario
 # e retornar o resultado da analise
 # importar bibliotecas
+import Summarizer as Summarizer
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -203,12 +204,17 @@ def analise_sentimento():
 
 
 #criar função para gerar resumo do texto
-def sumarize_text_portugues():
+def sumarize_text_portugues(porcentagem):
     try:
-        arquivo = retorna_texto()
-        #criar um resumo do texto
-        resumo = summarize(arquivo)
-        st.write(resumo)
+        # ler o texto
+        texto = retorna_texto()
+        # criar objeto para sumarizar o texto
+        sumarizador = Summarizer()
+        # sumarizar o texto
+        resultado = sumarizador(texto, porcentagem)
+        # mostrar o resultado
+        st.write(resultado)
+
     except Exception as e:
         st.error(e)
         st.warning("Erro ao criar o resumo do texto")
@@ -297,7 +303,7 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
+        porcentagem = st.slider("Porcentagem", 0, 100, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues()
 
