@@ -210,31 +210,23 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('punkt')
         nltk.download('stopwords')
         texto = retorna_texto()
-        # se o texo estiver em portugues, traduzir para ingles
+        # traduzir o texto para ingles
         translator = Translator()
         texto = translator.translate(texto, dest="en").text
-        # sumarizar o texto
-        parser = PlaintextParser.from_string(texto, Tokenizer("portuguese"))
+        # sumarizar o texto em ingles
+        parser = PlaintextParser.from_string(texto, Tokenizer("english"))
         summarizer = LexRankSummarizer()
         summary = summarizer(parser.document, porcentagem)
         # traduzir o resumo para portugues
         summary = str(summary)
-        summary = summary.replace("[", "")
-        summary = summary.replace("]", "")
-        summary = summary.replace("Sentence", "")
-        summary = summary.replace("(", "")
-        summary = summary.replace(")", "")
-        summary = summary.replace("'", "")
-        summary = summary.replace(",", "")
-        summary = summary.replace(":", "")
-        summary = summary.replace(";", "")
-        summary = summary.replace("  ", "")
-        translator = Translator()
         summary = translator.translate(summary, dest="pt").text
-        st.write(summary)
+        return summary
     except Exception as e:
         st.error(e)
-        st.warning("Não foi possível gerar o resumo do texto")
+        st.warning("Não foi possível gerar o resumo")
+
+
+
 
 
 # criar função para gerar resumo do texto
@@ -324,7 +316,8 @@ def main():
         # transformar a porcentagem em decimal
         porcentagem = porcentagem / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues(porcentagem)
+            resumo = sumarize_text_portugues(porcentagem)
+            st.write(resumo)
 
     elif choice == "Resumo por Pagina":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
