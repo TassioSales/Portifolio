@@ -19,6 +19,7 @@ from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
+import nlpcloud
 
 
 # função para pedir o arquivo ao usuario
@@ -205,8 +206,6 @@ def analise_sentimento():
 # usar api para gerar resumo do texto
 def resumo_texto():
     try:
-        import nlpcloud
-
         client = nlpcloud.Client("<model_name>", "<token>")
         texto = retorna_texto()
         resumo = client.summarize(texto)
