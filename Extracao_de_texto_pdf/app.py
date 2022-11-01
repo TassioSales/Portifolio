@@ -207,12 +207,13 @@ def analise_sentimento():
 def resumo_texto():
     try:
         api = st.secrets["api"]
-        client = nlpcloud.Client("bart-large-cnn", api, "pt")
+        client = nlpcloud.Client("bart-large-cnn", api)
         texto = retorna_texto()
         resumo = client.summarization(texto)
-        
-        st.write(resumo)
-        
+        # mostrar o "summary_text": do json
+        st.write(resumo["summary_text"])
+
+
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
