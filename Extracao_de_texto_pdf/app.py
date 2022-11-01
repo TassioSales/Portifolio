@@ -211,7 +211,6 @@ def transformar_pdf():
     resumo = gerar_resumo()
     pdf = FPDF()
     pdf.add_page()
-    pdf.encode('latin1')
     pdf.cell(200, 10, txt=resumo, ln=1, align="C")
     pdf.output("Resumo.pdf")
 
@@ -285,6 +284,7 @@ def main():
         # criar botao para transformar o resumo em pdf
         if st.button("Transformar em PDF", key="pdf", help="Clique aqui para transformar o resumo em PDF"):
             transformar_pdf()
+            st.success("Resumo transformado em PDF")
         #criar botão para baixar pdf
         if st.button('Baixar Resumo', key= 'Download', help = 'Baixar arquivo pdf com resumo'):
             download_pdf()
