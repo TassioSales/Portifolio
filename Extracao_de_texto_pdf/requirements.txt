@@ -50,6 +50,7 @@ pandas-stubs==1.5.1.221024
 pdfminer.six==20220524
 pdfplumber==0.7.5
 Pillow==9.2.0
+pipeline==0.1.0
 plotly==5.11.0
 protobuf==3.20.3
 pyarrow==10.0.0
