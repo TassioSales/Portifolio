@@ -211,11 +211,8 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('stopwords')
         texto = retorna_texto()
         # se o texo estiver em portugues, traduzir para ingles
-        if texto.isascii():
-            texto = texto
-        else:
-            translator = Translator()
-            texto = translator.translate(texto, dest="en").text
+        translator = Translator()
+        texto = translator.translate(texto, dest="en").text
         # sumarizar o texto
         parser = PlaintextParser.from_string(texto, Tokenizer("portuguese"))
         summarizer = LexRankSummarizer()
