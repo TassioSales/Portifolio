@@ -204,7 +204,7 @@ def analise_sentimento():
 
 
 # criar função para gerar resumo do texto com o sumy
-def sumarize_text_portugues(porcentagem):
+def sumarize_text_portugues(porcentagem=0.2):
     try:
         nltk.download('punkt')
         nltk.download('stopwords')
