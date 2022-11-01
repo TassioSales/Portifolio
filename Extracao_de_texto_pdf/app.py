@@ -208,7 +208,7 @@ def resumo_texto():
     try:
         client = nlpcloud.Client("<model_name>", "<token>")
         texto = retorna_texto()
-        resumo = client.summarize(texto)
+        resumo = client.summarization(texto)
         
         st.write(resumo)
         
@@ -300,9 +300,6 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        porcentagem = st.slider("Porcentagem", 0, 100, 10)
-        # transformar a porcentagem em decimal
-        porcentagem = porcentagem / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             resumo_texto()
 
