@@ -204,14 +204,21 @@ def analise_sentimento():
 
 
 # usar api para gerar resumo do texto
-def resumo_texto():
+def resumo_texto_pagina(pagina):
     try:
         api = st.secrets["api"]
         client = nlpcloud.Client("bart-large-cnn", api)
         texto = retorna_texto()
-        resumo = client.summarization(texto)
-        # mostrar o "summary_text": do json
-        st.write(resumo["summary_text"])
+        with pdfplumber.open("arquivo.pdf") as pdf:
+            texto = pdf.pages[pagina].extract_text()
+            # se o texo estiver em portugues, traduzir para ingle
+            translator = Translator()
+            texto = translator.translate(texto, dest="en").text
+            # gerar resumo
+            resumo = client.summarization(texto)
+            # traduzir o resumo para portugues
+            resumo = translator.translate(resumo, dest="pt").text
+            st.write(resumo)
 
 
     except Exception as e:
@@ -219,35 +226,8 @@ def resumo_texto():
         st.warning("Erro ao gerar o resumo")
 
 
-# criar função para gerar resumo do texto
-def sumarize_text_portugues_pagina(pagina=20, n_send=2):
-    try:
-        nltk.download('all')
-        texto = retorna_texto()
-        # perguntar ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-        if os.path.exists("arquivo.pdf"):
-            with pdfplumber.open("arquivo.pdf") as pdf:
-                texto = pdf.pages[pagina].extract_text()
-                st.write(texto)
-                word_not_stopwords = set(stopwords.words('portuguese'))
-                sentences = sent_tokenize(texto)
-                sentencas_importante = defaultdict(int)
 
-                frequency = FreqDist(word_not_stopwords)
-                for i, sentence in enumerate(sentences):
-                    for word in word_tokenize(sentence.lower()):
-                        if word in frequency:
-                            sentencas_importante[i] += frequency[word]
 
-                numb_send = int(n_send)
-                idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
-
-                st.warning("Resumo da pagina escolhida")
-                for i in sorted(idx_importante_sentencas):
-                    st.write(sentences[i])
-    except Exception as e:
-        st.error(e)
-        st.warning("Erro ao gerar o resumo da pagina")
 
 
 def main():
@@ -299,19 +279,12 @@ def main():
         dataframe = mostra_df()
         mostra_grafico_nuvem()
 
-    elif choice == "Resumo Geral":
-        st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
-        # criar botao para gerar o resumo
-        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            resumo_texto()
-
     elif choice == "Resumo por Pagina":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues_pagina(pagina, n_send)
+            resumo_texto_pagina(pagina)
 
 
 if __name__ == '__main__':
