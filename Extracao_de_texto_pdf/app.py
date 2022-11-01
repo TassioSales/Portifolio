@@ -13,13 +13,14 @@ from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
-from pympler.summary import summarize
+from sumy.parsers.plaintext import PlaintextParser
 from wordcloud import WordCloud
 from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
 from sumy.summarizers.lex_rank import LexRankSummarizer
+from sumy.nlp.tokenizers import Tokenizer
 
 
 # função para pedir o arquivo ao usuario
@@ -209,21 +210,34 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('punkt')
         nltk.download('stopwords')
         texto = retorna_texto()
-        # criar objeto para sumarizar o texto
-        sumarizer = LexRankSummarizer()
-        # criar objeto para tokenizar o texto
-        from pygments.lexers.robotframework import Tokenizer
-        tokenizador = Tokenizer("portuguese")
-        # tokenizar o texto
-        tokens = tokenizador(texto)
+        # se o texo estiver em portugues, traduzir para ingles
+        if texto.isascii():
+            texto = texto
+        else:
+            translator = Translator()
+            texto = translator.translate(texto, dest="en").text
         # sumarizar o texto
-        sumarized = sumarizer(tokens, porcentagem)
-        # mostrar o resumo
-        for sentence in sumarized:
-            st.write(sentence)
+        parser = PlaintextParser.from_string(texto, Tokenizer("portuguese"))
+        summarizer = LexRankSummarizer()
+        summary = summarizer(parser.document, porcentagem)
+        # traduzir o resumo para portugues
+        summary = str(summary)
+        summary = summary.replace("[", "")
+        summary = summary.replace("]", "")
+        summary = summary.replace("Sentence", "")
+        summary = summary.replace("(", "")
+        summary = summary.replace(")", "")
+        summary = summary.replace("'", "")
+        summary = summary.replace(",", "")
+        summary = summary.replace(":", "")
+        summary = summary.replace(";", "")
+        summary = summary.replace("  ", "")
+        translator = Translator()
+        summary = translator.translate(summary, dest="pt").text
+        st.write(summary)
     except Exception as e:
         st.error(e)
-        st.warning("Não foi possível gerar o resumo")
+        st.warning("Não foi possível gerar o resumo do texto")
 
 
 # criar função para gerar resumo do texto
@@ -310,7 +324,7 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
         porcentagem = st.slider("Porcentagem", 0, 100, 10)
-        #transformar a porcentagem em decimal
+        # transformar a porcentagem em decimal
         porcentagem = porcentagem / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(porcentagem)
