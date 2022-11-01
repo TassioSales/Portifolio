@@ -203,28 +203,26 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-# gerar resumo do texto usando a biblioteca transformers
-def sumarize_text_portugues(porcentagem=0.2):
+#usar api para gerar resumo do texto
+def resumo_texto():
     try:
-        from transformers import pipeline
-        texto = retorna_texto()
-        # se o texo estiver em portugues, traduzir para ingles
-        translator = Translator()
-        texto = translator.translate(texto, dest="en").text
-        # sumarizar o texto
-        model = pipeline("summarization")
-        texto_sumarizado = model(texto, max_length=int(len(texto) * porcentagem), min_length=30)
-        texto_sumarizado = texto_sumarizado[0]["summary_text"]
-        # se o texto estiver em ingles, traduzir para portugues
-        if texto_sumarizado.isascii():
-            texto_sumarizado = texto_sumarizado
-        else:
-            translator = Translator()
-            texto_sumarizado = translator.translate(texto_sumarizado, dest="pt").text
-        st.write(texto_sumarizado)
+        arquivo = retorna_texto()
+        # pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
+        pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
+        # mostrar o texto da pagina escolhida
+        if os.path.exists("arquivo.pdf"):
+            with pdfplumber.open("arquivo.pdf") as pdf:
+                texto = pdf.pages[pagina].extract_text()
+                st.write(texto)
+                # se o texo estiver em portugues, traduzir para ingles
+                translator = Translator()
+                texto = translator.translate(texto, dest="en").text
+                # gerar resumo
+                st.write(summarize(texto, ratio=0.1))
     except Exception as e:
         st.error(e)
-        st.warning("Não foi possível sumarizar o texto")
+        st.warning("Erro ao gerar o resumo")
+ 
 
 
 # criar função para gerar resumo do texto
