@@ -14,7 +14,6 @@ from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
-from pympler.summary import summarize
 from wordcloud import WordCloud
 from heapq import nlargest
 import nltk
