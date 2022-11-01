@@ -1,7 +1,6 @@
 # criar programa bara analisar o arquivo pdf ou txt fornecido pelo usuario
 # e retornar o resultado da analise
 # importar bibliotecas
-import base64
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -19,7 +18,6 @@ from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
-from fpdf import FPDF
 
 
 # função para pedir o arquivo ao usuario
@@ -67,7 +65,7 @@ def limpar_texto(texto):
     texto = re.sub(r'[ç]', 'c', texto)
     # remover aspas simples
     texto = re.sub(r'[’]', '', texto)
-    #remover aspas duplas
+    # remover aspas duplas
     texto = re.sub(r'["]', '', texto)
     return texto
 
@@ -108,7 +106,7 @@ def mostra_df():
 def mostra_grafico_barras(dataframe):
     # criar grafico de barras somente com top 15 palavras
     dados = dataframe.head(15)
-    fig = px.bar(dados, x="Palavras", y="Quantidade", color="Quantidade", title="Top 5 palavras")
+    fig = px.bar(dados, x="Palavras", y="Quantidade", color="Quantidade", title="Top 15 palavras")
     st.plotly_chart(fig)
 
 
@@ -116,7 +114,7 @@ def mostra_grafico_barras(dataframe):
 def mostra_grafico_pizza(dataframe):
     # criar grafico de pizza somente com top 5 palavras
     dados = dataframe.head(5)
-    fig = px.pie(dados, values="Quantidade", names="Palavras", title="Top 15 palavras")
+    fig = px.pie(dados, values="Quantidade", names="Palavras", title="Top 5 palavras")
     st.plotly_chart(fig)
 
 
@@ -163,8 +161,8 @@ def analise_sentimento():
                 st.warning("O Sentimento dessa pagina Neutro")
 
 
-# criar função para gerar resumo do texto
-def sumarize_text_portugues(n_send=2):
+# criar função para gerar resumo por pagina
+def sumarize_text_portugues_pagina(n_send=2):
     nltk.download('all')
     texto = read_file_pdf()
     word_not_stopwords = set(stopwords.words('portuguese'))
@@ -183,10 +181,39 @@ def sumarize_text_portugues(n_send=2):
     for i in sorted(idx_importante_sentencas):
         st.write(sentences[i])
 
+
+# criar função para gerar resumo do texto
+def sumarize_text_portugues(n_send=2):
+    nltk.download('all')
+    texto = retorna_texto()
+    # perguntar ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
+    pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
+    if os.path.exists("arquivo.pdf"):
+        with pdfplumber.open("arquivo.pdf") as pdf:
+            texto = pdf.pages[pagina].extract_text()
+            st.write(texto)
+            word_not_stopwords = set(stopwords.words('portuguese'))
+            sentences = sent_tokenize(texto)
+            sentencas_importante = defaultdict(int)
+
+            frequency = FreqDist(word_not_stopwords)
+            for i, sentence in enumerate(sentences):
+                for word in word_tokenize(sentence.lower()):
+                    if word in frequency:
+                        sentencas_importante[i] += frequency[word]
+
+            numb_send = int(n_send)
+            idx_importante_sentencas = nlargest(numb_send, sentencas_importante, sentencas_importante.get)
+
+            st.warning("Resumo da pagina escolhida")
+            for i in sorted(idx_importante_sentencas):
+                st.write(sentences[i])
+
+
 def main():
     # criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras",
-            "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo"]
+            "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo Geral", "Resumo por Pagina"]
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == "Upload":
         st.title("Upload de arquivo")
@@ -232,13 +259,19 @@ def main():
         dataframe = mostra_df()
         mostra_grafico_nuvem()
 
-    elif choice == "Resumo":
+    elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(n_send)
-        # criar botao para transformar o resumo em pdf
+
+    elif choice == "Resumo por Pagina":
+        st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
+        # criar botao para gerar o resumo
+        n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
+        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+            sumarize_text_portugues_pagina(n_send)
 
 
 if __name__ == '__main__':
