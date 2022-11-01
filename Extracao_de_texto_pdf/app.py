@@ -162,7 +162,7 @@ def analise_sentimento():
 
 
 # criar função para gerar resumo por pagina
-def sumarize_text_portugues_pagina(n_send=2):
+def sumarize_text_portugues(n_send=2):
     nltk.download('all')
     texto = read_file_pdf()
     word_not_stopwords = set(stopwords.words('portuguese'))
@@ -183,7 +183,7 @@ def sumarize_text_portugues_pagina(n_send=2):
 
 
 # criar função para gerar resumo do texto
-def sumarize_text_portugues(pagina = 20, n_send=2):
+def sumarize_text_portugues_pagina(pagina = 20, n_send=2):
     nltk.download('all')
     texto = retorna_texto()
     # perguntar ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
@@ -271,7 +271,7 @@ def main():
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues(pagina, n_send)
+            sumarize_text_portugues_pagina(pagina, n_send)
         
 
 
