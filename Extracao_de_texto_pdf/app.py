@@ -222,7 +222,7 @@ def resumo_texto_pagina(pagina):
             resumo = translator.translate(resumo, dest="pt").text
             #imprimir o summary_text do json gerado
             st.warning("Resumo da pagina")
-            st.write(resumo.values())
+            st.write(resumo)
 
 
     except Exception as e:
