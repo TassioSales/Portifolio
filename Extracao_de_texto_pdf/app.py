@@ -13,6 +13,7 @@ from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
+from summarizer import summarize
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.summarizers.lex_rank import LexRankSummarizer
@@ -216,15 +217,11 @@ def sumarize_text_portugues(porcentagem=0.2):
         texto = limpar_texto(texto)
         # remover as stop words
         texto = remover_stop_words(texto)
-        # transformar o texto em um objeto
-        parser = PlaintextParser.from_string(texto, Tokenizer("portuguese"))
+        # tokenizar o texto
+        token = word_tokenize(texto)
         # criar o resumo
-        summarizer = LexRankSummarizer()
-        # gerar o resumo
-        summary = summarizer(parser.document, porcentagem)
-        # mostrar o resumo
-        for sentence in summary:
-            st.write(sentence)
+        resumo = summarize(" ".join(token))
+        return resumo
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível gerar o resumo")
