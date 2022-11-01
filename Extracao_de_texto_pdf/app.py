@@ -211,14 +211,18 @@ def resumo_texto_pagina(pagina):
         texto = retorna_texto()
         with pdfplumber.open("arquivo.pdf") as pdf:
             texto = pdf.pages[pagina].extract_text()
+            st.write('Texto da página escolhida:')
             # se o texo estiver em portugues, traduzir para ingle
+            st.write(texto)
             translator = Translator()
             texto = translator.translate(texto, dest="en").text
             # gerar resumo
             resumo = client.summarization(texto)
             # traduzir o resumo para portugues
             resumo = translator.translate(resumo, dest="pt").text
-            st.write(resumo)
+            #imprimir o summary_text do json gerado
+            st.warning("Resumo da pagina")
+            st.write(resumo["summary_text"])
 
 
     except Exception as e:
