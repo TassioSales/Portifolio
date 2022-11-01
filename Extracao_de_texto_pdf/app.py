@@ -14,15 +14,12 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
 from summarizer import summarize
-from sumy.nlp.tokenizers import Tokenizer
-from sumy.parsers.plaintext import PlaintextParser
-from sumy.summarizers.lex_rank import LexRankSummarizer
 from wordcloud import WordCloud
 from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
-import sumy
+from transformers import pipeline
 
 
 # função para pedir o arquivo ao usuario
@@ -206,26 +203,27 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-# gerar resumo do texto usando a biblioteca sumy
+# gerar resumo do texto usando a biblioteca transformers
 def sumarize_text_portugues(porcentagem=0.2):
     try:
-        nltk.download('punkt')
-        nltk.download('stopwords')
-        # ler o arquivo
-        texto = read_file_pdf()
-        # limpar o texto
-        texto = limpar_texto(texto)
-        # remover as stop words
-        texto = remover_stop_words(texto)
-        # tokenizar o texto
-        token = word_tokenize(texto)
-        # criar o resumo
-        resumo = summarize(" ".join(token))
-        return resumo
+        texto = retorna_texto()
+        # se o texo estiver em portugues, traduzir para ingles
+        translator = Translator()
+        texto = translator.translate(texto, dest="en").text
+        # sumarizar o texto
+        model = pipeline("summarization")
+        texto_sumarizado = model(texto, max_length=int(len(texto) * porcentagem), min_length=30)
+        texto_sumarizado = texto_sumarizado[0]["summary_text"]
+        # se o texto estiver em ingles, traduzir para portugues
+        if texto_sumarizado.isascii():
+            texto_sumarizado = texto_sumarizado
+        else:
+            translator = Translator()
+            texto_sumarizado = translator.translate(texto_sumarizado, dest="pt").text
+        st.write(texto_sumarizado)
     except Exception as e:
         st.error(e)
-        st.warning("Não foi possível gerar o resumo")
-
+        st.warning("Não foi possível sumarizar o texto")
 
 # criar função para gerar resumo do texto
 def sumarize_text_portugues_pagina(pagina=20, n_send=2):
@@ -314,7 +312,7 @@ def main():
         # transformar a porcentagem em decimal
         porcentagem = porcentagem / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues(porcentagem)
+            sumarize_text_portugues()
 
     elif choice == "Resumo por Pagina":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
