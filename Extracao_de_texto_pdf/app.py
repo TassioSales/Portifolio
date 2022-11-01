@@ -21,7 +21,6 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 
 
-
 # função para pedir o arquivo ao usuario
 def get_file():
     try:
@@ -203,7 +202,7 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-#usar api para gerar resumo do texto
+# usar api para gerar resumo do texto
 def resumo_texto():
     try:
         arquivo = retorna_texto()
@@ -222,7 +221,6 @@ def resumo_texto():
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
- 
 
 
 # criar função para gerar resumo do texto
@@ -312,7 +310,7 @@ def main():
         # transformar a porcentagem em decimal
         porcentagem = porcentagem / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues()
+            resumo_texto()
 
     elif choice == "Resumo por Pagina":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
