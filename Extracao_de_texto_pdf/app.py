@@ -211,7 +211,7 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('punkt')
         nltk.download('stopwords')
         # ler o arquivo
-        texto = retorna_texto()
+        texto = read_file_pdf()
         # criar um objeto do tipo parser
         parser = PlaintextParser.from_string(texto, Tokenizer('portuguese'))
         # criar um objeto do tipo sumarizador
