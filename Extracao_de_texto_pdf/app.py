@@ -183,11 +183,10 @@ def sumarize_text_portugues_pagina(n_send=2):
 
 
 # criar função para gerar resumo do texto
-def sumarize_text_portugues(n_send=2):
+def sumarize_text_portugues(pagina = 20, n_send=2):
     nltk.download('all')
     texto = retorna_texto()
     # perguntar ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-    pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
     if os.path.exists("arquivo.pdf"):
         with pdfplumber.open("arquivo.pdf") as pdf:
             texto = pdf.pages[pagina].extract_text()
@@ -270,8 +269,10 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
-        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            sumarize_text_portugues_pagina(n_send)
+        pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
+        if button := st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+            sumarize_text_portugues(pagina, n_send)
+        
 
 
 if __name__ == '__main__':
