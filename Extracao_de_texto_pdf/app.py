@@ -205,19 +205,14 @@ def analise_sentimento():
 # usar api para gerar resumo do texto
 def resumo_texto():
     try:
-        arquivo = retorna_texto()
-        # pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-        pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
-        # mostrar o texto da pagina escolhida
-        if os.path.exists("arquivo.pdf"):
-            with pdfplumber.open("arquivo.pdf") as pdf:
-                texto = pdf.pages[pagina].extract_text()
-                st.write(texto)
-                # se o texo estiver em portugues, traduzir para ingles
-                translator = Translator()
-                texto = translator.translate(texto, dest="en").text
-                # gerar resumo
-                st.write(summarize(texto, ratio=0.1))
+        import nlpcloud
+
+        client = nlpcloud.Client("<model_name>", "<token>")
+        texto = retorna_texto()
+        resumo = client.summarize(texto)
+        
+        st.write(resumo)
+        
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
