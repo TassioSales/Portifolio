@@ -270,7 +270,7 @@ def main():
         # criar botao para gerar o resumo
         n_send = st.sidebar.slider("Quantas sentenças você quer no resumo?", 1, 10)
         pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
-        if button := st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             sumarize_text_portugues(pagina, n_send)
         
 
