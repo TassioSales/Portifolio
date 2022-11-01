@@ -19,7 +19,7 @@ from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
-from transformers import pipeline
+
 
 
 # função para pedir o arquivo ao usuario
@@ -206,6 +206,7 @@ def analise_sentimento():
 # gerar resumo do texto usando a biblioteca transformers
 def sumarize_text_portugues(porcentagem=0.2):
     try:
+        from transformers import pipeline
         texto = retorna_texto()
         # se o texo estiver em portugues, traduzir para ingles
         translator = Translator()
