@@ -212,15 +212,19 @@ def sumarize_text_portugues(porcentagem=0.2):
         nltk.download('stopwords')
         # ler o arquivo
         texto = read_file_pdf()
-        # criar um objeto do tipo parser
-        parser = PlaintextParser.from_string(texto, Tokenizer('portuguese'))
-        # criar um objeto do tipo sumarizador
-        sumarizador = LexRankSummarizer()
-        # criar um objeto do tipo resumo
-        resumo = sumarizador(parser.document, porcentagem)
+        # limpar o texto
+        texto = limpar_texto(texto)
+        # remover as stop words
+        texto = remover_stop_words(texto)
+        # transformar o texto em um objeto
+        parser = PlaintextParser.from_string(texto, Tokenizer("portuguese"))
+        # criar o resumo
+        summarizer = LexRankSummarizer()
+        # gerar o resumo
+        summary = summarizer(parser.document, porcentagem)
         # mostrar o resumo
-        for sentenca in resumo:
-            st.write(sentenca)
+        for sentence in summary:
+            st.write(sentence)
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível gerar o resumo")
