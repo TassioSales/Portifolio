@@ -13,13 +13,15 @@ from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
-from pympler.summary import summarize
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.summarizers.lex_rank import LexRankSummarizer
 from wordcloud import WordCloud
 from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
-
+import sumy
 
 
 # função para pedir o arquivo ao usuario
@@ -203,26 +205,25 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-# criar função para gerar resumo do texto com o pympler.summary
+# gerar resumo do texto usando a biblioteca sumy
 def sumarize_text_portugues(porcentagem=0.2):
     try:
         nltk.download('punkt')
+        nltk.download('stopwords')
+        # ler o arquivo
         texto = retorna_texto()
-        # remover palavras duplicadas
-        texto = " ".join(texto)
-        # remover palavras com menos de 3 letras
-        texto = re.sub(r'\b\w{1,3}\b', '', texto)
-        # remover palavras com mais de 15 letras
-        texto = re.sub(r'\b\w{15,}\b', '', texto)
-        # sumarizar o texto
-        sumarizer = summarize()
-        result = sumarizer(texto, porcentagem)
-        full = ''.join(result)
-        st.write(full)
+        # criar um objeto do tipo parser
+        parser = PlaintextParser.from_string(texto, Tokenizer('portuguese'))
+        # criar um objeto do tipo sumarizador
+        sumarizador = LexRankSummarizer()
+        # criar um objeto do tipo resumo
+        resumo = sumarizador(parser.document, porcentagem)
+        # mostrar o resumo
+        for sentenca in resumo:
+            st.write(sentenca)
     except Exception as e:
         st.error(e)
-        st.warning("Não foi possível gerar o resumo do texto")
-
+        st.warning("Não foi possível gerar o resumo")
 
 
 # criar função para gerar resumo do texto
