@@ -1,7 +1,6 @@
 # criar programa bara analisar o arquivo pdf ou txt fornecido pelo usuario
 # e retornar o resultado da analise
 # importar bibliotecas
-import Summarizer as Summarizer
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -14,11 +13,13 @@ from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.probability import FreqDist
 from googletrans import Translator
+from pympler.summary import summarize
 from wordcloud import WordCloud
 from heapq import nlargest
 import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
+from sumy.summarizers.lex_rank import LexRankSummarizer
 
 
 # função para pedir o arquivo ao usuario
@@ -202,21 +203,28 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-#criar função para gerar resumo do texto
+#criar função para gerar resumo do texto com o sumy
 def sumarize_text_portugues(porcentagem):
     try:
-        # ler o texto
+        nltk.download('punkt')
+        nltk.download('stopwords')
         texto = retorna_texto()
         # criar objeto para sumarizar o texto
-        sumarizador = Summarizer()
+        sumarizer = LexRankSummarizer()
+        # criar objeto para tokenizar o texto
+        from pygments.lexers.robotframework import Tokenizer
+        tokenizador = Tokenizer("portuguese")
+        # tokenizar o texto
+        tokens = tokenizador(texto)
         # sumarizar o texto
-        resultado = sumarizador(texto, porcentagem)
-        # mostrar o resultado
-        st.write(resultado)
-
+        sumarized = sumarizer(tokens, porcentagem)
+        # mostrar o resumo
+        for sentence in sumarized:
+            st.write(sentence)
     except Exception as e:
         st.error(e)
-        st.warning("Erro ao criar o resumo do texto")
+        st.warning("Não foi possível gerar o resumo")
+
 
 
 # criar função para gerar resumo do texto
