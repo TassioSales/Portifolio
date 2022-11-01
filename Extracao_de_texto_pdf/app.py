@@ -225,6 +225,7 @@ def sumarize_text_portugues(porcentagem=0.2):
         st.error(e)
         st.warning("Não foi possível sumarizar o texto")
 
+
 # criar função para gerar resumo do texto
 def sumarize_text_portugues_pagina(pagina=20, n_send=2):
     try:
