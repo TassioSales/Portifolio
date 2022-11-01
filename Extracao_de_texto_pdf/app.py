@@ -206,7 +206,8 @@ def analise_sentimento():
 # usar api para gerar resumo do texto
 def resumo_texto():
     try:
-        client = nlpcloud.Client("<model_name>", "<token>")
+        api = st.secrets["api"]
+        client = nlpcloud.Client("bart-large-cnn", api, "pt")
         texto = retorna_texto()
         resumo = client.summarization(texto)
         
