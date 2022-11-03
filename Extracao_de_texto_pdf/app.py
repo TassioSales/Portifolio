@@ -227,43 +227,35 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
-        # traduzir o texto para ingles
-        translator = Translator()
-        text = translator.translate(text, dest="en").text
-        nlp = spacy.load('en_core_web_sm')
-        doc = nlp(text)
-        tokens = [token.text for token in doc]
-        word_frequencies = {}
-        for word in doc:
-            if word.text.lower() not in list(STOP_WORDS):
-                if word.text.lower() not in punctuation:
-                    if word.text not in word_frequencies.keys():
-                        word_frequencies[word.text] = 1
-                    else:
-                        word_frequencies[word.text] += 1
-        max_frequency = max(word_frequencies.values())
-        for word in word_frequencies.keys():
-            word_frequencies[word] = word_frequencies[word] / max_frequency
-        sentence_tokens = [sent for sent in doc.sents]
-        sentence_scores = {}
-        for sent in sentence_tokens:
-            for word in sent:
-                if word.text.lower() in word_frequencies.keys():
-                    if sent not in sentence_scores.keys():
-                        sentence_scores[sent] = word_frequencies[word.text.lower()]
-                    else:
-                        sentence_scores[sent] += word_frequencies[word.text.lower()]
-        select_length = int(len(sentence_tokens) * per)
-        summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
-        final_summary = [word.text for word in summary]
-        summary = ''.join(final_summary)
-        # traduzir o resumo para portugues
-        summary = translator.translate(summary, dest="pt").text
-        # colocar acentos no resumo
-        return summary
-    except Exception as e:
-        st.error(e)
-        st.warning("Erro ao gerar o resumo")
+        def summarize(text, per):
+            nlp = spacy.load("pt_core_news_sm")
+            doc = nlp(text)
+            tokens = [token.text for token in doc]
+            word_frequencies = {}
+            for word in doc:
+                if word.text.lower() not in list(STOP_WORDS):
+                    if word.text.lower() not in punctuation:
+                        if word.text not in word_frequencies.keys():
+                            word_frequencies[word.text] = 1
+                        else:
+                            word_frequencies[word.text] += 1
+            max_frequency = max(word_frequencies.values())
+            for word in word_frequencies.keys():
+                word_frequencies[word] = word_frequencies[word] / max_frequency
+            sentence_tokens = [sent for sent in doc.sents]
+            sentence_scores = {}
+            for sent in sentence_tokens:
+                for word in sent:
+                    if word.text.lower() in word_frequencies.keys():
+                        if sent not in sentence_scores.keys():
+                            sentence_scores[sent] = word_frequencies[word.text.lower()]
+                        else:
+                            sentence_scores[sent] += word_frequencies[word.text.lower()]
+            select_length = int(len(sentence_tokens) * per)
+            summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
+            final_summary = [word.text for word in summary]
+            summary = ''.join(final_summary)
+            return summary
 
 
 def main():
@@ -324,10 +316,7 @@ def main():
 
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
-        # criar botao para gerar o resumo
-        per = st.slider("Qual porcentagem do texto você quer resumir?", min_value=10, max_value=100, value=10)
-        # tranformar percentual em decimal
-        per = per / 100
+        per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1, step=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             texto = retorna_texto()
             resumo_geral(texto, per)
