@@ -13,7 +13,6 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from googletrans import Translator
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
-import nlpcloud
 import nltk
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -105,7 +104,7 @@ def retorna_texto():
     try:
         if os.path.exists("arquivo.pdf"):
             texto = read_file_pdf()
-            #texto = limpar_texto(texto)
+            # texto = limpar_texto(texto)
             texto = remover_stop_words(texto)
             return texto
     except Exception as e:
@@ -205,29 +204,9 @@ def analise_sentimento():
         st.warning("Erro ao analisar o sentimento")
 
 
-# usar api para gerar resumo do texto
-def resumo_texto_pagina(pagina):
-    try:
-        texto = retorna_texto()
-        api = st.secrets["api"]
-        client = nlpcloud.Client("bart-large-cnn", api)
-        with pdfplumber.open("arquivo.pdf") as pdf:
-            texto = pdf.pages[pagina].extract_text()
-            st.write('Texto da página escolhida:')
-            # se o texo estiver em portugues, traduzir para ingle
-            st.write(texto)
-            resumo = client.summarization(texto)
-            # imprimir o summary_text do json gerado
-            st.warning("Resumo da pagina")
-            st.write(resumo["summary_text"])
-    except Exception as e:
-        st.error(e)
-        st.warning("Erro ao gerar o resumo")
-
-
 def resumo_geral(text, per):
     try:
-        #traduzir o texto para ingles
+        # traduzir o texto para ingles
         translator = Translator()
         text = translator.translate(text, dest="en").text
         nlp = spacy.load('en_core_web_sm')
@@ -261,6 +240,21 @@ def resumo_geral(text, per):
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
+
+
+def pegar_texto_pagina():
+    try:
+        # pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
+        pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
+        # mostrar o texto da pagina escolhida
+        if os.path.exists("arquivo.pdf"):
+            with pdfplumber.open("arquivo.pdf") as pdf:
+                texto = pdf.pages[pagina].extract_text()
+                st.write(texto)
+                return texto
+    except Exception as e:
+        st.error(e)
+        st.warning("Erro ao pegar o texto da pagina")
 
 
 def main():
@@ -315,9 +309,13 @@ def main():
     elif choice == "Resumo por Pagina":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
-        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            resumo_texto_pagina(pagina)
+        texto = pegar_texto_pagina()
+        per = st.slider("Selecione a porcentagem do resumo", 0.1, 1.0)
+        if st.button("Gerar Resumo"):
+            translator = Translator()
+            resumo = resumo_geral(texto, per)
+            resumo = translator.translate(resumo, dest="pt").text
+            st.write(resumo)
 
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
