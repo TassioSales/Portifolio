@@ -317,13 +317,14 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
-        texto = retorna_texto()
-        # traduzir o texto para o ingles
-        translator = Translator()
-        texto = translator.translate(texto, dest="en").text
-        resumo = resumo_geral(texto, per)
-        resumo = translator.translate(resumo, dest="pt").text
-        st.write(resumo)
+        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+            texto = retorna_texto()
+            # traduzir o texto para o ingles
+            translator = Translator()
+            texto = translator.translate(texto, dest="en").text
+            resumo = resumo_geral(texto, per)
+            resumo = translator.translate(resumo, dest="pt").text
+            st.write(resumo)
 
 
 
