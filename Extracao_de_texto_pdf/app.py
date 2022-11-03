@@ -250,6 +250,8 @@ def pegar_texto_pagina():
         if os.path.exists("arquivo.pdf"):
             with pdfplumber.open("arquivo.pdf") as pdf:
                 texto = pdf.pages[pagina].extract_text()
+                #remover numeracao das paginas
+                texto = re.sub(r'\d+', '', texto)
                 st.write(texto)
                 return texto
     except Exception as e:
