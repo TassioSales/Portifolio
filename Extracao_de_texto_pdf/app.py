@@ -227,6 +227,9 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
+        #traduzir o texto para ingles
+        translator = Translator()
+        text = translator.translate(text, dest="en").text
         nlp = spacy.load('en_core_web_sm')
         doc = nlp(text)
         tokens = [token.text for token in doc]
@@ -323,7 +326,6 @@ def main():
             texto = retorna_texto()
             # traduzir o texto para o ingles
             translator = Translator()
-            texto = translator.translate(texto, dest="en").text
             resumo = resumo_geral(texto, per)
             resumo = translator.translate(resumo, dest="pt").text
             st.write(resumo)
