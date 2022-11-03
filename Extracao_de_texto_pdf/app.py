@@ -87,6 +87,7 @@ def limpar_texto(texto):
 # remover as usando o nltk
 def remover_stop_words(texto):
     try:
+        nltk.download('stopwords')
         stop_words = set(stopwords.words('portuguese'))
         palavras = word_tokenize(texto)
         palavras_filtradas = []
