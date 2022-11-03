@@ -104,7 +104,7 @@ def retorna_texto():
     try:
         if os.path.exists("arquivo.pdf"):
             texto = read_file_pdf()
-            # texto = limpar_texto(texto)
+            texto = limpar_texto(texto)
             texto = remover_stop_words(texto)
             return texto
     except Exception as e:
