@@ -8,18 +8,11 @@ import pdfplumber
 import re
 import time
 import os
-
-import unidecode as unidecode
 from nltk.tokenize import word_tokenize
-from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.probability import FreqDist
 from googletrans import Translator
-from summarizer import summarize
 from wordcloud import WordCloud
-from heapq import nlargest
 from nltk.corpus import stopwords
-from collections import defaultdict
 import nlpcloud
 import nltk
 import spacy
@@ -118,6 +111,7 @@ def retorna_texto():
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível ler o arquivo")
+
 
 # mostar dataframe com as palavras e a quantidade de vezes que aparecem
 def mostra_df():
@@ -226,7 +220,6 @@ def resumo_texto_pagina(pagina):
             # imprimir o summary_text do json gerado
             st.warning("Resumo da pagina")
             st.write(resumo["summary_text"])
-
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
@@ -234,7 +227,7 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
-        #traduzir o texto para ingles
+        # traduzir o texto para ingles
         translator = Translator()
         text = translator.translate(text, dest="en").text
         nlp = spacy.load('en_core_web_sm')
@@ -266,9 +259,7 @@ def resumo_geral(text, per):
         summary = ''.join(final_summary)
         # traduzir o resumo para portugues
         summary = translator.translate(summary, dest="pt").text
-        #colocar acentos no resumo
-        summary = unidecode.unidecode(summary)
-        #colocar os caracteres especiais no resumo
+        # colocar acentos no resumo
         return summary
     except Exception as e:
         st.error(e)
@@ -334,12 +325,13 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        per = st.slider("Qual porcentagem do texto você quer resumir?", min_value=10, max_value = 100, value=10)
+        per = st.slider("Qual porcentagem do texto você quer resumir?", min_value=10, max_value=100, value=10)
         # tranformar percentual em decimal
         per = per / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             texto = retorna_texto()
             resumo_geral(texto, per)
+
 
 if __name__ == '__main__':
     main()
