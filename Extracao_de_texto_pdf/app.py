@@ -231,26 +231,42 @@ def resumo_texto_pagina(pagina):
 def resumo_texto():
     try:
         texto = retorna_texto()
-        # criar codigo para realizar o resumo do texto completo usando o sumy
+        # criar codigo para realizar o resumo do texto completo
         translator = Translator()
         texto = translator.translate(texto, dest="en").text
         stop_words = set(stopwords.words('english'))
-        words = word_tokenize(texto)
-        freqTable = dict()
+        #remover stopwords
+        word_tokens = word_tokenize(texto)
+        filtered_sentence = [w for w in word_tokens if not w in stop_words]
+        freqtable = dict()
+        for word in filtered_sentence:
+            word = word.lower()
+            if word in freqtable:
+                freqtable[word] += 1
+            else:
+                freqtable[word] = 1
         sentences = sent_tokenize(texto)
         sentenceValue = dict()
+        for sentence in sentences:
+            for word, freq in freqtable.items():
+                if word in sentence.lower():
+                    if sentence in sentenceValue:
+                        sentenceValue[sentence] += freq
+                    else:
+                        sentenceValue[sentence] = freq
         sumValues = 0
         for sentence in sentenceValue:
             sumValues += sentenceValue[sentence]
+        # Average value of a sentence from the original text
         average = int(sumValues / len(sentenceValue))
+        # Storing sentences into our summary.
         summary = ''
         for sentence in sentences:
             if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
                 summary += " " + sentence
         st.write(summary)
-    except Exception as e:
-        st.error(e)
-        st.warning("Erro ao gerar o resumo")
+
+
 
 
 def main():
