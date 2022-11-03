@@ -257,25 +257,7 @@ def pegar_texto_pagina():
     except Exception as e:
         st.error(e)
         st.warning("Erro ao pegar o texto da pagina")
-
-#pegar texto de todas as paginas
-def pegar_texto_todas_paginas():
-    try:
-        # mostrar o texto da pagina escolhida
-        if os.path.exists("arquivo.pdf"):
-            with pdfplumber.open("arquivo.pdf") as pdf:
-                texto = ""
-                for pagina in pdf.pages:
-                    texto += pagina.extract_text()
-                #remover numeracao das paginas
-                texto = re.sub(r'\d+', '', texto)
-                st.write(texto)
-                return texto
-    except Exception as e:
-        st.error(e)
-        st.warning("Erro ao pegar o texto da pagina")
-
-
+        
 def main():
     # criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras",
@@ -340,7 +322,7 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = pegar_texto_todas_paginas()
+            texto = retorna_texto()
             # traduzir o texto para o ingles
             translator = Translator()
             resumo = resumo_geral(texto, per)
