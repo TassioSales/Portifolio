@@ -19,6 +19,8 @@ cycler==0.11.0
 cymem==2.0.7
 decorator==5.1.1
 docopt==0.6.2
+en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.4.1/en_core_web_lg-3.4.1-py3-none-any.whl
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl
 entrypoints==0.4
 et-xmlfile==1.1.0
 filelock==3.8.0
