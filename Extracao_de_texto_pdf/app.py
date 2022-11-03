@@ -9,16 +9,22 @@ import re
 import time
 import os
 from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.probability import FreqDist
 from googletrans import Translator
+from summarizer import summarize
 from wordcloud import WordCloud
+from heapq import nlargest
 from nltk.corpus import stopwords
+from collections import defaultdict
 import nlpcloud
 import nltk
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from heapq import nlargest
+
 nltk.download('all')
 
 
@@ -225,9 +231,8 @@ def resumo_texto_pagina(pagina):
         st.warning("Erro ao gerar o resumo")
 
 
-def resumo_geral(per):
+def resumo_geral(text, per):
     try:
-        text = read_file_pdf()
         # traduzir o texto para ingles
         translator = Translator()
         text = translator.translate(text, dest="en").text
@@ -260,7 +265,7 @@ def resumo_geral(per):
         summary = ''.join(final_summary)
         #traduzir o resumo para portugues
         summary = translator.translate(summary, dest="pt").text
-        st.write(summary)
+        return summary
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
@@ -328,7 +333,8 @@ def main():
         percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.1, max_value=1.0,
                                value=0.1, step=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            resumo = resumo_geral(percentual)
+            texto = retorna_texto()
+            resumo = resumo_geral(texto, percentual)
             st.write(resumo)
 
 
