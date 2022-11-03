@@ -63,6 +63,7 @@ def limpar_texto(texto):
         texto = re.sub(r'[^\w\s]', '', texto)
         # remover numeros
         texto = re.sub(r'[0-9]', '', texto)
+        texto = re.sub(r'\d+', '', texto)
         # remover espaços em branco
         texto = texto.strip()
         # remover caracteres especiais
