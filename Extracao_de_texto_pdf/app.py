@@ -110,12 +110,16 @@ def retorna_texto():
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível ler o arquivo")
-        
+
+
 def retorna_puro():
     try:
         if os.path.exists("arquivo.pdf"):
             texto = read_file_pdf()
             texto = remover_stop_words(texto)
+            #remover numeração de páginas
+            texto = re.sub(r'[0-9]', '', texto)
+            texto = re.sub(r'\d+', '', texto)
             return texto
     except Exception as e:
         st.error(e)
@@ -260,14 +264,15 @@ def pegar_texto_pagina():
         if os.path.exists("arquivo.pdf"):
             with pdfplumber.open("arquivo.pdf") as pdf:
                 texto = pdf.pages[pagina].extract_text()
-                #remover numeracao das paginas
+                # remover numeracao das paginas
                 texto = re.sub(r'\d+', '', texto)
                 st.write(texto)
                 return texto
     except Exception as e:
         st.error(e)
         st.warning("Erro ao pegar o texto da pagina")
-        
+
+
 def main():
     # criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras",
