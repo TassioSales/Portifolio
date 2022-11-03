@@ -21,6 +21,7 @@ from collections import defaultdict
 import nlpcloud
 import nltk
 import json
+
 nltk.download('all')
 
 
@@ -218,33 +219,38 @@ def resumo_texto_pagina(pagina):
             # se o texo estiver em portugues, traduzir para ingle
             st.write(texto)
             resumo = client.summarization(texto)
-            #imprimir o summary_text do json gerado
+            # imprimir o summary_text do json gerado
             st.warning("Resumo da pagina")
             st.write(resumo["summary_text"])
 
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
-        
+
+
 def resumo_texto():
     try:
         texto = retorna_texto()
-        #criar codigo para realizar o resumo do texto completo usando o sumy
+        # criar codigo para realizar o resumo do texto completo usando o sumy
         translator = Translator()
         texto = translator.translate(texto, dest="en").text
-        parser = PlaintextParser.from_string(texto, Tokenizer("english"))
-        summarizer = SumBasicSummarizer()
-        summary = summarizer(parser.document, 3)
-        for sentence in summary:
-            st.write(sentence)
+        stop_words = set(stopwords.words('english'))
+        words = word_tokenize(texto)
+        freqTable = dict()
+        sentences = sent_tokenize(texto)
+        sentenceValue = dict()
+        sumValues = 0
+        for sentence in sentenceValue:
+            sumValues += sentenceValue[sentence]
+        average = int(sumValues / len(sentenceValue))
+        summary = ''
+        for sentence in sentences:
+            if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
+                summary += " " + sentence
+        st.write(summary)
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
-        
-
-
-
-
 
 
 def main():
@@ -302,7 +308,7 @@ def main():
         pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             resumo_texto_pagina(pagina)
-            
+
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
