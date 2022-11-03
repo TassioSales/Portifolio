@@ -116,6 +116,17 @@ def retorna_texto():
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível ler o arquivo")
+        
+def retorna_texto_traduzido():
+    try:
+        if os.path.exists("arquivo.pdf"):
+            texto = read_file_pdf()
+            translator = Translator()
+            texto_traduzido = translator.translate(texto, dest='en')
+            return texto_traduzido.text
+    except Exception as e:
+        st.error(e)
+        st.warning("Não foi possível ler o arquivo")
 
 
 # mostar dataframe com as palavras e a quantidade de vezes que aparecem
@@ -233,9 +244,6 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
-        # traduzir o texto para ingles
-        translator = Translator()
-        text = translator.translate(text, dest="en").text
         nlp = spacy.load('en_core_web_sm')
         doc = nlp(text)
         tokens = [token.text for token in doc]
@@ -333,7 +341,7 @@ def main():
         percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.1, max_value=1.0,
                                value=0.1, step=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = read_file_pdf()
+            texto = retorna_texto_traduzido()
             resumo = resumo_geral(texto, percentual)
             st.write(resumo)
 
