@@ -117,17 +117,6 @@ def retorna_texto():
         st.error(e)
         st.warning("Não foi possível ler o arquivo")
 
-
-def retorna_puro():
-    try:
-        if os.path.exists("arquivo.pdf"):
-            texto = read_file_pdf()
-            return texto
-    except Exception as e:
-        st.error(e)
-        st.warning("Não foi possível ler o arquivo")
-
-
 # mostar dataframe com as palavras e a quantidade de vezes que aparecem
 def mostra_df():
     try:
@@ -275,6 +264,9 @@ def resumo_geral(text, per):
         summary = ''.join(final_summary)
         # traduzir o resumo para portugues
         summary = translator.translate(summary, dest="pt").text
+        #colocar acentos no resumo
+        summary = unidecode.unidecode(summary)
+        #colocar os caracteres especiais no resumo
         return summary
     except Exception as e:
         st.error(e)
@@ -340,13 +332,12 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.01, max_value=1.0,
-                               value=0.05, step=0.01)
+        per = st.slider("Qual porcentagem do texto você quer resumir?", min_value=10, max_value = 100, value=10)
+        # tranformar percentual em decimal
+        per = per / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = retorna_puro()
-            resumo = resumo_geral(texto, percentual)
-            st.write(resumo)
-
+            texto = retorna_texto()
+            resumo_texto_geral(texto, per)
 
 if __name__ == '__main__':
     main()
