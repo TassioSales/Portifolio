@@ -105,7 +105,7 @@ def retorna_texto():
     try:
         if os.path.exists("arquivo.pdf"):
             texto = read_file_pdf()
-            texto = limpar_texto(texto)
+            #texto = limpar_texto(texto)
             texto = remover_stop_words(texto)
             return texto
     except Exception as e:
@@ -320,7 +320,7 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = read_file_pdf()
+            texto = retorna_texto()
             # traduzir o texto para o ingles
             translator = Translator()
             texto = translator.translate(texto, dest="en").text
