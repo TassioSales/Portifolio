@@ -20,6 +20,7 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 import nlpcloud
 import nltk
+import json
 nltk.download('all')
 
 
@@ -219,7 +220,7 @@ def resumo_texto_pagina(pagina):
             resumo = client.summarization(texto)
             #imprimir o summary_text do json gerado
             st.warning("Resumo da pagina")
-            st.write(resumo)
+            st.write(resumo["summary_text"])
 
 
     except Exception as e:
