@@ -328,8 +328,7 @@ def main():
         percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.1, max_value=1.0,
                                value=0.1, step=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = read_file_pdf()
-            resumo = resumo_geral(texto, percentual)
+            resumo = resumo_geral(percentual)
             st.write(resumo)
 
 
