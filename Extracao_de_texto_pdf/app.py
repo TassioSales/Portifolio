@@ -110,6 +110,16 @@ def retorna_texto():
     except Exception as e:
         st.error(e)
         st.warning("Não foi possível ler o arquivo")
+        
+def retorna_puro():
+    try:
+        if os.path.exists("arquivo.pdf"):
+            texto = read_file_pdf()
+            texto = remover_stop_words(texto)
+            return texto
+    except Exception as e:
+        st.error(e)
+        st.warning("Não foi possível ler o arquivo")
 
 
 # mostar dataframe com as palavras e a quantidade de vezes que aparecem
@@ -322,7 +332,7 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = retorna_texto()
+            texto = retorna_puro()
             # traduzir o texto para o ingles
             translator = Translator()
             resumo = resumo_geral(texto, per)
