@@ -9,22 +9,16 @@ import re
 import time
 import os
 from nltk.tokenize import word_tokenize
-from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.probability import FreqDist
 from googletrans import Translator
-from summarizer import summarize
 from wordcloud import WordCloud
-from heapq import nlargest
 from nltk.corpus import stopwords
-from collections import defaultdict
 import nlpcloud
 import nltk
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from heapq import nlargest
-
 nltk.download('all')
 
 
