@@ -16,7 +16,6 @@ from googletrans import Translator
 from summarizer import summarize
 from wordcloud import WordCloud
 from heapq import nlargest
-import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
 import nlpcloud
