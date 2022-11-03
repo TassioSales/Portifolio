@@ -20,6 +20,8 @@ import nltk
 from nltk.corpus import stopwords
 from collections import defaultdict
 import nlpcloud
+import nltk
+nltk.download('all')
 
 
 # função para pedir o arquivo ao usuario
