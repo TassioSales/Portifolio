@@ -79,6 +79,10 @@ def limpar_texto(texto):
         texto = re.sub(r'[’]', '', texto)
         # remover aspas duplas
         texto = re.sub(r'["]', '', texto)
+        #remover letras soltas
+        texto = re.sub(r'\b\w\b', '', texto)
+        #remover algarismos romanos
+        texto = re.sub(r'\b[ivx]+\b', '', texto)
         return texto
     except Exception as e:
         st.error(e)
