@@ -337,7 +337,7 @@ def main():
         per = per / 100
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             texto = retorna_texto()
-            resumo_texto_geral(texto, per)
+            resumo_geral(texto, per)
 
 if __name__ == '__main__':
     main()
