@@ -227,7 +227,7 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
-        nlp = spacy.load("en_core_news_sm")
+        nlp = spacy.load('en_core_web_sm')
         doc = nlp(text)
         tokens = [token.text for token in doc]
         word_frequencies = {}
