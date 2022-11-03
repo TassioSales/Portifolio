@@ -83,6 +83,8 @@ def limpar_texto(texto):
         texto = re.sub(r'\b\w\b', '', texto)
         #remover algarismos romanos
         texto = re.sub(r'\b[ivx]+\b', '', texto)
+        #remover links
+        texto = re.sub(r'http\S+', '', texto)
         return texto
     except Exception as e:
         st.error(e)
