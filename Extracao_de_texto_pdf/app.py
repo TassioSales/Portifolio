@@ -235,7 +235,7 @@ def resumo_texto():
         translator = Translator()
         texto = translator.translate(texto, dest="en").text
         stop_words = set(stopwords.words('english'))
-        #remover stopwords
+        # remover stopwords
         word_tokens = word_tokenize(texto)
         filtered_sentence = [w for w in word_tokens if not w in stop_words]
         freqtable = dict()
@@ -265,8 +265,9 @@ def resumo_texto():
             if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
                 summary += " " + sentence
         st.write(summary)
-
-
+    except Exception as e:
+        st.error(e)
+        st.warning("Erro ao gerar o resumo")
 
 
 def main():
