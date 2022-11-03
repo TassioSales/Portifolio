@@ -230,8 +230,8 @@ def resumo_texto():
     try:
         texto = retorna_texto()
         #criar codigo para realizar o resumo do texto completo usando o sumy
-        Translator = Translator()
-        texto = Translator.translate(texto, dest="en").text
+        translator = Translator()
+        texto = translator.translate(texto, dest="en").text
         parser = PlaintextParser.from_string(texto, Tokenizer("english"))
         summarizer = SumBasicSummarizer()
         summary = summarizer(parser.document, 3)
