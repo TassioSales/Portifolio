@@ -20,7 +20,10 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 import nlpcloud
 import nltk
-import json
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from heapq import nlargest
 
 nltk.download('all')
 
@@ -228,43 +231,39 @@ def resumo_texto_pagina(pagina):
         st.warning("Erro ao gerar o resumo")
 
 
-def resumo_texto():
+def resumo_geral(text, per):
     try:
-        texto = retorna_texto()
-        # criar codigo para realizar o resumo do texto completo
+        # traduzir o texto para ingles
         translator = Translator()
-        texto = translator.translate(texto, dest="en").text
-        stop_words = set(stopwords.words('english'))
-        # remover stopwords
-        word_tokens = word_tokenize(texto)
-        filtered_sentence = [w for w in word_tokens if not w in stop_words]
-        freqtable = dict()
-        for word in filtered_sentence:
-            word = word.lower()
-            if word in freqtable:
-                freqtable[word] += 1
-            else:
-                freqtable[word] = 1
-        sentences = sent_tokenize(texto)
-        sentenceValue = dict()
-        for sentence in sentences:
-            for word, freq in freqtable.items():
-                if word in sentence.lower():
-                    if sentence in sentenceValue:
-                        sentenceValue[sentence] += freq
+        text = translator.translate(text, dest="en").text
+        nlp = spacy.load('en_core_web_sm')
+        doc = nlp(text)
+        tokens = [token.text for token in doc]
+        word_frequencies = {}
+        for word in doc:
+            if word.text.lower() not in list(STOP_WORDS):
+                if word.text.lower() not in punctuation:
+                    if word.text not in word_frequencies.keys():
+                        word_frequencies[word.text] = 1
                     else:
-                        sentenceValue[sentence] = freq
-        sumValues = 0
-        for sentence in sentenceValue:
-            sumValues += sentenceValue[sentence]
-        # Average value of a sentence from the original text
-        average = int(sumValues / len(sentenceValue))
-        # Storing sentences into our summary.
-        summary = ''
-        for sentence in sentences:
-            if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
-                summary += " " + sentence
-        st.write(summary)
+                        word_frequencies[word.text] += 1
+        max_frequency = max(word_frequencies.values())
+        for word in word_frequencies.keys():
+            word_frequencies[word] = word_frequencies[word] / max_frequency
+        sentence_tokens = [sent for sent in doc.sents]
+        sentence_scores = {}
+        for sent in sentence_tokens:
+            for word in sent:
+                if word.text.lower() in word_frequencies.keys():
+                    if sent not in sentence_scores.keys():
+                        sentence_scores[sent] = word_frequencies[word.text.lower()]
+                    else:
+                        sentence_scores[sent] += word_frequencies[word.text.lower()]
+        select_length = int(len(sentence_tokens) * per)
+        summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
+        final_summary = [word.text for word in summary]
+        summary = ''.join(final_summary)
+        return summary
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
@@ -329,8 +328,13 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
+        percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.1, max_value=1.0,
+                               value=0.1, step=0.1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            resumo_texto()
+            texto = retorna_texto()
+            resumo = resumo_geral(texto, percentual)
+            st.write(resumo)
+
 
 
 if __name__ == '__main__':
