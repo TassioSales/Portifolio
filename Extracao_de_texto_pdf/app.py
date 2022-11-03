@@ -209,9 +209,9 @@ def analise_sentimento():
 # usar api para gerar resumo do texto
 def resumo_texto_pagina(pagina):
     try:
+        texto = retorna_texto()
         api = st.secrets["api"]
         client = nlpcloud.Client("bart-large-cnn", api)
-        texto = retorna_texto()
         with pdfplumber.open("arquivo.pdf") as pdf:
             texto = pdf.pages[pagina].extract_text()
             st.write('Texto da página escolhida:')
@@ -222,10 +222,25 @@ def resumo_texto_pagina(pagina):
             st.warning("Resumo da pagina")
             st.write(resumo["summary_text"])
 
-
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
+        
+def resumo_texto():
+    try:
+        texto = retorna_texto()
+        #criar codigo para realizar o resumo do texto completo usando o sumy
+        Translator = Translator()
+        texto = Translator.translate(texto, dest="en").text
+        parser = PlaintextParser.from_string(texto, Tokenizer("english"))
+        summarizer = SumBasicSummarizer()
+        summary = summarizer(parser.document, 3)
+        for sentence in summary:
+            st.write(sentence)
+    except Exception as e:
+        st.error(e)
+        st.warning("Erro ao gerar o resumo")
+        
 
 
 
@@ -287,6 +302,12 @@ def main():
         pagina = st.number_input("Qual página você quer resumir?", min_value=1, value=1)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             resumo_texto_pagina(pagina)
+            
+    elif choice == "Resumo Geral":
+        st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
+        # criar botao para gerar o resumo
+        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
+            resumo_texto()
 
 
 if __name__ == '__main__':
