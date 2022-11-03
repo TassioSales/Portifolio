@@ -216,12 +216,7 @@ def resumo_texto_pagina(pagina):
             st.write('Texto da página escolhida:')
             # se o texo estiver em portugues, traduzir para ingle
             st.write(texto)
-            translator = Translator()
-            texto = translator.translate(texto, dest="en").text
-            # gerar resumo
             resumo = client.summarization(texto)
-            # traduzir o resumo para portugues
-            resumo = translator.translate(resumo, dest="pt").text
             #imprimir o summary_text do json gerado
             st.warning("Resumo da pagina")
             st.write(resumo)
