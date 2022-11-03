@@ -227,7 +227,7 @@ def resumo_texto_pagina(pagina):
 
 def resumo_geral(text, per):
     try:
-        nlp = spacy.load("pt_core_news_sm")
+        nlp = spacy.load("en_core_news_sm")
         doc = nlp(text)
         tokens = [token.text for token in doc]
         word_frequencies = {}
@@ -318,9 +318,13 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
         texto = retorna_texto()
+        # traduzir o texto para o ingles
+        translator = Translator()
+        texto = translator.translate(texto, dest="en").text
         resumo = resumo_geral(texto, per)
+        resumo = translator.translate(resumo, dest="pt").text
         st.write(resumo)
-        
+
 
 
 if __name__ == '__main__':
