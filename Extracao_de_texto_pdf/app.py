@@ -340,8 +340,8 @@ def main():
     elif choice == "Resumo Geral":
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
-        percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.1, max_value=1.0,
-                               value=0.1, step=0.1)
+        percentual = st.slider("Qual o percentual de palavras que você quer no resumo?", min_value=0.01, max_value=1.0,
+                               value=0.05, step=0.01)
         if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
             texto = retorna_puro()
             resumo = resumo_geral(texto, percentual)
