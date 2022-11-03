@@ -225,8 +225,9 @@ def resumo_texto_pagina(pagina):
         st.warning("Erro ao gerar o resumo")
 
 
-def resumo_geral(text, per):
+def resumo_geral(per):
     try:
+        text = read_file_pdf()
         # traduzir o texto para ingles
         translator = Translator()
         text = translator.translate(text, dest="en").text
@@ -257,7 +258,9 @@ def resumo_geral(text, per):
         summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
         final_summary = [word.text for word in summary]
         summary = ''.join(final_summary)
-        return summary
+        #traduzir o resumo para portugues
+        summary = translator.translate(summary, dest="pt").text
+        st.write(summary)
     except Exception as e:
         st.error(e)
         st.warning("Erro ao gerar o resumo")
