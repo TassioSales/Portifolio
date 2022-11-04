@@ -14,9 +14,6 @@ import plotly.express as px
 import pandas as pd
 import json
 
-nltk.download('all')
-
-
 # função para pedir texto para o usuário
 def get_text():
     text = st.text_area("Digite o texto a ser traduzido")
