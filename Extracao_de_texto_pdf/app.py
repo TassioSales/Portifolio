@@ -362,14 +362,222 @@ def main():
 
 
 if __name__ == '__main__':
-    #deixa botoes no formato arredondado
-    st.markdown("""<style>
-    .reportview-container .main .block-container{{
-        max-width: 1500px;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-    }}
-    </style>""", unsafe_allow_html=True)
+    #deixa botoes no formato arredondado e na cor verde
+
+    st.markdown(
+        """
+    <style>
+    .reportview-container .main .block-container{
+        max-width: 1000px;
+        padding-top: 0.5rem;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .reportview-container .main {
+        color: #000000;
+        background-color: #FFFFFF;
+    }
+    .reportview-container .main .block-container .markdown-text-container {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .reportview-container .main .block-container .fullScreenFrame .frame-container .markdown-text-container {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .reportview-container .main .block-container .markdown-text-container h1 {
+        font-size: 3rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container h2 {
+        font-size: 2rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container h3 {
+        font-size: 1.375rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container h4 {
+        font-size: 1.125rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container h5 {
+        font-size: 1rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container h6 {
+        font-size: 0.875rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container .big {
+        font-size: 2rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container .small {
+        font-size: 0.875rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container a {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container a:visited {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container a:hover {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container a:active {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container a:focus {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .accent {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-red {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-blue {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-green {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-purple {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-orange {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-yellow {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-gray {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .highlight.highlight-white {
+        color: #000000;
+    }
+    .reportview-container .main .block-container .markdown-text-container .row {
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+    .reportview-container .main .block-container .markdown-text-container .row > div {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+    .reportview-container .main .block-container .element-container {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-header {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-header .frame-header-text {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-header .frame-header-icon {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauHyperlink {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauHyperlink:hover {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauHyperlink:active {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauTooltip {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauTooltip .tableauTooltipInner {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element.fullScreenFrame .frame-container .frame .frame-body .fullScreenFrame .frame-container .frame .frame-body .tableauPlaceholder .tableauViz .tableauTooltip .tableauTooltipArrow {
+        border-radius: 0rem;
+    }
+    .reportview-container .main .block-container .element-container .element .plotly-graph-div {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .slider-container {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-primary {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-primary {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-success {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-success {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-info {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-info {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-warning {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-warning {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-danger {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-danger {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-dark {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-dark {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-light {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-light {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-link {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-outline-link {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-lg {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-sm {
+        border-radius: 0.5rem;
+    }
+    .reportview-container .main .block-container .element-container .element .btn-block {
+        border-radius: 0.5rem;
+    }""", unsafe_allow_html=True)
+
     main()
