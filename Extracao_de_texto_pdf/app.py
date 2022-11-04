@@ -304,7 +304,7 @@ def mostrar_texto_original():
 #função para configurar paginas
 def configurar_paginas():
     #deixar o menu fixo
-    st.set_page_config(page_title="Analise de PDF", page_icon=":page_facing_up:", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Analise de PDF", page_icon=":page_facing_up:", initial_sidebar_state="expanded")
 
 
 def main():
