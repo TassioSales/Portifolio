@@ -299,12 +299,9 @@ def main():
                 # contar quantas paginas tem o arquivo
                 paginas = len(pdf.pages)
                 pgnum = paginas / 2
-                if pgnum < 1:
-                    pgnum = 1
-                if pgnum.is_integer():
-                    pgnum = int(pgnum)
-                    page = pdf.pages[pgnum]
-                st.write(page.extract_text())
+                pgnum = int(pgnum)
+                texto = pdf.pages[pgnum].extract_text()
+                st.write(texto)
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
