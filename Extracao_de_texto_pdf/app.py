@@ -79,12 +79,14 @@ def limpar_texto(texto):
         texto = re.sub(r'[’]', '', texto)
         # remover aspas duplas
         texto = re.sub(r'["]', '', texto)
-        #remover letras soltas
+        # remover letras soltas
         texto = re.sub(r'\b\w\b', '', texto)
-        #remover algarismos romanos
+        # remover algarismos romanos
         texto = re.sub(r'\b[ivx]+\b', '', texto)
-        #remover links
+        # remover links
         texto = re.sub(r'http\S+', '', texto)
+        # remover palavras com igual ou menos de 3 letras
+        texto = re.sub(r'\b\w{1,3}\b', '', texto)
         return texto
     except Exception as e:
         st.error(e)
@@ -124,7 +126,7 @@ def retorna_puro():
         if os.path.exists("arquivo.pdf"):
             texto = read_file_pdf()
             texto = remover_stop_words(texto)
-            #remover numeração de páginas
+            # remover numeração de páginas
             texto = re.sub(r'[0-9]', '', texto)
             texto = re.sub(r'\d+', '', texto)
             return texto
@@ -279,6 +281,7 @@ def pegar_texto_pagina():
         st.error(e)
         st.warning("Erro ao pegar o texto da pagina")
 
+
 def mostrar_texto_original():
     if os.path.exists("arquivo.pdf"):
         try:
@@ -317,8 +320,9 @@ def main():
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
-        #mostra apenas 20% do texto
-        st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto[:int(len(texto) * 0.2)]), unsafe_allow_html=True)
+        # mostra apenas 20% do texto
+        st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto[:int(len(texto) * 0.2)]),
+                    unsafe_allow_html=True)
 
     elif choice == "Mostrar DataFrame":
         st.markdown("<h1 style='text-align: center; color: white;'>Tabela</h1>", unsafe_allow_html=True)
