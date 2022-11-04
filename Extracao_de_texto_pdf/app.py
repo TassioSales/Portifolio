@@ -320,6 +320,10 @@ def configurar_paginas():
     """,
         unsafe_allow_html=True,
     )
+    #deixa botoes com na cor roxo e letras brancas com transição de cor ao passar o mouse
+    st.markdown("""<style>
+    .css-1aumxhk { background-color: #6a1b9a; color: white; } .css-1aumxhk:hover { background-color: #8e24aa; color: white; }
+    </style>""", unsafe_allow_html=True)
 
 
 def main():
