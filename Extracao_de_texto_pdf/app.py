@@ -302,7 +302,6 @@ def main():
                 if pgnum.is_integer():
                     pgnum = int(pgnum)
                     page = pdf.pages[pgnum]
-                    st.write(pgnum)
                 st.write(page.extract_text())
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
