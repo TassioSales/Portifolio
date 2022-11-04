@@ -301,7 +301,11 @@ def main():
                 pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
                 #mostrar o texto da pagina escolhida
                 texto = pdf.pages[pagina].extract_text()
-                st.write(texto)
+                #remover numeracao das paginas
+                texto = re.sub(r'\d+', '', texto)
+                #criar botao para mostrar o texto
+                if st.button("Mostrar Texto"):
+                    st.write(texto)
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
