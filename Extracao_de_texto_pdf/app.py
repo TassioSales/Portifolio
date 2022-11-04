@@ -305,6 +305,21 @@ def mostrar_texto_original():
 def configurar_paginas():
     #deixar o menu fixo
     st.set_page_config(page_title="Analise de PDF", page_icon=":page_facing_up:", initial_sidebar_state="expanded")
+    #deixa botoes com cores diferentes
+    st.markdown(
+        """
+    <style>
+    .reportview-container .main .block-container{{
+        max-width: 1000px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }}
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 def main():
