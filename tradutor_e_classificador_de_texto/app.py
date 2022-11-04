@@ -3,7 +3,7 @@ from googletrans import Translator, LANGUAGES
 # biblioteca para ambiente web
 import streamlit as st
 # usar nltk para classificar o texto
-from langdetect import detect
+from langdetect import detect, detect_langs
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from bases import stop_palavras
@@ -192,6 +192,8 @@ def main():
         # detectar idioma do texto
         if st.button("Detectar Idioma"):
             st.write(detect(text))
+            ##mostrar nome do idioma completo
+            st.write(detect_langs(text))
 
 
 if __name__ == "__main__":
