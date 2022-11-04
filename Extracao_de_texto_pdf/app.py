@@ -292,9 +292,16 @@ def main():
     elif choice == "Mostrar Texto original":
         st.title("Trecho do Texto original")
         st.subheader("Mostrar Thecho do texto original")
-        texto = read_file_pdf()
-        #contar quantas paginas texto
-        st.write("O texto tem {} paginas".format(len(texto)))
+        #ler o arquivo pdf
+        if os.path.exists("arquivo.pdf"):
+            with pdfplumber.open("arquivo.pdf") as pdf:
+                #mostra a quantidade de paginas do arquivo
+                st.write("O arquivo PDF tem {}".format(len(pdf.pages)))
+                #pergunta ao usuario qual pagina ele quer analisar com valor padrao 0 minimo 0
+                pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
+                #mostrar o texto da pagina escolhida
+                texto = pdf.pages[pagina].extract_text()
+                st.write(texto)
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
