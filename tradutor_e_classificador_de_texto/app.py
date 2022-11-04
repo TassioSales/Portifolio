@@ -191,7 +191,7 @@ def main():
         # criar um menu com as opções de idiomas
         lang = st.sidebar.selectbox("Escolha o idioma", lang_list)
         traducao = translate_text(text, lang)
-        st.write(traducao)
+        st.write(lang_list)
 
 
 if __name__ == "__main__":
