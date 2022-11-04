@@ -4,6 +4,7 @@ from googletrans import Translator, LANGUAGES
 import streamlit as st
 # usar nltk para classificar o texto
 import nltk
+from langdetect import detect
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import re
@@ -25,7 +26,11 @@ def get_text():
 # criar função para retornar o um diciônario com todos os idiomas disponíveis
 def get_langs():
     langs = LANGUAGES
-    return langs
+    # criar um dicionário com os idiomas disponíveis
+    langs_dict = {}
+    for i in langs:
+        langs_dict[i] = langs[i]
+    return langs_dict
 
 
 # traduzir o texto do português para o idioma selecionado
@@ -78,8 +83,6 @@ def tratar_texto(text):
 
 # função para analisar sentimento do texto
 def analisar_sentimento(text):
-    teste = get_langs()
-    st.write(teste)
     sid = SentimentIntensityAnalyzer()
     score = sid.polarity_scores(text)
     # retornar se o texto é positivo, negativo ou neutro
@@ -186,7 +189,18 @@ def main():
             df = CriarDataFrameSentimentos(text)
             analisar_sentimentos(df)
     elif choice == "Tradutor":
-        pass
+        st.subheader("Tradutor")
+        text = st.text_area("Digite o texto")
+        # detectar idioma do texto
+        if st.button("Detectar Idioma"):
+            st.write(detect(text))
+        # traduzir texto
+        #perguntar para o usuário qual o idioma que ele quer traduzir usando a função get_langs()
+        lang = st.selectbox("Selecione o idioma", get_langs())
+        if st.button("Traduzir"):
+            translate = Translator()
+            traducao = translate.translate(text, dest=lang)
+            st.write(traducao.text)
 
 
 if __name__ == "__main__":
