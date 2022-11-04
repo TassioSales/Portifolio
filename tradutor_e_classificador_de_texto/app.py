@@ -78,7 +78,8 @@ def tratar_texto(text):
 
 # função para analisar sentimento do texto
 def analisar_sentimento(text):
-    get_langs()
+    teste = get_langs()
+    st.write(teste)
     sid = SentimentIntensityAnalyzer()
     score = sid.polarity_scores(text)
     # retornar se o texto é positivo, negativo ou neutro
