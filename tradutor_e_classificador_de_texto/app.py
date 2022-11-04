@@ -14,6 +14,7 @@ import plotly.express as px
 import pandas as pd
 import json
 
+
 # função para pedir texto para o usuário
 def get_text():
     text = st.text_area("Digite o texto a ser traduzido")
@@ -25,6 +26,7 @@ def get_text():
 def get_langs():
     langs = LANGUAGES
     return langs
+
 
 # traduzir o texto do português para o idioma selecionado
 def translate_text(text, lang):
@@ -91,7 +93,7 @@ def analisar_sentimento(text):
 
 def CriarDataFrameEmocoes(text):
     emotion = NRCLex(text)
-    #vericar quais emoções estão presentes em emotion.raw_emotion_scores
+    # vericar quais emoções estão presentes em emotion.raw_emotion_scores
     emocoes = emotion.raw_emotion_scores.keys()
     # criar um dicionário com as emoções e seus valores
     emocoes_dict = {}
@@ -104,8 +106,9 @@ def CriarDataFrameEmocoes(text):
     # criar um dataframe com as emoções e seus valores
     df = pd.DataFrame(emocoes_tb.items(), columns=['Emoção', 'Valor'])
     # traduzir o nome das emoções para o português
-    df['Emoção'] = df['Emoção'].replace({'fear': 'Medo', 'anger': 'Raiva', 'anticipation': 'Antecipação', 'trust': 'Confiança',
-                                        'surprise': 'Surpresa', 'sadness': 'Tristeza', 'disgust': 'Nojo', 'joy': 'Alegria'})
+    df['Emoção'] = df['Emoção'].replace(
+        {'fear': 'Medo', 'anger': 'Raiva', 'anticipation': 'Antecipação', 'trust': 'Confiança',
+         'surprise': 'Surpresa', 'sadness': 'Tristeza', 'disgust': 'Nojo', 'joy': 'Alegria'})
     return df
 
 
@@ -182,7 +185,7 @@ def main():
             df = CriarDataFrameSentimentos(text)
             analisar_sentimentos(df)
     elif choice == "Tradutor":
-
+        pass
 
 
 if __name__ == "__main__":
