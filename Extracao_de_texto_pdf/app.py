@@ -364,22 +364,14 @@ def main():
 if __name__ == '__main__':
     #deixa o menu fixo
     st.set_page_config(layout="wide", page_title="Analise de PDF", page_icon=":smile:")
-    #deixa botoes e caixas de texto alinhados ao centro
-    st.markdown("<style>div.row-widget.stRadio > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stNumberInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stButton > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stSlider > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stSelectbox > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stFileUploader > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stText > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stCheckbox > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stDateInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stTimeInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stDatetime > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stMultiselect > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stTextArea > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stEmpty > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
-    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    #deixa botoes no formato arredondado
+    st.markdown("""<style>
+    .reportview-container .main .block-container{{
+        max-width: 1500px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }}
+    </style>""", unsafe_allow_html=True)
     main()
