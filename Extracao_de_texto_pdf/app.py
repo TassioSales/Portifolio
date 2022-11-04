@@ -306,7 +306,8 @@ def main():
                 #criar botao para mostrar o texto
                 if st.button("Mostrar Texto"):
                     #mostrar o texto da pagina escolhida justificado
-                    st.write(texto, justify="justify")
+                    st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto), unsafe_allow_html=True)
+
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
