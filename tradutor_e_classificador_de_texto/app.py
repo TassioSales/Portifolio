@@ -21,12 +21,11 @@ def get_text():
         return text
 
 
-# menu de idiomas para tradução
+# criar função para retornar o um diciônario com todos os idiomas disponíveis
 def get_langs():
     translator = Translator()
     langs = translator.languages
-    return langs
-
+    st.write(langs)
 
 # traduzir o texto do português para o idioma selecionado
 def translate_text(text, lang):
@@ -37,6 +36,7 @@ def translate_text(text, lang):
 
 # remover stopwords do texto
 def remove_stopwords(text):
+    get_langs()
     stopwords = stop_palavras
     text = [word for word in text if word not in stopwords]
     return text
