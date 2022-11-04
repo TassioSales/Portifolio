@@ -292,14 +292,17 @@ def main():
     elif choice == "Mostrar Texto original":
         st.title("Trecho do Texto original")
         # procurar o arquivo usando arquivo.pdf ou arquivo.txt
-        if os.path.exists("arquivo.pdf"): 
+        if os.path.exists("arquivo.pdf"):
             arquivo = "arquivo.pdf"
             # mostra a pagina 10 usando pdfplumber
             with pdfplumber.open(arquivo) as pdf:
                 # contar quantas paginas tem o arquivo
                 paginas = len(pdf.pages)
-                page = paginas / 2
-                page = pdf.pages[page]
+                pgnum = paginas / 2
+                if pgnum.is_integer():
+                    pgnum = int(pgnum)
+                    page = pdf.pages[pgnum]
+                    st.write(pgnum)
                 st.write(page.extract_text())
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
