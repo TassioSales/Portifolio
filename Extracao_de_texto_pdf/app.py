@@ -222,9 +222,7 @@ def analise_sentimento():
                     st.warning("O Sentimento dessa pagina Neutro")
     except Exception as e:
         st.error(e)
-        st.warning("Erro ao analisar o sentimento")
-
-
+        st.warning("Erro ao analisar o sentimento"
 
 def resumo_geral(text, per):
     try:
