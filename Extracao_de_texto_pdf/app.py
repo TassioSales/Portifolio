@@ -200,7 +200,7 @@ def analise_sentimento():
         nltk.download('vader_lexicon')
         arquivo = retorna_texto()
         # pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-        pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
+        pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
         # mostrar o texto da pagina escolhida
         if os.path.exists("arquivo.pdf"):
             with pdfplumber.open("arquivo.pdf") as pdf:
@@ -268,14 +268,14 @@ def resumo_geral(text, per):
 def pegar_texto_pagina():
     try:
         # pergunta ao usuario qual pagina ele quer analisar com valor padrao 1 minimo 1
-        pagina = st.number_input("Qual página você quer analisar?", min_value=1, value=1)
+        pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
         # mostrar o texto da pagina escolhida
         if os.path.exists("arquivo.pdf"):
             with pdfplumber.open("arquivo.pdf") as pdf:
                 texto = pdf.pages[pagina].extract_text()
                 # remover numeracao das paginas
                 texto = re.sub(r'\d+', '', texto)
-                st.write(texto)
+                st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto), unsafe_allow_html=True)
                 return texto
     except Exception as e:
         st.error(e)
@@ -306,7 +306,8 @@ def mostrar_texto_original():
 def main():
     # criar menu
     menu = ["Upload", "Mostrar Texto original", "Mostrar Texto tratado", "Mostrar DataFrame", "Mostrar Gráfico Barras",
-            "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo Geral", "Resumo por Pagina"]
+            "Mostrar Gráfico Pizza", "Analise de Sentimento", "wordcloud", "Resumo por Pagina"]
+
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == "Upload":
         st.title("Upload de arquivo")
@@ -354,23 +355,12 @@ def main():
         st.markdown("<h1 style='text-align: center; color: white;'>Resumo por Pagina</h1>", unsafe_allow_html=True)
         # criar botao para gerar o resumo
         texto = pegar_texto_pagina()
-        per = st.slider("Selecione a porcentagem do resumo", 0.1, 1.0)
+        per = st.slider("Selecione a porcentagem do resumo", 0.05, 1.0)
         if st.button("Gerar Resumo"):
             translator = Translator()
             resumo = resumo_geral(texto, per)
             resumo = translator.translate(resumo, dest="pt").text
-            st.write(resumo)
-
-    elif choice == "Resumo Geral":
-        st.markdown("<h1 style='text-align: center; color: white;'>Resumo Geral</h1>", unsafe_allow_html=True)
-        per = st.slider("Selecione a porcentagem do resumo", min_value=0.1, max_value=1.0, value=0.1)
-        if st.button("Gerar Resumo", key="resumo", help="Clique aqui para gerar o resumo"):
-            texto = retorna_puro()
-            # traduzir o texto para o ingles
-            translator = Translator()
-            resumo = resumo_geral(texto, per)
-            resumo = translator.translate(resumo, dest="pt").text
-            st.write(resumo)
+            st.markdown("""<div style='text-align: justify;'>{}</div>""".format(resumo), unsafe_allow_html=True)
 
 
 if __name__ == '__main__':
