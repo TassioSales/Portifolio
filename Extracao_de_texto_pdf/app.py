@@ -212,8 +212,8 @@ def analise_sentimento():
                 # analise de sentimento
                 sid = SentimentIntensityAnalyzer()
                 ss = sid.polarity_scores(texto)
-                for k in sorted(ss):
-                    st.write('{0}: {1}, '.format(k, ss[k]), end='')
+                # mostrar o resultado da analise de sentimento usando  st.markdown
+                st.markdown("""<div style='text-align: justify;'>{}</div>""".format(ss), unsafe_allow_html=True)
                 if ss["compound"] >= 0.05:
                     st.success("O Sentimento dessa pagina e positivo")
                 elif ss["compound"] <= -0.05:
