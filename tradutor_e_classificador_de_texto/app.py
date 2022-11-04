@@ -116,20 +116,21 @@ def analisar_sentimento(text):
 
 def CriarDataFrameEmocoes(text):
     emotion = NRCLex(text)
-    # pegar resultado do de cada emoção
-    anger = emotion.raw_emotion_scores['anger']
-    anticipation = emotion.raw_emotion_scores['anticipation']
-    disgust = emotion.raw_emotion_scores['disgust']
-    fear = emotion.raw_emotion_scores['fear']
-    joy = emotion.raw_emotion_scores['joy']
-    sadness = emotion.raw_emotion_scores['sadness']
-    surprise = emotion.raw_emotion_scores['surprise']
-    trust = emotion.raw_emotion_scores['trust']
+    #vericar quais emoções estão presentes em emotion.raw_emotion_scores
+    emocoes = emotion.raw_emotion_scores.keys()
     # criar um dicionário com as emoções e seus valores
-    emocoes = {"Raiva": anger, "Antecipação": anticipation, "Nojo": disgust, "Medo": fear, "Alegria": joy,
-               "Tristeza": sadness, "Surpresa": surprise, "Confiança": trust}
+    emocoes_dict = {}
+    for i in emocoes:
+        emocoes_dict[i] = emotion.raw_emotion_scores[i]
+    emocoes_tb = {k: v for k, v in emocoes_dict.items() if v != 0}
+    # remover as chaver positivo e negativo do dicionário
+    emocoes_tb.pop('positive')
+    emocoes_tb.pop('negative')
     # criar um dataframe com as emoções e seus valores
-    df = pd.DataFrame(emocoes.items(), columns=['Emoção', 'Valor'])
+    df = pd.DataFrame(emocoes_tb.items(), columns=['Emoção', 'Valor'])
+    # traduzir o nome das emoções para o português
+    df['Emoção'] = df['Emoção'].replace({'fear': 'Medo', 'anger': 'Raiva', 'anticipation': 'Antecipação', 'trust': 'Confiança',
+                                        'surprise': 'Surpresa', 'sadness': 'Tristeza', 'disgust': 'Nojo', 'joy': 'Alegria'})
     return df
 
 
@@ -139,7 +140,11 @@ def CriarDataFrameSentimentos(text):
     positivo = emotion.raw_emotion_scores['positive']
     negativo = emotion.raw_emotion_scores['negative']
     # criar um dicionário com as emoções e seus valores
-    sentimento = {"Positivo": positivo, "Negativo": negativo}
+    sentimento = {}
+    if positivo > 0:
+        sentimento['Positivo'] = positivo
+    if negativo > 0:
+        sentimento['Negativo'] = negativo
     # criar um dataframe com as emoções e seus valores
     df = pd.DataFrame(sentimento.items(), columns=['Sentimento', 'Valor'])
     return df
