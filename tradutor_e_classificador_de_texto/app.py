@@ -36,7 +36,6 @@ def translate_text(text, lang):
 
 # remover stopwords do texto
 def remove_stopwords(text):
-    get_langs()
     stopwords = stop_palavras
     text = [word for word in text if word not in stopwords]
     return text
@@ -78,6 +77,7 @@ def tratar_texto(text):
 
 # função para analisar sentimento do texto
 def analisar_sentimento(text):
+    get_langs()
     sid = SentimentIntensityAnalyzer()
     score = sid.polarity_scores(text)
     # retornar se o texto é positivo, negativo ou neutro
