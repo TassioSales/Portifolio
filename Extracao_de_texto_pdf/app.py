@@ -222,7 +222,8 @@ def analise_sentimento():
                     st.warning("O Sentimento dessa pagina Neutro")
     except Exception as e:
         st.error(e)
-        st.warning("Erro ao analisar o sentimento"
+        st.warning("Erro ao analisar o sentimento")
+
 
 def resumo_geral(text, per):
     try:
@@ -361,4 +362,24 @@ def main():
 
 
 if __name__ == '__main__':
+    #deixa o menu fixo
+    st.set_page_config(layout="wide", page_title="Analise de PDF", page_icon=":smile:")
+    #deixa botoes e caixas de texto alinhados ao centro
+    st.markdown("<style>div.row-widget.stRadio > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stNumberInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stButton > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stSlider > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stSelectbox > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stFileUploader > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stText > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stCheckbox > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stDateInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stTimeInput > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stDatetime > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stMultiselect > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stTextArea > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stEmpty > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
+    st.markdown("<style>div.row-widget.stColorPicker > div{flex-direction:row;}</style>", unsafe_allow_html=True)
     main()
