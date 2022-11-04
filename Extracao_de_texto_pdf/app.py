@@ -317,7 +317,8 @@ def main():
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
-        st.write(texto)
+        #mostra apenas 20% do texto
+        st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto[:int(len(texto) * 0.2)]), unsafe_allow_html=True)
 
     elif choice == "Mostrar DataFrame":
         st.markdown("<h1 style='text-align: center; color: white;'>Tabela</h1>", unsafe_allow_html=True)
