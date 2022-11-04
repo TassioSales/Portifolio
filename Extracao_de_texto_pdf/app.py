@@ -279,6 +279,26 @@ def pegar_texto_pagina():
         st.error(e)
         st.warning("Erro ao pegar o texto da pagina")
 
+def mostrar_texto_original():
+    if os.path.exists("arquivo.pdf"):
+        try:
+            with pdfplumber.open("arquivo.pdf") as pdf:
+                # mostra a quantidade de paginas do arquivo
+                st.write("O arquivo PDF tem {}".format(len(pdf.pages)))
+                # pergunta ao usuario qual pagina ele quer analisar com valor padrao 0 minimo 0
+                pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
+                # mostrar o texto da pagina escolhida
+                texto = pdf.pages[pagina].extract_text()
+                # remover numeracao das paginas
+                texto = re.sub(r'\d+', '', texto)
+                # criar botao para mostrar o texto
+                if st.button("Mostrar Texto"):
+                    # mostrar o texto da pagina escolhida justificado
+                    st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto), unsafe_allow_html=True)
+        except Exception as e:
+            st.error(e)
+            st.warning("Erro ao mostrar o texto")
+
 
 def main():
     # criar menu
@@ -292,21 +312,7 @@ def main():
     elif choice == "Mostrar Texto original":
         st.title("Trecho do Texto original")
         st.subheader("Mostrar Thecho do texto original")
-        #ler o arquivo pdf
-        if os.path.exists("arquivo.pdf"):
-            with pdfplumber.open("arquivo.pdf") as pdf:
-                #mostra a quantidade de paginas do arquivo
-                st.write("O arquivo PDF tem {}".format(len(pdf.pages)))
-                #pergunta ao usuario qual pagina ele quer analisar com valor padrao 0 minimo 0
-                pagina = st.number_input("Qual página você quer analisar?", min_value=0, value=0)
-                #mostrar o texto da pagina escolhida
-                texto = pdf.pages[pagina].extract_text()
-                #remover numeracao das paginas
-                texto = re.sub(r'\d+', '', texto)
-                #criar botao para mostrar o texto
-                if st.button("Mostrar Texto"):
-                    #mostrar o texto da pagina escolhida justificado
-                    st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto), unsafe_allow_html=True)
+        mostrar_texto_original()
 
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
