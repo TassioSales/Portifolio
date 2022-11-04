@@ -183,15 +183,7 @@ def main():
             df = CriarDataFrameSentimentos(text)
             analisar_sentimentos(df)
     elif choice == "Tradutor":
-        text = get_text()
-        #criar um dicionário com as opções de idiomas com a função get_langs()
-        lang_dict = get_langs()
-        # criar uma lista com as opções de idiomas
-        lang_list = list(lang_dict.keys())
-        # criar um menu com as opções de idiomas
-        lang = st.sidebar.selectbox("Escolha o idioma", lang_list)
-        traducao = translate_text(text, lang)
-        st.write(lang_list)
+
 
 
 if __name__ == "__main__":
