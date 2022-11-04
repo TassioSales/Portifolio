@@ -3,17 +3,15 @@ from googletrans import Translator, LANGUAGES
 # biblioteca para ambiente web
 import streamlit as st
 # usar nltk para classificar o texto
-import nltk
 from langdetect import detect
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import re
 from bases import stop_palavras
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import plotly.express as px
 import pandas as pd
-import json
+
 
 
 # função para pedir texto para o usuário
@@ -194,13 +192,6 @@ def main():
         # detectar idioma do texto
         if st.button("Detectar Idioma"):
             st.write(detect(text))
-        # traduzir texto
-        #perguntar para o usuário qual o idioma que ele quer traduzir usando a função get_langs()
-        lang = st.selectbox("Selecione o idioma", get_langs())
-        if st.button("Traduzir"):
-            translate = Translator()
-            traducao = translate.translate(text, dest=lang)
-            st.write(traducao.text)
 
 
 if __name__ == "__main__":
