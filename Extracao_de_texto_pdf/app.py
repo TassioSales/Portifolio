@@ -205,17 +205,15 @@ def analise_sentimento():
         if os.path.exists("arquivo.pdf"):
             with pdfplumber.open("arquivo.pdf") as pdf:
                 texto = pdf.pages[pagina].extract_text()
-                st.write(texto)
+                st.markdown("""<div style='text-align: justify;'>{}</div>""".format(texto), unsafe_allow_html=True)
                 # se o texo estiver em portugues, traduzir para ingles
-                if texto.isascii():
-                    texto = texto
-                else:
-                    translator = Translator()
-                    texto = translator.translate(texto, dest="en").text
+                translator = Translator()
+                texto = translator.translate(texto, dest="en").text
                 # analise de sentimento
                 sid = SentimentIntensityAnalyzer()
                 ss = sid.polarity_scores(texto)
-                st.write(ss)
+                for k in sorted(ss):
+                    st.write('{0}: {1}, '.format(k, ss[k]), end='')
                 if ss["compound"] >= 0.05:
                     st.success("O Sentimento dessa pagina e positivo")
                 elif ss["compound"] <= -0.05:
@@ -225,6 +223,7 @@ def analise_sentimento():
     except Exception as e:
         st.error(e)
         st.warning("Erro ao analisar o sentimento")
+
 
 
 def resumo_geral(text, per):
