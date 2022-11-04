@@ -299,6 +299,8 @@ def main():
                 # contar quantas paginas tem o arquivo
                 paginas = len(pdf.pages)
                 pgnum = paginas / 2
+                if pgnum < 1:
+                    pgnum = 1
                 if pgnum.is_integer():
                     pgnum = int(pgnum)
                     page = pdf.pages[pgnum]
