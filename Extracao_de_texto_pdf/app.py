@@ -305,7 +305,8 @@ def main():
                 texto = re.sub(r'\d+', '', texto)
                 #criar botao para mostrar o texto
                 if st.button("Mostrar Texto"):
-                    st.write(texto)
+                    #mostrar o texto da pagina escolhida justificado
+                    st.write(texto, justify="justify")
     elif choice == "Mostrar Texto tratado":
         st.markdown("<h1 style='text-align: center; color: white;'>Trecho Tratado</h1>", unsafe_allow_html=True)
         texto = retorna_texto()
