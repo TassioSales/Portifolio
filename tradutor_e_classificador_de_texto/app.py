@@ -25,38 +25,17 @@ def get_text():
 
 
 # menu de idiomas para tradução
-def get_lang():
-    try:
-        lang = st.selectbox("Selecione o idioma",
-                            ("Alemão", "Inglês", "Espanhol", "Francês", "Italiano", "Japonês", "Coreano", "Chinês"))
-        if lang == "Alemão":
-            return "de"
-        elif lang == "Inglês":
-            return "en"
-        elif lang == "Espanhol":
-            return "es"
-        elif lang == "Francês":
-            return "fr"
-        elif lang == "Italiano":
-            return "it"
-        elif lang == "Japonês":
-            return "ja"
-        elif lang == "Coreano":
-            return "ko"
-        elif lang == "Chinês":
-            return "zh-CN"
-    except Exception as e:
-        print("Erro ao selecionar idioma", e)
+def get_langs():
+    translator = Translator()
+    langs = translator.languages
+    return langs
 
 
 # traduzir o texto do português para o idioma selecionado
 def translate_text(text, lang):
     translator = Translator()
-    try:
-        translated = translator.translate(text, dest=lang)
-        return translated.text
-    except Exception as e:
-        print("Erro ao traduzir o texto", e)
+    text = translator.translate(text, dest=lang)
+    return text.text
 
 
 # remover stopwords do texto
@@ -136,17 +115,18 @@ def CriarDataFrameEmocoes(text):
 
 def CriarDataFrameSentimentos(text):
     emotion = NRCLex(text)
-    # pegar resultado do de cada emoção
+    emocoes = emotion.raw_emotion_scores.keys()
     positivo = emotion.raw_emotion_scores['positive']
     negativo = emotion.raw_emotion_scores['negative']
-    # criar um dicionário com as emoções e seus valores
-    sentimento = {}
-    if positivo > 0:
-        sentimento['Positivo'] = positivo
-    if negativo > 0:
-        sentimento['Negativo'] = negativo
+    emocoes_dict = {}
+    for i in emocoes:
+        emocoes_dict[i] = emotion.raw_emotion_scores[i]
+        # pegar somente as emoções positivas e negativas
+    emocoes_tb = {k: v for k, v in emocoes_dict.items() if k == 'positive' or k == 'negative'}
     # criar um dataframe com as emoções e seus valores
-    df = pd.DataFrame(sentimento.items(), columns=['Sentimento', 'Valor'])
+    df = pd.DataFrame(emocoes_tb.items(), columns=['Sentimento', 'Valor'])
+    # traduzir o nome das emoções para o português
+    df['Sentimento'] = df['Sentimento'].replace({'positive': 'Positivo', 'negative': 'Negativo'})
     return df
 
 
@@ -207,10 +187,14 @@ def main():
             analisar_sentimentos(df)
     elif choice == "Tradutor":
         text = get_text()
-        lang = get_lang()
-        if st.button("Traduzir"):
-            traducao = translate_text(text, lang)
-            st.write(traducao)
+        #criar um dicionário com as opções de idiomas com a função get_langs()
+        lang_dict = get_langs()
+        # criar uma lista com as opções de idiomas
+        lang_list = list(lang_dict.keys())
+        # criar um menu com as opções de idiomas
+        lang = st.sidebar.selectbox("Escolha o idioma", lang_list)
+        traducao = translate_text(text, lang)
+        st.write(traducao)
 
 
 if __name__ == "__main__":
