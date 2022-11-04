@@ -1,5 +1,5 @@
 # biblioteca para traduzir o texto
-from googletrans import Translator
+from googletrans import Translator, LANGUAGES
 # biblioteca para ambiente web
 import streamlit as st
 # usar nltk para classificar o texto
@@ -23,9 +23,8 @@ def get_text():
 
 # criar função para retornar o um diciônario com todos os idiomas disponíveis
 def get_langs():
-    translator = Translator()
-    langs = translator.languages
-    st.write(langs)
+    langs = LANGUAGES
+    return langs
 
 # traduzir o texto do português para o idioma selecionado
 def translate_text(text, lang):
