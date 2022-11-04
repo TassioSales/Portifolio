@@ -362,8 +362,6 @@ def main():
 
 
 if __name__ == '__main__':
-    #deixa o menu fixo
-    st.set_page_config(layout="wide", page_title="Analise de PDF", page_icon=":smile:")
     #deixa botoes no formato arredondado
     st.markdown("""<style>
     .reportview-container .main .block-container{{
