@@ -11,6 +11,8 @@ import os
 from nltk.tokenize import word_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from googletrans import Translator
+from spacy import displacy
+from streamlit.components.v1 import components
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
 import nltk
@@ -300,12 +302,11 @@ def mostrar_texto_original():
             st.error(e)
             st.warning("Erro ao mostrar o texto")
 
-
-#função para configurar paginas
+# função para configurar paginas
 def configurar_paginas():
-    #deixar o menu fixo
+    # deixar o menu fixo
     st.set_page_config(page_title="Analise de PDF", page_icon=":page_facing_up:", initial_sidebar_state="expanded")
-    #deixa botoes com cores diferentes
+    # deixa botoes com cores diferentes
     st.markdown(
         """
     <style>
@@ -320,8 +321,7 @@ def configurar_paginas():
     """,
         unsafe_allow_html=True,
     )
-    #mudar cor para azul
-    st.markdown("""<style>body{background-color: #e6f0ff;}</style>""", unsafe_allow_html=True)
+
 
 def main():
     # configurar paginas
