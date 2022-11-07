@@ -11,8 +11,6 @@ import os
 from nltk.tokenize import word_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from googletrans import Translator
-from spacy import displacy
-from streamlit.components.v1 import components
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
 import nltk
