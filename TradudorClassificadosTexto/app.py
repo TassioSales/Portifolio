@@ -62,17 +62,20 @@ def traduzirParaIngles(texto):
     except Exception as e:
         st.write(e)
         st.write("Erro ao traduzir o texto")
-
-   
-def traduzirParaIngles(texto):
+        
+# função para remover stopwords do texto
+# remover stopwords do texto usando nltk
+def remove_stopwords(text):
     try:
-        translator = Translator()
-        texto = translator.translate(texto, dest="en")
-        return texto.text
+        stop_words = set(stopwords.words('english'))
+        filtered_sentence = []
+        for w in text:
+            if w not in stop_words:
+                filtered_sentence.append(w)
+        return filtered_sentence
     except Exception as e:
         st.write(e)
-        st.write("Erro ao traduzir o texto")
-
+        st.write("Erro ao remover as stopwords")
 
 # funçao para stemizar o texto
 def Stemize(text):
