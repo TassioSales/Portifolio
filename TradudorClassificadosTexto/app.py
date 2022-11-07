@@ -4,7 +4,6 @@ import streamlit as st
 from langdetect import detect_langs, DetectorFactory
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from bases import stop_palavras
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
