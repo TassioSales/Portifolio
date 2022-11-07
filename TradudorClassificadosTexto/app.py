@@ -58,16 +58,12 @@ def translate_text(text, lang):
 # remover stopwords do texto
 def remove_stopwords(text):
     try:
+        nltk.download('stopwords')
         stop_words = set(stopwords.words('portuguese'))
-        stop_words.update(stop_palavras)
-        filtered_sentence = []
-        for w in text:
-            if w not in stop_words:
-                filtered_sentence.append(w)
+        word_tokens = word_tokenize(text)
+        filtered_sentence = [w for w in word_tokens if not w in stop_words]
         return filtered_sentence
-    except Exception as e:
-        st.write(e)
-        st.write("Erro ao remover as stopwords")
+    
         
 
 
