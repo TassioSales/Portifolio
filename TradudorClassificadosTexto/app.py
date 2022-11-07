@@ -98,8 +98,6 @@ def remove_stopwords(text):
         st.write("Erro ao remover as stopwords do texto")
         
         
-        
-        
 def tratar_texto(text):
     try:
         # traduzir o texto para o inglês
