@@ -11,9 +11,7 @@ import plotly.express as px
 import pandas as pd
 import spacy
 import nltk
-nltk.download('punkt')
-nltk.download('rslp')
-nltk.download('vader_lexicon')
+nltk.download('all')
 
 
 # função para pedir texto para o utilizador
@@ -337,8 +335,8 @@ def main():
             if st.button("Analisar"):
                 text = tratar_texto(text)
                 text = ' '.join(text)
-                df = CriarDataFrameSentimentos(text)
-                analisar_sentimentos(df)
+                df = CriarDataFrameEmocoes(text)
+                analisar_sentimentos_secundarios(df)
         elif choice == "Tradutor":
             st.subheader("Tradutor")
             text = st.text_area("Digite o texto")
