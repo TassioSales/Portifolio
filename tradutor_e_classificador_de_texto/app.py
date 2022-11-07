@@ -1,10 +1,6 @@
-# biblioteca para traduzir o texto
 from collections import Counter
-
 from googletrans import Translator
-# biblioteca para ambiente web
 import streamlit as st
-# usar nltk para classificar o texto
 from langdetect import detect_langs, DetectorFactory
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
