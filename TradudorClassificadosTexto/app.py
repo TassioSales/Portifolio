@@ -312,7 +312,7 @@ def main():
             st.subheader("Analisar Texto")
             text = st.text_area("Digite o texto")
             if st.button("Analisar"):
-                st.write(text)
+                st.markdown("""<div style='text-align: justify;'>{}</div>""".format(text), unsafe_allow_html=True)
         elif choice == "Analise de Sentimento":
             st.subheader("Analise de Sentimento")
             text = st.text_area("Digite o texto")
