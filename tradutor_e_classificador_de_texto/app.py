@@ -50,16 +50,16 @@ def translate_text(text, lang):
         st.write("Erro ao traduzir o texto")
 
 
-# remover stopwords do texto
+# remover stopwords do texto usando nltk
 def remove_stopwords(text):
     try:
-        stopwords = stop_palavras
+        stopwords = pd.read_csv("stopwords.txt", header=None)
+        stopwords = stopwords[0].values.tolist()
         text = [word for word in text if word not in stopwords]
         return text
     except Exception as e:
         st.write(e)
         st.write("Erro ao remover as stopwords")
-
 
 # função para traduzir o texto sempre para o inglês
 def traduzirParaIngles(texto):
