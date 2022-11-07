@@ -5,6 +5,7 @@ from langdetect import detect_langs, DetectorFactory
 from nltk.stem import RSLPStemmer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from bases import stop_palavras
+from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nrclex import NRCLex
 import plotly.express as px
@@ -54,12 +55,17 @@ def translate_text(text, lang):
 # remover stopwords do texto
 def remove_stopwords(text):
     try:
-        stopwords = stop_palavras
-        text = [word for word in text if word not in stopwords]
-        return text
+        stop_words = set(stopwords.words('portuguese'))
+        stop_words.update(stop_palavras)
+        filtered_sentence = []
+        for w in text:
+            if w not in stop_words:
+                filtered_sentence.append(w)
+        return filtered_sentence
     except Exception as e:
         st.write(e)
         st.write("Erro ao remover as stopwords")
+        
 
 
 # função para traduzir o texto sempre para o inglês
