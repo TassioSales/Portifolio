@@ -55,21 +55,6 @@ def translate_text(text, lang):
         st.write("Erro ao traduzir o texto")
 
 
-# remover stopwords do texto
-def remove_stopwords(text):
-    try:
-        nltk.download('stopwords')
-        stop_words = set(stopwords.words('portuguese'))
-        palavras_filtradas = []
-        for palavra in text.split():
-            if palavra not in stop_words:
-                palavras_filtradas.append(palavra)
-        return " ".join(palavras_filtradas)
-    except Exception as e:
-        st.write(e)
-        st.write("Erro ao remover as stopwords")
-
-
 # função para traduzir o texto sempre para o inglês
 def traduzirParaIngles(texto):
     try:
@@ -100,6 +85,16 @@ def Tokenize(text):
     except Exception as e:
         st.write(e)
         st.write("Erro ao tokenizar o texto")
+        
+# remover stopwords do texto
+def remove_stopwords(text):
+    try:
+        stop_words = set(stopwords.words('português'))
+        text = [palavra for palavra in text if palavra not in stop_words]
+        return text
+    except Exception as e:
+        st.write(e)
+        st.write("Erro ao remover as stopwords")
 
 def tratar_texto(text):
     try:
