@@ -63,7 +63,9 @@ def remove_stopwords(text):
         word_tokens = word_tokenize(text)
         filtered_sentence = [w for w in word_tokens if not w in stop_words]
         return filtered_sentence
-    
+    except Exception as e:
+        st.write(e)
+        st.write("Erro ao remover as stopwords")
         
 
 
