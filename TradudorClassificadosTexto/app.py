@@ -60,13 +60,15 @@ def remove_stopwords(text):
     try:
         nltk.download('stopwords')
         stop_words = set(stopwords.words('portuguese'))
-        word_tokens = word_tokenize(text)
-        filtered_sentence = [w for w in word_tokens if not w in stop_words]
-        return filtered_sentence
+        palavras = word_tokenize(texto)
+        palavras_filtradas = []
+        for w in palavras:
+            if w not in stop_words:
+                palavras_filtradas.append(w)
+        return " ".join(palavras_filtradas)
     except Exception as e:
-        st.write(e)
-        st.write("Erro ao remover as stopwords")
-        
+        st.error(e)
+        st.warning("Não foi possível remover as stop words")
 
 
 # função para traduzir o texto sempre para o inglês
