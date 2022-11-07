@@ -368,7 +368,9 @@ def main():
             if st.button("Detectar"):
                 df = analisar_idioma(text)
                 st.markdown(df.to_html(index=False), unsafe_allow_html=True)
-
+    except Exception as e:
+        st.write(e)
+        st.write("Não foi possível analisar o texto")
 
 if __name__ == "__main__":
     main()
