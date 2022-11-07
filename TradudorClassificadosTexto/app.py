@@ -13,6 +13,7 @@ import spacy
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('rslp')
 
 
 # função para pedir texto para o utilizador
