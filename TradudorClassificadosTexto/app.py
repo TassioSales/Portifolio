@@ -63,52 +63,26 @@ def traduzirParaIngles(texto):
         st.write(e)
         st.write("Erro ao traduzir o texto")
 
-
-# funçao para stemizar o texto
-def Stemize(text):
-    try:
-        stemmer = RSLPStemmer()
-        text = [stemmer.stem(palavra) for palavra in text]
-        return text
-    except Exception as e:
-        st.write(e)
-        st.write("Erro ao stemizar o texto")
-
-
-# função para tokenizar o texto
-def Tokenize(text):
-    try:
-        text = word_tokenize(text)
-        return text
-    except Exception as e:
-        st.write(e)
-        st.write("Erro ao tokenizar o texto")
-        
-# remover stopwords do texto
-def remove_stopwords(text):
-    try:
-        nltk.download('stopwords')
-        # criar lista com as stopwords em português
-        stop_words = set(stopwords.words('português'))
-        #remove stopwords
-        text = [palavra for palavra in text if palavra not in stop_words]
-        return text
-    except Exception as e:
-        st.write(e)
-        st.write("Erro ao remover as stopwords do texto")
-        
-        
+   
 def tratar_texto(text):
     try:
-        # traduzir o texto para o inglês
-        text = traduzirParaIngles(text)
-        # tokenizar o texto
-        text = Tokenize(text)
-        # stemizar o texto
-        text = Stemize(text)
-        # remover stopwords do texto
-        text = remove_stopwords(text)
-        return text
+        # remover pontuação
+        text = text.replace('.', '')
+        text = text.replace(',', '')
+        text = text.replace('!', '')
+        text = text.replace('?', '')
+        text = text.replace(';', '')
+        text = text.replace(':', '')
+        # remover stopwords
+        nltk.download('stopwords')
+        stop_words = set(stopwords.words('portuguese'))
+        palavras = word_tokenize(texto)
+        palavras_sem_stopwords = [palavra for palavra in palavras if palavra not in stop_words]
+        # aplicar stemming
+        stemmer = RSLPStemmer()
+        palavras_stemming = [stemmer.stem(palavra) for palavra in palavras_sem_stopwords]
+        # retornar o texto tratado
+        return ' '.join(palavras_stemming)
     except Exception as e:
         st.write(e)
         st.write("Erro ao tratar o texto")
@@ -323,51 +297,37 @@ def main():
             st.subheader("Analise de Emoções")
             text = st.text_area("Digite o texto")
             if st.button("Analisar"):
-                text = tratar_texto(text)
-                text = ' '.join(text)
-                df = CriarDataFrameEmocoes(text)
-                analisar_emocoes(df)
+                st.write(analisar_emocoes(text))
         elif choice == "Analise de Sentimentos Secundários":
             st.subheader("Analise de Sentimentos Secundários")
             text = st.text_area("Digite o texto")
             if st.button("Analisar"):
-                text = tratar_texto(text)
-                text = ' '.join(text)
-                df = CriarDataFrameEmocoes(text)
-                analisar_sentimentos_secundarios(df)
+                st.write(analisar_sentimentos_secundarios(text))
         elif choice == "Tradutor":
             st.subheader("Tradutor")
             text = st.text_area("Digite o texto")
-            lang = get_langs()
-            # traduzir texto
             if st.button("Traduzir"):
-                traducao = translate_text(text, lang)
-                st.write(traducao)
+                st.write(traduzir(text))
         elif choice == "Detecção de Entidades":
             st.subheader("Detecção de Entidades")
             text = st.text_area("Digite o texto")
-            if st.button("Detectar"):
-                df = detectar_entidades(text)
-                st.markdown(df.to_html(index=False), unsafe_allow_html=True)
+            if st.button("Analisar"):
+                st.write(detectar_entidades(text))
         elif choice == "Análise Gramatical":
             st.subheader("Análise Gramatical")
             text = st.text_area("Digite o texto")
             if st.button("Analisar"):
-                df = analisar_gramatical(text)
-                st.markdown(df.to_html(index=False), unsafe_allow_html=True)
+                st.write(analisar_gramatical(text))
         elif choice == "Detectar Linguagem":
             st.subheader("Detectar Linguagem")
             text = st.text_area("Digite o texto")
-            if st.button("Detectar"):
-                df = detectar_idioma(text)
-                st.markdown(df.to_html(index=False), unsafe_allow_html=True)
+            if st.button("Analisar"):
+                st.write(detectar_idioma(text))
         elif choice == "Detectar Idioma":
             st.subheader("Detectar Idioma")
             text = st.text_area("Digite o texto")
-            if st.button("Detectar"):
-                df = analisar_idioma(text)
-                st.dataframe(df)
-
+            if st.button("Analisar"):
+                st.write(analisar_idioma(text))
     except Exception as e:
         st.write(e)
         st.write("Não foi possível analisar o texto")
