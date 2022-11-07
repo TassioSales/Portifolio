@@ -12,7 +12,6 @@ import pandas as pd
 import spacy
 import nltk
 nltk.download('punkt')
-nltk.download('stopwords')
 nltk.download('rslp')
 
 
@@ -89,6 +88,7 @@ def Tokenize(text):
 # remover stopwords do texto
 def remove_stopwords(text):
     try:
+        nltk.download('stopwords')
         stop_words = set(stopwords.words('português'))
         text = [palavra for palavra in text if palavra not in stop_words]
         return text
