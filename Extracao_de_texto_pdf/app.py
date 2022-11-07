@@ -302,6 +302,7 @@ def mostrar_texto_original():
             st.error(e)
             st.warning("Erro ao mostrar o texto")
 
+
 # função para configurar paginas
 def configurar_paginas():
     # deixar o menu fixo
