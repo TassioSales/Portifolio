@@ -12,6 +12,7 @@ import pandas as pd
 import spacy
 import nltk
 nltk.download('punkt')
+nltk.download('stopwords')
 
 
 # função para pedir texto para o utilizador
