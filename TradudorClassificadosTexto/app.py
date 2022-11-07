@@ -60,7 +60,6 @@ def remove_stopwords(text):
     try:
         nltk.download('stopwords')
         stop_words = set(stopwords.words('portuguese'))
-        palavras = word_tokenize(texto)
         palavras_filtradas = []
         for w in palavras:
             if w not in stop_words:
@@ -86,10 +85,8 @@ def traduzirParaIngles(texto):
 def Stemize(text):
     try:
         stemmer = RSLPStemmer()
-        stem = []
-        for i in text:
-            stem.append(stemmer.stem(i))
-        return stem
+        text = [stemmer.stem(palavra) for palavra in text]
+        return text
     except Exception as e:
         st.write(e)
         st.write("Erro ao stemizar o texto")
@@ -104,17 +101,16 @@ def Tokenize(text):
         st.write(e)
         st.write("Erro ao tokenizar o texto")
 
-
 def tratar_texto(text):
     try:
         # traduzir o texto para o inglês
         text = traduzirParaIngles(text)
         # tokenizar o texto
         text = Tokenize(text)
-        # remover stopwords do texto
-        text = remove_stopwords(text)
         # stemizar o texto
         text = Stemize(text)
+        # remover stopwords do texto
+        text = remove_stopwords(text)
         return text
     except Exception as e:
         st.write(e)
