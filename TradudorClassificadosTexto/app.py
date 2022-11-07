@@ -316,9 +316,7 @@ def main():
             st.subheader("Analise de Sentimento")
             text = st.text_area("Digite o texto")
             if st.button("Analisar"):
-                text = tratar_texto(text)
-                text = ' '.join(text)
-                analisar_sentimento(text)
+                st.write(analisar_sentimento(text))
         elif choice == "Analise de Emoções":
             st.subheader("Analise de Emoções")
             text = st.text_area("Digite o texto")
