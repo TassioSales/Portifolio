@@ -90,13 +90,18 @@ def Tokenize(text):
 def remove_stopwords(text):
     try:
         nltk.download('stopwords')
+        # criar lista com as stopwords em português
         stop_words = set(stopwords.words('português'))
+        #remove stopwords
         text = [palavra for palavra in text if palavra not in stop_words]
         return text
     except Exception as e:
         st.write(e)
-        st.write("Erro ao remover as stopwords")
-
+        st.write("Erro ao remover as stopwords do texto")
+        
+        
+        
+        
 def tratar_texto(text):
     try:
         # traduzir o texto para o inglês
