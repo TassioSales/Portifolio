@@ -13,6 +13,7 @@ import spacy
 import nltk
 nltk.download('punkt')
 nltk.download('rslp')
+nltk.download('vader_lexicon')
 
 
 # função para pedir texto para o utilizador
