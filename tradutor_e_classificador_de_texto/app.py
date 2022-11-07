@@ -212,20 +212,20 @@ def detectar_entidades(text):
         # melhorar a visualização do dataframe
         df['Detalhes'] = df['Detalhes'].replace({'CARDINAL': 'Cardinal', 'DATE': 'Data', 'EVENT': 'Evento',
                                                  'FAC': 'Local', 'GPE': 'País', 'LANGUAGE': 'Língua',
-                                                 'LAW': 'Lei', 'LOC': 'Local', 'MONEY': 'Dinheiro',
-                                                 'NORP': 'Grupo', 'ORDINAL': 'Ordinal', 'ORG': 'Organização',
-                                                 'PERCENT': 'Percentual', 'PERSON': 'Pessoa', 'PRODUCT': 'Produto',
-                                                 'QUANTITY': 'Quantidade', 'TIME': 'Tempo', 'WORK_OF_ART': 'Obra', 
-                                                 'MISC': 'Misto', 'PER': 'Pessoa', 'NORP': 'Grupo', 'ORG': 'Organização'})
+                                                 'LAW': 'Lei', 'LOC': 'Local', 'MONEY': 'Dinheiro', 'ORDINAL':
+                                                     'Ordinal', 'PERCENT': 'Percentual', 'PERSON': 'Pessoa',
+                                                 'PRODUCT': 'Produto', 'QUANTITY': 'Quantidade', 'TIME': 'Tempo',
+                                                 'WORK_OF_ART': 'Obra', 'MISC': 'Misto', 'PER': 'Pessoa',
+                                                 'NORP': 'Grupo', 'ORG': 'Organização'})
 
         df = df.sort_values(by=['Entidade'])
-        #traduzir o nome as entidades para o português
+        # traduzir o nome as entidades para o português
         tralator = Translator()
         df['Entidade'] = df['Entidade'].apply(lambda x: tralator.translate(x, dest='pt').text)
-        #criar grafico de barras contatando os detalhes
+        # criar grafico de barras contatando os detalhes
         cotador = Counter(df['Detalhes'])
         df_cotador = pd.DataFrame(cotador.items(), columns=['Detalhes', 'Quantidade'])
-        #organizar o dataframe por quantidade
+        # organizar o dataframe por quantidade
         df_cotador = df_cotador.sort_values(by=['Quantidade'], ascending=False)
         fig = px.bar(df_cotador, x='Detalhes', y='Quantidade', title='Detalhes das entidades', color='Quantidade')
         st.plotly_chart(fig)
@@ -254,7 +254,7 @@ def analisar_gramatical(text):
         df = df.drop_duplicates(subset=['Palavra'])
         contador = Counter(df['Detalhes'])
         df_contador = pd.DataFrame(contador.items(), columns=['Detalhes', 'Quantidade'])
-        #ordenar dataframe pela quantidade
+        # ordenar dataframe pela quantidade
         df_contador = df_contador.sort_values(by=['Quantidade'], ascending=False)
         fig = px.bar(df_contador, x='Detalhes', y='Quantidade', title='Detalhes gramaticais', color='Quantidade')
         st.plotly_chart(fig)
