@@ -10,6 +10,7 @@ from nrclex import NRCLex
 import plotly.express as px
 import pandas as pd
 import spacy
+import nltk
 nltk.download('punkt')
 
 
