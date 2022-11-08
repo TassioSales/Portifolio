@@ -287,13 +287,13 @@ def detectar_idioma(text):
         st.write("Não foi possível identificar o idioma...")
 
 
-def analisar_idioma(text):
+def analisar_idioma(texto):
     try:
-        #remover os espaços em branco
-        text = text.strip()
+        #juntar texto em uma unica variavel
+        texto = ' '.join(text)
         translator = Translator()
         # criar dataframe com as frases do texto
-        df = pd.DataFrame(text.split('.'), columns=['Frases'])
+        df = pd.DataFrame(texto.split('.'), columns=['Frases'])
         # criar coluna com o idioma da frase
         df['Idioma'] = df['Frases'].apply(lambda x: translator.detect(x).lang)
         return df
