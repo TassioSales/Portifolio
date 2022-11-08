@@ -296,6 +296,8 @@ def analisar_idioma(text):
         df['Idioma'] = df['Frases'].apply(lambda x: translator.detect(x).lang)
         #remover linha vazias
         df = df[df['Frases'] != '']
+        #remover \n do inicio e do fim da frase
+        df['Frases'] = df['Frases'].apply(lambda x: x.strip())
         return df
     except Exception as e:
         st.write(e)
