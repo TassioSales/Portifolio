@@ -289,6 +289,8 @@ def detectar_idioma(text):
 
 def analisar_idioma(text):
     try:
+        #remover os espaços em branco
+        text = text.strip()
         translator = Translator()
         # criar dataframe com as frases do texto
         df = pd.DataFrame(text.split('.'), columns=['Frases'])
