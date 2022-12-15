@@ -381,3 +381,44 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
+#resumo 
+
+# projeto possui 18 funções 
+
+# Primeira função get_text() - função que pega o texto do usuário e retorna o texto
+# Segundo função get_langs() - função que retorna as linguagens disponíveis para tradução
+# Terceira função translate_text() - função que traduz o texto para a linguagem desejada
+# Quarta função traduzirParaIngles() - função que traduz o texto para o inglês
+# Quinta função remove_stopwords() - função que remove as stopwords do texto, a remoção das stopwords é a técnica de remover palavras que não agregam valor ao texto	
+# sexta função Stemize() - função que realiza o stemize do texto a stemize é a técnica de reduzir uma palavra para o seu radical
+# setima função Tokenize() - função que realiza o tokenize do texto o tokenize é a técnica de dividir o texto em palavras
+# oitava função tratar_texto() - função que realiza o tratamento do texto, removendo stopwords, realizando o stemize e o tokenize
+# nova função analisar_sentimento() - função que analisa o sentimento do texto
+# decima função CriarDataFrameEmocoes() - função que cria um dataframe com as emoções do texto
+# decima primeira função analisar_emocoes() - função que analisa as emoções do texto
+# decima segunda função CriarDataFrameSentimentos() - função que cria um dataframe com os sentimentos do texto
+# decima terceira função analisar_sentimentos() - função que analisa os sentimentos do texto
+# decima quarta função detectar_entidades() - função que detecta as entidades do texto
+# decima quinta função analisar_gramatical() - função que analisa a gramática do texto
+# decima sexta função detectar_idioma() - função que detecta o idioma do texto
+# decima setima função analisar_idioma() - função que analisa o idioma do texto
+# decima oitava função main() - função principal do projeto onde é criado o menu e as opções de escolha do usuário
+
+# bibliotecas utilizadas
+#from collections import Counter -Essa importação é utilizada para contar as palavras do texto a finalidade dela no projeto é contar as palavras do texto para realizar a análise de sentimento
+#from googletrans import Translator - Essa importação é utilizada para realizar a tradução do texto a finalidade dela no projeto é traduzir o texto para a linguagem desejada
+#import streamlit as st - Essa importação é utilizada para criar a interface do projeto a finalidade dela no projeto é criar a interface do projeto
+#from langdetect import detect_langs, DetectorFactory - Essa importação é utilizada para detectar o idioma do texto a finalidade dela no projeto é detectar o idioma do texto para realizar a análise gramatical e a análise de sentimento do texto
+#from nltk.stem import RSLPStemmer - Essa importação é utilizada para realizar o stemize do texto a finalidade dela no projeto é realizar o stemize do texto para realizar a análise de sentimento
+#from nltk.sentiment.vader import SentimentIntensityAnalyzer - Essa importação é utilizada para realizar a análise de sentimento do texto a finalidade dela no projeto é realizar a análise de sentimento do texto e criar um dataframe com os sentimentos do texto
+#from nltk.corpus import stopwords - Essa importação é utilizada para remover as stopwords do texto a finalidade dela no projeto é remover as stopwords do texto para realizar a análise de sentimento e a análise gramatical alem de realizar o stemize e o tokenize do texto
+#from nltk.tokenize import word_tokenize - Essa importação é utilizada para realizar o tokenize do texto a finalidade dela no projeto é realizar o tokenize do texto para realizar a análise de sentimento e a análise gramatical
+#from nrclex import NRCLex - Essa importação é utilizada para realizar a análise de emoções do texto a finalidade dela no projeto é realizar a análise de emoções do texto e criar um dataframe com as emoções do texto
+#import plotly.express as px - Essa importação é utilizada para criar o gráfico de barras a finalidade dela no projeto é criar o gráfico de barras com as emoções do texto
+#import pandas as pd - Essa importação é utilizada para criar os dataframes a finalidade dela no projeto é criar os dataframes com as emoções e os sentimentos do texto
+#import spacy - Essa importação é utilizada para realizar a análise gramatical do texto a finalidade dela no projeto é realizar a análise gramatical do texto 
+#import nltk - Essa importação é utilizada para realizar a análise de sentimento do texto a finalidade dela no projeto é realizar a análise de sentimento do texto e criar um dataframe com os sentimentos do texto
+
+# o projeto tem como objetivo facilitar a vida do usuário que deseja realizar a análise de sentimento, análise de emoções, análise gramatical e a análise de idioma de um texto e também realizar a tradução do texto para a linguagem desejada pelo usuário e realizar a análise de sentimento, análise de emoções, análise gramatical e a análise de idioma do texto traduzido para a linguagem desejada pelo usuário seria uma boa ferramenta para quem deseja realizar um estudo de mercado, um estudo de opinião, podendo assim ter uma visão mais ampla do que o usuário deseja analisar
