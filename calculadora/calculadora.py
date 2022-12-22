@@ -1,9 +1,13 @@
 import streamlit as st
 import numpy as np
 
-#função para pedir numero ao usuario
+#função para pedir o primeiro numero ao usuario
 def get_number():
-    return st.number_input('Digite um número')
+    return st.number_input('Digite o primeiro número')
+
+#função pedir o segundo numero ao usuario
+def get_number2():
+    return st.number_input('Digite o segundo número')
 
 
 #função para pedir operação ao usuario
@@ -44,16 +48,12 @@ def mostrar_resultado(resultado):
 #função principal
 def main():
     st.title('Calculadora')
-    #pede numero ao usuario
     a = get_number()
-    #pede operação ao usuario
+    b = get_number2()
     operacao = get_operation()
-    #pede numero ao usuario
-    b = get_number()
-    #calcula a operação
     resultado = calcular(a,b,operacao)
-    #mostra o resultado
     mostrar_resultado(resultado)
+    
     
 if __name__ == '__main__':
     main()
